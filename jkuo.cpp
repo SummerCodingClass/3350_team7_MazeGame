@@ -10,8 +10,10 @@ using namespace std;
 
 void jk_PrintMsg() 
 {
+    cout << endl << endl;
     cout << "Hello!" << endl;
     cout << "Each of the following msgs came from a member's file:" << endl;
-    cout << "test message from jk" << endl;
+    cout << endl;
+    cout << "Test message from jk" << endl;
 }
 
