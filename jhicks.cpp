@@ -7,13 +7,9 @@
 using namespace std;
 
 
-class jh_Test {
-    private:
-        string name = "Jeff Hicks";
-    public:
-        void printName (string name)
-        {
-            cout << name << endl;
-        }
-
+void jh_printName(string message)
+{
+    cout << message << endl;
+    return;
 }
+
