@@ -25,6 +25,6 @@ using namespace std;
 
 void jk_PrintMsg() 
 {
-    cout << "jk" << endl;
+    cout << "Test message from jk" << endl;
 }
 
