@@ -1,3 +1,14 @@
+//Team 7: Jennifer K, Jeff H, Eidmone T, Adam N, Jesus R
+//Project: Maze
+//Framework used: Asteroids from Professor Gordon
+//start date: 2/24/2022
+
+//lab 5 accomplishments: 
+//- implemented simple testing functions from everyone's source files
+//- clicking the right mouse button will print our msgs to the console
+
+
+
 //
 //program: asteroids.cpp
 //author:  Gordon Griesel
@@ -383,6 +394,9 @@ void normalize2d(Vec v)
 	v[1] *= len;
 }
 
+
+// -------------------simple testing functions from lab 5:
+//when the right mouse button is pressed, print msgs to the console
 extern void jk_PrintMsg();
 extern void jh_PrintMsg();
 extern void jr_PrintMsg();
@@ -437,11 +451,14 @@ void check_mouse(XEvent *e)
 		if (e->xbutton.button==3) {
 			//Right button is down
 		
+
+		// -------------------simple testing functions from lab 5:
+		//when the right mouse button is pressed, print msgs to the console
 			jk_PrintMsg();
 			jh_PrintMsg();
 			jr_PrintMsg();
 			et_PrintMsg();
-			an_PrintMsg();			
+			an_PrintMsg();
 		
 
 
