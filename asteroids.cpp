@@ -21,6 +21,9 @@
 #include "log.h"
 #include "fonts.h"
 
+//for testing:
+using namespace std;
+
 //defined types
 typedef float Flt;
 typedef float Vec[3];
@@ -380,6 +383,12 @@ void normalize2d(Vec v)
 	v[1] *= len;
 }
 
+extern void jk_PrintMsg();
+extern void jh_PrintMsg();
+extern void jr_PrintMsg();
+extern void et_PrintMsg();
+extern void an_PrintMsg();
+
 void check_mouse(XEvent *e)
 {
 	//Did the mouse move?
@@ -427,6 +436,16 @@ void check_mouse(XEvent *e)
 		}
 		if (e->xbutton.button==3) {
 			//Right button is down
+		
+			jk_PrintMsg();
+			jh_PrintMsg();
+			jr_PrintMsg();
+			et_PrintMsg();
+			an_PrintMsg();			
+		
+
+
+
 		}
 	}
 	//keys[XK_Up] = 0;
@@ -476,6 +495,7 @@ void check_mouse(XEvent *e)
 		savey = 100;
 	}
 }
+
 
 int check_keys(XEvent *e)
 {
@@ -789,6 +809,11 @@ void render()
 	ggprint8b(&r, 16, 0x00ff0000, "3350 - Asteroids");
 	ggprint8b(&r, 16, 0x00ffff00, "n bullets: %i", g.nbullets);
 	ggprint8b(&r, 16, 0x00ffff00, "n asteroids: %i", g.nasteroids);
+
+
+
+
+
 	//-------------------------------------------------------------------------
 	//Draw the ship
 	glColor3fv(g.ship.color);
