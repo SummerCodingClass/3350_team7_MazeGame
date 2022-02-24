@@ -7,9 +7,9 @@
 using namespace std;
 
 
-void jh_PrintMsg(string message)
+void jh_PrintMsg()
 {
-    cout << message << endl;
+    cout << "Hello from Jeff's file!" << endl;
     return;
 }
 
