@@ -21,5 +21,5 @@ class jrojas_test {
 
 void jr_PrintMsg()
 {
-    cout << "jrojas -testing";
+    cout << "jrojas -testing this out!" << endl;
 }
