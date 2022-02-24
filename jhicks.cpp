@@ -7,7 +7,7 @@
 using namespace std;
 
 
-void jh_printName(string message)
+void jh_PrintMsg(string message)
 {
     cout << message << endl;
     return;
