@@ -6,5 +6,5 @@ using namespace std;
 
 void et_PrintMsg() 
 {
-    cout << "Eidmone's file fired";
+    cout << "Eidmone's file fired" <<endl;
 }
