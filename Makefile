@@ -10,5 +10,5 @@ asteroids: asteroids.cpp log.cpp timers.cpp $(REQUIRED)
 
 clean:
 	rm -f asteroids
-	rm -f *.o
+	rm -f *.o *.x
 
