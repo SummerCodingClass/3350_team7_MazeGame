@@ -5,5 +5,5 @@
 using namespace std;
 
 void an_PrintMsg() {
-    cout << endl << "anicholas file worked!" << endl;
+    cout << "anicholas file worked!" << endl;
 }
