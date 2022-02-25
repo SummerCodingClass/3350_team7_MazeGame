@@ -1,13 +1,9 @@
 // Author: Adam Nicholas
 // File: Individual Contributions- Group Project
 
+#include <iostream>
 using namespace std;
 
-#include <iostream>
-
-int main() {
-    cout << "Author: Adam Nicholas" << endl;
-    cout << "File: Individual Contributions" << endl;
-
-    return 0;
+void an_PrintMsg() {
+    cout << "anicholas file worked!" << endl;
 }
