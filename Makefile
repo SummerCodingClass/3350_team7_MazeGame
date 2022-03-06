@@ -6,7 +6,7 @@ REQUIRED = anicholas.cpp etagaca.cpp jhicks.cpp jkuo.cpp jrojas.cpp
 all: asteroids
 
 asteroids: asteroids.cpp log.cpp timers.cpp $(REQUIRED)
-	g++ $(CFLAGS) asteroids.cpp log.cpp timers.cpp $(REQUIRED) -I/opt/X11/include libggfonts.a -Wall -Wextra $(LFLAGS) -oasteroids
+	g++ $(CFLAGS) asteroids.cpp log.cpp timers.cpp $(REQUIRED) libggfonts.a -Wall -Wextra $(LFLAGS) -oasteroids
 
 clean:
 	rm -f asteroids
