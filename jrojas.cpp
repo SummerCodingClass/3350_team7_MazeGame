@@ -16,10 +16,9 @@ class jrojas_test {
             return;
         }
 };
-
 */
 
 void jr_PrintMsg()
 {
-    cout << "jrojas -testing this out!" << endl;
+    cout << "jrojas -testing this out! Hello there!" << endl;
 }
