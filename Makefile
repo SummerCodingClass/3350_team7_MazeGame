@@ -3,12 +3,12 @@ CFLAGS = -I ./include
 LFLAGS = -lrt -lX11 -lGLU -lGL -pthread -lm #-lXrandr
 REQUIRED = anicholas.cpp etagaca.cpp jhicks.cpp jkuo.cpp jrojas.cpp
 
-all: asteroids
+all: maze
 
-asteroids: asteroids.cpp log.cpp timers.cpp $(REQUIRED)
-	g++ $(CFLAGS) asteroids.cpp log.cpp timers.cpp $(REQUIRED) libggfonts.a -Wall -Wextra $(LFLAGS) -oasteroids
+maze: asteroids.cpp log.cpp timers.cpp $(REQUIRED)
+	g++ $(CFLAGS) asteroids.cpp log.cpp timers.cpp $(REQUIRED) libggfonts.a -Wall -Wextra $(LFLAGS) -omaze
 
 clean:
-	rm -f asteroids
+	rm -f maze
 	rm -f *.o *.x
 
