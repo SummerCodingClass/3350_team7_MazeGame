@@ -32,6 +32,8 @@
 #include "log.h"
 #include "fonts.h"
 
+
+
 //for testing:
 using namespace std;
 
@@ -79,6 +81,23 @@ public:
 		yres = 480;
 		memset(keys, 0, 65536);
 	}
+
+
+	// const char *colour[2] = { "Blue", "Red",
+    //                          "Orange", "Yellow" };
+
+    // const char *colour[2][2] = { 
+	// 	{"Blue", "Red"},
+    // 	{"Orange", "Yellow"}
+	// };
+
+    const char *colour[2][2] = { 
+		{"L", "R"},
+    	{"O", "Y"}
+	};
+
+
+
 } gl;
 
 class Ship {
@@ -823,9 +842,39 @@ void render()
 	r.bot = gl.yres - 20;
 	r.left = 10;
 	r.center = 0;
-	ggprint8b(&r, 16, 0x00ff0000, "3350 - Asteroids");
+	ggprint8b(&r, 16, 0x00ff0000, "3350 - MAze");
+
+	//should display "level" and "timer" instead... 
+	//and maybe even "highest score" 
 	ggprint8b(&r, 16, 0x00ffff00, "n bullets: %i", g.nbullets);
 	ggprint8b(&r, 16, 0x00ffff00, "n asteroids: %i", g.nasteroids);
+
+
+
+	Rect jk_t;
+	jk_t.bot = gl.yres - 100;
+	jk_t.left = 10;
+	jk_t.center = 0;
+
+
+// 1D
+// 	for(int index = 0; index < 2; index++ ) {
+	
+// 			ggprint8b(&jk_t, 16, 0x00ffff00, gl.colour[index]);
+	
+	
+// 	}
+
+
+	for(int index = 0; index < 2; index++ ) {
+		for(int inner = 0; inner < 2; inner++ ) {
+			jk_t.bot = gl.yres - 100 - (index * 20);
+			jk_t.left = 10 + (inner * 20);
+			ggprint8b(&jk_t, 16, 0x00ffff00, gl.colour[index][inner]);
+	
+		}
+	}
+	
 
 
 
