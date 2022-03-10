@@ -447,6 +447,11 @@ extern void jr_PrintMsg();
 extern void et_PrintMsg();
 extern void an_PrintMsg();
 
+extern Rect jk_createRect(int yres, int height, int left, int center);
+extern void jk_printMaze1(Rect position, int defaultHeight, int color);
+extern void jk_printMaze2(Rect position, int defaultHeight, int color);
+extern void jk_printMaze3(Rect position, int defaultHeight, int color);
+
 void check_mouse(XEvent *e)
 {
 	//Did the mouse move?
@@ -581,6 +586,9 @@ int check_keys(XEvent *e)
 			return 0;
 		}
 	}
+
+	// Rect jk_t = jk_createRect(gl.yres, 100, 10, 0);
+
 	(void)shift;
 	switch (key) {
 		case XK_Escape:
@@ -595,6 +603,22 @@ int check_keys(XEvent *e)
 			break;
 		case XK_minus:
 			break;
+
+
+	// // Rect jk_t = jk_createRect(gl.yres, 100, 10, 0);
+
+	// 	case XK_1:
+	// 		glClear(GL_COLOR_BUFFER_BIT);
+	// 		jk_printMaze1(jk_t, gl.yres-100, 0x0040e0d0);
+	// 		break;
+	// 	case XK_2:
+	// 		glClear(GL_COLOR_BUFFER_BIT);
+	// 		jk_printMaze2(jk_t, gl.yres-100, 0x0040e0d0);
+	// 		break;
+	// 	case XK_3:
+	// 		glClear(GL_COLOR_BUFFER_BIT);
+	// 		jk_printMaze3(jk_t, gl.yres-100, 0x0040e0d0);
+	// 		break;
 	}
 	return 0;
 }
@@ -848,6 +872,23 @@ void physics()
 			}
 		}
 	}
+
+	// Rect jk_t = jk_createRect(gl.yres, 100, 10, 0);
+	// if (gl.keys[XK_1]) {
+	// 	glClear(GL_COLOR_BUFFER_BIT);
+	// 	jk_printMaze1(jk_t, gl.yres-100, 0x0040e0d0);
+	// }
+	// if (gl.keys[XK_2]) {
+	// 	glClear(GL_COLOR_BUFFER_BIT);
+	// 	jk_printMaze2(jk_t, gl.yres-100, 0x0040e0d0);
+	// }
+	// if (gl.keys[XK_3]) {
+	// 	glClear(GL_COLOR_BUFFER_BIT);
+	// 	jk_printMaze3(jk_t, gl.yres-100, 0x0040e0d0);
+	// }
+
+
+
 	if (g.mouseThrustOn) {
 		//should thrust be turned off
 		struct timespec mtt;
@@ -862,8 +903,13 @@ void physics()
 // extern const char* maze1[12][1];
 // extern void jk_printMaze(const char* maze, int rows, int color, 
 //Rect position, int defaultHeight);
-extern Rect jk_createRect(int yres, int height, int left, int center);
-extern void jk_printMaze1(Rect position, int defaultHeight, int color);
+
+//keep:-----------
+// extern Rect jk_createRect(int yres, int height, int left, int center);
+// extern void jk_printMaze1(Rect position, int defaultHeight, int color);
+// extern void jk_printMaze2(Rect position, int defaultHeight, int color);
+// extern void jk_printMaze3(Rect position, int defaultHeight, int color);
+//end of keep:-----------
 
 void render()
 {
@@ -879,45 +925,70 @@ void render()
 	//and maybe even "highest score" 
 	ggprint8b(&r, 16, 0x00ffff00, "n bullets: %i", g.nbullets);
 	ggprint8b(&r, 16, 0x00ffff00, "n asteroids: %i", g.nasteroids);
-
+	ggprint8b(&r, 16, 0x00ffffff, " ");
+	ggprint8b(&r, 16, 0x00ffffff, "Instructions:");
+	ggprint8b(&r, 16, 0x00ffffff, "right click to print msgs to console");
+	ggprint8b(&r, 16, 0x00ffffff, "hold down either 1, 2, or 3 to show maps");
 
 	Rect jk_t = jk_createRect(gl.yres, 100, 10, 0);
+	if (gl.keys[XK_1]) {
+		glClear(GL_COLOR_BUFFER_BIT);
+		jk_printMaze1(jk_t, gl.yres-100, 0x0040e0d0);
+	}
+	if (gl.keys[XK_2]) {
+		glClear(GL_COLOR_BUFFER_BIT);
+		jk_printMaze2(jk_t, gl.yres-100, 0x0040e0d0);
+	}
+	if (gl.keys[XK_3]) {
+		glClear(GL_COLOR_BUFFER_BIT);
+		jk_printMaze3(jk_t, gl.yres-100, 0x0040e0d0);
+	}
+
+	
+	
+// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++	
+//Draw Maze 1
+//Working:----------------------------
+	// Rect jk_t = jk_createRect(gl.yres, 100, 10, 0);
+	// // jk_printMaze1(jk_t, gl.yres-100, 0x0040e0d0);
+	// // jk_printMaze2(jk_t, gl.yres-100, 0x0040e0d0);
+	// jk_printMaze3(jk_t, gl.yres-100, 0x0040e0d0);
+// end of working -------------------
+
+
 	// Rect jk_t;
 	// jk_t.bot = gl.yres - 100;
 	// jk_t.left = 10;
 	// jk_t.center = 0;
 
-	jk_printMaze1(jk_t, gl.yres-100, 0x0040e0d0);
-
-
-// successfully printed 1D
-// 	for(int index = 0; index < 2; index++ ) {
-// 			ggprint8b(&jk_t, 16, 0x00ffff00, gl.colour[index]);
-// 	}
-
-// successfully printed "colour" array in 2D
-	// for(int index = 0; index < 2; index++ ) {
-	// 	for(int inner = 0; inner < 2; inner++ ) {
-	// 		jk_t.bot = gl.yres - 100 - (index * 20);
-	// 		jk_t.left = 10 + (inner * 20);
-	// 		ggprint8b(&jk_t, 16, 0x00ffff00, gl.colour[index][inner]);
+	// successfully printed 1D
+	// 	for(int index = 0; index < 2; index++ ) {
+	// 			ggprint8b(&jk_t, 16, 0x00ffff00, gl.colour[index]);
 	// 	}
-	// }
 	
-
-// was experimenting interaction with individual source file, but seg fault
-// 	for(int index = 0; index < 12; index++ ) {
-// 			jk_t.bot = gl.yres - 100 - (index * 20);	
-// 			ggprint8b(&jk_t, 16, 0x00ffff00, maze1[index][1]);
-// 	}
-
-
-
-// aha, success. but maze was stored in global
-	// for(int index = 0; index < 12; index++ ) {
-	// 		jk_t.bot = gl.yres - 100 - (index * 20);
-	// 		ggprint8b(&jk_t, 16, 0x00ffff00, gl.maze2[index][1]);
-	// }
+	// successfully printed "colour" array in 2D
+		// for(int index = 0; index < 2; index++ ) {
+		// 	for(int inner = 0; inner < 2; inner++ ) {
+		// 		jk_t.bot = gl.yres - 100 - (index * 20);
+		// 		jk_t.left = 10 + (inner * 20);
+		// 		ggprint8b(&jk_t, 16, 0x00ffff00, gl.colour[index][inner]);
+		// 	}
+		// }
+		
+	
+	// was experimenting interaction with individual source file, but seg fault
+	// 	for(int index = 0; index < 12; index++ ) {
+	// 			jk_t.bot = gl.yres - 100 - (index * 20);	
+	// 			ggprint8b(&jk_t, 16, 0x00ffff00, maze1[index][1]);
+	// 	}
+	
+	
+	
+	// aha, success. but maze was stored in global
+		// for(int index = 0; index < 12; index++ ) {
+		// 		jk_t.bot = gl.yres - 100 - (index * 20);
+		// 		ggprint8b(&jk_t, 16, 0x00ffff00, gl.maze2[index][1]);
+		// }
 
 
 
@@ -968,32 +1039,32 @@ void render()
 	}
 	//-------------------------------------------------------------------------
 	//Draw the asteroids
-	{
-		Asteroid *a = g.ahead;
-		while (a) {
-			//Log("draw asteroid...\n");
-			glColor3fv(a->color);
-			glPushMatrix();
-			glTranslatef(a->pos[0], a->pos[1], a->pos[2]);
-			glRotatef(a->angle, 0.0f, 0.0f, 1.0f);
-			glBegin(GL_LINE_LOOP);
-			//Log("%i verts\n",a->nverts);
-			for (int j=0; j<a->nverts; j++) {
-				glVertex2f(a->vert[j][0], a->vert[j][1]);
-			}
-			glEnd();
-			//glBegin(GL_LINES);
-			//	glVertex2f(0,   0);
-			//	glVertex2f(a->radius, 0);
-			//glEnd();
-			glPopMatrix();
-			glColor3f(1.0f, 0.0f, 0.0f);
-			glBegin(GL_POINTS);
-			glVertex2f(a->pos[0], a->pos[1]);
-			glEnd();
-			a = a->next;
-		}
-	}
+	// {
+	// 	Asteroid *a = g.ahead;
+	// 	while (a) {
+	// 		//Log("draw asteroid...\n");
+	// 		glColor3fv(a->color);
+	// 		glPushMatrix();
+	// 		glTranslatef(a->pos[0], a->pos[1], a->pos[2]);
+	// 		glRotatef(a->angle, 0.0f, 0.0f, 1.0f);
+	// 		glBegin(GL_LINE_LOOP);
+	// 		//Log("%i verts\n",a->nverts);
+	// 		for (int j=0; j<a->nverts; j++) {
+	// 			glVertex2f(a->vert[j][0], a->vert[j][1]);
+	// 		}
+	// 		glEnd();
+	// 		//glBegin(GL_LINES);
+	// 		//	glVertex2f(0,   0);
+	// 		//	glVertex2f(a->radius, 0);
+	// 		//glEnd();
+	// 		glPopMatrix();
+	// 		glColor3f(1.0f, 0.0f, 0.0f);
+	// 		glBegin(GL_POINTS);
+	// 		glVertex2f(a->pos[0], a->pos[1]);
+	// 		glEnd();
+	// 		a = a->next;
+	// 	}
+	// }
 	//-------------------------------------------------------------------------
 	//Draw the bullets
 	for (int i=0; i<g.nbullets; i++) {
