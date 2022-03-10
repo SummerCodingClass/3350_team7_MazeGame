@@ -91,10 +91,35 @@ public:
     // 	{"Orange", "Yellow"}
 	// };
 
-    const char *colour[2][2] = { 
-		{"L", "R"},
-    	{"O", "Y"}
-	};
+    // const char *colour[2][2] = { 
+	// 	{"L", "R"},
+    // 	{"O", "Y"}
+	// };
+
+
+
+
+
+// source: https://www.asciiart.eu/art-and-design/mazes
+// const char *maze2[12][1] = {
+
+// { "___________________________________  " },
+// { "| _____ |   | ___ | ___ ___ | |   | |" },
+// { "| |   | |_| |__ | |_| __|____ | | | |" },
+// { "| | | |_________|__ |______ |___|_| |" },
+// { "| |_|   | _______ |______ |   | ____|" },
+// { "| ___ | |____ | |______ | |_| |____ |" },
+// { "|___|_|____ | |   ___ | |________ | |" },
+// { "|   ________| | |__ | |______ | | | |" },
+// { "| | | ________| | __|____ | | | __| |" },
+// { "|_| |__ |   | __|__ | ____| | |_| __|" },
+// { "|   ____| | |____ | |__ |   |__ |__ |" },
+// { "| |_______|_______|___|___|___|_____|" }
+
+// };
+
+// didn't work
+//  extern const char* maze1[12][1];
 
 
 
@@ -834,6 +859,12 @@ void physics()
 	}
 }
 
+// extern const char* maze1[12][1];
+// extern void jk_printMaze(const char* maze, int rows, int color, 
+//Rect position, int defaultHeight);
+extern Rect jk_createRect(int yres, int height, int left, int center);
+extern void jk_printMaze1(Rect position, int defaultHeight, int color);
+
 void render()
 {
 	Rect r;
@@ -850,32 +881,43 @@ void render()
 	ggprint8b(&r, 16, 0x00ffff00, "n asteroids: %i", g.nasteroids);
 
 
+	Rect jk_t = jk_createRect(gl.yres, 100, 10, 0);
+	// Rect jk_t;
+	// jk_t.bot = gl.yres - 100;
+	// jk_t.left = 10;
+	// jk_t.center = 0;
 
-	Rect jk_t;
-	jk_t.bot = gl.yres - 100;
-	jk_t.left = 10;
-	jk_t.center = 0;
+	jk_printMaze1(jk_t, gl.yres-100, 0x0040e0d0);
 
 
-// 1D
+// successfully printed 1D
 // 	for(int index = 0; index < 2; index++ ) {
-	
 // 			ggprint8b(&jk_t, 16, 0x00ffff00, gl.colour[index]);
+// 	}
+
+// successfully printed "colour" array in 2D
+	// for(int index = 0; index < 2; index++ ) {
+	// 	for(int inner = 0; inner < 2; inner++ ) {
+	// 		jk_t.bot = gl.yres - 100 - (index * 20);
+	// 		jk_t.left = 10 + (inner * 20);
+	// 		ggprint8b(&jk_t, 16, 0x00ffff00, gl.colour[index][inner]);
+	// 	}
+	// }
 	
-	
+
+// was experimenting interaction with individual source file, but seg fault
+// 	for(int index = 0; index < 12; index++ ) {
+// 			jk_t.bot = gl.yres - 100 - (index * 20);	
+// 			ggprint8b(&jk_t, 16, 0x00ffff00, maze1[index][1]);
 // 	}
 
 
-	for(int index = 0; index < 2; index++ ) {
-		for(int inner = 0; inner < 2; inner++ ) {
-			jk_t.bot = gl.yres - 100 - (index * 20);
-			jk_t.left = 10 + (inner * 20);
-			ggprint8b(&jk_t, 16, 0x00ffff00, gl.colour[index][inner]);
-	
-		}
-	}
-	
 
+// aha, success. but maze was stored in global
+	// for(int index = 0; index < 12; index++ ) {
+	// 		jk_t.bot = gl.yres - 100 - (index * 20);
+	// 		ggprint8b(&jk_t, 16, 0x00ffff00, gl.maze2[index][1]);
+	// }
 
 
 
