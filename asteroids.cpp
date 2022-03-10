@@ -931,6 +931,7 @@ void render()
 	ggprint8b(&r, 16, 0x00ffffff, "hold down either 1, 2, or 3 to show maps");
 
 	Rect jk_t = jk_createRect(gl.yres, 100, 10, 0);
+	
 	if (gl.keys[XK_1]) {
 		glClear(GL_COLOR_BUFFER_BIT);
 		jk_printMaze1(jk_t, gl.yres-100, 0x0040e0d0);
@@ -943,6 +944,42 @@ void render()
 		glClear(GL_COLOR_BUFFER_BIT);
 		jk_printMaze3(jk_t, gl.yres-100, 0x0040e0d0);
 	}
+
+	// int choice = 0;
+	
+	// if (gl.keys[XK_1] || choice == 1) {
+	// 	choice = 1;
+	// }
+	// if (gl.keys[XK_2] || choice == 2) {
+	// 	choice = 2;
+	// }
+	// if (gl.keys[XK_3] || choice == 3) {
+	// 	choice = 3;
+	// }
+
+	// switch(choice) {
+	// 	case 1:
+	// 		glClear(GL_COLOR_BUFFER_BIT);
+	// 		jk_printMaze1(jk_t, gl.yres-100, 0x0040e0d0);
+	// 		break;
+	// 	case 2:
+	// 		glClear(GL_COLOR_BUFFER_BIT);
+	// 		jk_printMaze2(jk_t, gl.yres-100, 0x0040e0d0);
+	// 		break;
+	// 	case 3:
+	// 		glClear(GL_COLOR_BUFFER_BIT);
+	// 		jk_printMaze3(jk_t, gl.yres-100, 0x0040e0d0);
+	// 		break;
+
+	// };
+	
+
+
+
+
+
+
+
 
 	
 	
