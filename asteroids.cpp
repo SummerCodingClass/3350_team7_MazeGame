@@ -945,6 +945,8 @@ void render()
 		jk_printMaze3(jk_t, gl.yres-100, 0x0040e0d0);
 	}
 
+	
+
 	// int choice = 0;
 	
 	// if (gl.keys[XK_1] || choice == 1) {
