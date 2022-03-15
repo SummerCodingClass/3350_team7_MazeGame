@@ -76,51 +76,18 @@ class Global {
 public:
 	int xres, yres;
 	char keys[65536];
+	int maze_state;
+
 	Global() {
 		xres = 640;
 		yres = 480;
 		memset(keys, 0, 65536);
+		maze_state = 0;
+
 	}
 
 
-	// const char *colour[2] = { "Blue", "Red",
-    //                          "Orange", "Yellow" };
-
-    // const char *colour[2][2] = { 
-	// 	{"Blue", "Red"},
-    // 	{"Orange", "Yellow"}
-	// };
-
-    // const char *colour[2][2] = { 
-	// 	{"L", "R"},
-    // 	{"O", "Y"}
-	// };
-
-
-
-
-
-// source: https://www.asciiart.eu/art-and-design/mazes
-// const char *maze2[12][1] = {
-
-// { "___________________________________  " },
-// { "| _____ |   | ___ | ___ ___ | |   | |" },
-// { "| |   | |_| |__ | |_| __|____ | | | |" },
-// { "| | | |_________|__ |______ |___|_| |" },
-// { "| |_|   | _______ |______ |   | ____|" },
-// { "| ___ | |____ | |______ | |_| |____ |" },
-// { "|___|_|____ | |   ___ | |________ | |" },
-// { "|   ________| | |__ | |______ | | | |" },
-// { "| | | ________| | __|____ | | | __| |" },
-// { "|_| |__ |   | __|__ | ____| | |_| __|" },
-// { "|   ____| | |____ | |__ |   |__ |__ |" },
-// { "| |_______|_______|___|___|___|_____|" }
-
-// };
-
-// didn't work
-//  extern const char* maze1[12][1];
-
+	
 
 
 } gl;
@@ -591,6 +558,16 @@ int check_keys(XEvent *e)
 
 	(void)shift;
 	switch (key) {
+		case XK_1:
+			gl.maze_state = 1;
+			break;
+		case XK_2:
+			gl.maze_state = 2;
+			break;
+		case XK_3:
+			gl.maze_state = 3;
+			break;
+
 		case XK_Escape:
 			return 1;
 		case XK_f:
@@ -900,138 +877,83 @@ void physics()
 	}
 }
 
-// extern const char* maze1[12][1];
-// extern void jk_printMaze(const char* maze, int rows, int color, 
-//Rect position, int defaultHeight);
 
-//keep:-----------
-// extern Rect jk_createRect(int yres, int height, int left, int center);
-// extern void jk_printMaze1(Rect position, int defaultHeight, int color);
-// extern void jk_printMaze2(Rect position, int defaultHeight, int color);
-// extern void jk_printMaze3(Rect position, int defaultHeight, int color);
-//end of keep:-----------
+
+
+
 
 void render()
 {
 	Rect r;
 	glClear(GL_COLOR_BUFFER_BIT);
-	//
+	
 	r.bot = gl.yres - 20;
 	r.left = 10;
 	r.center = 0;
-	ggprint8b(&r, 16, 0x00ff0000, "3350 - MAze");
+	ggprint8b(&r, 16, 0x00ff0000, "3350 - Maze");
 
 	//should display "level" and "timer" instead... 
 	//and maybe even "highest score" 
-	ggprint8b(&r, 16, 0x00ffff00, "n bullets: %i", g.nbullets);
-	ggprint8b(&r, 16, 0x00ffff00, "n asteroids: %i", g.nasteroids);
-	ggprint8b(&r, 16, 0x00ffffff, " ");
+	// ggprint8b(&r, 16, 0x00ffff00, "n bullets: %i", g.nbullets);
+	// ggprint8b(&r, 16, 0x00ffff00, "n asteroids: %i", g.nasteroids);
+	// ggprint8b(&r, 16, 0x00ffffff, " ");
 	ggprint8b(&r, 16, 0x00ffffff, "Instructions:");
 	ggprint8b(&r, 16, 0x00ffffff, "right click to print msgs to console");
 	ggprint8b(&r, 16, 0x00ffffff, "hold down either 1, 2, or 3 to show maps");
 
 	Rect jk_t = jk_createRect(gl.yres, 100, 10, 0);
+
+
+	// if(gl.maze_state == 0) {
+	// 	if ( a state saved when start button was clicked ) {
+	// 		start game + change the state to maze level 1
+	// 	}
+	// 	if ( a state registering a credit button was clicked ) {
+	// 		show credit + change the state to credit page
+	// 	}
+	// }
+
+
+	// if (gl.maze_state == "credit") {
+	// 	if ( a state registering a "back" button was pressed ) {
+	// 		show homescreen again and update game state
+	// 	}
+	// }
+
+
+
 	
-	if (gl.keys[XK_1]) {
+	// if (gl.keys[XK_1] ) {
+	// 	glClear(GL_COLOR_BUFFER_BIT);
+	// 	jk_printMaze1(jk_t, gl.yres-100, 0x0040e0d0);
+	// }
+	// if (gl.keys[XK_2] ) {
+	// 	glClear(GL_COLOR_BUFFER_BIT);
+	// 	jk_printMaze2(jk_t, gl.yres-100, 0x0040e0d0);
+		
+	// }
+	// if (gl.keys[XK_3] ) {
+		
+	// }
+
+
+
+	if (gl.maze_state == 1) {
 		glClear(GL_COLOR_BUFFER_BIT);
 		jk_printMaze1(jk_t, gl.yres-100, 0x0040e0d0);
 	}
-	if (gl.keys[XK_2]) {
+	if (gl.maze_state == 2) {
 		glClear(GL_COLOR_BUFFER_BIT);
 		jk_printMaze2(jk_t, gl.yres-100, 0x0040e0d0);
 	}
-	if (gl.keys[XK_3]) {
+	if (gl.maze_state == 3) {
 		glClear(GL_COLOR_BUFFER_BIT);
 		jk_printMaze3(jk_t, gl.yres-100, 0x0040e0d0);
 	}
 
-	
-
-	// int choice = 0;
-	
-	// if (gl.keys[XK_1] || choice == 1) {
-	// 	choice = 1;
-	// }
-	// if (gl.keys[XK_2] || choice == 2) {
-	// 	choice = 2;
-	// }
-	// if (gl.keys[XK_3] || choice == 3) {
-	// 	choice = 3;
-	// }
-
-	// switch(choice) {
-	// 	case 1:
-	// 		glClear(GL_COLOR_BUFFER_BIT);
-	// 		jk_printMaze1(jk_t, gl.yres-100, 0x0040e0d0);
-	// 		break;
-	// 	case 2:
-	// 		glClear(GL_COLOR_BUFFER_BIT);
-	// 		jk_printMaze2(jk_t, gl.yres-100, 0x0040e0d0);
-	// 		break;
-	// 	case 3:
-	// 		glClear(GL_COLOR_BUFFER_BIT);
-	// 		jk_printMaze3(jk_t, gl.yres-100, 0x0040e0d0);
-	// 		break;
-
-	// };
-	
 
 
-
-
-
-
-
-
-	
-	
-// +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++	
-//Draw Maze 1
-//Working:----------------------------
-	// Rect jk_t = jk_createRect(gl.yres, 100, 10, 0);
-	// // jk_printMaze1(jk_t, gl.yres-100, 0x0040e0d0);
-	// // jk_printMaze2(jk_t, gl.yres-100, 0x0040e0d0);
-	// jk_printMaze3(jk_t, gl.yres-100, 0x0040e0d0);
-// end of working -------------------
-
-
-	// Rect jk_t;
-	// jk_t.bot = gl.yres - 100;
-	// jk_t.left = 10;
-	// jk_t.center = 0;
-
-	// successfully printed 1D
-	// 	for(int index = 0; index < 2; index++ ) {
-	// 			ggprint8b(&jk_t, 16, 0x00ffff00, gl.colour[index]);
-	// 	}
-	
-	// successfully printed "colour" array in 2D
-		// for(int index = 0; index < 2; index++ ) {
-		// 	for(int inner = 0; inner < 2; inner++ ) {
-		// 		jk_t.bot = gl.yres - 100 - (index * 20);
-		// 		jk_t.left = 10 + (inner * 20);
-		// 		ggprint8b(&jk_t, 16, 0x00ffff00, gl.colour[index][inner]);
-		// 	}
-		// }
-		
-	
-	// was experimenting interaction with individual source file, but seg fault
-	// 	for(int index = 0; index < 12; index++ ) {
-	// 			jk_t.bot = gl.yres - 100 - (index * 20);	
-	// 			ggprint8b(&jk_t, 16, 0x00ffff00, maze1[index][1]);
-	// 	}
-	
-	
-	
-	// aha, success. but maze was stored in global
-		// for(int index = 0; index < 12; index++ ) {
-		// 		jk_t.bot = gl.yres - 100 - (index * 20);
-		// 		ggprint8b(&jk_t, 16, 0x00ffff00, gl.maze2[index][1]);
-		// }
-
-
-
-
+/*
 	//-------------------------------------------------------------------------
 	//Draw the ship
 	glColor3fv(g.ship.color);
@@ -1123,6 +1045,10 @@ void render()
 		glVertex2f(b->pos[0]+1.0f, b->pos[1]+1.0f);
 		glEnd();
 	}
+
+*/
+
+
 }
 
 
