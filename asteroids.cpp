@@ -79,8 +79,8 @@ public:
 	int maze_state;
 
 	Global() {
-		xres = 860;
-		yres = 700;
+		xres = 960;
+		yres = 600;
 		memset(keys, 0, 65536);
 		maze_state = 0;
 
