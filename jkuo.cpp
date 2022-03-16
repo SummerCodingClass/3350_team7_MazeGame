@@ -4,7 +4,10 @@
 
 #include "fonts.h"
 #include <iostream>
+#include <cstring>
+#include <GL/glx.h>
 using namespace std;
+// extern class Global gl;
 
 // don't write classes yet
 
@@ -15,6 +18,8 @@ void jk_PrintMsg()
     cout << "Each of the following msgs came from a member's file:" << endl;
     cout << endl;
     cout << "Test message from jk" << endl;
+
+    
 }
 
 
@@ -53,31 +58,113 @@ void jk_printMazeGeneral(Rect position, const char* maze[], int rows,
 
 }
 
+
+void jk_printMazeGrid(Rect position, const char* maze[], int rows,
+    int startingPosition[2], int defaultHeight, int color, const char* mazeName) 
+{   
+
+    // int playerX = startingPosition[0];
+    // int playerY = startingPosition[1];
+    static int player[2] = {10, 10};
+    player[0] = startingPosition[0];
+    player[1] = startingPosition[1];
+
+    ggprint8b(&position, 16, color, mazeName);
+    
+
+    int columns = strlen(maze[0]);
+    for (int i = 1; i < rows; i++) {
+      if ((int)strlen(maze[i]) > columns) {
+        columns = strlen(maze[i]);
+      }
+    }
+
+
+    for (int i = 0; i < rows; i++) {
+      for (int j = 0; j < columns; j++) {
+
+        glColor3ub(200,50,50);
+        
+        if (maze[i][j] == ' ') {
+          glColor3ub(20,20,20);
+        }
+        
+        if (i == player[1] && j == player[0]) {
+          glColor3ub(255,250,250);
+        }
+
+        float w = 5.0f;
+        glPushMatrix();
+        glTranslatef(j*(w+1)*2, defaultHeight-50-i*(w+1)*2, 0);
+        glBegin(GL_QUADS);
+          glVertex2f(-w, -w);
+          glVertex2f(-w,  w);
+          glVertex2f( w,  w);
+          glVertex2f( w, -w);
+        glEnd();
+        glPopMatrix();
+
+      }
+    }
+
+
+}
+
 void jk_printMaze1(Rect position, int defaultHeight, int color) 
 {
 
-    int rows = 12;
+    const char* mazeName = "Maze 1";
+    int rows = 31;
+    int player[2] = {1, 29};
+
   // source: https://www.asciiart.eu/art-and-design/mazes
     const char* maze[rows] = 
     {
     
-     "___________________________________  " ,
-     "| _____ |   | ___ | ___ ___ | |   | |" ,
-     "| |   | |_| |__ | |_| __|____ | | | |" ,
-     "| | | |_________|__ |______ |___|_| |" ,
-     "| |_|   | _______ |______ |   | ____|" ,
-     "| ___ | |____ | |______ | |_| |____ |" ,
-     "|___|_|____ | |   ___ | |________ | |" ,
-     "|   ________| | |__ | |______ | | | |" ,
-     "| | | ________| | __|____ | | | __| |" ,
-     "|_| |__ |   | __|__ | ____| | |_| __|" ,
-     "|   ____| | |____ | |__ |   |__ |__ |" ,
-     "| |_______|_______|___|___|___|_____|"
+      "+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+",
+      "|        |        |                                            |",
+      "+  +--+  +  +--+--+  +--+--+--+--+--+--+--+--+--+  +--+--+--+  +",
+      "|     |     |        |     |     |              |     |        |",
+      "+--+  +  +--+  +--+--+  +  +  +  +  +--+--+--+  +--+  +  +--+--+",
+      "|     |  |     |        |     |  |        |  |  |     |     |  |",
+      "+  +--+  +  +--+  +--+--+--+--+--+--+  +--+--+  +--+--+--+  +--+",
+      "|  |     |  |  |  |              |  |  |     |        |  |     |",
+      "+  +--+--+  +--+  +  +--+--+--+  +  +  +  +  +--+  +  +--+--+  +",
+      "|        |  |     |     |     |  |  |     |     |  |           |",
+      "+  +--+  +  +  +--+--+  +--+  +  +--+--+--+--+  +  +--+--+--+--+",
+      "|  |     |  |        |     |  |              |  |           |  |",
+      "+  +  +--+  +--+--+--+--+  +  +--+--+--+--+  +  +--+  +--+  +--+",
+      "|  |  |                    |              |  |     |  |  |     |",
+      "+  +  +  +--+--+--+--+--+--+--+  +--+--+  +- +--+  +  +  +--+  +",
+      "|  |        |     |                    |  |     |  |     |     |",
+      "+  +--+--+  +  +  +  +--+  +--+--+  +--+--+  +  +  +--+  +  +--+",
+      "|  |        |  |  |     |        |  |        |  |  |  |  |     |",
+      "+  +  +--+--+  +  +--+  +  +--+--+--+  +--+--+--+  +  +  +--+  +",
+      "|  |  |        |     |  |     |     |           |  |     |  |  |",
+      "+  +  +  +--+--+--+--+  +--+  +  +--+--+--+--+  +  +--+--+--+  +",
+      "|  |                       |  |     |  |  |     |        |  |  |",
+      "+  +  +--+--+--+--+--+--+--+--+--+  +--+--+  +--+--+--+  +--+  +",
+      "|  |        |     |  |        |  |  |  |              |  |     |",
+      "+--+--+--+  +  +  +  +  +--+  +--+  +--+  +--+  +--+--+  +  +--+",
+      "|     |     |  |  |  |  |  |        |  |  |     |     |  |     |",
+      "+  +--+  +--+  +  +  +  +--+--+--+--+--+  +  +--+  +  +  +--+--+",
+      "|           |  |  |  |                 |  |  |     |  |        |",
+      "+--+--+--+  +--+  +  +--+--+--+--+--+  +  +  +--+--+--+--+--+  +",
+      " X                |                 |     |              |      ",
+      "+-----+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+"
+
+
     
     };
 
+
+
+    jk_printMazeGrid(position, maze, rows, player, defaultHeight, color, 
+                                                                    mazeName);
+
+
+    // jk_printMazeGeneral(position, maze, rows, defaultHeight, color);
     
-    jk_printMazeGeneral(position, maze, rows, defaultHeight, color);
 
     // for (int index = 0; index < 12; index++) {
     //     position.bot = defaultHeight - (index * 20);
@@ -92,44 +179,52 @@ void jk_printMaze1(Rect position, int defaultHeight, int color)
 
 void jk_printMaze2(Rect position, int defaultHeight, int color) 
 {
-
+    const char* mazeName = "Maze 2";
     int rows = 27;
+    int player[2] = {18, 23};
+
+    
   // source: https://www.asciiart.eu/art-and-design/mazes
     const char* maze[rows] = 
     {
     
-    "    ,-----------------------------.----------------------------------.",
-    "|                             |                                  |    ",
-    "|    .    .    ,---------     |     ------------------------.    |    ",
-    "|    |    |    |              |                             |    |    ",
-    "|    |    `----`--------------!    ,-------------------.    |    |    ",
-    "|    |                             |                   |    |    |    ",
-    "|    :--------------.--------------`----     ,---------:    |    |    ",
-    "|    |              |                        |         |    |    |    ",
-    "|    :---------     |    .    ,---------.    |    .    |    `----:    ",
-    "|    |              |    |    |         |    |    |    |         |    ",
-    "|    |     ---------!    |    :----     |    |    |    |    .    |    ",
-    "|    |                   |    |         |    |    |    |    |    |    ",
-    "|    `-------------------!    |     ----!    |    |    |    |    |    ",
-    "|                             |              |    |    |    |    |    ",
-    ":--------------.---------.    :--------------!    |    :----!    |    ",
-    "|              |         |    |                   |    |         |    ",
-    "|    .    .    |    .    |    |    ,--------------:    `----     |    ",
-    "|    |    |    |    |    |    |    |              |              |    ",
-    "|    |    |    `    |    |    |    |     ---------`---------.    |    ",
-    "|    |    |         |    |    |    |                        |    |    ",
-    "|    |    `---------`----!    |    |    ,---------.    .    |    |    ",
-    "|    |                        |    |    |         |    |    |    |    ",
-    "|    :---------.--------------:    |    |    .    |    |    |    |    ",
-    "|    |         | X            |    |    |    |    |    |    |    |    ",
-    "|    `    .    `---------     |    |    `----!    |    `----!    |    ",
-    "|         |                   |    |              |              |    ",
-    "`---------`-------------------!    `--------------`--------------!"
+    ".,-----------------------------.----------------------------------.",
+    ".|                             |                                  |",
+    ".|    .    .    ,---------     |     ------------------------.    |",
+    ".|    |    |    |              |                             |    |",
+    ".|    |    `----`--------------!    ,-------------------.    |    |",
+    ".|    |                             |                   |    |    |",
+    ".|    :--------------.--------------`----     ,---------:    |    |",
+    ".|    |              |                        |         |    |    |",
+    ".|    :---------     |    .    ,---------.    |    .    |    `----:",
+    ".|    |              |    |    |         |    |    |    |         |",
+    ".|    |     ---------!    |    :----     |    |    |    |    .    |",
+    ".|    |                   |    |         |    |    |    |    |    |",
+    ".|    `-------------------!    |     ----!    |    |    |    |    |",
+    ".|                             |              |    |    |    |    |",
+    ".:--------------.---------.    :--------------!    |    :----!    |",
+    ".|              |         |    |                   |    |         |",
+    ".|    .    .    |    .    |    |    ,--------------:    `----     |",
+    ".|    |    |    |    |    |    |    |              |              |",
+    ".|    |    |    `    |    |    |    |     ---------`---------.    |",
+    ".|    |    |         |    |    |    |                        |    |",
+    ".|    |    `---------`----!    |    |    ,---------.    .    |    |",
+    ".|    |                        |    |    |         |    |    |    |",
+    ".|    :---------.--------------:    |    |    .    |    |    |    |",
+    ".|    |         | X            |    |    |    |    |    |    |    |",
+    ".|    `    .    `---------     |    |    `----!    |    `----!    |",
+    ".|         |                   |    |              |              |",
+    ".`---------`-------------------!    `--------------`--------------!"
     
     };
 
     
-    jk_printMazeGeneral(position, maze, rows, defaultHeight, color);
+
+    jk_printMazeGrid(position, maze, rows, player, defaultHeight, color, 
+                                                                    mazeName);
+
+
+    // jk_printMazeGeneral(position, maze, rows, defaultHeight, color);
 
 
 }
@@ -137,8 +232,11 @@ void jk_printMaze2(Rect position, int defaultHeight, int color)
 
 void jk_printMaze3(Rect position, int defaultHeight, int color) 
 {
-
+    const char* mazeName = "Maze 3";
     int rows = 23;
+    int player[2] = {1, 22};
+
+
   // source: https://www.asciiart.eu/art-and-design/mazes
     const char* maze[rows] = 
     {
@@ -170,7 +268,29 @@ void jk_printMaze3(Rect position, int defaultHeight, int color)
     };
 
     
-    jk_printMazeGeneral(position, maze, rows, defaultHeight, color);
+    jk_printMazeGrid(position, maze, rows, player, defaultHeight, color, 
+                                                                    mazeName);
+
+    // jk_printMazeGrid(position, maze, rows, defaultHeight, color, mazeName);
+    
+    // jk_printMazeGeneral(position, maze, rows, defaultHeight, color);
+    
 
 
 }
+
+
+// void jk_printMaze4(Rect position, int defaultHeight, int color) 
+// {
+   
+    
+//     jk_printMazeGrid(position, maze, rows, defaultHeight, color, mazeName);
+    
+//     // jk_printMazeGeneral(position, maze, rows, defaultHeight, color);
+    
+
+
+// }
+
+
+  
