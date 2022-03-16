@@ -79,8 +79,8 @@ public:
 	int maze_state;
 
 	Global() {
-		xres = 640;
-		yres = 480;
+		xres = 860;
+		yres = 700;
 		memset(keys, 0, 65536);
 		maze_state = 0;
 
@@ -418,6 +418,7 @@ extern Rect jk_createRect(int yres, int height, int left, int center);
 extern void jk_printMaze1(Rect position, int defaultHeight, int color);
 extern void jk_printMaze2(Rect position, int defaultHeight, int color);
 extern void jk_printMaze3(Rect position, int defaultHeight, int color);
+extern void jk_page_transition(int& maze_state, char keyChecked);
 
 void check_mouse(XEvent *e)
 {
@@ -568,12 +569,30 @@ int check_keys(XEvent *e)
 			gl.maze_state = 3;
 			break;
 
+		case XK_b:
+			jk_page_transition(gl.maze_state, 'b');
+			break;
+		
+		case XK_s:
+			jk_page_transition(gl.maze_state, 's');
+			break;
+
+		case XK_c:
+			jk_page_transition(gl.maze_state, 'c');
+			break;
+		
+		case XK_r:
+			jk_page_transition(gl.maze_state, 'r');
+			break;
+
+
+
 		case XK_Escape:
 			return 1;
 		case XK_f:
 			break;
-		case XK_s:
-			break;
+		// case XK_s:
+		// 	break;
 		case XK_Down:
 			break;
 		case XK_equal:
@@ -885,44 +904,73 @@ void physics()
 void render()
 {
 	Rect r;
-	glClear(GL_COLOR_BUFFER_BIT);
-	
+
 	r.bot = gl.yres - 20;
 	r.left = 10;
 	r.center = 0;
-	ggprint8b(&r, 16, 0x00ff0000, "3350 - MAze");
 
-	//should display "level" and "timer" instead... 
-	//and maybe even "highest score" 
-	// ggprint8b(&r, 16, 0x00ffff00, "n bullets: %i", g.nbullets);
-	// ggprint8b(&r, 16, 0x00ffff00, "n asteroids: %i", g.nasteroids);
-	// ggprint8b(&r, 16, 0x00ffffff, " ");
-	ggprint8b(&r, 16, 0x00ffffff, "Instructions:");
-	ggprint8b(&r, 16, 0x00ffffff, "right click to print msgs to console");
-	ggprint8b(&r, 16, 0x00ffffff, "hold down either 1, 2, or 3 to show maps");
+	if (gl.maze_state == 0) {
+		
+		glClear(GL_COLOR_BUFFER_BIT);
+		
+
+		r.bot = gl.yres - 20;
+		r.left = 10;
+		r.center = 0;
+		ggprint8b(&r, 16, 0x00ff0000, "3350 - MAze");
+
+		//should display "level" and "timer" instead... 
+		//and maybe even "highest score" 
+		// ggprint8b(&r, 16, 0x00ffff00, "n bullets: %i", g.nbullets);
+		// ggprint8b(&r, 16, 0x00ffff00, "n asteroids: %i", g.nasteroids);
+		// ggprint8b(&r, 16, 0x00ffffff, " ");
+		ggprint8b(&r, 16, 0x00ffffff, "Instructions:");
+		ggprint8b(&r, 16, 0x00ffffff, "right click to print msgs to console");
+		ggprint8b(&r, 16, 0x00ffffff, "press s to switch between maps");
+		ggprint8b(&r, 16, 0x00ffffff, "press c to view credit page");
+		ggprint8b(&r, 16, 0x00ffffff, "press r to view rules page ");
+		ggprint8b(&r, 16, 0x00ffffff, "press b to return to this page");
+
+	}
 
 	Rect jk_t = jk_createRect(gl.yres, 100, 10, 0);
 
 
-	// if(gl.maze_state == 0) {
-	// 	if ( a state saved when start button was clicked ) {
-	// 		start game + change the state to maze level 1
-	// 	}
-	// 	if ( a state registering a credit button was clicked ) {
-	// 		show credit + change the state to credit page
-	// 	}
-	// }
+	if (gl.maze_state == 11) {
+		glClear(GL_COLOR_BUFFER_BIT);
+		ggprint8b(&r, 16, 0x00ffffff, "this is temporary RULES page");
+		ggprint8b(&r, 16, 0x00ffffff, "press b to return to home");
+	}
 
-
-	// if (gl.maze_state == "credit") {
-	// 	if ( a state registering a "back" button was pressed ) {
-	// 		show homescreen again and update game state
-	// 	}
-	// }
-
-
-
+	if (gl.maze_state == 12) {
+		glClear(GL_COLOR_BUFFER_BIT);
+		ggprint8b(&r, 16, 0x00ffffff, "this is temporary CREDIT page");
+		ggprint8b(&r, 16, 0x00ffffff, "press b to return to home");
+	}
 	
+
+	if (gl.maze_state == 1) {
+		
+		glClear(GL_COLOR_BUFFER_BIT);
+		
+
+		jk_printMaze1(jk_t, gl.yres-100, 0x0040e0d0);
+	}
+	if (gl.maze_state == 2) {
+		
+		glClear(GL_COLOR_BUFFER_BIT);
+		
+
+		jk_printMaze2(jk_t, gl.yres-100, 0x0040e0d0);
+	}
+	if (gl.maze_state == 3) {
+		
+		glClear(GL_COLOR_BUFFER_BIT);
+		
+
+		jk_printMaze3(jk_t, gl.yres-100, 0x0040e0d0);
+	}
+
 	// if (gl.keys[XK_1] ) {
 	// 	glClear(GL_COLOR_BUFFER_BIT);
 	// 	jk_printMaze1(jk_t, gl.yres-100, 0x0040e0d0);
@@ -938,18 +986,7 @@ void render()
 
 
 
-	if (gl.maze_state == 1) {
-		glClear(GL_COLOR_BUFFER_BIT);
-		jk_printMaze1(jk_t, gl.yres-100, 0x0040e0d0);
-	}
-	if (gl.maze_state == 2) {
-		glClear(GL_COLOR_BUFFER_BIT);
-		jk_printMaze2(jk_t, gl.yres-100, 0x0040e0d0);
-	}
-	if (gl.maze_state == 3) {
-		glClear(GL_COLOR_BUFFER_BIT);
-		jk_printMaze3(jk_t, gl.yres-100, 0x0040e0d0);
-	}
+	
 
 
 
