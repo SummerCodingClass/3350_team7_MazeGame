@@ -953,21 +953,24 @@ void render()
 		
 		glClear(GL_COLOR_BUFFER_BIT);
 		
-
+		ggprint8b(&r, 16, 0x00ffffff, "press s to switch to next maze");
+		ggprint8b(&r, 16, 0x00ffffff, "press b to return to home");
 		jk_printMaze1(jk_t, gl.yres-100, 0x0040e0d0);
 	}
 	if (gl.maze_state == 2) {
 		
 		glClear(GL_COLOR_BUFFER_BIT);
 		
-
+		ggprint8b(&r, 16, 0x00ffffff, "press s to switch to next maze");
+		ggprint8b(&r, 16, 0x00ffffff, "press b to return to home");
 		jk_printMaze2(jk_t, gl.yres-100, 0x0040e0d0);
 	}
 	if (gl.maze_state == 3) {
 		
 		glClear(GL_COLOR_BUFFER_BIT);
 		
-
+		ggprint8b(&r, 16, 0x00ffffff, "press s to switch to next maze");
+		ggprint8b(&r, 16, 0x00ffffff, "press b to return to home");
 		jk_printMaze3(jk_t, gl.yres-100, 0x0040e0d0);
 	}
 
