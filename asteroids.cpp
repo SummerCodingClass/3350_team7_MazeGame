@@ -890,7 +890,7 @@ void render()
 	r.bot = gl.yres - 20;
 	r.left = 10;
 	r.center = 0;
-	ggprint8b(&r, 16, 0x00ff0000, "3350 - Maze");
+	ggprint8b(&r, 16, 0x00ff0000, "3350 - MAze");
 
 	//should display "level" and "timer" instead... 
 	//and maybe even "highest score" 
