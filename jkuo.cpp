@@ -336,5 +336,5 @@ void jk_showWelcomePage(Rect position, int defaultHeight, int color) {
 void jk_showWelcomePageTitle(Rect position, int defaultHeight, int color) {
   position.bot = defaultHeight;
   
-  ggprint16(&position, 16, color, "Maze");
+  ggprint40(&position, 16, color, "The MAze Game");
 }

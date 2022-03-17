@@ -916,7 +916,7 @@ extern void jk_showWelcomePageTitle(Rect position, int defaultHeight,
 																
 
 extern void jk_showWelcomePage(Rect position, int defaultHeight, int color);
-// extern void jh_showWelcomePage(Rect position, int defaultHeight, int color);
+extern void jh_showWelcomePage(Rect position, int defaultHeight, int color);
 extern void jr_showWelcomePage(Rect position, int defaultHeight, int color);
 extern void et_showWelcomePage(Rect position, int defaultHeight, int color);
 extern void an_showWelcomePage(Rect position, int defaultHeight, int color);
@@ -948,14 +948,14 @@ void render()
 
 		// will delete
 		jk_showWelcomePageTitle(jk_welcomeTitlePlaceHolder, 
-											gl.yres - (gl.yres/3), 0x00FF0000);
+											gl.yres - (gl.yres/2), 0x00FF0000);
 
 
 		jk_showWelcomePage(jk_welcomeMessage, gl.yres - 400, 0x00CC593F);
-		// jh_showWelcomePage(jk_welcomeMessage, gl.yres - 400, 0x0040e0d0);
+		jh_showWelcomePage(jk_welcomeMessage, gl.yres - 490, 0x00CC593F);
 		jr_showWelcomePage(jk_welcomeMessage, gl.yres - 450, 0x00CC593F);
 		et_showWelcomePage(jk_welcomeMessage, gl.yres - 470, 0x00CC593F);
-		an_showWelcomePage(jk_welcomeMessage, gl.yres - 490, 0x00CC593F);
+		an_showWelcomePage(jk_welcomeMessage, gl.yres - 430, 0x00CC593F);
 
 		//should display "level" and "timer" instead... 
 		//and maybe even "highest score" 
