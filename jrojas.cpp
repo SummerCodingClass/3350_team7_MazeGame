@@ -36,3 +36,8 @@ void jr_showRulesPage(Rect position, int defaultHeight, int color) {
   ggprint8b(&position, 16, color, "Rule 3:");
   ggprint8b(&position, 16, color, "You could pause game and resume.");
 }
+
+void jr_showWelcomePage(Rect position, int defaultHeight, int color) {
+  position.bot = defaultHeight;
+  ggprint8b(&position, 16, color, "press 'S' to start game");
+}
