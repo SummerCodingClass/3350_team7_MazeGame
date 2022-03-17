@@ -12,11 +12,12 @@ void an_PrintMsg() {
 
 void an_showCreditPage(Rect position, int defaultHeight, int color) { 
     position.bot = defaultHeight;
-    ggprint8b(&position, 16, color, "Adam Nicholas : ");
+    ggprint8b(&position, 16, color, "Adam Nicholas: ");
     ggprint8b(&position, 16, color, "Game Designer | Game Programmer | Sound Designer");
 }
 
 void an_showRulePage(Rect position, int defaultHeight, int color) { 
     position.bot = defaultHeight;
-    ggprint8b(&position, 16, color, "5. Use arrow keys to move. Find the exit.");
+    ggprint8b(&position, 16, color, "Rule 5: ");
+    ggprint8b(&position, 16, color, "Use arrow keys to move. Find the exit.");
 }
