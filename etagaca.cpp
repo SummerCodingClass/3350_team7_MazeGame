@@ -13,6 +13,6 @@ void et_PrintMsg()
 
 void et_showCreditPage(Rect position, int defaultHeight, int color) {
   position.bot = defaultHeight;
-  ggprint8b(&position, 16, color, "Jennifer: ");
+  ggprint8b(&position, 16, color, "Eidmone: ");
 }
 
