@@ -910,6 +910,8 @@ extern void jr_showRulesPage(Rect position, int defaultHeight, int color);
 extern void et_showRulesPage(Rect position, int defaultHeight, int color);
 extern void an_showRulesPage(Rect position, int defaultHeight, int color);
 
+void jk_showWelcomePage(Rect position, int defaultHeight, int color);
+
 
 void render()
 {
@@ -921,29 +923,36 @@ void render()
 
 	// Rect jk_welcomeScreen = jk_createRect(gl.yres+50, 100, 10, 0); 
 	
+	Rect jk_welcomeMessage = jk_createRect(gl.yres, 100, 10, 0);
+	jk_welcomeMessage.left = gl.xres / 2;
+	jk_welcomeMessage.center = 1;
 
 
 	if (gl.maze_state == 0) {
 		
 		glClear(GL_COLOR_BUFFER_BIT);
-		
-
-		r.bot = gl.yres - 20;
-		r.left = 10;
-		r.center = 0;
 		ggprint8b(&r, 16, 0x00ff0000, "3350 - MAze");
+
+		jk_showWelcomePage(jk_welcomeMessage, gl.yres - 400, 0x0040e0d0);
 
 		//should display "level" and "timer" instead... 
 		//and maybe even "highest score" 
 		// ggprint8b(&r, 16, 0x00ffff00, "n bullets: %i", g.nbullets);
 		// ggprint8b(&r, 16, 0x00ffff00, "n asteroids: %i", g.nasteroids);
 		// ggprint8b(&r, 16, 0x00ffffff, " ");
-		ggprint8b(&r, 16, 0x00ffffff, "Instructions:");
-		ggprint8b(&r, 16, 0x00ffffff, "right click to print msgs to console");
-		ggprint8b(&r, 16, 0x00ffffff, "press s to switch between maps");
-		ggprint8b(&r, 16, 0x00ffffff, "press c to view credit page");
-		ggprint8b(&r, 16, 0x00ffffff, "press r to view rules page ");
-		ggprint8b(&r, 16, 0x00ffffff, "press b to return to this page");
+
+
+
+		// ggprint8b(&r, 16, 0x00ffffff, "Instructions:");
+		// ggprint8b(&r, 16, 0x00ffffff, "right click to print msgs to console");
+		// ggprint8b(&r, 16, 0x00ffffff, "press s to switch between maps");
+		// ggprint8b(&r, 16, 0x00ffffff, "press c to view credit page");
+		// ggprint8b(&r, 16, 0x00ffffff, "press r to view rules page ");
+		// ggprint8b(&r, 16, 0x00ffffff, "press b to return to this page");
+
+
+
+		
 
 	}
 
