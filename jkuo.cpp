@@ -281,6 +281,46 @@ void jk_printMaze3(Rect position, int defaultHeight, int color)
 }
 
 
+  void jk_page_transition(int& maze_state, char keyChecked) {
+    //case XK_b;
+    if (keyChecked == 'b') {
+			if (maze_state == 0) {
+				//do nothing
+			} else if (maze_state > 0) {
+				maze_state = 0;
+      }
+			
+			return;
+    }
+
+		//case XK_s;
+    if (keyChecked == 's') {
+      if (maze_state == 0) {
+        maze_state = 1;
+      } else if (maze_state == 1) {
+        maze_state = 2;
+      } else if (maze_state == 2) {
+        maze_state = 3;
+      }
+
+      return; 
+    }
+
+    if (keyChecked == 'r') {
+      if (maze_state == 0) {
+        maze_state = 11;
+      }
+    return; 
+    }
+    
+    if (keyChecked == 'c') {
+      if (maze_state == 0) {
+        maze_state = 12;
+      }
+    return; 
+    }
+  }
+
 // void jk_printMaze4(Rect position, int defaultHeight, int color) 
 // {
    
@@ -301,3 +341,26 @@ void jk_printMaze3(Rect position, int defaultHeight, int color)
 //   Console::SetWindowSize(width, height);
 
 // }
+
+
+
+
+// case XK_b;
+// 			if (gl.maze_state == 0) {
+// 				gl.maze_state = 1;
+// 			} else if (gl.maze_state == 1) {
+// 				gl.maze_state = 2;
+// 			} else if (gl.maze_state == 2) {
+// 				gl.maze_state = 0;	
+// 			}
+// 			break;
+
+// 		case XK_s;
+// 			if (gl.maze_state == 0) {
+// 				gl.maze_state = 1;
+// 			} else if (gl.maze_state == 1) {
+// 				gl.maze_state = 2;
+// 			} else if (gl.maze_state == 2) {
+// 				gl.maze_state = 0;	
+// 			}
+// 			break;
