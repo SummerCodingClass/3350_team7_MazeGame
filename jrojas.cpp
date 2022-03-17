@@ -34,5 +34,5 @@ void jr_showCreditPage(Rect position, int defaultHeight, int color) {
 void jr_showRulesPage(Rect position, int defaultHeight, int color) {
   position.bot = defaultHeight;
   ggprint8b(&position, 16, color, "Rule 3:");
-  ggprint8b(&position, 16, color, "You could pause game and resume");
+  ggprint8b(&position, 16, color, "You could pause game and resume.");
 }
