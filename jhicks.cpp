@@ -19,6 +19,13 @@ void jh_showCreditPage(Rect position, int defaultHeight, int color )
 {
     position.bot = defaultHeight;
     ggprint8b(&position, 16, color, "Jeff Hicks:");
-    ggprint8b(&position, 16, color, "Game Designer, Game Programmer");
+    ggprint8b(&position, 16, color, "Game Designer | Game Programmer");
 
+}
+
+
+void jh_showRulesPage(Rect position, int defaultHeight, int color) {
+    position.bot = defaultHeight;
+    ggprint8b(&position, 16, color, "Rule 2:");
+    ggprint8b(&position, 16, color, "Timer will stop once you hit the exit.");
 }
