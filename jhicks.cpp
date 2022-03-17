@@ -3,8 +3,9 @@
 // Source File for Project
 //
 #include <iostream>
-
+#include "fonts.h"
 using namespace std;
+
 
 
 void jh_PrintMsg()
@@ -13,3 +14,10 @@ void jh_PrintMsg()
     return;
 }
 
+
+void jh_showCreditPage(Rect position, int defaultHeight, int color )
+{
+    position.bot = defautlHeight - 50;
+    ggprint8b(&position, 16, color, "Jeff Hicks");
+
+}
