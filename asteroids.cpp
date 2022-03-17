@@ -905,10 +905,10 @@ extern void et_showCreditPage(Rect position, int defaultHeight, int color);
 extern void an_showCreditPage(Rect position, int defaultHeight, int color);
 
 extern void jk_showRulesPage(Rect position, int defaultHeight, int color);
-// extern void jh_showRulesPage(Rect position, int defaultHeight, int color);
-// extern void jr_showRulesPage(Rect position, int defaultHeight, int color);
-// extern void et_showRulesPage(Rect position, int defaultHeight, int color);
-// extern void an_showRulesPage(Rect position, int defaultHeight, int color);
+extern void jh_showRulesPage(Rect position, int defaultHeight, int color);
+extern void jr_showRulesPage(Rect position, int defaultHeight, int color);
+extern void et_showRulesPage(Rect position, int defaultHeight, int color);
+extern void an_showRulesPage(Rect position, int defaultHeight, int color);
 
 
 void render()
@@ -918,6 +918,10 @@ void render()
 	r.bot = gl.yres - 20;
 	r.left = 10;
 	r.center = 0;
+
+	// Rect jk_welcomeScreen = jk_createRect(gl.yres+50, 100, 10, 0); 
+	
+
 
 	if (gl.maze_state == 0) {
 		
@@ -960,10 +964,10 @@ void render()
 
 
 		jk_showRulesPage(jk_message, gl.yres-120, 0x0040e0d0);
-		// jh_showRulesPage(jk_message, gl.yres-220, 0x0024AAFA);
-		// jr_showRulesPage(jk_message, gl.yres-320, 0x0051f542);
-		// et_showRulesPage(jk_message, gl.yres-420, 0x00B24BF3);
-		// an_showRulesPage(jk_message, gl.yres-520, 0x00FF7025);
+		jh_showRulesPage(jk_message, gl.yres-220, 0x0024AAFA);
+		jr_showRulesPage(jk_message, gl.yres-320, 0x0051f542);
+		et_showRulesPage(jk_message, gl.yres-420, 0x00B24BF3);
+		an_showRulesPage(jk_message, gl.yres-520, 0x00FF7025);
 
 	}
 

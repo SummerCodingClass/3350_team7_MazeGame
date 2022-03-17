@@ -320,3 +320,11 @@ void jk_showRulesPage(Rect position, int defaultHeight, int color) {
   ggprint8b(&position, 16, color, "Rule 1:");
   ggprint8b(&position, 16, color, "Timer will start immediately upon game start.");
 }
+
+
+
+void jk_showWelcomePage(Rect position, int defaultHeight, int color) {
+  position.bot = defaultHeight;
+  
+  ggprint8b(&position, 16, color, "Instructions:");
+}
