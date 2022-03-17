@@ -1,0 +1,4 @@
+#add any file for ignoring
+maze
+*.o
+*.x
