@@ -899,6 +899,11 @@ void physics()
 
 
 extern void jk_showCreditPage(Rect position, int defaultHeight, int color);
+extern void jh_showCreditPage(Rect position, int defaultHeight, int color);
+extern void jr_showCreditPage(Rect position, int defaultHeight, int color);
+extern void et_showCreditPage(Rect position, int defaultHeight, int color);
+extern void an_showCreditPage(Rect position, int defaultHeight, int color);
+
 
 
 void render()
@@ -948,6 +953,10 @@ void render()
 		ggprint8b(&r, 16, 0x00ffffff, "press b to return to home");
 
 		jk_showCreditPage(jk_t, gl.yres-100, 0x0040e0d0);
+		jh_showCreditPage(jk_t, gl.yres-200, 0x0040e0d0);
+		jr_showCreditPage(jk_t, gl.yres-300, 0x0040e0d0);
+		et_showCreditPage(jk_t, gl.yres-400, 0x0040e0d0);
+		an_showCreditPage(jk_t, gl.yres-500, 0x0040e0d0);
 		
 	}
 	
