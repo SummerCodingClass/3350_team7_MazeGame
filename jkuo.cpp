@@ -4,7 +4,7 @@
 
 #include "fonts.h"
 #include <iostream>
-#include <cstring>
+#include <cstring> //for strlen()
 #include <GL/glx.h>
 // #include <windows.h>
 using namespace std;
@@ -36,39 +36,29 @@ Rect jk_createRect(int yres, int height, int left, int center)
 }
 
 
-// void jk_printMaze(const char* maze, int rows, int color, Rect position, 
-//                      int defaultHeight) {
-//     for (int index = 0; index < rows; index++) {
-//         position.bot = defaultHeight - (rows * 20);
-//         //position.left = 10;
-//         ggprint8b(&position, 16, color, maze[index][1]);
-//     }
+
+
+
+// void jk_printMazeGeneral(Rect position, const char* maze[], int rows, 
+//                                                 int defaultHeight, int color) 
+// {
+
+//         for (int index = 0; index < rows; index++) {
+//                 position.bot = defaultHeight - (index * 20);
+//                 ggprint8b(&position, 16, color, maze[index]);
+//             }
 
 // }
-
-
-
-void jk_printMazeGeneral(Rect position, const char* maze[], int rows, 
-                                                int defaultHeight, int color) 
-{
-
-        for (int index = 0; index < rows; index++) {
-                position.bot = defaultHeight - (index * 20);
-                ggprint8b(&position, 16, color, maze[index]);
-            }
-
-}
 
 
 void jk_printMazeGrid(Rect position, const char* maze[], int rows,
     int startingPosition[2], int defaultHeight, int color, const char* mazeName) 
 {   
 
-    // int playerX = startingPosition[0];
-    // int playerY = startingPosition[1];
+
     static int player[2] = {10, 10};
-    player[0] = startingPosition[0];
-    player[1] = startingPosition[1];
+    player[0] = startingPosition[0]; // x
+    player[1] = startingPosition[1]; // y
 
     ggprint8b(&position, 16, color, mazeName);
     
@@ -164,17 +154,6 @@ void jk_printMaze1(Rect position, int defaultHeight, int color)
                                                                     mazeName);
 
 
-    // jk_printMazeGeneral(position, maze, rows, defaultHeight, color);
-    
-
-    // for (int index = 0; index < 12; index++) {
-    //     position.bot = defaultHeight - (index * 20);
-    //     //position.left = 10;
-    //     ggprint8b(&position, 16, color, maze1[index]);
-    // }
-
-
-
 }
 
 
@@ -225,7 +204,6 @@ void jk_printMaze2(Rect position, int defaultHeight, int color)
                                                                     mazeName);
 
 
-    // jk_printMazeGeneral(position, maze, rows, defaultHeight, color);
 
 
 }
@@ -271,10 +249,6 @@ void jk_printMaze3(Rect position, int defaultHeight, int color)
     
     jk_printMazeGrid(position, maze, rows, player, defaultHeight, color, 
                                                                     mazeName);
-
-    // jk_printMazeGrid(position, maze, rows, defaultHeight, color, mazeName);
-    
-    // jk_printMazeGeneral(position, maze, rows, defaultHeight, color);
     
 
 
@@ -334,33 +308,7 @@ void jk_printMaze3(Rect position, int defaultHeight, int color)
 // }
 
 
-
-// //source: http://www.cplusplus.com/forum/beginner/95329/
-// void jk_resizeWindow(const int width, const int height) {
-  
-//   Console::SetWindowSize(width, height);
-
-// }
-
-
-
-
-// case XK_b;
-// 			if (gl.maze_state == 0) {
-// 				gl.maze_state = 1;
-// 			} else if (gl.maze_state == 1) {
-// 				gl.maze_state = 2;
-// 			} else if (gl.maze_state == 2) {
-// 				gl.maze_state = 0;	
-// 			}
-// 			break;
-
-// 		case XK_s;
-// 			if (gl.maze_state == 0) {
-// 				gl.maze_state = 1;
-// 			} else if (gl.maze_state == 1) {
-// 				gl.maze_state = 2;
-// 			} else if (gl.maze_state == 2) {
-// 				gl.maze_state = 0;	
-// 			}
-// 			break;
+void jk_showCreditPage(Rect position, int defaultHeight, int color) {
+  position.bot = defaultHeight;
+  ggprint8b(&position, 16, color, "Jennifer: ");
+}
