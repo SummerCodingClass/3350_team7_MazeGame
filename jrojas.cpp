@@ -30,3 +30,9 @@ void jr_showCreditPage(Rect position, int defaultHeight, int color) {
   ggprint8b(&position, 16, color, "Jesus Rojas:");
   ggprint8b(&position, 16, color, "Game Designer | Game Programmer");
 }
+
+void jr_showRulesPage(Rect position, int defaultHeight, int color) {
+  position.bot = defaultHeight;
+  ggprint8b(&position, 16, color, "Rule 3:");
+  ggprint8b(&position, 16, color, "You could pause game and resume");
+}
