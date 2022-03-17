@@ -898,7 +898,7 @@ void physics()
 
 
 
-
+extern void jk_showCreditPage(Rect position, int defaultHeight, int color);
 
 
 void render()
@@ -946,6 +946,9 @@ void render()
 		glClear(GL_COLOR_BUFFER_BIT);
 		ggprint8b(&r, 16, 0x00ffffff, "this is temporary CREDIT page");
 		ggprint8b(&r, 16, 0x00ffffff, "press b to return to home");
+
+		jk_showCreditPage(jk_t, gl.yres-100, 0x0040e0d0);
+		
 	}
 	
 
