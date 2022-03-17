@@ -904,6 +904,11 @@ extern void jr_showCreditPage(Rect position, int defaultHeight, int color);
 extern void et_showCreditPage(Rect position, int defaultHeight, int color);
 extern void an_showCreditPage(Rect position, int defaultHeight, int color);
 
+extern void jk_showRulesPage(Rect position, int defaultHeight, int color);
+// extern void jh_showRulesPage(Rect position, int defaultHeight, int color);
+// extern void jr_showRulesPage(Rect position, int defaultHeight, int color);
+// extern void et_showRulesPage(Rect position, int defaultHeight, int color);
+// extern void an_showRulesPage(Rect position, int defaultHeight, int color);
 
 
 void render()
@@ -939,24 +944,46 @@ void render()
 	}
 
 	Rect jk_t = jk_createRect(gl.yres, 100, 10, 0);
+	Rect jk_message = jk_createRect(gl.yres+50, 100, 10, 0); 
+	Rect jk_titles = jk_createRect(gl.yres+50, 100, 10, 0);
+	
+	jk_titles.left = gl.xres / 2;
+	jk_titles.center = 1;
 
+	jk_message.left = 50;
 
 	if (gl.maze_state == 11) {
 		glClear(GL_COLOR_BUFFER_BIT);
-		ggprint8b(&r, 16, 0x00ffffff, "this is temporary RULES page");
-		ggprint8b(&r, 16, 0x00ffffff, "press b to return to home");
+		ggprint13(&jk_titles, 16, 0x00ffffff, "Rules Page");
+		ggprint8b(&jk_titles, 16, 0x00ffffff, "press b to return to home");
+
+
+
+		jk_showRulesPage(jk_message, gl.yres-120, 0x0040e0d0);
+		// jh_showRulesPage(jk_message, gl.yres-220, 0x0024AAFA);
+		// jr_showRulesPage(jk_message, gl.yres-320, 0x0051f542);
+		// et_showRulesPage(jk_message, gl.yres-420, 0x00B24BF3);
+		// an_showRulesPage(jk_message, gl.yres-520, 0x00FF7025);
+
 	}
+
+
+
+
 
 	if (gl.maze_state == 12) {
 		glClear(GL_COLOR_BUFFER_BIT);
-		ggprint8b(&r, 16, 0x00ffffff, "this is temporary CREDIT page");
-		ggprint8b(&r, 16, 0x00ffffff, "press b to return to home");
+		// load_ggfont(17); // arial 140
+		ggprint13(&jk_titles, 16, 0x00ffffff, "CREDIT Page");
+		ggprint8b(&jk_titles, 16, 0x00ffffff, "press b to return to home");
 
-		jk_showCreditPage(jk_t, gl.yres-100, 0x0040e0d0);
-		jh_showCreditPage(jk_t, gl.yres-200, 0x0040e0d0);
-		jr_showCreditPage(jk_t, gl.yres-300, 0x0040e0d0);
-		et_showCreditPage(jk_t, gl.yres-400, 0x0040e0d0);
-		an_showCreditPage(jk_t, gl.yres-500, 0x0040e0d0);
+
+		
+		jk_showCreditPage(jk_message, gl.yres-120, 0x0040e0d0);
+		jh_showCreditPage(jk_message, gl.yres-220, 0x0024AAFA);
+		jr_showCreditPage(jk_message, gl.yres-320, 0x0051f542);
+		et_showCreditPage(jk_message, gl.yres-420, 0x00B24BF3);
+		an_showCreditPage(jk_message, gl.yres-520, 0x00FF7025);
 		
 	}
 	
