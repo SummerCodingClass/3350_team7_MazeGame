@@ -318,7 +318,8 @@ void jk_showCreditPage(Rect position, int defaultHeight, int color) {
 void jk_showRulesPage(Rect position, int defaultHeight, int color) {
   position.bot = defaultHeight;
   ggprint8b(&position, 16, color, "Rule 1:");
-  ggprint8b(&position, 16, color, "Timer will start immediately upon game start.");
+  ggprint8b(&position, 16, color, 
+                              "Timer will start immediately upon game start.");
 }
 
 
@@ -326,5 +327,14 @@ void jk_showRulesPage(Rect position, int defaultHeight, int color) {
 void jk_showWelcomePage(Rect position, int defaultHeight, int color) {
   position.bot = defaultHeight;
   
-  ggprint8b(&position, 16, color, "Instructions:");
+  ggprint13(&position, 16, color, "------------ Instructions ------------");
+}
+
+
+
+//will delete
+void jk_showWelcomePageTitle(Rect position, int defaultHeight, int color) {
+  position.bot = defaultHeight;
+  
+  ggprint16(&position, 16, color, "Maze");
 }

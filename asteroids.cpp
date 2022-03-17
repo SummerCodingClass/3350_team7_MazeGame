@@ -910,7 +910,16 @@ extern void jr_showRulesPage(Rect position, int defaultHeight, int color);
 extern void et_showRulesPage(Rect position, int defaultHeight, int color);
 extern void an_showRulesPage(Rect position, int defaultHeight, int color);
 
-void jk_showWelcomePage(Rect position, int defaultHeight, int color);
+// will delete
+extern void jk_showWelcomePageTitle(Rect position, int defaultHeight, 
+																int color);
+																
+
+extern void jk_showWelcomePage(Rect position, int defaultHeight, int color);
+// extern void jh_showWelcomePage(Rect position, int defaultHeight, int color);
+extern void jr_showWelcomePage(Rect position, int defaultHeight, int color);
+extern void et_showWelcomePage(Rect position, int defaultHeight, int color);
+extern void an_showWelcomePage(Rect position, int defaultHeight, int color);
 
 
 void render()
@@ -927,13 +936,26 @@ void render()
 	jk_welcomeMessage.left = gl.xres / 2;
 	jk_welcomeMessage.center = 1;
 
+	Rect jk_welcomeTitlePlaceHolder = jk_createRect(gl.yres, 100, 10, 0);
+	jk_welcomeTitlePlaceHolder.left = gl.xres / 2;
+	jk_welcomeTitlePlaceHolder.center = 1;
+
 
 	if (gl.maze_state == 0) {
 		
 		glClear(GL_COLOR_BUFFER_BIT);
 		ggprint8b(&r, 16, 0x00ff0000, "3350 - MAze");
 
-		jk_showWelcomePage(jk_welcomeMessage, gl.yres - 400, 0x0040e0d0);
+		// will delete
+		jk_showWelcomePageTitle(jk_welcomeTitlePlaceHolder, 
+											gl.yres - (gl.yres/3), 0x00FF0000);
+
+
+		jk_showWelcomePage(jk_welcomeMessage, gl.yres - 400, 0x00CC593F);
+		// jh_showWelcomePage(jk_welcomeMessage, gl.yres - 400, 0x0040e0d0);
+		jr_showWelcomePage(jk_welcomeMessage, gl.yres - 450, 0x00CC593F);
+		et_showWelcomePage(jk_welcomeMessage, gl.yres - 470, 0x00CC593F);
+		an_showWelcomePage(jk_welcomeMessage, gl.yres - 490, 0x00CC593F);
 
 		//should display "level" and "timer" instead... 
 		//and maybe even "highest score" 
@@ -943,12 +965,12 @@ void render()
 
 
 
-		// ggprint8b(&r, 16, 0x00ffffff, "Instructions:");
-		// ggprint8b(&r, 16, 0x00ffffff, "right click to print msgs to console");
-		// ggprint8b(&r, 16, 0x00ffffff, "press s to switch between maps");
-		// ggprint8b(&r, 16, 0x00ffffff, "press c to view credit page");
-		// ggprint8b(&r, 16, 0x00ffffff, "press r to view rules page ");
-		// ggprint8b(&r, 16, 0x00ffffff, "press b to return to this page");
+		//ggprint8b(&r, 16, 0x00ffffff, "Instructions:");
+		//ggprint8b(&r, 16, 0x00ffffff, "right click to print msgs to console");
+		//ggprint8b(&r, 16, 0x00ffffff, "press s to switch between maps");
+		//ggprint8b(&r, 16, 0x00ffffff, "press c to view credit page");
+		//ggprint8b(&r, 16, 0x00ffffff, "press r to view rules page ");
+		//ggprint8b(&r, 16, 0x00ffffff, "press b to return to this page");
 
 
 
