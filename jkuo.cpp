@@ -310,5 +310,13 @@ void jk_printMaze3(Rect position, int defaultHeight, int color)
 
 void jk_showCreditPage(Rect position, int defaultHeight, int color) {
   position.bot = defaultHeight;
-  ggprint8b(&position, 16, color, "Jennifer: ");
+  ggprint8b(&position, 16, color, "Jennifer Kuo:");
+  ggprint8b(&position, 16, color, "Game Designer | Game Programmer");
+}
+
+
+void jk_showRulesPage(Rect position, int defaultHeight, int color) {
+  position.bot = defaultHeight;
+  ggprint8b(&position, 16, color, "Rule 1:");
+  ggprint8b(&position, 16, color, "Timer will start immediately upon game start.");
 }
