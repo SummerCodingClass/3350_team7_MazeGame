@@ -2,7 +2,11 @@
 //Group Project Source file
 
 #include <iostream>
+#include "fonts.h"
+
 using namespace std;
+
+
 
 /*Comment until future use
 class jrojas_test {
@@ -16,10 +20,14 @@ class jrojas_test {
             return;
         }
 };
-
 */
 
 void jr_PrintMsg()
 {
-    cout << "jrojas -testing this out!" << endl;
+    cout << "jrojas -testing this out! Hello there!" << endl;
+}
+
+void jr_showCreditPage(Rect position, int defaultHeight, int color) {
+  position.bot = defaultHeight;
+  ggprint8b(&position, 16, color, "Jesus Rojas - Credit Page");
 }
