@@ -13,4 +13,5 @@ void an_PrintMsg() {
 void an_showCreditPage(Rect position, int defaultHeight, int color) { 
     position.bot = defaultHeight;
     ggprint8b(&position, 16, color, "Adam: ");
+    ggprint8b(&position, 16, color, "Game Designer, Game Programmer, Sound Designer");
 }
