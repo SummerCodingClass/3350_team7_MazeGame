@@ -14,7 +14,7 @@ void et_PrintMsg()
 void et_showCreditPage(Rect position, int defaultHeight, int color) {
   position.bot = defaultHeight;
   ggprint8b(&position, 16, color, "Eidmone Tagaca: ");
-  ggprint8b(&position, 16, color, "Game Developer | Game Tester");
+  ggprint8b(&position, 16, color, "Game Designer | Game Developer");
 }
 
 void et_showRulesPage(Rect position, int defaultHeight, int color) {
