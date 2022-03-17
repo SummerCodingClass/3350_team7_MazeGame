@@ -6,8 +6,6 @@
 
 using namespace std;
 
-
-
 /*Comment until future use
 class jrojas_test {
     private:
@@ -29,5 +27,6 @@ void jr_PrintMsg()
 
 void jr_showCreditPage(Rect position, int defaultHeight, int color) {
   position.bot = defaultHeight;
-  ggprint8b(&position, 16, color, "Jesus Rojas - Credit Page");
+  ggprint8b(&position, 16, color, "Jesus Rojas:");
+  ggprint8b(&position, 16, color, "Game Designer, Game Programmer");
 }
