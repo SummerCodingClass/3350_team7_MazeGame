@@ -22,6 +22,10 @@ class Grid {
     public:
     int rows;
     int columns;
+    GridCells currentPosition;
+    GridCells startingPosition;
+    GridCells endingPosition;
+
     GridCells maze[rows][columns];
     
 
@@ -29,6 +33,9 @@ class Grid {
     Grid(int rows = 0, int columns = 0);
     // int calculateColumns(); // this is a function used in the constructor.
 
+    GridCells returnCurrentPosition();
+    GridCells returnStartingPosition();
+    GridCells returnEndingPosition();
 
 
     int setXcoord(int input);

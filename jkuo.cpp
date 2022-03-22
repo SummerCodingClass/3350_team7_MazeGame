@@ -358,6 +358,10 @@ void jk_printMazeGrid(Rect position, const char* maze[], int rows,
 // }
 
 
+// need a function to calculate the next position accoridng
+// to the current position + the arrow key pressed / direction next
+
+
 //note: update function call with current + next position;
 
 Grid jk_traverseConstCharArray_CREATE(Rect position, const char* maze[], 
@@ -445,27 +449,38 @@ if (nextPosition[2] == [-1, -1]) {
           else {
             // check if the movement is allowed
                   // then update player movement + traveled
-              int tempX = nextPosition[1];
-              int tempY = nextPosition[0];
-              if (Grid[tempX][tempY].isSpace) {
-                Grid[i][j].setTraveled(true);
-                Grid[tempX][tempY].setCurrent(true);
-              }
 
-
-
-// we paused here to 
-              else {
-                Grid[i][j].setEnd(false);
-              }
-
-
-
+              //gotta check if the current cell Grid[i][j] IS the 
+              // current player position first 
+              
               if (i == player[1] && j == player[0]) {
-                Grid[i][j].setEnd(true);
+                  int tempX = nextPosition[1];
+                  int tempY = nextPosition[0];
+                  if (Grid[tempX][tempY].isSpace) {
+                    Grid[i][j].setTraveled(true);
+                    Grid[i][j].setCurrent(false); // we need this right?
+                    // or should it be implemented below?
+                    Grid[tempX][tempY].setCurrent(true);
+                    // do we update player position here, 
+                    // or do we return the position for the cycle/recursive?
+                    // nvm i think we set it in the logic below
+                  }
+              }
+
+
+
+// we paused here on 3/20
+//              else {
+                //Grid[i][j].setEnd(false);
+//              }
+
+
+// still need to set player position
+              if (i == player[1] && j == player[0]) {
+                Grid[i][j].setEnd(true); // placeholder
               }
               else {
-                Grid[i][j].setEnd(false);
+                Grid[i][j].setEnd(false); // placeholder
               }
 
 
