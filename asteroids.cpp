@@ -77,12 +77,17 @@ public:
 	int xres, yres;
 	char keys[65536];
 	int maze_state;
+	int player[2];
+	bool firstRun;
 
 	Global() {
-		xres = 640;
-		yres = 480;
+		xres = 960;
+		yres = 600;
 		memset(keys, 0, 65536);
 		maze_state = 0;
+		player[0] = 0;
+		player[1] = 0;
+		firstRun = true;
 
 	}
 
@@ -415,9 +420,14 @@ extern void et_PrintMsg();
 extern void an_PrintMsg();
 
 extern Rect jk_createRect(int yres, int height, int left, int center);
-extern void jk_printMaze1(Rect position, int defaultHeight, int color);
-extern void jk_printMaze2(Rect position, int defaultHeight, int color);
-extern void jk_printMaze3(Rect position, int defaultHeight, int color);
+extern void jk_printMaze1(Rect position, int defaultHeight, int color, 
+											int (&player)[2], bool &firstRun);
+extern void jk_printMaze2(Rect position, int defaultHeight, int color, 
+											int (&player)[2], bool &firstRun);
+extern void jk_printMaze3(Rect position, int defaultHeight, int color,
+											int (&player)[2], bool &firstRun);
+extern void jk_page_transition(int& maze_state, const char* keyChecked, 
+                                                        	bool& firstRun);
 
 void check_mouse(XEvent *e)
 {
@@ -568,12 +578,31 @@ int check_keys(XEvent *e)
 			gl.maze_state = 3;
 			break;
 
+		case XK_b:
+			jk_page_transition(gl.maze_state, "b", gl.firstRun);
+			break;
+		
+		case XK_s:
+			jk_page_transition(gl.maze_state, "s", gl.firstRun);
+			break;
+
+		case XK_c:
+			jk_page_transition(gl.maze_state, "c", gl.firstRun);
+			break;
+		
+		case XK_r:
+			jk_page_transition(gl.maze_state, "r", gl.firstRun);
+			break;
+		
+		
+
+
 		case XK_Escape:
 			return 1;
 		case XK_f:
 			break;
-		case XK_s:
-			break;
+		// case XK_s:
+		// 	break;
 		case XK_Down:
 			break;
 		case XK_equal:
@@ -790,32 +819,37 @@ void physics()
 	//---------------------------------------------------
 	//check keys pressed now
 	if (gl.keys[XK_Left]) {
-		g.ship.angle += 4.0;
-		if (g.ship.angle >= 360.0f)
-			g.ship.angle -= 360.0f;
+		// g.ship.angle += 4.0;
+		// if (g.ship.angle >= 360.0f)
+		// 	g.ship.angle -= 360.0f;
+		// gl.player[0] = gl.player[1] - 1;
 	}
 	if (gl.keys[XK_Right]) {
-		g.ship.angle -= 4.0;
-		if (g.ship.angle < 0.0f)
-			g.ship.angle += 360.0f;
+		// g.ship.angle -= 4.0;
+		// if (g.ship.angle < 0.0f)
+		// 	g.ship.angle += 360.0f;
+
+		// gl.player[0] = gl.player[1] + 1;
 	}
 	if (gl.keys[XK_Up]) {
 		//apply thrust
 		//convert ship angle to radians
-		Flt rad = ((g.ship.angle+90.0) / 360.0f) * PI * 2.0;
-		//convert angle to a vector
-		Flt xdir = cos(rad);
-		Flt ydir = sin(rad);
-		g.ship.vel[0] += xdir*0.02f;
-		g.ship.vel[1] += ydir*0.02f;
-		Flt speed = sqrt(g.ship.vel[0]*g.ship.vel[0]+
-				g.ship.vel[1]*g.ship.vel[1]);
-		if (speed > 10.0f) {
-			speed = 10.0f;
-			normalize2d(g.ship.vel);
-			g.ship.vel[0] *= speed;
-			g.ship.vel[1] *= speed;
-		}
+		// Flt rad = ((g.ship.angle+90.0) / 360.0f) * PI * 2.0;
+		// //convert angle to a vector
+		// Flt xdir = cos(rad);
+		// Flt ydir = sin(rad);
+		// g.ship.vel[0] += xdir*0.02f;
+		// g.ship.vel[1] += ydir*0.02f;
+		// Flt speed = sqrt(g.ship.vel[0]*g.ship.vel[0]+
+		// 		g.ship.vel[1]*g.ship.vel[1]);
+		// if (speed > 10.0f) {
+		// 	speed = 10.0f;
+		// 	normalize2d(g.ship.vel);
+		// 	g.ship.vel[0] *= speed;
+		// 	g.ship.vel[1] *= speed;
+		// }
+
+		// gl.player[1] = gl.player[1] - 1;
 	}
 	if (gl.keys[XK_space]) {
 		//a little time between each bullet
@@ -879,50 +913,170 @@ void physics()
 
 
 
+extern void jk_showCreditPage(Rect position, int defaultHeight, int color);
+extern void jh_showCreditPage(Rect position, int defaultHeight, int color);
+extern void jr_showCreditPage(Rect position, int defaultHeight, int color);
+extern void et_showCreditPage(Rect position, int defaultHeight, int color);
+extern void an_showCreditPage(Rect position, int defaultHeight, int color);
 
+extern void jk_showRulesPage(Rect position, int defaultHeight, int color);
+extern void jh_showRulesPage(Rect position, int defaultHeight, int color);
+extern void jr_showRulesPage(Rect position, int defaultHeight, int color);
+extern void et_showRulesPage(Rect position, int defaultHeight, int color);
+extern void an_showRulesPage(Rect position, int defaultHeight, int color);
 
+// can be replaced by picture logo
+extern void jk_showWelcomePageTitle(Rect position, int defaultHeight, 
+																int color);
+																
+
+extern void jk_showWelcomePage(Rect position, int defaultHeight, int color);
+extern void jh_showWelcomePage(Rect position, int defaultHeight, int color);
+extern void jr_showWelcomePage(Rect position, int defaultHeight, int color);
+extern void et_showWelcomePage(Rect position, int defaultHeight, int color);
+extern void an_showWelcomePage(Rect position, int defaultHeight, int color);
+extern void jk_playerMovement(char* keys, int (&player)[2]);
 
 void render()
 {
 	Rect r;
-	glClear(GL_COLOR_BUFFER_BIT);
-	
+
 	r.bot = gl.yres - 20;
 	r.left = 10;
 	r.center = 0;
-	ggprint8b(&r, 16, 0x00ff0000, "3350 - MAze");
 
-	//should display "level" and "timer" instead... 
-	//and maybe even "highest score" 
-	// ggprint8b(&r, 16, 0x00ffff00, "n bullets: %i", g.nbullets);
-	// ggprint8b(&r, 16, 0x00ffff00, "n asteroids: %i", g.nasteroids);
-	// ggprint8b(&r, 16, 0x00ffffff, " ");
-	ggprint8b(&r, 16, 0x00ffffff, "Instructions:");
-	ggprint8b(&r, 16, 0x00ffffff, "right click to print msgs to console");
-	ggprint8b(&r, 16, 0x00ffffff, "hold down either 1, 2, or 3 to show maps");
+	// Rect jk_welcomeScreen = jk_createRect(gl.yres+50, 100, 10, 0); 
+	
+	Rect jk_welcomeMessage = jk_createRect(gl.yres, 100, 10, 0);
+	jk_welcomeMessage.left = gl.xres / 2;
+	jk_welcomeMessage.center = 1;
+
+	Rect jk_welcomeTitlePlaceHolder = jk_createRect(gl.yres, 100, 10, 0);
+	jk_welcomeTitlePlaceHolder.left = gl.xres / 2;
+	jk_welcomeTitlePlaceHolder.center = 1;
+
+
+	if (gl.maze_state == 0) {
+		
+		glClear(GL_COLOR_BUFFER_BIT);
+		ggprint8b(&r, 16, 0x00ff0000, "3350 - MAze");
+
+		// will delete
+		jk_showWelcomePageTitle(jk_welcomeTitlePlaceHolder, 
+											gl.yres - (gl.yres/2), 0x00FF0000);
+
+
+		jk_showWelcomePage(jk_welcomeMessage, gl.yres - 400, 0x00CC593F);
+		jh_showWelcomePage(jk_welcomeMessage, gl.yres - 490, 0x00CC593F);
+		jr_showWelcomePage(jk_welcomeMessage, gl.yres - 450, 0x00CC593F);
+		et_showWelcomePage(jk_welcomeMessage, gl.yres - 470, 0x00CC593F);
+		an_showWelcomePage(jk_welcomeMessage, gl.yres - 430, 0x00CC593F);
+
+		//should display "level" and "timer" instead... 
+		//and maybe even "highest score" 
+		// ggprint8b(&r, 16, 0x00ffff00, "n bullets: %i", g.nbullets);
+		// ggprint8b(&r, 16, 0x00ffff00, "n asteroids: %i", g.nasteroids);
+		// ggprint8b(&r, 16, 0x00ffffff, " ");
+
+
+
+		//ggprint8b(&r, 16, 0x00ffffff, "Instructions:");
+		//ggprint8b(&r, 16, 0x00ffffff, "right click to print msgs to console");
+		//ggprint8b(&r, 16, 0x00ffffff, "press s to switch between maps");
+		//ggprint8b(&r, 16, 0x00ffffff, "press c to view credit page");
+		//ggprint8b(&r, 16, 0x00ffffff, "press r to view rules page ");
+		//ggprint8b(&r, 16, 0x00ffffff, "press b to return to this page");
+
+
+
+		
+
+	}
 
 	Rect jk_t = jk_createRect(gl.yres, 100, 10, 0);
-
-
-	// if(gl.maze_state == 0) {
-	// 	if ( a state saved when start button was clicked ) {
-	// 		start game + change the state to maze level 1
-	// 	}
-	// 	if ( a state registering a credit button was clicked ) {
-	// 		show credit + change the state to credit page
-	// 	}
-	// }
-
-
-	// if (gl.maze_state == "credit") {
-	// 	if ( a state registering a "back" button was pressed ) {
-	// 		show homescreen again and update game state
-	// 	}
-	// }
-
-
-
+	Rect jk_message = jk_createRect(gl.yres+50, 100, 10, 0); 
+	Rect jk_titles = jk_createRect(gl.yres+50, 100, 10, 0);
 	
+	jk_titles.left = gl.xres / 2;
+	jk_titles.center = 1;
+
+	jk_message.left = 50;
+
+	if (gl.maze_state == 11) {
+		glClear(GL_COLOR_BUFFER_BIT);
+		ggprint13(&jk_titles, 16, 0x00ffffff, "Rules Page");
+		ggprint8b(&jk_titles, 16, 0x00ffffff, "press b to return to home");
+
+
+
+		jk_showRulesPage(jk_message, gl.yres-120, 0x0040e0d0);
+		jh_showRulesPage(jk_message, gl.yres-220, 0x0024AAFA);
+		jr_showRulesPage(jk_message, gl.yres-320, 0x0051f542);
+		et_showRulesPage(jk_message, gl.yres-420, 0x00B24BF3);
+		an_showRulesPage(jk_message, gl.yres-520, 0x00FF7025);
+
+	}
+
+
+
+
+
+	if (gl.maze_state == 12) {
+		glClear(GL_COLOR_BUFFER_BIT);
+		// load_ggfont(17); // arial 140
+		ggprint13(&jk_titles, 16, 0x00ffffff, "CREDIT Page");
+		ggprint8b(&jk_titles, 16, 0x00ffffff, "press b to return to home");
+
+
+		
+		jk_showCreditPage(jk_message, gl.yres-120, 0x0040e0d0);
+		jh_showCreditPage(jk_message, gl.yres-220, 0x0024AAFA);
+		jr_showCreditPage(jk_message, gl.yres-320, 0x0051f542);
+		et_showCreditPage(jk_message, gl.yres-420, 0x00B24BF3);
+		an_showCreditPage(jk_message, gl.yres-520, 0x00FF7025);
+		
+	}
+	
+
+	if (gl.maze_state == 1) {
+		
+		glClear(GL_COLOR_BUFFER_BIT);
+		
+		ggprint8b(&r, 16, 0x00ffffff, "press s to switch to next maze");
+		ggprint8b(&r, 16, 0x00ffffff, "press b to return to home");
+		ggprint8b(&r, 16, 0x00ffffff, "HOLD down the arrowkeys to move about");
+		
+	
+		
+
+
+
+		jk_playerMovement(gl.keys, gl.player);
+		jk_printMaze1(jk_t, gl.yres-100, 0x0040e0d0, gl.player, gl.firstRun);
+	}
+	if (gl.maze_state == 2) {
+		
+		glClear(GL_COLOR_BUFFER_BIT);
+		
+		ggprint8b(&r, 16, 0x00ffffff, "press s to switch to next maze");
+		ggprint8b(&r, 16, 0x00ffffff, "press b to return to home");
+		ggprint8b(&r, 16, 0x00ffffff, "HOLD down the arrowkeys to move about");
+
+		jk_playerMovement(gl.keys, gl.player);
+		jk_printMaze2(jk_t, gl.yres-100, 0x0040e0d0, gl.player, gl.firstRun);
+	}
+	if (gl.maze_state == 3) {
+		
+		glClear(GL_COLOR_BUFFER_BIT);
+		
+		ggprint8b(&r, 16, 0x00ffffff, "press s to switch to next maze");
+		ggprint8b(&r, 16, 0x00ffffff, "press b to return to home");
+		ggprint8b(&r, 16, 0x00ffffff, "HOLD down the arrowkeys to move about");
+
+		jk_playerMovement(gl.keys, gl.player);
+		jk_printMaze3(jk_t, gl.yres-100, 0x0040e0d0, gl.player, gl.firstRun);
+	}
+
 	// if (gl.keys[XK_1] ) {
 	// 	glClear(GL_COLOR_BUFFER_BIT);
 	// 	jk_printMaze1(jk_t, gl.yres-100, 0x0040e0d0);
@@ -938,18 +1092,7 @@ void render()
 
 
 
-	if (gl.maze_state == 1) {
-		glClear(GL_COLOR_BUFFER_BIT);
-		jk_printMaze1(jk_t, gl.yres-100, 0x0040e0d0);
-	}
-	if (gl.maze_state == 2) {
-		glClear(GL_COLOR_BUFFER_BIT);
-		jk_printMaze2(jk_t, gl.yres-100, 0x0040e0d0);
-	}
-	if (gl.maze_state == 3) {
-		glClear(GL_COLOR_BUFFER_BIT);
-		jk_printMaze3(jk_t, gl.yres-100, 0x0040e0d0);
-	}
+	
 
 
 
