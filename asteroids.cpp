@@ -77,12 +77,17 @@ public:
 	int xres, yres;
 	char keys[65536];
 	int maze_state;
+	int player[2];
+	bool firstRun;
 
 	Global() {
 		xres = 960;
 		yres = 600;
 		memset(keys, 0, 65536);
 		maze_state = 0;
+		player[0] = 0;
+		player[1] = 0;
+		firstRun = true;
 
 	}
 
@@ -415,10 +420,14 @@ extern void et_PrintMsg();
 extern void an_PrintMsg();
 
 extern Rect jk_createRect(int yres, int height, int left, int center);
-extern void jk_printMaze1(Rect position, int defaultHeight, int color);
-extern void jk_printMaze2(Rect position, int defaultHeight, int color);
-extern void jk_printMaze3(Rect position, int defaultHeight, int color);
-extern void jk_page_transition(int& maze_state, char keyChecked);
+extern void jk_printMaze1(Rect position, int defaultHeight, int color, 
+											int (&player)[2], bool &firstRun);
+extern void jk_printMaze2(Rect position, int defaultHeight, int color, 
+											int (&player)[2], bool &firstRun);
+extern void jk_printMaze3(Rect position, int defaultHeight, int color,
+											int (&player)[2], bool &firstRun);
+extern void jk_page_transition(int& maze_state, const char* keyChecked, 
+                                                        	bool& firstRun);
 
 void check_mouse(XEvent *e)
 {
@@ -570,21 +579,22 @@ int check_keys(XEvent *e)
 			break;
 
 		case XK_b:
-			jk_page_transition(gl.maze_state, 'b');
+			jk_page_transition(gl.maze_state, "b", gl.firstRun);
 			break;
 		
 		case XK_s:
-			jk_page_transition(gl.maze_state, 's');
+			jk_page_transition(gl.maze_state, "s", gl.firstRun);
 			break;
 
 		case XK_c:
-			jk_page_transition(gl.maze_state, 'c');
+			jk_page_transition(gl.maze_state, "c", gl.firstRun);
 			break;
 		
 		case XK_r:
-			jk_page_transition(gl.maze_state, 'r');
+			jk_page_transition(gl.maze_state, "r", gl.firstRun);
 			break;
-
+		
+		
 
 
 		case XK_Escape:
@@ -809,32 +819,37 @@ void physics()
 	//---------------------------------------------------
 	//check keys pressed now
 	if (gl.keys[XK_Left]) {
-		g.ship.angle += 4.0;
-		if (g.ship.angle >= 360.0f)
-			g.ship.angle -= 360.0f;
+		// g.ship.angle += 4.0;
+		// if (g.ship.angle >= 360.0f)
+		// 	g.ship.angle -= 360.0f;
+		// gl.player[0] = gl.player[1] - 1;
 	}
 	if (gl.keys[XK_Right]) {
-		g.ship.angle -= 4.0;
-		if (g.ship.angle < 0.0f)
-			g.ship.angle += 360.0f;
+		// g.ship.angle -= 4.0;
+		// if (g.ship.angle < 0.0f)
+		// 	g.ship.angle += 360.0f;
+
+		// gl.player[0] = gl.player[1] + 1;
 	}
 	if (gl.keys[XK_Up]) {
 		//apply thrust
 		//convert ship angle to radians
-		Flt rad = ((g.ship.angle+90.0) / 360.0f) * PI * 2.0;
-		//convert angle to a vector
-		Flt xdir = cos(rad);
-		Flt ydir = sin(rad);
-		g.ship.vel[0] += xdir*0.02f;
-		g.ship.vel[1] += ydir*0.02f;
-		Flt speed = sqrt(g.ship.vel[0]*g.ship.vel[0]+
-				g.ship.vel[1]*g.ship.vel[1]);
-		if (speed > 10.0f) {
-			speed = 10.0f;
-			normalize2d(g.ship.vel);
-			g.ship.vel[0] *= speed;
-			g.ship.vel[1] *= speed;
-		}
+		// Flt rad = ((g.ship.angle+90.0) / 360.0f) * PI * 2.0;
+		// //convert angle to a vector
+		// Flt xdir = cos(rad);
+		// Flt ydir = sin(rad);
+		// g.ship.vel[0] += xdir*0.02f;
+		// g.ship.vel[1] += ydir*0.02f;
+		// Flt speed = sqrt(g.ship.vel[0]*g.ship.vel[0]+
+		// 		g.ship.vel[1]*g.ship.vel[1]);
+		// if (speed > 10.0f) {
+		// 	speed = 10.0f;
+		// 	normalize2d(g.ship.vel);
+		// 	g.ship.vel[0] *= speed;
+		// 	g.ship.vel[1] *= speed;
+		// }
+
+		// gl.player[1] = gl.player[1] - 1;
 	}
 	if (gl.keys[XK_space]) {
 		//a little time between each bullet
@@ -910,7 +925,7 @@ extern void jr_showRulesPage(Rect position, int defaultHeight, int color);
 extern void et_showRulesPage(Rect position, int defaultHeight, int color);
 extern void an_showRulesPage(Rect position, int defaultHeight, int color);
 
-// will delete
+// can be replaced by picture logo
 extern void jk_showWelcomePageTitle(Rect position, int defaultHeight, 
 																int color);
 																
@@ -920,7 +935,7 @@ extern void jh_showWelcomePage(Rect position, int defaultHeight, int color);
 extern void jr_showWelcomePage(Rect position, int defaultHeight, int color);
 extern void et_showWelcomePage(Rect position, int defaultHeight, int color);
 extern void an_showWelcomePage(Rect position, int defaultHeight, int color);
-
+extern void jk_playerMovement(char* keys, int (&player)[2]);
 
 void render()
 {
@@ -1029,7 +1044,15 @@ void render()
 		
 		ggprint8b(&r, 16, 0x00ffffff, "press s to switch to next maze");
 		ggprint8b(&r, 16, 0x00ffffff, "press b to return to home");
-		jk_printMaze1(jk_t, gl.yres-100, 0x0040e0d0);
+		ggprint8b(&r, 16, 0x00ffffff, "HOLD down the arrowkeys to move about");
+		
+	
+		
+
+
+
+		jk_playerMovement(gl.keys, gl.player);
+		jk_printMaze1(jk_t, gl.yres-100, 0x0040e0d0, gl.player, gl.firstRun);
 	}
 	if (gl.maze_state == 2) {
 		
@@ -1037,7 +1060,10 @@ void render()
 		
 		ggprint8b(&r, 16, 0x00ffffff, "press s to switch to next maze");
 		ggprint8b(&r, 16, 0x00ffffff, "press b to return to home");
-		jk_printMaze2(jk_t, gl.yres-100, 0x0040e0d0);
+		ggprint8b(&r, 16, 0x00ffffff, "HOLD down the arrowkeys to move about");
+
+		jk_playerMovement(gl.keys, gl.player);
+		jk_printMaze2(jk_t, gl.yres-100, 0x0040e0d0, gl.player, gl.firstRun);
 	}
 	if (gl.maze_state == 3) {
 		
@@ -1045,7 +1071,10 @@ void render()
 		
 		ggprint8b(&r, 16, 0x00ffffff, "press s to switch to next maze");
 		ggprint8b(&r, 16, 0x00ffffff, "press b to return to home");
-		jk_printMaze3(jk_t, gl.yres-100, 0x0040e0d0);
+		ggprint8b(&r, 16, 0x00ffffff, "HOLD down the arrowkeys to move about");
+
+		jk_playerMovement(gl.keys, gl.player);
+		jk_printMaze3(jk_t, gl.yres-100, 0x0040e0d0, gl.player, gl.firstRun);
 	}
 
 	// if (gl.keys[XK_1] ) {

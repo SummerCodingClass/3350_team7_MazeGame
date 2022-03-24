@@ -52,13 +52,9 @@ Rect jk_createRect(int yres, int height, int left, int center)
 
 
 void jk_printMazeGrid(Rect position, const char* maze[], int rows,
-    int startingPosition[2], int defaultHeight, int color, const char* mazeName) 
+  int (&player)[2], int defaultHeight, int color, const char* mazeName) 
 {   
 
-
-    static int player[2] = {10, 10};
-    player[0] = startingPosition[0]; // x
-    player[1] = startingPosition[1]; // y
 
     ggprint8b(&position, 16, color, mazeName);
     
@@ -75,14 +71,34 @@ void jk_printMazeGrid(Rect position, const char* maze[], int rows,
       for (int j = 0; j < columns; j++) {
 
         glColor3ub(200,50,50);
+        // glColor3ub(20,20,20);
         
-        if (maze[i][j] == ' ') {
+        if (maze[i][j] == ' ' || maze[i][j] == 'X') {
           glColor3ub(20,20,20);
         }
         
         if (i == player[1] && j == player[0]) {
           glColor3ub(255,250,250);
         }
+
+        // if (i == player[1] + 1 && j == player[0]) { // i + 1 = down arrow key
+        //   glColor3ub(232,135,5); // orange // 
+        // }
+
+        // if (i == player[1] - 1 && j == player[0]) { // i - 1 = up arrow key
+        //   glColor3ub(232,135,5); // orange // 
+        // }
+
+        // if (i == player[1] && j == player[0] + 1) { // j + 1 = right arrow key
+        //     glColor3ub(232,135,5); // orange // 
+        // }
+
+      
+        // if (i == player[1] && j == player[0] - 1) { // j - 1 = left arrow key
+        //     glColor3ub(232,135,5); // orange // 
+        // }
+
+
 
         float w = 5.0f;
         glPushMatrix();
@@ -101,12 +117,13 @@ void jk_printMazeGrid(Rect position, const char* maze[], int rows,
 
 }
 
-void jk_printMaze1(Rect position, int defaultHeight, int color) 
+void jk_printMaze1(Rect position, int defaultHeight, int color, 
+                                        int (&player)[2], bool &firstRun)
 {
 
     const char* mazeName = "Maze 1";
     int rows = 31;
-    int player[2] = {1, 29};
+    int startingPosition[2] = {1, 29};
 
   // source: https://www.asciiart.eu/art-and-design/mazes
     const char* maze[rows] = 
@@ -149,19 +166,29 @@ void jk_printMaze1(Rect position, int defaultHeight, int color)
     };
 
 
-
-    jk_printMazeGrid(position, maze, rows, player, defaultHeight, color, 
-                                                                    mazeName);
+    if (firstRun) {
+      player[0] = startingPosition[0]; // x
+      player[1] = startingPosition[1]; // y
+      jk_printMazeGrid(position, maze, rows, player, defaultHeight, color, 
+                                                          mazeName);
+      firstRun = false;
+    }
+    
+    else {
+      jk_printMazeGrid(position, maze, rows, player, defaultHeight, color, 
+                                                          mazeName);
+    }
 
 
 }
 
 
-void jk_printMaze2(Rect position, int defaultHeight, int color) 
+void jk_printMaze2(Rect position, int defaultHeight, int color, 
+                                          int (&player)[2], bool& firstRun)
 {
     const char* mazeName = "Maze 2";
     int rows = 27;
-    int player[2] = {18, 23};
+    int startingPosition[2] = {17, 23};
 
     
   // source: https://www.asciiart.eu/art-and-design/mazes
@@ -200,20 +227,29 @@ void jk_printMaze2(Rect position, int defaultHeight, int color)
 
     
 
-    jk_printMazeGrid(position, maze, rows, player, defaultHeight, color, 
-                                                                    mazeName);
-
-
+     if (firstRun) {
+      player[0] = startingPosition[0]; // x
+      player[1] = startingPosition[1]; // y
+      jk_printMazeGrid(position, maze, rows, player, defaultHeight, color, 
+                                                          mazeName);
+      firstRun = false;
+    }
+    
+    else {
+      jk_printMazeGrid(position, maze, rows, player, defaultHeight, color, 
+                                                          mazeName);
+    }
 
 
 }
 
 
-void jk_printMaze3(Rect position, int defaultHeight, int color) 
+void jk_printMaze3(Rect position, int defaultHeight, int color, 
+                                          int (&player)[2], bool& firstRun)
 {
     const char* mazeName = "Maze 3";
     int rows = 23;
-    int player[2] = {1, 22};
+    int startingPosition[2] = {1, 22};
 
 
   // source: https://www.asciiart.eu/art-and-design/mazes
@@ -247,17 +283,28 @@ void jk_printMaze3(Rect position, int defaultHeight, int color)
     };
 
     
-    jk_printMazeGrid(position, maze, rows, player, defaultHeight, color, 
-                                                                    mazeName);
+   if (firstRun) {
+      player[0] = startingPosition[0]; // x
+      player[1] = startingPosition[1]; // y
+      jk_printMazeGrid(position, maze, rows, player, defaultHeight, color, 
+                                                          mazeName);
+      firstRun = false;
+    }
     
+    else {
+      jk_printMazeGrid(position, maze, rows, player, defaultHeight, color, 
+                                                          mazeName);
+    }
 
 
 }
 
 
-  void jk_page_transition(int& maze_state, char keyChecked) {
+  void jk_page_transition(int& maze_state, const char* keyChecked, 
+                                                        bool& firstRun) 
+{
     //case XK_b;
-    if (keyChecked == 'b') {
+    if (strcmp(keyChecked, "b") == 0) {
 			if (maze_state == 0) {
 				//do nothing
 			} else if (maze_state > 0) {
@@ -268,31 +315,43 @@ void jk_printMaze3(Rect position, int defaultHeight, int color)
     }
 
 		//case XK_s;
-    if (keyChecked == 's') {
+    if (strcmp(keyChecked, "s") == 0) {
       if (maze_state == 0) {
+        firstRun = true;
         maze_state = 1;
       } else if (maze_state == 1) {
+        firstRun = true;
         maze_state = 2;
       } else if (maze_state == 2) {
+        firstRun = true;
         maze_state = 3;
       }
 
       return; 
     }
 
-    if (keyChecked == 'r') {
+    if (strcmp(keyChecked, "r") == 0) {
       if (maze_state == 0) {
         maze_state = 11;
       }
     return; 
     }
     
-    if (keyChecked == 'c') {
+    if (strcmp(keyChecked, "c") == 0) {
       if (maze_state == 0) {
         maze_state = 12;
       }
     return; 
     }
+
+    // if (strcmp(keyChecked, "up") == 0) {
+    //   if (maze_state == 1 || maze_state == 2 || maze_state == 3) {
+        
+    //   }
+    // return; 
+    // }
+
+
   }
 
 // void jk_printMaze4(Rect position, int defaultHeight, int color) 
@@ -332,9 +391,38 @@ void jk_showWelcomePage(Rect position, int defaultHeight, int color) {
 
 
 
-//will delete
+//could be replaced by picture logo
 void jk_showWelcomePageTitle(Rect position, int defaultHeight, int color) {
   position.bot = defaultHeight;
   
   ggprint40(&position, 16, color, "The MAze Game");
+}
+
+
+void jk_playerMovement(char* keys, int (&player)[2]) {
+  
+  //up
+  if (keys[XK_Up]) {
+			player[1] = player[1] - 1;
+  }
+
+  //down
+  if (keys[XK_Down]) {
+			player[1] = player[1] + 1;
+	}
+
+  
+  //left
+  if (keys[XK_Left]) {
+			player[0] = player[0] - 1;
+	}
+
+  //right
+  if (keys[XK_Right]) {
+			player[0] = player[0] + 1;
+	}
+
+
+
+
 }
