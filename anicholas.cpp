@@ -2,7 +2,8 @@
 // File: Individual Contributions- Group Project
 
 #include <iostream>
-#include "fonts.h"
+#include "fonts.h" 
+#include "GriCells.h" 
 
 using namespace std;
 
@@ -25,4 +26,16 @@ void an_showRulesPage(Rect position, int defaultHeight, int color) {
 void an_showWelcomePage(Rect position, int defaultHeight, int color) { 
     position.bot = defaultHeight;
     ggprint8b(&position, 16, color, "press 'R' to view rules page");
+}
+
+bool GridCells::isWall() {
+    return wall;
+}
+
+bool GridCells::isStart() {
+    return start;
+}
+
+bool GridCells::isEnd() {
+    return end;
 }
