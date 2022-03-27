@@ -37,14 +37,17 @@ void jh_showWelcomePage(Rect position, int defaultHeight, int color) {
     ggprint8b(&position, 16, color, "right click to print msgs to console");
 }
 
-int GridCells: setXcoord(int input) {
+int GridCells:: setXcoord(int input) {
+    xcoord = input;
     return xcoord;
 }
 
-int GridCells: setYcoord(int input) {
+int GridCells:: setYcoord(int input) {
+    ycoord = input;
     return ycoord;
 }
 
-bool GridCells: setSpace(int input) {
+bool GridCells:: setSpace(bool input) {
+    isSpace = input;
     return isSpace;
 }
