@@ -3,7 +3,7 @@
 
 #include <iostream>
 #include "fonts.h" 
-#include "GriCells.h" 
+#include "GridCells.h" 
 
 using namespace std;
 
