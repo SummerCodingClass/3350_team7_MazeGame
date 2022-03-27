@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include "fonts.h"
+#include "GridCells.h"
 
 using namespace std;
 
@@ -40,4 +41,18 @@ void jr_showRulesPage(Rect position, int defaultHeight, int color) {
 void jr_showWelcomePage(Rect position, int defaultHeight, int color) {
   position.bot = defaultHeight;
   ggprint8b(&position, 16, color, "press 'S' to start game");
+}
+
+bool GridCells::setCurrent(bool input) {
+    currentPosition = input;
+    return currentPosition;
+}
+
+bool GridCells::setTraveled(bool input) {
+    traveled = input;
+    return traveled;
+}
+
+bool GridCells::isSpace() {
+    return space;
 }
