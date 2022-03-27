@@ -48,6 +48,7 @@ int GridCells:: setYcoord(int input) {
 }
 
 bool GridCells:: setSpace(bool input) {
-    isSpace = input;
-    return isSpace;
+    space = input;
+    return space;
 }
+
