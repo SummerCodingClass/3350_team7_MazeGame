@@ -4,6 +4,8 @@
 #include <iostream>
 #include "fonts.h"
 #include <iostream>
+#include "Grid.h"
+
 using namespace std;
 
 void et_PrintMsg() 
@@ -28,3 +30,18 @@ void et_showWelcomePage(Rect position, int defaultHeight, int color) {
   
   ggprint8b(&position, 16, color, "press 'C' to view credit page");
 }
+
+bool GridCells::setWall(bool input) {
+  return wall;
+}
+
+
+bool GridCells::setStart(bool input) {
+  return start;
+}
+
+bool GridCells::setEnd(bool input) {
+  return end;
+}
+
+
