@@ -4,6 +4,7 @@
 //
 #include <iostream>
 #include "fonts.h"
+#include "GridCells.h"
 using namespace std;
 
 
@@ -34,4 +35,16 @@ void jh_showRulesPage(Rect position, int defaultHeight, int color) {
 void jh_showWelcomePage(Rect position, int defaultHeight, int color) {
     position.bot = defaultHeight;
     ggprint8b(&position, 16, color, "right click to print msgs to console");
+}
+
+int GridCells: setXcoord(int input) {
+    return xcoord;
+}
+
+int GridCells: setYcoord(int input) {
+    return ycoord;
+}
+
+bool GridCells: setSpace(int input) {
+    return isSpace;
 }
