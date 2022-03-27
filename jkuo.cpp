@@ -6,6 +6,7 @@
 #include <iostream>
 #include <cstring> //for strlen()
 #include <GL/glx.h>
+#include "GridCells.h"
 // #include <windows.h>
 using namespace std;
 // extern class Global gl;
@@ -425,4 +426,14 @@ void jk_playerMovement(char* keys, int (&player)[2]) {
 
 
 
+}
+
+
+bool GridCells::playerCurrent() {
+  return currentPosition;
+}
+
+
+bool GridCells::hasTraveled() {
+  return traveled;
 }
