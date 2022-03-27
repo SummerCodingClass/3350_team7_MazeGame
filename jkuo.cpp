@@ -402,6 +402,10 @@ void jk_showWelcomePageTitle(Rect position, int defaultHeight, int color) {
 
 void jk_playerMovement(char* keys, int (&player)[2]) {
   
+//player[0] = column = "j"
+//player[1] = row = "i"
+
+
   //up
   if (keys[XK_Up]) {
 			player[1] = player[1] - 1;
@@ -429,6 +433,7 @@ void jk_playerMovement(char* keys, int (&player)[2]) {
 }
 
 
+
 bool GridCells::playerCurrent() {
   return currentPosition;
 }
@@ -437,3 +442,5 @@ bool GridCells::playerCurrent() {
 bool GridCells::hasTraveled() {
   return traveled;
 }
+
+
