@@ -33,15 +33,18 @@ void et_showWelcomePage(Rect position, int defaultHeight, int color) {
 }
 
 bool GridCells::setWall(bool input) {
+  wall = input;
   return wall;
 }
 
 
 bool GridCells::setStart(bool input) {
+  start = input;
   return start;
 }
 
 bool GridCells::setEnd(bool input) {
+  end = input;
   return end;
 }
 
