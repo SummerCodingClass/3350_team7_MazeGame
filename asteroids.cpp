@@ -32,6 +32,9 @@
 #include "log.h"
 #include "fonts.h"
 
+#include "GridCells.h"
+#include "Grid.h"
+
 
 
 //for testing:
@@ -79,6 +82,8 @@ public:
 	int maze_state;
 	int player[2];
 	bool firstRun;
+	Grid mazeGrid;
+	
 
 	Global() {
 		xres = 960;
@@ -88,6 +93,7 @@ public:
 		player[0] = 0;
 		player[1] = 0;
 		firstRun = true;
+		Grid mazeGrid = NULL;
 
 	}
 
@@ -421,7 +427,7 @@ extern void an_PrintMsg();
 
 extern Rect jk_createRect(int yres, int height, int left, int center);
 extern void jk_printMaze1(Rect position, int defaultHeight, int color, 
-											int (&player)[2], bool &firstRun);
+							int (&player)[2], bool &firstRun, Grid& mazeGrid);
 extern void jk_printMaze2(Rect position, int defaultHeight, int color, 
 											int (&player)[2], bool &firstRun);
 extern void jk_printMaze3(Rect position, int defaultHeight, int color,
@@ -1052,7 +1058,8 @@ void render()
 
 
 		jk_playerMovement(gl.keys, gl.player);
-		jk_printMaze1(jk_t, gl.yres-100, 0x0040e0d0, gl.player, gl.firstRun);
+		jk_printMaze1(jk_t, gl.yres-100, 0x0040e0d0, gl.player, gl.firstRun, 
+																gl.mazeGrid);
 	}
 	if (gl.maze_state == 2) {
 		

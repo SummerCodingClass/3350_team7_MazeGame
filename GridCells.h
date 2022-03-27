@@ -10,6 +10,34 @@ class GridCells {
     bool currentPosition;
     bool traveled;    
 
+
+    GridCells() {
+        xcoord = 0;
+        ycoord = 0;
+        space = true;
+        wall = true;
+        start = true;
+        end = true;
+        currentPosition = true;
+        traveled = true;
+    }
+
+    GridCells(int x, int y, bool uspace, bool uwall, 
+                bool ustart, bool uend, bool ucurrent, bool utravel) {
+
+        xcoord = x;
+        ycoord = y;
+        space = uspace;
+        wall = uwall;
+        start = ustart;
+        end = uend;
+        currentPosition = ucurrent;
+        traveled = utravel;
+
+
+    }
+
+
     int setXcoord(int input);
     int setYcoord(int input);
     bool setSpace(bool input);

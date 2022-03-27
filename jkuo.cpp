@@ -7,11 +7,30 @@
 #include <cstring> //for strlen()
 #include <GL/glx.h>
 #include "GridCells.h"
+#include "Grid.h"
+
 // #include <windows.h>
 using namespace std;
 // extern class Global gl;
 
 // don't write classes yet
+
+
+
+
+//prototypes
+int getColumns (const char** maze, int rows);
+
+
+
+
+
+
+
+
+
+
+
 
 void jk_PrintMsg() 
 {
@@ -119,7 +138,7 @@ void jk_printMazeGrid(Rect position, const char* maze[], int rows,
 }
 
 void jk_printMaze1(Rect position, int defaultHeight, int color, 
-                                        int (&player)[2], bool &firstRun)
+                        int (&player)[2], bool &firstRun, Grid& mazeGrid)
 {
 
     const char* mazeName = "Maze 1";
@@ -150,9 +169,9 @@ void jk_printMaze1(Rect position, int defaultHeight, int color,
       "|  |        |  |  |     |        |  |        |  |  |  |  |     |",
       "+  +  +--+--+  +  +--+  +  +--+--+--+  +--+--+--+  +  +  +--+  +",
       "|  |  |        |     |  |     |     |           |  |     |  |  |",
-      "+  +  +  +--+--+--+--+  +--+  +  +--+--+--+--+  +  +--+--+--+  +",
-      "|  |                       |  |     |  |  |     |        |  |  |",
-      "+  +  +--+--+--+--+--+--+--+--+--+  +--+--+  +--+--+--+  +--+  +",
+      "+  +  +  +--+--+--+--+  +--+  +  +--+--+  +--+  +  +--+--+--+  +",
+      "|  |                       |  |        |  |     |        |  |  |",
+      "+  +  +--+--+--+--+  +--+--+--+--+  +  +--+  +--+--+--+  +--+  +",
       "|  |        |     |  |        |  |  |  |              |  |     |",
       "+--+--+--+  +  +  +  +  +--+  +--+  +--+  +--+  +--+--+  +  +--+",
       "|     |     |  |  |  |  |  |        |  |  |     |     |  |     |",
@@ -166,18 +185,29 @@ void jk_printMaze1(Rect position, int defaultHeight, int color,
     
     };
 
+    int columns = getColumns(maze, rows);
 
     if (firstRun) {
       player[0] = startingPosition[0]; // x
       player[1] = startingPosition[1]; // y
-      jk_printMazeGrid(position, maze, rows, player, defaultHeight, color, 
-                                                          mazeName);
+      // jk_printMazeGrid(position, maze, rows, player, defaultHeight, color, 
+                                                          // mazeName);
+      // Grid(rows, columns);
+      // printGrid();
+      mazeGrid = Grid(maze, rows, columns);
+      mazeGrid.printGrid(position, rows, columns, player, defaultHeight, 
+                            color, mazeName);
+      
+      
+
       firstRun = false;
     }
     
     else {
-      jk_printMazeGrid(position, maze, rows, player, defaultHeight, color, 
-                                                          mazeName);
+      // jk_printMazeGrid(position, maze, rows, player, defaultHeight, color, 
+                                                          // mazeName);
+      mazeGrid.printGrid(position, rows, columns, player, defaultHeight, 
+                            color, mazeName);                                                          
     }
 
 
@@ -433,6 +463,18 @@ void jk_playerMovement(char* keys, int (&player)[2]) {
 }
 
 
+int getColumns (const char** maze, int rows) {
+    int columns = strlen(maze[0]);
+    for (int i = 1; i < rows; i++) {
+      if ((int)strlen(maze[i]) > columns) {
+        columns = strlen(maze[i]);
+      }
+    }
+
+    return columns;
+}
+
+
 
 bool GridCells::playerCurrent() {
   return currentPosition;
@@ -442,5 +484,6 @@ bool GridCells::playerCurrent() {
 bool GridCells::hasTraveled() {
   return traveled;
 }
+
 
 
