@@ -432,8 +432,17 @@ extern void jk_printMaze2(Rect position, int defaultHeight, int color,
 											int (&player)[2], bool &firstRun);
 extern void jk_printMaze3(Rect position, int defaultHeight, int color,
 											int (&player)[2], bool &firstRun);
+void jk_printMazeSecretMode1(Rect position, int defaultHeight, int color, 
+                        int (&player)[2], bool &firstRun);
+void jk_printMazeSecretMode2(Rect position, int defaultHeight, int color, 
+                        int (&player)[2], bool &firstRun);
+void jk_printMazeSecretMode3(Rect position, int defaultHeight, int color, 
+                        int (&player)[2], bool &firstRun);
+
+											
 extern void jk_page_transition(int& maze_state, const char* keyChecked, 
                                                         	bool& firstRun);
+
 
 void check_mouse(XEvent *e)
 {
@@ -599,6 +608,19 @@ int check_keys(XEvent *e)
 		case XK_r:
 			jk_page_transition(gl.maze_state, "r", gl.firstRun);
 			break;
+		
+		case XK_q:
+			jk_page_transition(gl.maze_state, "q", gl.firstRun);
+			break;
+
+		case XK_w:
+			jk_page_transition(gl.maze_state, "w", gl.firstRun);
+			break;
+
+		case XK_e:
+			jk_page_transition(gl.maze_state, "e", gl.firstRun);
+			break;
+
 		
 		
 
@@ -934,13 +956,15 @@ extern void an_showRulesPage(Rect position, int defaultHeight, int color);
 // can be replaced by picture logo
 extern void jk_showWelcomePageTitle(Rect position, int defaultHeight, 
 																int color);
-																
 
 extern void jk_showWelcomePage(Rect position, int defaultHeight, int color);
 extern void jh_showWelcomePage(Rect position, int defaultHeight, int color);
 extern void jr_showWelcomePage(Rect position, int defaultHeight, int color);
 extern void et_showWelcomePage(Rect position, int defaultHeight, int color);
 extern void an_showWelcomePage(Rect position, int defaultHeight, int color);
+extern void jk_showWelcomePage2(Rect position, int defaultHeight, int color);
+extern void jk_showSecretMode(Rect position, int defaultHeight, int color);
+extern void jk_showSecretModeMessage(Rect position, int defaultHeight, int color);
 extern void jk_playerMovement(char* keys, int (&player)[2]);
 
 void render()
@@ -977,6 +1001,7 @@ void render()
 		jr_showWelcomePage(jk_welcomeMessage, gl.yres - 450, 0x00CC593F);
 		et_showWelcomePage(jk_welcomeMessage, gl.yres - 470, 0x00CC593F);
 		an_showWelcomePage(jk_welcomeMessage, gl.yres - 430, 0x00CC593F);
+		jk_showWelcomePage2(jk_welcomeMessage, gl.yres - 530, 0x00FF0050);
 
 		//should display "level" and "timer" instead... 
 		//and maybe even "highest score" 
@@ -1051,10 +1076,6 @@ void render()
 		ggprint8b(&r, 16, 0x00ffffff, "press s to switch to next maze");
 		ggprint8b(&r, 16, 0x00ffffff, "press b to return to home");
 		ggprint8b(&r, 16, 0x00ffffff, "HOLD down the arrowkeys to move about");
-		
-	
-		
-
 
 
 		jk_playerMovement(gl.keys, gl.player);
@@ -1083,6 +1104,66 @@ void render()
 		jk_playerMovement(gl.keys, gl.player);
 		jk_printMaze3(jk_t, gl.yres-100, 0x0040e0d0, gl.player, gl.firstRun);
 	}
+
+
+
+
+
+	//secret mode
+	if (gl.maze_state == 23) {
+		glClear(GL_COLOR_BUFFER_BIT);
+		ggprint8b(&r, 16, 0x00ff0000, "3350 - MAze");
+
+		// will delete
+		jk_showSecretMode(jk_welcomeTitlePlaceHolder, 
+											gl.yres - (gl.yres/2), 0x00FF0050);
+
+		jk_showSecretModeMessage(jk_welcomeMessage, gl.yres - 400, 0x00CC5050);
+
+	}
+
+	//zen mode stages
+
+	if (gl.maze_state == 231) {
+		
+		glClear(GL_COLOR_BUFFER_BIT);
+		
+		ggprint8b(&r, 16, 0x00ffffff, "press s to switch to next maze");
+		ggprint8b(&r, 16, 0x00ffffff, "press b to return to secret home");
+		ggprint8b(&r, 16, 0x00ffffff, "HOLD down the arrowkeys to move about");
+
+		jk_playerMovement(gl.keys, gl.player);
+		jk_printMazeSecretMode1(jk_t, gl.yres-100, 0x0040e0d0, gl.player, 
+												gl.firstRun);
+	}
+	if (gl.maze_state == 232) {
+		
+		glClear(GL_COLOR_BUFFER_BIT);
+		
+		ggprint8b(&r, 16, 0x00ffffff, "press s to switch to next maze");
+		ggprint8b(&r, 16, 0x00ffffff, "press b to return to secret home");
+		ggprint8b(&r, 16, 0x00ffffff, "HOLD down the arrowkeys to move about");
+
+		jk_playerMovement(gl.keys, gl.player);
+		jk_printMazeSecretMode2(jk_t, gl.yres-100, 0x0040e0d0, gl.player, 
+												gl.firstRun);
+	}
+	if (gl.maze_state == 233) {
+		
+		glClear(GL_COLOR_BUFFER_BIT);
+		
+		ggprint8b(&r, 16, 0x00ffffff, "press s to switch to next maze");
+		ggprint8b(&r, 16, 0x00ffffff, "press b to return to secret home");
+		ggprint8b(&r, 16, 0x00ffffff, "HOLD down the arrowkeys to move about");
+
+		jk_playerMovement(gl.keys, gl.player);
+		jk_printMazeSecretMode3(jk_t, gl.yres-100, 0x0040e0d0, gl.player, 
+												   gl.firstRun);
+												// gl.firstRun, gl.mazeGrid);
+	}
+
+
+
 
 	// if (gl.keys[XK_1] ) {
 	// 	glClear(GL_COLOR_BUFFER_BIT);
