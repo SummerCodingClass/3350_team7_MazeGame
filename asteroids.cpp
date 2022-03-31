@@ -965,7 +965,8 @@ extern void et_showWelcomePage(Rect position, int defaultHeight, int color);
 extern void an_showWelcomePage(Rect position, int defaultHeight, int color);
 extern void jk_showWelcomePage2(Rect position, int defaultHeight, int color);
 extern void jk_showSecretMode(Rect position, int defaultHeight, int color);
-extern void jk_showSecretModeMessage(Rect position, int defaultHeight, int color);
+extern void jk_showSecretModeMessage(Rect position, int defaultHeight, 
+																	int color);
 extern void jk_playerMovement(char* keys, int (&player)[2], Grid& grid);
 extern void jk_playerMovementForSecretMode(char* keys, int (&player)[2]);
 
