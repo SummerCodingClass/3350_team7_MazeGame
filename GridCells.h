@@ -47,6 +47,12 @@ class GridCells {
     bool setCurrent(bool input);
     bool setTraveled(bool input);
 
+    int getXcoord() {
+        return xcoord;
+    }
+    int getYcoord() {
+        return ycoord;
+    }
 
     bool isSpace();
     bool isWall();

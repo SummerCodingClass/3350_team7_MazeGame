@@ -93,7 +93,8 @@ public:
 		player[0] = 0;
 		player[1] = 0;
 		firstRun = true;
-		Grid mazeGrid = NULL;
+		// Grid mazeGrid = NULL;
+		Grid mazeGrid;
 
 	}
 
@@ -965,7 +966,8 @@ extern void an_showWelcomePage(Rect position, int defaultHeight, int color);
 extern void jk_showWelcomePage2(Rect position, int defaultHeight, int color);
 extern void jk_showSecretMode(Rect position, int defaultHeight, int color);
 extern void jk_showSecretModeMessage(Rect position, int defaultHeight, int color);
-extern void jk_playerMovement(char* keys, int (&player)[2]);
+extern void jk_playerMovement(char* keys, int (&player)[2], Grid& grid);
+extern void jk_playerMovementForSecretMode(char* keys, int (&player)[2]);
 
 void render()
 {
@@ -1078,7 +1080,7 @@ void render()
 		ggprint8b(&r, 16, 0x00ffffff, "HOLD down the arrowkeys to move about");
 
 
-		jk_playerMovement(gl.keys, gl.player);
+		jk_playerMovement(gl.keys, gl.player, gl.mazeGrid);
 		jk_printMaze1(jk_t, gl.yres-100, 0x0040e0d0, gl.player, gl.firstRun, 
 																gl.mazeGrid);
 	}
@@ -1090,7 +1092,7 @@ void render()
 		ggprint8b(&r, 16, 0x00ffffff, "press b to return to home");
 		ggprint8b(&r, 16, 0x00ffffff, "HOLD down the arrowkeys to move about");
 
-		jk_playerMovement(gl.keys, gl.player);
+		jk_playerMovement(gl.keys, gl.player, gl.mazeGrid);
 		jk_printMaze2(jk_t, gl.yres-100, 0x0040e0d0, gl.player, gl.firstRun);
 	}
 	if (gl.maze_state == 3) {
@@ -1101,7 +1103,7 @@ void render()
 		ggprint8b(&r, 16, 0x00ffffff, "press b to return to home");
 		ggprint8b(&r, 16, 0x00ffffff, "HOLD down the arrowkeys to move about");
 
-		jk_playerMovement(gl.keys, gl.player);
+		jk_playerMovement(gl.keys, gl.player, gl.mazeGrid);
 		jk_printMaze3(jk_t, gl.yres-100, 0x0040e0d0, gl.player, gl.firstRun);
 	}
 
@@ -1132,7 +1134,7 @@ void render()
 		ggprint8b(&r, 16, 0x00ffffff, "press b to return to secret home");
 		ggprint8b(&r, 16, 0x00ffffff, "HOLD down the arrowkeys to move about");
 
-		jk_playerMovement(gl.keys, gl.player);
+		jk_playerMovementForSecretMode(gl.keys, gl.player);
 		jk_printMazeSecretMode1(jk_t, gl.yres-100, 0x0040e0d0, gl.player, 
 												gl.firstRun);
 	}
@@ -1144,7 +1146,7 @@ void render()
 		ggprint8b(&r, 16, 0x00ffffff, "press b to return to secret home");
 		ggprint8b(&r, 16, 0x00ffffff, "HOLD down the arrowkeys to move about");
 
-		jk_playerMovement(gl.keys, gl.player);
+		jk_playerMovementForSecretMode(gl.keys, gl.player);
 		jk_printMazeSecretMode2(jk_t, gl.yres-100, 0x0040e0d0, gl.player, 
 												gl.firstRun);
 	}
@@ -1156,7 +1158,7 @@ void render()
 		ggprint8b(&r, 16, 0x00ffffff, "press b to return to secret home");
 		ggprint8b(&r, 16, 0x00ffffff, "HOLD down the arrowkeys to move about");
 
-		jk_playerMovement(gl.keys, gl.player);
+		jk_playerMovementForSecretMode(gl.keys, gl.player);
 		jk_printMazeSecretMode3(jk_t, gl.yres-100, 0x0040e0d0, gl.player, 
 												   gl.firstRun);
 												// gl.firstRun, gl.mazeGrid);

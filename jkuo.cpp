@@ -185,7 +185,9 @@ void jk_printMaze1(Rect position, int defaultHeight, int color,
                                                             // mazeName);
         // Grid(rows, columns);
         // printGrid();
-        mazeGrid = Grid(maze, rows, columns);
+        cout << "before Grid";
+        mazeGrid = Grid(maze, rows, columns, player);
+        cout << "after Grid";
         mazeGrid.printGrid(position, rows, columns, player, defaultHeight, 
                                                                color, mazeName);
 
@@ -512,7 +514,9 @@ void jk_showSecretModeMessage(Rect position, int defaultHeight, int color)
 // helper functions for the maze
 //----------------------------------------------------------------------------
 
-void jk_playerMovement(char* keys, int (&player)[2]) 
+
+//for secrete mode
+void jk_playerMovementForSecretMode(char* keys, int (&player)[2]) 
 {
     //player[0] = column = "j"
     //player[1] = row = "i"
@@ -537,6 +541,78 @@ void jk_playerMovement(char* keys, int (&player)[2])
         player[0] = player[0] + 1;
     }
 }
+
+
+
+void checkWall(int (&player)[2], int nextMove[2], Grid& grid) 
+{
+        int i = nextMove[1];
+        int j = nextMove[0];
+        
+        vector <vector <GridCells>> tempGrid = grid.GridGetter();
+       
+        cout << "i: " << i << " j: " << j << endl;
+        cout << "before isWall()." << endl;
+        if ( tempGrid[i][j].isWall() ) {
+            cout << "this is a wall" << endl;
+            return;
+            // do nothing, return player[2] as is
+        }
+        else {
+            cout << "NOT a wall" << endl;
+            cout << "before: " << player[0] << ", " << player[1] << endl;
+            player[0] = nextMove[0];
+            player[1] = nextMove[1];
+            cout << "after: " << player[0] << ", " << player[1] << endl;
+            return;
+        }
+}
+
+
+//for normal mode
+void jk_playerMovement(char* keys, int (&player)[2], Grid& grid) 
+{
+    //player[0] = column = "j"
+    //player[1] = row = "i"
+
+    // if (i == player[1] + 1 && j == player[0]) { 
+
+    int nextMove[2];
+
+    //up
+    if (keys[XK_Up]) {
+        nextMove[1] = player[1] - 1;
+        nextMove[0] = player[0];
+        checkWall(player, nextMove, grid);
+       
+    }
+
+    //down
+    if (keys[XK_Down]) {
+        nextMove[1] = player[1] + 1;
+        nextMove[0] = player[0];
+        checkWall(player, nextMove, grid);
+        
+    }
+  
+    //left
+    if (keys[XK_Left]) {
+        nextMove[0] = player[0] - 1;
+        nextMove[1] = player[1];
+        checkWall(player, nextMove, grid);
+
+    }
+
+    //right
+    if (keys[XK_Right]) {
+        nextMove[0] = player[0] + 1;
+        nextMove[1] = player[1];
+        checkWall(player, nextMove, grid);
+    }
+}
+
+
+
 
 
 int getColumns (const char** maze, int rows) 
