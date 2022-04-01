@@ -131,6 +131,63 @@ void jk_printMazeGrid(Rect position, const char* maze[], int rows,
     }
 }
 
+
+
+void jk_printMazeTest(Rect position, int defaultHeight, int color, 
+                             int (&player)[2], bool &firstRun, Grid& mazeGrid)
+{
+    const char* mazeName = "Maze Test";
+    int rows = 5;
+    int startingPosition[2] = {1, 3};
+
+    
+     const char* maze[rows] = 
+    {
+    
+        "+-+-+-+-+-+",
+        "|     |    ",
+        "+ +-+ + +-+",
+        "| --|   |--",
+        "+-+-+-+-+-+"
+    
+    };
+    // const char* maze[rows] = 
+    // {
+    
+    //     "+-+-+-+-+-+-+-+-+-+",
+    //     "|     |     |      ",
+    //     "+ +-+ + +-+ + +-+-+",
+    //     "|   |   |     |   |",
+    //     "+-+-+-+-+-+-+-+-+-+"
+    
+    // };
+
+    int columns = getColumns(maze, rows);
+
+    if (firstRun) {
+        player[0] = startingPosition[0]; // x
+        player[1] = startingPosition[1]; // y
+        // jk_printMazeGrid(position, maze, rows, player, defaultHeight, color, 
+                                                            // mazeName);
+        // Grid(rows, columns);
+        // printGrid();
+        // cout << "before Grid";
+        mazeGrid = Grid(maze, rows, columns, player);
+        // cout << "after Grid";
+        mazeGrid.printGrid(position, rows, columns, player, defaultHeight, 
+                                                               color, mazeName);
+
+        firstRun = false;
+    }
+    
+    else {
+        // jk_printMazeGrid(position, maze, rows, player, defaultHeight, color, 
+                                                          // mazeName);
+        mazeGrid.printGrid(position, rows, columns, player, defaultHeight, 
+                                                              color, mazeName);                                                          
+    }
+}
+
 void jk_printMaze1(Rect position, int defaultHeight, int color, 
                              int (&player)[2], bool &firstRun, Grid& mazeGrid)
 {
@@ -505,6 +562,13 @@ void jk_page_transition(int& maze_state, const char* keyChecked,
         return; 
     }
 
+    if (strcmp(keyChecked, "z") == 0) {
+        if(maze_state == 0) {
+            maze_state = 4; //test mode
+        }
+        return; 
+    }
+
 
     // if (strcmp(keyChecked, "up") == 0) {
     //   if (maze_state == 1 || maze_state == 2 || maze_state == 3) {
@@ -561,6 +625,12 @@ void jk_showWelcomePage(Rect position, int defaultHeight, int color)
     ggprint13(&position, 16, color, "------------ Instructions ------------");
 }
 
+void jk_showWelcomePage3(Rect position, int defaultHeight, int color) 
+{
+    position.bot = defaultHeight;
+  
+    ggprint8b(&position, 16, color, "press z to enter test map");
+}
 
 //could be replaced by picture logo
 void jk_showWelcomePageTitle(Rect position, int defaultHeight, int color) 
