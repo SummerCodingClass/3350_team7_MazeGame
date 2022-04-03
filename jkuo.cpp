@@ -134,11 +134,15 @@ void jk_printMazeGrid(Rect position, const char* maze[], int rows,
 
 
 void jk_printMazeTest(Rect position, int defaultHeight, int color, 
-                             int (&player)[2], bool &firstRun, Grid& mazeGrid)
+            int (&player)[2], bool &firstRun, bool& endReached, Grid& mazeGrid, 
+                                                                int& maze_state)
 {
     const char* mazeName = "Maze Test";
     int rows = 5;
     int startingPosition[2] = {1, 3};
+    int endingPosition[2] = {10, 1}; 
+    // column: count starting from 0, left being 0
+    // row: also start from 0, but top being 0
 
     
      const char* maze[rows] = 
@@ -172,28 +176,39 @@ void jk_printMazeTest(Rect position, int defaultHeight, int color,
         // Grid(rows, columns);
         // printGrid();
         // cout << "before Grid";
-        mazeGrid = Grid(maze, rows, columns, player);
+        mazeGrid = Grid(maze, rows, columns, player, endingPosition);
         // cout << "after Grid";
         mazeGrid.printGrid(position, rows, columns, player, defaultHeight, 
-                                                               color, mazeName);
+                                                color, mazeName, endReached);
 
         firstRun = false;
-    }
-    
-    else {
+    } else if (endReached) {
+        cout << "end reached" << endl; 
+        mazeGrid.printGrid(position, rows, columns, player, defaultHeight, 
+                                                color, mazeName, endReached);
+
+        
+        maze_state = -1 * maze_state;
+        firstRun = true;
+        endReached = false;
+        
+
+    } else {
         // jk_printMazeGrid(position, maze, rows, player, defaultHeight, color, 
                                                           // mazeName);
         mazeGrid.printGrid(position, rows, columns, player, defaultHeight, 
-                                                              color, mazeName);                                                          
+                                                color, mazeName, endReached);
     }
 }
 
 void jk_printMaze1(Rect position, int defaultHeight, int color, 
-                             int (&player)[2], bool &firstRun, Grid& mazeGrid)
+            int (&player)[2], bool &firstRun, bool& endReached, Grid& mazeGrid, 
+                                                                int& maze_state)
 {
     const char* mazeName = "Maze 1";
     int rows = 31;
     int startingPosition[2] = {1, 29};
+    int endingPosition[2] = {42, 29}; 
 
     // source: https://www.asciiart.eu/art-and-design/mazes
 
@@ -282,19 +297,28 @@ void jk_printMaze1(Rect position, int defaultHeight, int color,
         // Grid(rows, columns);
         // printGrid();
         // cout << "before Grid";
-        mazeGrid = Grid(maze, rows, columns, player);
+        mazeGrid = Grid(maze, rows, columns, player, endingPosition);
         // cout << "after Grid";
         mazeGrid.printGrid(position, rows, columns, player, defaultHeight, 
-                                                               color, mazeName);
+                                                color, mazeName, endReached);
 
         firstRun = false;
-    }
-    
-    else {
+    } else if (endReached) {
+        cout << "end reached" << endl; 
+        mazeGrid.printGrid(position, rows, columns, player, defaultHeight, 
+                                                color, mazeName, endReached);
+
+        
+        maze_state = -1 * maze_state;
+        firstRun = true;
+        endReached = false;
+        
+
+    } else {
         // jk_printMazeGrid(position, maze, rows, player, defaultHeight, color, 
                                                           // mazeName);
         mazeGrid.printGrid(position, rows, columns, player, defaultHeight, 
-                                                              color, mazeName);                                                          
+                                                color, mazeName, endReached);
     }
 }
 
@@ -479,12 +503,14 @@ void jk_printMaze3(Rect position, int defaultHeight, int color,
 
 
 void jk_page_transition(int& maze_state, const char* keyChecked, 
-                                                               bool& firstRun) 
+                                                    bool& firstRun, int maxMaze) 
 {
     //case XK_b;
     if (strcmp(keyChecked, "b") == 0) {
         if (maze_state == 0) {
             //do nothing
+        } else if (maze_state == 1000) {
+            maze_state = 0;
         } else if (maze_state > 230) {
             maze_state = 23;
         } else if (maze_state > 0) {
@@ -499,6 +525,19 @@ void jk_page_transition(int& maze_state, const char* keyChecked,
         if (maze_state == 0) {
             firstRun = true;
             maze_state = 1;
+        } else if (maze_state == -4 ) {
+            firstRun = true;
+            maze_state = 1;
+        
+        } else if (maze_state < 0 ) {
+            firstRun = true;
+
+            if (maze_state >= (-1 * maxMaze)) {
+                maze_state = (maze_state* -1) + 1;
+            } else {
+                maze_state = 1000; // congrats on beating everything
+            }
+             
         } else if (maze_state == 1) {
             firstRun = true;
             maze_state = 2;
@@ -727,12 +766,19 @@ void checkWall(int (&player)[2], int nextMove[2], Grid& grid)
        
         // cout << "i: " << i << " j: " << j << endl;
         // cout << "before isWall()." << endl;
-        if ( tempGrid[i][j].isWall() ) {
+
+        
+
+        if ( tempGrid[i][j].isWall() || 
+                player[1] >= (grid.rows-1) || player[0] >= (grid.columns-1)) {
+        // cout << "rows: " << grid.rows << " columns: " << grid.columns << endl;
             // cout << "this is a wall" << endl;
             return;
             // do nothing, return player[2] as is
         }
         else {
+
+            // cout << "is it entering here?" << endl;
             // cout << "NOT a wall" << endl;
             // cout << "before: " << player[0] << ", " << player[1] << endl;
             // tempGrid[i][j].setCurrent(true);
@@ -750,8 +796,16 @@ void checkWall(int (&player)[2], int nextMove[2], Grid& grid)
                 grid.mazeGrid[orig_i][orig_j].setTraveled(true);
             }
 
+            
+
+           
             player[0] = nextMove[0];
             player[1] = nextMove[1];
+            
+
+            // if (tempGrid[i][j].isEnd()) {
+            
+            // }
             // cout << "after: " << player[0] << ", " << player[1] << endl;
             return;
         }

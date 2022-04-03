@@ -82,7 +82,9 @@ public:
 	int maze_state;
 	int player[2];
 	bool firstRun;
+	bool endReached;
 	Grid mazeGrid;
+	int maxMaze;
 	
 
 	Global() {
@@ -93,8 +95,10 @@ public:
 		player[0] = 0;
 		player[1] = 0;
 		firstRun = true;
+		endReached = false;
 		// Grid mazeGrid = NULL;
 		Grid mazeGrid;
+		maxMaze = 3;
 
 	}
 
@@ -429,10 +433,12 @@ extern void an_PrintMsg();
 extern Rect jk_createRect(int yres, int height, int left, int center);
 
 extern void jk_printMazeTest(Rect position, int defaultHeight, int color, 
-                             int (&player)[2], bool &firstRun, Grid& mazeGrid);	
+            int (&player)[2], bool &firstRun, bool& endReached, Grid& mazeGrid, 
+                                                            int& maze_state);
 
 extern void jk_printMaze1(Rect position, int defaultHeight, int color, 
-							int (&player)[2], bool &firstRun, Grid& mazeGrid);
+            int (&player)[2], bool &firstRun, bool& endReached, Grid& mazeGrid, 
+                                                            int& maze_state);
 extern void jk_printMaze2(Rect position, int defaultHeight, int color, 
 											int (&player)[2], bool &firstRun);
 extern void jk_printMaze3(Rect position, int defaultHeight, int color,
@@ -447,7 +453,7 @@ void jk_printMazeSecretMode3(Rect position, int defaultHeight, int color,
 
 											
 extern void jk_page_transition(int& maze_state, const char* keyChecked, 
-                                                        	bool& firstRun);
+                                                bool& firstRun, int maxMaze);
 
 
 void check_mouse(XEvent *e)
@@ -600,35 +606,35 @@ int check_keys(XEvent *e)
 			break;
 
 		case XK_b:
-			jk_page_transition(gl.maze_state, "b", gl.firstRun);
+			jk_page_transition(gl.maze_state, "b", gl.firstRun, gl.maxMaze);
 			break;
 		
 		case XK_s:
-			jk_page_transition(gl.maze_state, "s", gl.firstRun);
+			jk_page_transition(gl.maze_state, "s", gl.firstRun, gl.maxMaze);
 			break;
 
 		case XK_c:
-			jk_page_transition(gl.maze_state, "c", gl.firstRun);
+			jk_page_transition(gl.maze_state, "c", gl.firstRun, gl.maxMaze);
 			break;
 		
 		case XK_r:
-			jk_page_transition(gl.maze_state, "r", gl.firstRun);
+			jk_page_transition(gl.maze_state, "r", gl.firstRun, gl.maxMaze);
 			break;
 		
 		case XK_q:
-			jk_page_transition(gl.maze_state, "q", gl.firstRun);
+			jk_page_transition(gl.maze_state, "q", gl.firstRun, gl.maxMaze);
 			break;
 
 		case XK_w:
-			jk_page_transition(gl.maze_state, "w", gl.firstRun);
+			jk_page_transition(gl.maze_state, "w", gl.firstRun, gl.maxMaze);
 			break;
 
 		case XK_e:
-			jk_page_transition(gl.maze_state, "e", gl.firstRun);
+			jk_page_transition(gl.maze_state, "e", gl.firstRun, gl.maxMaze);
 			break;
 
 		case XK_z:
-			jk_page_transition(gl.maze_state, "z", gl.firstRun);
+			jk_page_transition(gl.maze_state, "z", gl.firstRun, gl.maxMaze);
 			break;
 		
 
@@ -1092,7 +1098,7 @@ void render()
 
 		jk_playerMovement(gl.keys, gl.player, gl.mazeGrid);
 		jk_printMaze1(jk_t, gl.yres-100, 0x0040e0d0, gl.player, gl.firstRun, 
-																gl.mazeGrid);
+									gl.endReached, gl.mazeGrid, gl.maze_state);
 	}
 	if (gl.maze_state == 2) {
 		
@@ -1126,8 +1132,30 @@ void render()
 
 		jk_playerMovement(gl.keys, gl.player, gl.mazeGrid);
 		jk_printMazeTest(jk_t, gl.yres-100, 0x0040e0d0, gl.player, gl.firstRun, 
-																   gl.mazeGrid);
+									gl.endReached, gl.mazeGrid, gl.maze_state);
 	}
+
+
+
+	if (gl.maze_state < 0) {
+
+		glClear(GL_COLOR_BUFFER_BIT);
+		ggprint8b(&r, 16, 0x00ffffff, "victory!");
+		ggprint8b(&r, 16, 0x00ffffff, "press s to start the next level");
+
+	}
+
+	
+// gl.maze_state = 1000;
+	if (gl.maze_state == 1000) {
+
+		glClear(GL_COLOR_BUFFER_BIT);
+		ggprint8b(&r, 16, 0x00ffffff, "congrats on beating everything!");
+		ggprint8b(&r, 16, 0x00ffffff, "press b to return to homepage");
+
+	}
+
+
 
 
 

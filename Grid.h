@@ -14,6 +14,7 @@ class Grid {
     public:
     int rows;
     int columns;
+    int mazeEnd[2];
     // int currentPosition[2];
 
     
@@ -35,7 +36,8 @@ class Grid {
     }
 
 
-    Grid(const char** maze, int inputRows, int inputColumns, int player[2]) 
+    Grid(const char** maze, int inputRows, int inputColumns, int player[2], 
+                                                                    int end[2]) 
     {
         rows = inputRows;
         columns = inputColumns;
@@ -53,7 +55,7 @@ class Grid {
         //     }
                 
         // }
-
+       
 
 
         // Inserting elements into vector
@@ -68,6 +70,18 @@ class Grid {
                 temp.setYcoord(i);
                 
                 // bool isCurrent = false;
+                if (i == end[1] && j == end[0]) {
+                    cout << "end point at j: " << j << ", i: " << i << endl;
+                    temp.setEnd(true);
+                    mazeEnd[1] = i;
+                    mazeEnd[0] = j;
+
+                } else {
+                    temp.setEnd(false);
+                }
+
+
+
                 if (i == gridPlayer[1] && j == gridPlayer[0]) {
                     temp.setCurrent(true);
                     temp.setTraveled(false);
@@ -124,7 +138,8 @@ vector <vector <GridCells>> GridGetter()
 
    
 void printGrid(Rect position, int rows, int columns,
-        int (&player)[2], int defaultHeight, int color, const char* mazeName) 
+        int (&player)[2], int defaultHeight, int color, const char* mazeName,
+                                                            bool& endReached) 
 {
 
     ggprint8b(&position, 16, color, mazeName);
@@ -132,7 +147,16 @@ void printGrid(Rect position, int rows, int columns,
     // DON'T FORGET TO REMOVE!!!!
     cout << "in printGrid: " << endl;
     cout << "player: " << player[0] << ",  " << player[1] << endl;
+    // cout << "mazeEnd: " << mazeEnd[0] << ",  " << mazeEnd[1] << endl;
     
+    if (player[1] == mazeEnd[1] && player[0] == mazeEnd[0]) {
+            
+            cout << "in printGrid, endReached marked true" << endl;
+            endReached = true;
+            
+    }
+
+
 
     // ==============================
     for (int i = 0; i < rows; i++) {
@@ -147,6 +171,13 @@ void printGrid(Rect position, int rows, int columns,
             if(mazeGrid[i][j].isSpace()) {
                 glColor3ub(20,20,20);
             }
+
+
+            
+            if(mazeGrid[i][j].isEnd()) {
+                glColor3ub(128,128,128);
+            }
+
 
 
 
