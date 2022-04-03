@@ -14,7 +14,7 @@ void an_PrintMsg() {
 void an_showCreditPage(Rect position, int defaultHeight, int color) { 
     position.bot = defaultHeight;
     ggprint8b(&position, 16, color, "Adam Nicholas: ");
-    ggprint8b(&position, 16, color, "Game Designer | Game Programmer | Sound Designer");
+    ggprint8b(&position, 16, color, "Game Designer | Game Programmer");
 }
 
 void an_showRulesPage(Rect position, int defaultHeight, int color) { 
