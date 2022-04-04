@@ -637,6 +637,13 @@ int check_keys(XEvent *e)
 			jk_page_transition(gl.maze_state, "z", gl.firstRun, gl.maxMaze);
 			break;
 		
+		case XK_5:
+			jk_page_transition(gl.maze_state, "z", gl.firstRun, gl.maxMaze);
+			break;
+
+		case XK_6:
+			jk_page_transition(gl.maze_state, "z", gl.firstRun, gl.maxMaze);
+			break;
 
 
 		case XK_Escape:
@@ -1214,6 +1221,20 @@ void render()
 												// gl.firstRun, gl.mazeGrid);
 	}
 
+
+//for midterm
+	if (gl.maze_state == 30) {
+		glClear(GL_COLOR_BUFFER_BIT);
+		ggprint8b(&r, 16, 0x00ff0000, "3350 - MAze");
+		ggprint8b(&r, 16, 0x00ff0000, "transition succeeded.");		
+		ggprint8b(&r, 16, 0x00ff0000, "press 6 to see a failed case.");		
+		
+		// jk_showSecretMode(jk_welcomeTitlePlaceHolder, 
+		// 									gl.yres - (gl.yres/2), 0x00FF0050);
+
+		// jk_showSecretModeMessage(jk_welcomeMessage, gl.yres - 400, 0x00CC5050);
+
+	}
 
 
 

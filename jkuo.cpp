@@ -26,8 +26,43 @@ int getColumns (const char** maze, int rows);
 
 
 
+template <class T>
+bool jkuo_midterm_function(int& maze_state, T desired_state) {
+
+    auto type = typeid(desired_state).name();
+    cout << "data type: " << type << endl;
+//     // cout << "data type: " << typeid(desired_state).name() << endl;
+// //https://stackoverflow.com/questions/
+// //11310898/how-do-i-get-the-type-of-a-variable
+//     if (type != i) {
+//         cout << endl;
+//         cout << "results: page transition failed. returned false." << endl;
+//         cout << endl << endl;
+
+//         return false;
+//     }
 
 
+    cout << "current maze_state: page" << maze_state << endl;
+    cout << "desired maze_state: page" << desired_state << endl;
+
+    maze_state = desired_state;
+
+    if (maze_state != desired_state) {
+
+        cout << endl;
+        cout << "results: page transition failed. returned false." << endl;
+        cout << endl << endl;
+
+        return false;
+    }
+
+    cout << endl;
+    cout << "results: page transition succeeded. returned true." << endl;
+    cout << endl << endl;
+
+    return true;
+}
 
 
 
@@ -211,44 +246,8 @@ void jk_printMaze1(Rect position, int defaultHeight, int color,
     int endingPosition[2] = {42, 29}; 
 
     // source: https://www.asciiart.eu/art-and-design/mazes
-
     //the extra space in the corridor was messeing up the trail
-    // const char* maze[rows] = 
-    // {
-    
-    //     "+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+",
-    //     "|        |        |                                            |",
-    //     "+  +--+  +  +--+--+  +--+--+--+--+--+--+--+--+--+  +--+--+--+  +",
-    //     "|     |     |        |     |     |              |     |        |",
-    //     "+--+  +  +--+  +--+--+  +  +  +  +  +--+--+--+  +--+  +  +--+--+",
-    //     "|     |  |     |        |     |  |        |  |  |     |     |  |",
-    //     "+  +--+  +  +--+  +--+--+--+--+--+--+  +--+--+  +--+--+--+  +--+",
-    //     "|  |     |  |  |  |              |  |  |     |        |  |     |",
-    //     "+  +--+--+  +--+  +  +--+--+--+  +  +  +  +  +--+  +  +--+--+  +",
-    //     "|        |  |     |     |     |  |  |     |     |  |           |",
-    //     "+  +--+  +  +  +--+--+  +--+  +  +--+--+--+--+  +  +--+--+--+--+",
-    //     "|  |     |  |        |     |  |              |  |           |  |",
-    //     "+  +  +--+  +--+--+--+--+  +  +--+--+--+--+  +  +--+  +--+  +--+",
-    //     "|  |  |                    |              |  |     |  |  |     |",
-    //     "+  +  +  +--+--+--+--+--+--+--+  +--+--+  +- +--+  +  +  +--+  +",
-    //     "|  |        |     |                    |  |     |  |     |     |",
-    //     "+  +--+--+  +  +  +  +--+  +--+--+  +--+--+  +  +  +--+  +  +--+",
-    //     "|  |        |  |  |     |        |  |        |  |  |  |  |     |",
-    //     "+  +  +--+--+  +  +--+  +  +--+--+--+  +--+--+--+  +  +  +--+  +",
-    //     "|  |  |        |     |  |     |     |           |  |     |  |  |",
-    //     "+  +  +  +--+--+--+--+  +--+  +  +--+--+  +--+  +  +--+--+--+  +",
-    //     "|  |                       |  |        |  |     |        |  |  |",
-    //     "+  +  +--+--+--+--+  +--+--+--+--+  +  +--+  +--+--+--+  +--+  +",
-    //     "|  |        |     |  |        |  |  |  |              |  |     |",
-    //     "+--+--+--+  +  +  +  +  +--+  +--+  +--+  +--+  +--+--+  +  +--+",
-    //     "|     |     |  |  |  |  |  |        |  |  |     |     |  |     |",
-    //     "+  +--+  +--+  +  +  +  +--+--+--+--+--+  +  +--+  +  +  +--+--+",
-    //     "|           |  |  |  |                 |  |  |     |  |        |",
-    //     "+--+--+--+  +--+  +  +--+--+--+--+--+  +  +  +--+--+--+--+--+  +",
-    //     " X                |                 |     |              |      ",
-    //     "+-----+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+"
-    
-    // };
+ 
 
     const char* maze[rows] = 
     {
@@ -333,39 +332,7 @@ void jk_printMaze2(Rect position, int defaultHeight, int color,
 
     
     // source: https://www.asciiart.eu/art-and-design/mazes
-    // const char* maze[rows] = 
-    // {
     
-    //     ",-----------------------------.----------------------------------.",
-    //     "|                             |                                  |",
-    //     "|    .    .    ,---------     |     ------------------------.    |",
-    //     "|    |    |    |              |                             |    |",
-    //     "|    |    `----`--------------!    ,-------------------.    |    |",
-    //     "|    |                             |                   |    |    |",
-    //     "|    :--------------.--------------`----     ,---------:    |    |",
-    //     "|    |              |                        |         |    |    |",
-    //     "|    :---------     |    .    ,---------.    |    .    |    `----:",
-    //     "|    |              |    |    |         |    |    |    |         |",
-    //     "|    |     ---------!    |    :----     |    |    |    |    .    |",
-    //     "|    |                   |    |         |    |    |    |    |    |",
-    //     "|    `-------------------!    |     ----!    |    |    |    |    |",
-    //     "|                             |              |    |    |    |    |",
-    //     ":--------------.---------.    :--------------!    |    :----!    |",
-    //     "|              |         |    |                   |    |         |",
-    //     "|    .    .    |    .    |    |    ,--------------:    `----     |",
-    //     "|    |    |    |    |    |    |    |              |              |",
-    //     "|    |    |    `    |    |    |    |     ---------`---------.    |",
-    //     "|    |    |         |    |    |    |                        |    |",
-    //     "|    |    `---------`----!    |    |    ,---------.    .    |    |",
-    //     "|    |                        |    |    |         |    |    |    |",
-    //     "|    :---------.--------------:    |    |    .    |    |    |    |",
-    //     "|    |         | X            |    |    |    |    |    |    |    |",
-    //     "|    `    .    `---------     |    |    `----!    |    `----!    |",
-    //     "|         |                   |    |              |              |",
-    //     "`---------`-------------------!    `--------------`--------------!"
-    
-    // };
-
       const char* maze[rows] = 
     {
     
@@ -426,35 +393,7 @@ void jk_printMaze3(Rect position, int defaultHeight, int color,
 
 
     // source: https://www.asciiart.eu/art-and-design/mazes
-    // const char* maze[rows] = 
-    // {
-    
-    //   "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa   a",
-    //   "8   8               8               8           8                   8   8",
-    //   "8   8   aaaaaaaaa   8   aaaaa   aaaa8aaaa   aaaa8   aaaaa   aaaaa   8   8",
-    //   "8               8       8   8           8           8   8   8       8   8",
-    //   "8aaaaaaaa   a   8aaaaaaa8   8aaaaaaaa   8aaaa   a   8   8   8aaaaaaa8   8",
-    //   "8       8   8               8           8   8   8   8   8           8   8",
-    //   "8   a   8aaa8aaaaaaaa   a   8   aaaaaaaa8   8aaa8   8   8aaaaaaaa   8   8",
-    //   "8   8               8   8   8       8           8           8       8   8",
-    //   "8   8aaaaaaaaaaaa   8aaa8   8aaaa   8   aaaaa   8aaaaaaaa   8   aaaa8   8",
-    //   "8           8       8   8       8   8       8           8   8           8",
-    //   "8   aaaaa   8aaaa   8   8aaaa   8   8aaaaaaa8   a   a   8   8aaaaaaaaaaa8",
-    //   "8       8       8   8   8       8       8       8   8   8       8       8",
-    //   "8aaaaaaa8aaaa   8   8   8   aaaa8aaaa   8   aaaa8   8   8aaaa   8aaaa   8",
-    //   "8           8   8           8       8   8       8   8       8           8",
-    //   "8   aaaaa   8   8aaaaaaaa   8aaaa   8   8aaaa   8aaa8   aaaa8aaaaaaaa   8",
-    //   "8   8       8           8           8       8   8   8               8   8",
-    //   "8   8   aaaa8aaaa   a   8aaaa   aaaa8aaaa   8   8   8aaaaaaaaaaaa   8   8",
-    //   "8   8           8   8   8   8   8           8               8   8       8",
-    //   "8   8aaaaaaaa   8   8   8   8aaa8   8aaaaaaa8   aaaaaaaaa   8   8aaaaaaa8",
-    //   "8   8       8   8   8           8           8   8       8               8",
-    //   "8   8   aaaa8   8aaa8   aaaaa   8aaaaaaaa   8aaa8   a   8aaaaaaaa   a   8",
-    //   "8   8                   8           8               8               8   8",
-    //   "8   8aaaaaaaaaaaaaaaaaaa8aaaaaaaaaaa8aaaaaaaaaaaaaaa8aaaaaaaaaaaaaaa8aaa8",
-
-    // };
-
+   
       const char* maze[rows] = 
     {
     
@@ -505,6 +444,30 @@ void jk_printMaze3(Rect position, int defaultHeight, int color,
 void jk_page_transition(int& maze_state, const char* keyChecked, 
                                                     bool& firstRun, int maxMaze) 
 {
+
+    //for midterm
+    // if (strcmp(keyChecked, "5") == 0) {
+    //     //true
+    //     if (maze_state == 0) {
+    //         firstRun = true;
+    //         bool success = jkuo_midterm_function(maze_state, 30);
+    //         cout << "test done. success =  " << success << endl; 
+    //         return;
+    //     }
+    // }
+
+    // if (strcmp(keyChecked, "6") == 0) {
+
+    //     if (maze_state == 30) {
+    //         bool success = jkuo_midterm_function(maze_state, 
+    //         100000000000000000000000000000000000000000000000000000000000000000);
+    //         cout << "test done. success =  " << success << endl;
+    //         return;
+    //     }
+
+    // }
+
+    
     //case XK_b;
     if (strcmp(keyChecked, "b") == 0) {
         if (maze_state == 0) {
@@ -524,7 +487,16 @@ void jk_page_transition(int& maze_state, const char* keyChecked,
     if (strcmp(keyChecked, "s") == 0) {
         if (maze_state == 0) {
             firstRun = true;
-            maze_state = 1;
+
+            //for midterm:
+
+            bool success = jkuo_midterm_function(maze_state, 1);
+
+            if (!success) {
+                cout << "test returned false" << endl;
+            }
+
+            // maze_state = 1;
         } else if (maze_state == -4 ) {
             firstRun = true;
             maze_state = 1;
@@ -757,58 +729,58 @@ void jk_playerMovementForSecretMode(char* keys, int (&player)[2])
 
 void checkWall(int (&player)[2], int nextMove[2], Grid& grid) 
 {
-        int orig_i = player[1];
-        int orig_j = player[0];
-        int i = nextMove[1];
-        int j = nextMove[0];
-        
-        vector <vector <GridCells>> tempGrid = grid.GridGetter();
-       
-        // cout << "i: " << i << " j: " << j << endl;
-        // cout << "before isWall()." << endl;
+    int orig_i = player[1];
+    int orig_j = player[0];
+    int i = nextMove[1];
+    int j = nextMove[0];
+    
+    vector <vector <GridCells>> tempGrid = grid.GridGetter();
+    
+    // cout << "i: " << i << " j: " << j << endl;
+    // cout << "before isWall()." << endl;
 
-        
+    
 
-        if ( tempGrid[i][j].isWall() || 
-                player[1] >= (grid.rows-1) || player[0] >= (grid.columns-1)) {
-        // cout << "rows: " << grid.rows << " columns: " << grid.columns << endl;
-            // cout << "this is a wall" << endl;
-            return;
-            // do nothing, return player[2] as is
+    if ( tempGrid[i][j].isWall() || 
+            player[1] >= (grid.rows-1) || player[0] >= (grid.columns-1)) {
+    // cout << "rows: " << grid.rows << " columns: " << grid.columns << endl;
+        // cout << "this is a wall" << endl;
+        return;
+        // do nothing, return player[2] as is
+    }
+    else {
+
+        // cout << "is it entering here?" << endl;
+        // cout << "NOT a wall" << endl;
+        // cout << "before: " << player[0] << ", " << player[1] << endl;
+        // tempGrid[i][j].setCurrent(true);
+
+        // set present to NOT current
+        grid.mazeGrid[orig_i][orig_j].setCurrent(false);
+        // grid.mazeGrid[orig_i][orig_j].setTraveled(true);
+        // set next as current
+        grid.mazeGrid[i][j].setCurrent(true);
+
+        if (grid.mazeGrid[i][j].hasTraveled() == true) {
+            grid.mazeGrid[i][j].setTraveled(false);
+            grid.mazeGrid[orig_i][orig_j].setTraveled(false);
+        } else {
+            grid.mazeGrid[orig_i][orig_j].setTraveled(true);
         }
-        else {
 
-            // cout << "is it entering here?" << endl;
-            // cout << "NOT a wall" << endl;
-            // cout << "before: " << player[0] << ", " << player[1] << endl;
-            // tempGrid[i][j].setCurrent(true);
+        
 
-            // set present to NOT current
-            grid.mazeGrid[orig_i][orig_j].setCurrent(false);
-            // grid.mazeGrid[orig_i][orig_j].setTraveled(true);
-            // set next as current
-            grid.mazeGrid[i][j].setCurrent(true);
+        
+        player[0] = nextMove[0];
+        player[1] = nextMove[1];
+        
 
-            if (grid.mazeGrid[i][j].hasTraveled() == true) {
-                grid.mazeGrid[i][j].setTraveled(false);
-                grid.mazeGrid[orig_i][orig_j].setTraveled(false);
-            } else {
-                grid.mazeGrid[orig_i][orig_j].setTraveled(true);
-            }
-
-            
-
-           
-            player[0] = nextMove[0];
-            player[1] = nextMove[1];
-            
-
-            // if (tempGrid[i][j].isEnd()) {
-            
-            // }
-            // cout << "after: " << player[0] << ", " << player[1] << endl;
-            return;
-        }
+        // if (tempGrid[i][j].isEnd()) {
+        
+        // }
+        // cout << "after: " << player[0] << ", " << player[1] << endl;
+        return;
+    }
 }
 
 
