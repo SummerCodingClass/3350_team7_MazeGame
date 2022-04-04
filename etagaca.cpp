@@ -49,6 +49,5 @@ bool GridCells::setEnd(bool input) {
 // Info: receives a string input and outputs it to terminal
 void etagaca(string name) {
   cout << name << "is awesome!";
-  return;
 }
 
