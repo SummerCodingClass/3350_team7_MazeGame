@@ -8,10 +8,10 @@
 using namespace std;
 
 void jhicksMidtermFunction(bool test) {
-    if (test == false) {
-        cout << "Your test is not true." << endl;
-    } else {
+    if (test) {
         cout << "Good Work!" << endl;
+    } else {
+        cout << "Your test is not true." << endl;
     }
 }
 
