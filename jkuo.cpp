@@ -26,8 +26,8 @@ int getColumns (const char** maze, int rows);
 
 
 
-template <class T>
-bool jkuo_midterm_function(int& maze_state, T desired_state) {
+// template <class T>
+bool jkuo_midterm_function(int& maze_state, int desired_state) {
 
     auto type = typeid(desired_state).name();
     cout << "data type: " << type << endl;
@@ -43,6 +43,11 @@ bool jkuo_midterm_function(int& maze_state, T desired_state) {
 
 //         return false;
 //     }
+    if (desired_state <= 0) {
+        cout << "failed. please enter a positive integer" << endl;
+        return false;
+    }
+    
 
 
     cout << "current maze_state: page" << maze_state << endl;
@@ -492,7 +497,11 @@ void jk_page_transition(int& maze_state, const char* keyChecked,
 
             //for midterm:
 
+            // case for success:
             bool success = jkuo_midterm_function(maze_state, 1);
+
+            // case for failure:
+            // bool success = jkuo_midterm_function(maze_state, -1);
 
             if (!success) {
                 cout << "test returned false" << endl;
