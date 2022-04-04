@@ -7,7 +7,13 @@
 #include "GridCells.h"
 using namespace std;
 
-
+void jhicksMidtermFunction(bool test) {
+    if (test == false) {
+        cout << "Your test is not true."
+    } else {
+        cout << "Good Work!"
+    }
+}
 
 void jh_PrintMsg() {
     cout << "Hello from Jeff's file!" << endl;
