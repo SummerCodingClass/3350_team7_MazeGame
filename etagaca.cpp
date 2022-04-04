@@ -47,7 +47,7 @@ bool GridCells::setEnd(bool input) {
 
 // ===> Added function for the midterm <===
 // Info: receives a string input and outputs it to terminal
-void etagaca(string name) {
+void etagaca_midterm(string name) {
   // If the input name is an empty string
   // then we display error to terminal
   if (name == "") {
