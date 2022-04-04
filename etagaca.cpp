@@ -48,4 +48,8 @@ bool GridCells::setEnd(bool input) {
   return end;
 }
 
+void et_midterm_function(string name) {
+  cout << name << "is awesome!";
+  return;
+}
 
