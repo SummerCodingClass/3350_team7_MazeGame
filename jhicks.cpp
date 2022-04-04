@@ -11,7 +11,7 @@ void jhicksMidtermFunction(bool test) {
     if (test) {
         cout << "Good Work!" << endl;
     } else {
-        cout << "Your test is not true." << endl;
+        cout << "Your test is false." << endl;
     }
 }
 
