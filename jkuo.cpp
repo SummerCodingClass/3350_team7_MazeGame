@@ -31,6 +31,8 @@ bool jkuo_midterm_function(int& maze_state, T desired_state) {
 
     auto type = typeid(desired_state).name();
     cout << "data type: " << type << endl;
+
+    // never mind, out of time
 //     // cout << "data type: " << typeid(desired_state).name() << endl;
 // //https://stackoverflow.com/questions/
 // //11310898/how-do-i-get-the-type-of-a-variable
