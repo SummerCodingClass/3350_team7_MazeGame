@@ -9,9 +9,9 @@ using namespace std;
 
 void jhicksMidtermFunction(bool test) {
     if (test == false) {
-        cout << "Your test is not true."
+        cout << "Your test is not true." << endl;
     } else {
-        cout << "Good Work!"
+        cout << "Good Work!" << endl;
     }
 }
 
