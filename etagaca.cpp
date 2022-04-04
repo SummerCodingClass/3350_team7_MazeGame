@@ -1,16 +1,14 @@
-// Eidmone Tagaca
-// Source File for Project
+// Created by: Eidmone Tagaca
+// Source File for Project 3350
 
 #include <iostream>
 #include "fonts.h"
 #include <iostream>
-// #include "Grid.h"
 #include "GridCells.h"
 
 using namespace std;
 
-void et_PrintMsg() 
-{
+void et_PrintMsg() {
     cout << "Eidmone's file fired" <<endl;
 }
 
@@ -37,7 +35,6 @@ bool GridCells::setWall(bool input) {
   return wall;
 }
 
-
 bool GridCells::setStart(bool input) {
   start = input;
   return start;
@@ -48,8 +45,9 @@ bool GridCells::setEnd(bool input) {
   return end;
 }
 
-void et_midterm_function(string name) {
+// ===> Added function for the midterm <===
+// Info: receives a string input and outputs it to terminal
+void etagaca(string name) {
   cout << name << "is awesome!";
-  return;
 }
 
