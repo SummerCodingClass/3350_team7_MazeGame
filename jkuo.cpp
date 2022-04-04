@@ -729,7 +729,7 @@ void jk_playerMovementForSecretMode(char* keys, int (&player)[2])
 
 
 
-void checkWall(int (&player)[2], int nextMove[2], Grid& grid) 
+void jkuo_checkWall(int (&player)[2], int nextMove[2], Grid& grid) 
 {
     int orig_i = player[1];
     int orig_j = player[0];
@@ -746,14 +746,14 @@ void checkWall(int (&player)[2], int nextMove[2], Grid& grid)
     if ( tempGrid[i][j].isWall() || 
             player[1] >= (grid.rows-1) || player[0] >= (grid.columns-1)) {
     // cout << "rows: " << grid.rows << " columns: " << grid.columns << endl;
-        // cout << "this is a wall" << endl;
+        cout << "this is a wall" << endl;
         return;
         // do nothing, return player[2] as is
     }
     else {
 
         // cout << "is it entering here?" << endl;
-        // cout << "NOT a wall" << endl;
+        cout << "NOT a wall" << endl;
         // cout << "before: " << player[0] << ", " << player[1] << endl;
         // tempGrid[i][j].setCurrent(true);
 
@@ -800,7 +800,7 @@ void jk_playerMovement(char* keys, int (&player)[2], Grid& grid)
     if (keys[XK_Up]) {
         nextMove[1] = player[1] - 1;
         nextMove[0] = player[0];
-        checkWall(player, nextMove, grid);
+        jkuo_checkWall(player, nextMove, grid);
        
     }
 
@@ -808,7 +808,7 @@ void jk_playerMovement(char* keys, int (&player)[2], Grid& grid)
     if (keys[XK_Down]) {
         nextMove[1] = player[1] + 1;
         nextMove[0] = player[0];
-        checkWall(player, nextMove, grid);
+        jkuo_checkWall(player, nextMove, grid);
         
     }
   
@@ -816,7 +816,7 @@ void jk_playerMovement(char* keys, int (&player)[2], Grid& grid)
     if (keys[XK_Left]) {
         nextMove[0] = player[0] - 1;
         nextMove[1] = player[1];
-        checkWall(player, nextMove, grid);
+        jkuo_checkWall(player, nextMove, grid);
 
     }
 
@@ -824,7 +824,7 @@ void jk_playerMovement(char* keys, int (&player)[2], Grid& grid)
     if (keys[XK_Right]) {
         nextMove[0] = player[0] + 1;
         nextMove[1] = player[1];
-        checkWall(player, nextMove, grid);
+        jkuo_checkWall(player, nextMove, grid);
     }
 }
 
