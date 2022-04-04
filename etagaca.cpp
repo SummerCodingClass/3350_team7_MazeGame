@@ -48,6 +48,13 @@ bool GridCells::setEnd(bool input) {
 // ===> Added function for the midterm <===
 // Info: receives a string input and outputs it to terminal
 void etagaca(string name) {
-  cout << name << "is awesome!";
+  // If the input name is an empty string
+  // then we display error to terminal
+  if (name == "") {
+    cout << "Error please enter a name!" << endl;
+  } else {
+    // If the input is valid then output this
+    cout << name << " is awesome!";
+  }
 }
 
