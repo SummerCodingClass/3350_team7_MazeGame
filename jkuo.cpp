@@ -1,4 +1,4 @@
-//Author: Jennifer K
+//Author: Jennifer Kuo
 //Individual Source File for Project
 
 
@@ -27,8 +27,8 @@ int getColumns (const char** maze, int rows);
 
 
 // template <class T>
-bool jkuo_midterm_function(int& maze_state, int desired_state) {
-
+bool jkuo_midterm_function (int& maze_state, int desired_state) 
+{
     auto type = typeid(desired_state).name();
     cout << "data type: " << type << endl;
 
