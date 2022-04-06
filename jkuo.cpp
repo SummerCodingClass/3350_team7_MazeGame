@@ -1,4 +1,4 @@
-//Author: Jennifer Kuo
+//Author: Jennifer K
 //Individual Source File for Project
 
 
