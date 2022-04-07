@@ -1045,8 +1045,44 @@ extern void jk_showSecretModeMessage(Rect position, int defaultHeight,
 extern void jk_playerMovement(char* keys, int (&player)[2], Grid& grid);
 extern void jk_playerMovementForSecretMode(char* keys, int (&player)[2]);
 
+//Jennifer's Midterm
+
+
+//Jeff's Midterm
+
+
+//Jesus's Midterm
+
+
+//Adam's Midterm
+
+
+//Eidmone's Midterm
+
+
+
 void render()
 {
+
+//Jennifer's Midterm
+
+
+//Jeff's Midterm
+
+
+//Jesus's Midterm
+
+
+//Adam's Midterm
+
+
+//Eidmone's Midterm
+
+
+
+
+
+
 	Rect r;
 
 	r.bot = gl.yres - 20;
