@@ -1058,7 +1058,7 @@ extern bool jkuo_midterm_function (int& maze_state, int desired_state);
 extern void anicholasPrint(int num);
 
 //Eidmone's Midterm
-
+extern void etagaca_midterm(string name);
 
 
 void render()
@@ -1077,7 +1077,8 @@ jkuo_midterm_function(gl.maze_state, 4);
 anicholasPrint(1);
 
 //Eidmone's Midterm
-
+etagaca_midterm("C++");
+etagaca_midterm("Cobol");
 
 
 
