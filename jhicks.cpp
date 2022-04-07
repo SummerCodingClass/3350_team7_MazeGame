@@ -33,23 +33,6 @@ void jh_showCreditPage(Rect position, int defaultHeight, int color)
     ggprint8b(&position, 16, color, "Game Designer | Game Programmer");
 }
 
-void jh_Image(int xres, int yres, unsigned int textid)
-{
-    glPushMatrix();
-    glTranslatef(xres/2, yres/2, 0);
-    float w = 50.0;
-    glColor3ub(255, 255, 255);
-    glBindTexture(GL_TEXTURE_2D, textid);
-    glBegin(GL_QUADS);
-        glTexCoord2f(0.0f, 1.0f); glVertex2f(-w,-w);
-        glTexCoord2f(0.0f, 0.0f); glVertex2f(-w,w);
-        glTexCoord2f(1.0f, 1.0f); glVertex2f(w,w);
-        glTexCoord2f(1.0f, 1.0f); glVertex2f(w,-w);
-    glEnd();
-    glBindTexture(GL_TEXTURE_2D, 0);
-    glPopMatrix();
-}
-
 void jh_showRulesPage(Rect position, int defaultHeight, int color)
 {
     position.bot = defaultHeight;
@@ -84,4 +67,19 @@ bool GridCells:: setSpace(bool input)
     return space;
 }
 
-
+void jh_Image(int xres, int yres, unsigned int textid)
+{
+    glPushMatrix();
+    glTranslatef(xres/2, yres/2, 0);
+    float w = 50.0;
+    glColor3ub(255, 255, 255);
+    glBindTexture(GL_TEXTURE_2D, textid);
+    glBegin(GL_QUADS);
+        glTexCoord2f(0.0f, 1.0f); glVertex2f(-w,-w);
+        glTexCoord2f(0.0f, 0.0f); glVertex2f(-w,w);
+        glTexCoord2f(1.0f, 1.0f); glVertex2f(w,w);
+        glTexCoord2f(1.0f, 1.0f); glVertex2f(w,-w);
+    glEnd();
+    glBindTexture(GL_TEXTURE_2D, 0);
+    glPopMatrix();
+}
