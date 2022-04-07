@@ -71,7 +71,7 @@ class Grid {
                 
                 // bool isCurrent = false;
                 if (i == end[1] && j == end[0]) {
-                    cout << "end point at j: " << j << ", i: " << i << endl;
+                    // cout << "end point at j: " << j << ", i: " << i << endl;
                     temp.setEnd(true);
                     mazeEnd[1] = i;
                     mazeEnd[0] = j;
