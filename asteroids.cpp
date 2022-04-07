@@ -1058,7 +1058,7 @@ extern void jk_playerMovementForSecretMode(char* keys, int (&player)[2]);
 extern void anicholasPrint(int num);
 
 //Eidmone's Midterm
-
+extern void etagaca_midterm(string name);
 
 
 void render()
@@ -1077,7 +1077,8 @@ void render()
 anicholasPrint(1);
 
 //Eidmone's Midterm
-
+etagaca_midterm("C++");
+etagaca_midterm("Cobol");
 
 
 
