@@ -9,13 +9,9 @@
 #include "Grid.h"
 
 
-void jhicks_midterm_function(int& maze_state)
+bool jhicks_midterm_function(int& maze_state)
 {
-    if (maze_state == 0) {
-        cout << "Home Screen" << endl;
-    } else {
-        cout << "NOT HOME SCREEN" << endl;
-    }
+    return (maze_state == 0);
 }
 
 
