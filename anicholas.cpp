@@ -41,8 +41,7 @@ bool GridCells::isEnd() {
 }
 
 void anicholasPrint(int num) {
-    cout << "Enter 1 to display my Odin username: ";
-    cin >> num;
+    num = 1;
 
     if (num == 1) {
         cout << "Odin Username: anicholas" << endl;

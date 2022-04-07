@@ -8,14 +8,10 @@
 #include "GridCells.h"
 #include "Grid.h"
 
-
-void jhicks_midterm_function(bool test)
+//determines if the maze state is the home page
+bool jhicks_midterm_function(int& maze_state)
 {
-    if (test) {
-        cout << "Good Work!" << endl;
-    } else {
-        cout << "Your test is false." << endl;
-    }
+    return (maze_state == 0);
 }
 
 
