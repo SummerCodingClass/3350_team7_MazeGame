@@ -21,6 +21,31 @@ class jrojas_test {
 };
 */
 
+/* Jesus Rojas 
+* CMPS 3350
+* Midterm
+* Date Written: 04/04/2022
+**************************
+* This function will test if an input
+* is greater than zero
+* If is less than zero
+* a response is displayed
+*/
+void jrojas(int userInput)
+{
+    int maxNumber = 0;
+    /* Test if user input
+     * is greater than zero*/
+    if (userInput > 0) {
+        // maxNumber will be assigned userInput
+        maxNumber = userInput;
+        // Increment maxNumber for temp use
+        maxNumber++;
+    } else {
+        printf("Please an enter a number greater than zero!\n");
+    }
+}
+
 void jr_PrintMsg()
 {
     cout << "jrojas -testing this out! Hello there!" << endl;
