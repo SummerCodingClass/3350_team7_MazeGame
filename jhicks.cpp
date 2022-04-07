@@ -8,19 +8,7 @@
 #include "GridCells.h"
 #include "Grid.h"
 
-<<<<<<< HEAD
-using namespace std;
 
-void jhicksMidtermFunction(bool test)
-{
-    if (test == false) {
-        cout << "Your test is not true." << endl;
-    } else {
-        cout << "Good Work!" << endl;
-    }
-}
-
-=======
 void jhicks_midterm_function(bool test)
 {
     if (test) {
@@ -32,18 +20,14 @@ void jhicks_midterm_function(bool test)
 
 >>>>>>> 37bca3b48779dc0dcffe564f76ebdb62befc9e2b
 void jh_PrintMsg()
-{
+{   
     cout << "Hello from Jeff's file!" << endl;
     return;
 }
 
 
-<<<<<<< HEAD
 void jh_showCreditPage(Rect position, int defaultHeight, int color,
                     int xres, int yres, unsigned int textid)
-=======
-void jh_showCreditPage(Rect position, int defaultHeight, int color )
->>>>>>> 37bca3b48779dc0dcffe564f76ebdb62befc9e2b
 {
     position.bot = defaultHeight;
     ggprint8b(&position, 16, color, "Jeff Hicks:");
