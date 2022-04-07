@@ -46,6 +46,18 @@ void jrojas(int userInput)
     }
 }
 
+void jr_MidtermFunc(int value)
+{
+    /*Test value if postive, negative or invalid input*/
+    if (value >= 0)
+        cout << "The value: " << value << " is a postive number";
+    else if (value < 0)
+        cout << "The value: " << value << " is a negative number";
+    else
+        cout << "The value input is INVALID, try again!\n";
+    cout << "\n";
+}
+
 void jr_PrintMsg()
 {
     cout << "jrojas -testing this out! Hello there!" << endl;

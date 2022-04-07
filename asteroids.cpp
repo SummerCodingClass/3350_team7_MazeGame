@@ -1052,7 +1052,7 @@ extern bool jkuo_midterm_function (int& maze_state, int desired_state);
 extern bool jhicks_midterm_function(int& maze_state);
 
 //Jesus's Midterm
-
+extern void jr_MidtermFunc(int value);
 
 //Adam's Midterm
 extern void anicholasPrint(int num);
@@ -1071,7 +1071,8 @@ jkuo_midterm_function(gl.maze_state, 4);
 jhicks_midterm_function(gl.maze_state);
 
 //Jesus's Midterm
-
+jr_MidtermFunc(55);
+jr_MidtermFunc(-108);
 
 //Adam's Midterm
 anicholasPrint(1);
