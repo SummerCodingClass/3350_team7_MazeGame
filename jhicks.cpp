@@ -11,6 +11,10 @@
 //determines if the maze state is the home page
 bool jhicks_midterm_function(int& maze_state)
 {
+    if (maze_state == 0)
+    	cout << "HOME SCREEN" << endl;
+    else
+	    cout << "NOT HOME SCREEN" << endl;
     return (maze_state == 0);
 }
 
