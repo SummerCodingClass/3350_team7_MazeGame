@@ -29,14 +29,39 @@ int getColumns (const char** maze, int rows);
 
 // }
 
+void jkuo_midterm_function_wed(int maze_state) 
+{
+    // this test will fail on all pages aside from the map pages
+    // e.g. it will fail for welcome screen, but will pass for maze1 page
+    // it is testing the current maze_state constantly with each render
+    // no need for extra user input. 
+
+    if (maze_state < 1 || maze_state > 4) {
+        cout << endl << endl;
+        cout << "test FAILED." << endl
+             << "the inputted maze state is: " << maze_state << "." << endl
+             << "which is NOT within the range of 1 - 4." << endl 
+             << "this means you are NOT on a map page" << endl << endl;
+        cout << endl << endl;
+        return;
+    }
+    
+    cout << endl << endl;
+    cout << "test PASSED. maze_state is: " << maze_state << endl
+         << "it IS within the range of 1 - 4" << endl
+         << "this means you ARE on a map page" << endl << endl;
+    cout << endl << endl;
+    return;
+}
+
 
 
 // template <class T>
-bool jkuo_midterm_function(int& maze_state, int desired_state) 
+bool jkuo_midterm_function_mon(int& maze_state, int desired_state) 
 {
    
     if (desired_state <= 0 || desired_state > 4) {
-        cout << "failed. please enter a positive integer that's <= 4" << endl;
+        cout << "failed. please enter a POSITIVE integer that's <= 4" << endl;
         return false;
     }
     
@@ -490,7 +515,7 @@ void jk_page_transition(int& maze_state, const char* keyChecked,
             //for midterm:
 
             // case for success:
-            bool success = jkuo_midterm_function(maze_state, 1);
+            bool success = jkuo_midterm_function_mon(maze_state, 1);
 
             // case for failure:
             // bool success = jkuo_midterm_function(maze_state, -1);

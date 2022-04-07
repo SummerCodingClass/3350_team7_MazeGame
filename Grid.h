@@ -145,8 +145,8 @@ void printGrid(Rect position, int rows, int columns,
     ggprint8b(&position, 16, color, mazeName);
 
     // DON'T FORGET TO REMOVE!!!!
-    cout << "in printGrid: " << endl;
-    cout << "player: " << player[0] << ",  " << player[1] << endl;
+    // cout << "in printGrid: " << endl;
+    // cout << "player: " << player[0] << ",  " << player[1] << endl;
     // cout << "mazeEnd: " << mazeEnd[0] << ",  " << mazeEnd[1] << endl;
     
     if (player[1] == mazeEnd[1] && player[0] == mazeEnd[0]) {
