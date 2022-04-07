@@ -24,27 +24,19 @@ int getColumns (const char** maze, int rows);
 
 
 
+// bool jkuo_midterm_function2(bool firstRun, bool userInput)
+// {
+
+// }
+
 
 
 // template <class T>
-bool jkuo_midterm_function (int& maze_state, int desired_state) 
+bool jkuo_midterm_function(int& maze_state, int desired_state) 
 {
-    auto type = typeid(desired_state).name();
-    cout << "data type: " << type << endl;
-
-    // never mind, out of time
-//     // cout << "data type: " << typeid(desired_state).name() << endl;
-// //https://stackoverflow.com/questions/
-// //11310898/how-do-i-get-the-type-of-a-variable
-//     if (type != i) {
-//         cout << endl;
-//         cout << "results: page transition failed. returned false." << endl;
-//         cout << endl << endl;
-
-//         return false;
-//     }
-    if (desired_state <= 0) {
-        cout << "failed. please enter a positive integer" << endl;
+   
+    if (desired_state <= 0 || desired_state > 4) {
+        cout << "failed. please enter a positive integer that's <= 4" << endl;
         return false;
     }
     
