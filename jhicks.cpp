@@ -9,12 +9,12 @@
 #include "Grid.h"
 
 
-void jhicks_midterm_function(bool test)
+void jhicks_midterm_function(int& maze_state)
 {
-    if (test) {
-        cout << "Good Work!" << endl;
+    if (maze_state == 0) {
+        cout << "Home Screen" << endl;
     } else {
-        cout << "Your test is false." << endl;
+        cout << "NOT HOME SCREEN" << endl;
     }
 }
 
