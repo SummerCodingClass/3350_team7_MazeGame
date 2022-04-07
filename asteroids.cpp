@@ -496,8 +496,9 @@ extern void jk_printMaze1(Rect position, int defaultHeight, int color,
 extern void jk_printMaze2(Rect position, int defaultHeight, int color, 
             int (&player)[2], bool &firstRun, bool& endReached, Grid& mazeGrid, 
                                                             int& maze_state);
-extern void jk_printMaze3(Rect position, int defaultHeight, int color,
-											int (&player)[2], bool &firstRun);
+extern void jk_printMaze3(Rect position, int defaultHeight, int color, 
+            int (&player)[2], bool &firstRun, bool& endReached, Grid& mazeGrid, 
+                                                            int& maze_state);
 										
 void jk_printMazeSecretMode1(Rect position, int defaultHeight, int color, 
                         int (&player)[2], bool &firstRun);
@@ -651,13 +652,13 @@ int check_keys(XEvent *e)
 	(void)shift;
 	switch (key) {
 		case XK_1:
-			gl.maze_state = 1;
+			// gl.maze_state = 1;
 			break;
 		case XK_2:
-			gl.maze_state = 2;
+			// gl.maze_state = 2;
 			break;
 		case XK_3:
-			gl.maze_state = 3;
+			// gl.maze_state = 3;
 			break;
 
 		case XK_b:
@@ -1218,7 +1219,8 @@ etagaca_midterm("C++");
 		ggprint8b(&r, 16, 0x00ffffff, "HOLD down the arrowkeys to move about");
 
 		jk_playerMovement(gl.keys, gl.player, gl.mazeGrid);
-		jk_printMaze3(jk_t, gl.yres-100, 0x0040e0d0, gl.player, gl.firstRun);
+		jk_printMaze3(jk_t, gl.yres-100, 0x0040e0d0, gl.player, gl.firstRun, 
+									gl.endReached, gl.mazeGrid, gl.maze_state);
 	}
 	if (gl.maze_state == 4) {
 		
