@@ -494,7 +494,8 @@ extern void jk_printMaze1(Rect position, int defaultHeight, int color,
             int (&player)[2], bool &firstRun, bool& endReached, Grid& mazeGrid, 
                                                             int& maze_state);
 extern void jk_printMaze2(Rect position, int defaultHeight, int color, 
-											int (&player)[2], bool &firstRun);
+            int (&player)[2], bool &firstRun, bool& endReached, Grid& mazeGrid, 
+                                                            int& maze_state);
 extern void jk_printMaze3(Rect position, int defaultHeight, int color,
 											int (&player)[2], bool &firstRun);
 										
@@ -1076,7 +1077,7 @@ jr_midterm_func(55);
 jr_midterm_func(-108);
 
 //Adam's Midterm
-// anicholasPrint(1);
+anicholasPrint(1);
 
 //Eidmone's Midterm
 etagaca_midterm("C++");
@@ -1205,7 +1206,8 @@ etagaca_midterm("C++");
 		ggprint8b(&r, 16, 0x00ffffff, "HOLD down the arrowkeys to move about");
 
 		jk_playerMovement(gl.keys, gl.player, gl.mazeGrid);
-		jk_printMaze2(jk_t, gl.yres-100, 0x0040e0d0, gl.player, gl.firstRun);
+		jk_printMaze2(jk_t, gl.yres-100, 0x0040e0d0, gl.player, gl.firstRun, 
+									gl.endReached, gl.mazeGrid, gl.maze_state);
 	}
 	if (gl.maze_state == 3) {
 		

@@ -9,11 +9,11 @@
 #include "GridCells.h"
 #include "Grid.h"
 
-// #include <windows.h>
-using namespace std;
-// extern class Global gl;
 
-// don't write classes yet
+using namespace std;
+
+
+
 
 
 
@@ -215,29 +215,15 @@ void jk_printMazeTest(Rect position, int defaultHeight, int color,
         "+-+-+-+-+-+"
     
     };
-    // const char* maze[rows] = 
-    // {
-    
-    //     "+-+-+-+-+-+-+-+-+-+",
-    //     "|     |     |      ",
-    //     "+ +-+ + +-+ + +-+-+",
-    //     "|   |   |     |   |",
-    //     "+-+-+-+-+-+-+-+-+-+"
-    
-    // };
 
     int columns = getColumns(maze, rows);
 
     if (firstRun) {
         player[0] = startingPosition[0]; // x
         player[1] = startingPosition[1]; // y
-        // jk_printMazeGrid(position, maze, rows, player, defaultHeight, color, 
-                                                            // mazeName);
-        // Grid(rows, columns);
-        // printGrid();
-        // cout << "before Grid";
+     
         mazeGrid = Grid(maze, rows, columns, player, endingPosition);
-        // cout << "after Grid";
+     
         mazeGrid.printGrid(position, rows, columns, player, defaultHeight, 
                                                 color, mazeName, endReached);
 
@@ -254,8 +240,6 @@ void jk_printMazeTest(Rect position, int defaultHeight, int color,
         
 
     } else {
-        // jk_printMazeGrid(position, maze, rows, player, defaultHeight, color, 
-                                                          // mazeName);
         mazeGrid.printGrid(position, rows, columns, player, defaultHeight, 
                                                 color, mazeName, endReached);
     }
@@ -351,12 +335,13 @@ void jk_printMaze1(Rect position, int defaultHeight, int color,
 
 
 void jk_printMaze2(Rect position, int defaultHeight, int color, 
-                                             int (&player)[2], bool& firstRun)
+            int (&player)[2], bool &firstRun, bool& endReached, Grid& mazeGrid, 
+                                                                int& maze_state)
 {
     const char* mazeName = "Maze 2";
     int rows = 27;
-    // int startingPosition[2] = {17, 23};
     int startingPosition[2] = {7, 23};
+    int endingPosition[2] = {13,26}; 
 
     
     // source: https://www.asciiart.eu/art-and-design/mazes
@@ -395,19 +380,34 @@ void jk_printMaze2(Rect position, int defaultHeight, int color,
     };
 
 
-     if (firstRun) {
+    int columns = getColumns(maze, rows);
+
+    if (firstRun) {
         player[0] = startingPosition[0]; // x
         player[1] = startingPosition[1]; // y
-        jk_printMazeGrid(position, maze, rows, player, defaultHeight, color, 
-                                                                    mazeName);
-        firstRun = false;
-    }
-    
-    else {
-        jk_printMazeGrid(position, maze, rows, player, defaultHeight, color, 
-                                                                    mazeName);
-    }
 
+        mazeGrid = Grid(maze, rows, columns, player, endingPosition);
+   
+        mazeGrid.printGrid(position, rows, columns, player, defaultHeight, 
+                                                color, mazeName, endReached);
+
+        firstRun = false;
+    } else if (endReached) {
+        cout << "end reached" << endl; 
+        mazeGrid.printGrid(position, rows, columns, player, defaultHeight, 
+                                                color, mazeName, endReached);
+
+        
+        maze_state = -1 * maze_state;
+        firstRun = true;
+        endReached = false;
+        
+
+    } else {
+       
+        mazeGrid.printGrid(position, rows, columns, player, defaultHeight, 
+                                                color, mazeName, endReached);
+    }
 
 }
 

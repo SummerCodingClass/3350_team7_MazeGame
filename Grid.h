@@ -24,8 +24,9 @@ class Grid {
     vector <vector <GridCells>> mazeGrid; 
     
     int gridPlayer[2];
-
-// ref: https://www.geeksforgeeks.org/vector-of-vectors-in-c-stl-with-examples/
+    
+    // ref for 2d vectors:
+    // https://www.geeksforgeeks.org/vector-of-vectors-in-c-stl-with-examples/
     
 
 
