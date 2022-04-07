@@ -1046,7 +1046,7 @@ extern void jk_playerMovement(char* keys, int (&player)[2], Grid& grid);
 extern void jk_playerMovementForSecretMode(char* keys, int (&player)[2]);
 
 //Jennifer's Midterm
-extern bool jkuo_midterm_function (int& maze_state, int desired_state);
+extern void jkuo_midterm_function_wed (int maze_state);
 
 //Jeff's Midterm
 
@@ -1065,8 +1065,8 @@ void render()
 {
 
 //Jennifer's Midterm
-jkuo_midterm_function(gl.maze_state, 5);
-jkuo_midterm_function(gl.maze_state, 4);
+jkuo_midterm_function_wed(gl.maze_state);
+
 //Jeff's Midterm
 
 
