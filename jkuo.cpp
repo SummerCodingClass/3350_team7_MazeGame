@@ -35,6 +35,10 @@ void jkuo_midterm_function_wed(int maze_state)
     // e.g. it will fail for welcome screen, but will pass for "maze 1" page
     // it is testing the current maze_state constantly with each render
     // no need for extra user input. 
+    
+    cout << endl << endl;
+    cout << "====================================================" << endl;
+
 
     if (maze_state < 1 || maze_state > 4) {
         cout << endl << endl;
@@ -59,7 +63,8 @@ void jkuo_midterm_function_wed(int maze_state)
 // template <class T>
 bool jkuo_midterm_function_mon(int& maze_state, int desired_state) 
 {
-   
+    cout << endl << endl;
+
     if (desired_state <= 0 || desired_state > 4) {
         cout << "failed. please enter a POSITIVE integer that's <= 4" << endl;
         return false;
