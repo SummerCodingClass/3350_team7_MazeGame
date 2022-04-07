@@ -31,6 +31,11 @@ int getColumns (const char** maze, int rows);
 
 void jkuo_midterm_function_wed(int maze_state) 
 {
+    // this test will fail on all pages aside from the map pages
+    // e.g. it will fail for welcome screen, but will pass for maze1 page
+    // it is testing the current maze_state constantly with each render
+    // no need for extra user input. 
+
     if (maze_state < 1 || maze_state > 4) {
         cout << endl << endl;
         cout << "test FAILED." << endl
@@ -46,6 +51,7 @@ void jkuo_midterm_function_wed(int maze_state)
          << "it IS within the range of 1 - 4" << endl
          << "this means you ARE on a map page" << endl << endl;
     cout << endl << endl;
+    return;
 }
 
 
