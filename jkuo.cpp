@@ -203,7 +203,7 @@ void jk_printMazeTest(Rect position, int defaultHeight, int color,
     int endingPosition[2] = {10, 1}; 
     // column: count starting from 0, left being 0
     // row: also start from 0, but top being 0
-
+    int wallColor[3] = {221, 160, 221};
     
      const char* maze[rows] = 
     {
@@ -222,7 +222,10 @@ void jk_printMazeTest(Rect position, int defaultHeight, int color,
         player[0] = startingPosition[0]; // x
         player[1] = startingPosition[1]; // y
      
-        mazeGrid = Grid(maze, rows, columns, player, endingPosition);
+        mazeGrid = Grid(maze, rows, columns, player, endingPosition, 
+                                                                wallColor);
+
+        // mazeGrid.setWallColor(wallColor);
      
         mazeGrid.printGrid(position, rows, columns, player, defaultHeight, 
                                                 color, mazeName, endReached);
@@ -246,9 +249,7 @@ void jk_printMazeTest(Rect position, int defaultHeight, int color,
 }
 
 
-// --------------------------------------------------------------------------
-// start of template for new maze
-// --------------------------------------------------------------------------
+
 void jk_printMaze1(Rect position, int defaultHeight, int color, 
             int (&player)[2], bool &firstRun, bool& endReached, Grid& mazeGrid, 
                                                                 int& maze_state)
@@ -257,6 +258,8 @@ void jk_printMaze1(Rect position, int defaultHeight, int color,
     int rows = 31;
     int startingPosition[2] = {1, 29};
     int endingPosition[2] = {42, 29}; 
+    // int wallColor[3] = {0, 128, 0};
+    int wallColor[3] = {139, 0, 0};
 
     // source: https://www.asciiart.eu/art-and-design/mazes
     // corridors need to be 1 space wide, or it will mess up the trail
@@ -305,8 +308,11 @@ void jk_printMaze1(Rect position, int defaultHeight, int color,
         player[0] = startingPosition[0]; // x
         player[1] = startingPosition[1]; // y
 
-        mazeGrid = Grid(maze, rows, columns, player, endingPosition);
-   
+        mazeGrid = Grid(maze, rows, columns, player, endingPosition, 
+                                                                wallColor);
+
+        // mazeGrid.setWallColor(wallColor);
+
         mazeGrid.printGrid(position, rows, columns, player, defaultHeight, 
                                                 color, mazeName, endReached);
 
@@ -329,9 +335,6 @@ void jk_printMaze1(Rect position, int defaultHeight, int color,
     }
 }
 
-// --------------------------------------------------------------------------
-// end of template for new maze
-// --------------------------------------------------------------------------
 
 
 void jk_printMaze2(Rect position, int defaultHeight, int color, 
@@ -342,6 +345,7 @@ void jk_printMaze2(Rect position, int defaultHeight, int color,
     int rows = 27;
     int startingPosition[2] = {7, 23};
     int endingPosition[2] = {13,26}; 
+    int wallColor[3] = {220, 88, 42};
 
     
     // source: https://www.asciiart.eu/art-and-design/mazes
@@ -386,7 +390,10 @@ void jk_printMaze2(Rect position, int defaultHeight, int color,
         player[0] = startingPosition[0]; // x
         player[1] = startingPosition[1]; // y
 
-        mazeGrid = Grid(maze, rows, columns, player, endingPosition);
+        mazeGrid = Grid(maze, rows, columns, player, endingPosition, 
+                                                                wallColor);
+
+        // mazeGrid.setWallColor(wallColor);
    
         mazeGrid.printGrid(position, rows, columns, player, defaultHeight, 
                                                 color, mazeName, endReached);
@@ -420,6 +427,7 @@ void jk_printMaze3(Rect position, int defaultHeight, int color,
     int rows = 23;
     int startingPosition[2] = {1, 22};
     int endingPosition[2] = {35, 0}; 
+    int wallColor[3] = {246, 190, 0};
 
 
     // source: https://www.asciiart.eu/art-and-design/mazes
@@ -460,7 +468,10 @@ void jk_printMaze3(Rect position, int defaultHeight, int color,
         player[0] = startingPosition[0]; // x
         player[1] = startingPosition[1]; // y
 
-        mazeGrid = Grid(maze, rows, columns, player, endingPosition);
+        mazeGrid = Grid(maze, rows, columns, player, endingPosition, 
+                                                                wallColor);
+
+        // mazeGrid.setWallColor(wallColor);
    
         mazeGrid.printGrid(position, rows, columns, player, defaultHeight, 
                                                 color, mazeName, endReached);
@@ -507,14 +518,17 @@ void jk_printMazeTemplate(Rect position, int defaultHeight, int color,
                                         //          2nd number: top to bottom
                                         //  
     int endingPosition[2] = {42, 29};   // 5. replace: 
-                                        //          same as #4. 
-                                        //          don't forget #6
+                                        //          same as #4.           
+                                        //
+    int wallColor[3] = {0, 128, 0}; // 6. replace:
+                                        //          this is rgb color for wall. 
+                                        //          don't forget #7
 
     // source: https://www.asciiart.eu/art-and-design/mazes
     // corridors need to be 1 space wide, or it will mess up the trail
  
 
-    // 6. replace
+    // 7. replace
     const char* maze[rows] = 
     {
     
@@ -558,7 +572,8 @@ void jk_printMazeTemplate(Rect position, int defaultHeight, int color,
         player[0] = startingPosition[0]; // x
         player[1] = startingPosition[1]; // y
 
-        mazeGrid = Grid(maze, rows, columns, player, endingPosition);
+        mazeGrid = Grid(maze, rows, columns, player, endingPosition, 
+                                                                wallColor);
    
         mazeGrid.printGrid(position, rows, columns, player, defaultHeight, 
                                                 color, mazeName, endReached);
@@ -1039,9 +1054,17 @@ int GridCells::getYcoord()
 
 
 
+//----------------------------------------------------------------------------
+// class functions for Grid.h
+//----------------------------------------------------------------------------
 
 
-
+void Grid::setWallColor(int colorChoice[3]) 
+{
+    wallColor[0] = colorChoice[0];
+    wallColor[1] = colorChoice[1];
+    wallColor[2] = colorChoice[2];
+}
 
 
 
