@@ -1055,7 +1055,7 @@ extern void jk_playerMovementForSecretMode(char* keys, int (&player)[2]);
 
 
 //Adam's Midterm
-
+extern void anicholasPrint(int num);
 
 //Eidmone's Midterm
 
@@ -1074,7 +1074,7 @@ void render()
 
 
 //Adam's Midterm
-
+anicholasPrint(1);
 
 //Eidmone's Midterm
 
