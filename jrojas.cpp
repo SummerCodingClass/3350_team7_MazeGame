@@ -92,3 +92,91 @@ bool GridCells::setTraveled(bool input) {
 bool GridCells::isSpace() {
     return space;
 }
+
+// --------------------------------------------------------------------------
+// start of template for new maze
+// --------------------------------------------------------------------------
+/*
+void jk_printMaze1(Rect position, int defaultHeight, int color, 
+            int (&player)[2], bool &firstRun, bool& endReached, Grid& mazeGrid, 
+                                                                int& maze_state)
+{
+    const char* mazeName = "Maze 1";
+    int rows = 31;
+    int startingPosition[2] = {1, 29};
+    int endingPosition[2] = {42, 29}; 
+
+    // source: https://www.asciiart.eu/art-and-design/mazes
+    // corridors need to be 1 space wide, or it will mess up the trail
+ 
+
+    const char* maze[rows] = 
+    {
+    
+        "+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+",
+        "|     |     |                             |",
+        "+ +-+ + +-+-+ +-+-+-+-+-+-+-+-+-+ +-+-+-+ +",
+        "|   |   |     |   |   |         |   |     |",
+        "+-+ + +-+ +-+-+ + + + + +-+-+-+ +-+ + +-+-+",
+        "|   | |   |     |   | |     | | |   |   | |",
+        "+ +-+ + +-+ +-+-+-+-+-+-+ +-+-+ +-+-+-+ +-+",
+        "| |   | | | |         | | |   |     | |   |",
+        "+ +-+-+ +-+ + +-+-+-+ + + + + +-+ + +-+-+ +",
+        "|     | |   |   |   | | |   |   | |       |",
+        "+ +-+ + + +-+-+ +-+ + +-+-+-+-+ + +-+-+-+-+",
+        "| |   | |     |   | |         | |       | |",
+        "+ + +-+ +-+-+-+-+ + +-+-+-+-+ + +-+ +-+ +-+",
+        "| | |             |         | |   | | |   |",
+        "+ + + +-+-+-+-+-+-+-+ +-+-+ + +-+ + + +-+ +",
+        "| |     |   |             | |   | |   |   |",
+        "+ +-+-+ + + + +-+ +-+-+ +-+-+ + + +-+ + +-+",
+        "| |     | | |   |     | |     | | | | |   |",
+        "+ + +-+-+ + +-+ + +-+-+-+ +-+-+-+ + + +-+ +",
+        "| | |     |   | |   |   |       | |   | | |",
+        "+ + + +-+-+-+-+ +-+ + +-+-+ +-+ + +-+-+-+ +",
+        "| |               | |     | |   |     | | |",
+        "+ + +-+-+-+-+ +-+-+-+-+ + +-+ +-+-+-+ +-+ +",
+        "| |     |   | |     | | | |         | |   |",
+        "+-+-+-+ + + + + +-+ +-+ +-+ +-+ +-+-+ + +-+",
+        "|   |   | | | | | |     | | |   |   | |   |",
+        "+ +-+ +-+ + + + +-+-+-+-+-+ + +-+ + + +-+-+",
+        "|       | | | |           | | |   | |     |",
+        "+-+-+-+ +-+ + +-+-+-+-+-+ + + +-+-+-+-+-+ +",
+        " X          |           |   |         |    ",
+        "+---+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+"
+    
+    };
+
+    int columns = getColumns(maze, rows);
+
+    if (firstRun) {
+        player[0] = startingPosition[0]; // x
+        player[1] = startingPosition[1]; // y
+
+        mazeGrid = Grid(maze, rows, columns, player, endingPosition);
+   
+        mazeGrid.printGrid(position, rows, columns, player, defaultHeight, 
+                                                color, mazeName, endReached);
+
+        firstRun = false;
+    } else if (endReached) {
+        cout << "end reached" << endl; 
+        mazeGrid.printGrid(position, rows, columns, player, defaultHeight, 
+                                                color, mazeName, endReached);
+
+        
+        maze_state = -1 * maze_state;
+        firstRun = true;
+        endReached = false;
+        
+
+    } else {
+       
+        mazeGrid.printGrid(position, rows, columns, player, defaultHeight, 
+                                                color, mazeName, endReached);
+    }
+}
+*/
+// --------------------------------------------------------------------------
+// end of template for new maze
+// --------------------------------------------------------------------------
