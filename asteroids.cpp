@@ -77,6 +77,7 @@ extern void timeCopy(struct timespec *dest, struct timespec *source);
 
 class Global {
 public:
+	unsigned int textid;
 	int xres, yres;
 	char keys[65536];
 	int maze_state;
@@ -97,12 +98,56 @@ public:
 		Grid mazeGrid;
 
 	}
-
-
-	
-
-
 } gl;
+
+class Image {
+    public:
+    int width, height;
+    unsigned char *data;
+    Image(const char *fname) {
+        if (fname[0] == '\0')
+            return;
+        int ppmFlag = 0;
+        char name[40];
+        strcpy(name, fname);
+        int slen = strlen(name);
+        char ppmname[80];
+        if (strncmp(name+(slen -4), ".ppm",4) == 0)
+            ppmFlag = 1;
+        if (ppmFlag) {
+            strcpy(ppmname, name);
+        } else {
+            name[slen -4] = '\0';
+            sprintf(ppmname, "%s.ppm", name);
+            char ts[100];
+            sprintf(ts, "convert %s %s", fname, ppmname);
+            system(ts);
+        }
+        FILE *fpi = fopen(ppmname, "r");
+        if (fpi) {
+            char line[200];
+            fgets(line, 200, fpi);
+            fgets(line, 200, fpi);
+            while(line[0] == '#' || strlen(line) < 2)
+                fgets(line, 200, fpi);
+            sscanf(line, "%i %i", &width, &height);
+            fgets(line, 200, fpi);
+            int n = width * height * 3;
+            data = new unsigned char[n];
+            for (int i = 0; i < n; i++) {
+                data[i] = fgetc(fpi);
+            }
+            fclose(fpi);
+        } else {
+            printf("ERROR opening image: %s\n", ppmname);
+            exit(0);
+        }
+        if (!ppmFlag)
+            unlink(ppmname);
+		//~Image() {delete [] data;}
+    }
+} img("coder.png");
+
 
 class Ship {
 public:
@@ -384,25 +429,34 @@ int main()
 
 void init_opengl(void)
 {
-	//OpenGL initialization
-	glViewport(0, 0, gl.xres, gl.yres);
-	//Initialize matrices
-	glMatrixMode(GL_PROJECTION); glLoadIdentity();
-	glMatrixMode(GL_MODELVIEW); glLoadIdentity();
-	//This sets 2D mode (no perspective)
-	glOrtho(0, gl.xres, 0, gl.yres, -1, 1);
-	//
-	glDisable(GL_LIGHTING);
-	glDisable(GL_DEPTH_TEST);
-	glDisable(GL_FOG);
-	glDisable(GL_CULL_FACE);
-	//
-	//Clear the screen to black
-	glClearColor(0.0, 0.0, 0.0, 1.0);
-	//Do this to allow fonts
-	glEnable(GL_TEXTURE_2D);
-	initialize_fonts();
+   //OpenGL initialization
+   glViewport(0, 0, gl.xres, gl.yres);
+   //Initialize matrices
+   glMatrixMode(GL_PROJECTION); glLoadIdentity();
+   glMatrixMode(GL_MODELVIEW); glLoadIdentity();
+   //This sets 2D mode (no perspective)
+   glOrtho(0, gl.xres, 0, gl.yres, -1, 1);
+   //
+   glDisable(GL_LIGHTING);
+   glDisable(GL_DEPTH_TEST);
+   glDisable(GL_FOG);
+   glDisable(GL_CULL_FACE);
+   //
+   //Clear the screen to black
+   glClearColor(0.0, 0.0, 0.0, 1.0);
+   //Do this to allow fonts
+   glEnable(GL_TEXTURE_2D);
+   initialize_fonts();
+ 
+   glGenTextures(1, &gl.textid);
+   glBindTexture(GL_TEXTURE_2D, gl.textid);
+   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+   glTexImage2D(GL_TEXTURE_2D, 0, 3, img.width, img.height, 0,
+       GL_RGB, GL_UNSIGNED_BYTE, img.data);
+	glBindTexture(GL_TEXTURE_2D, 0);
 }
+
 
 void normalize2d(Vec v)
 {
@@ -950,7 +1004,7 @@ void physics()
 
 
 extern void jk_showCreditPage(Rect position, int defaultHeight, int color);
-extern void jh_showCreditPage(Rect position, int defaultHeight, int color);
+extern void jh_showCreditPage(Rect position, int defaultHeight, int color, int xres, int yres, unsigned int textid);
 extern void jr_showCreditPage(Rect position, int defaultHeight, int color);
 extern void et_showCreditPage(Rect position, int defaultHeight, int color);
 extern void an_showCreditPage(Rect position, int defaultHeight, int color);
@@ -1071,9 +1125,9 @@ void render()
 		ggprint8b(&jk_titles, 16, 0x00ffffff, "press b to return to home");
 
 
-		
+		jk_showCreditPage(jk_message, gl.yres-20, 0x0040e0d0);
 		jk_showCreditPage(jk_message, gl.yres-120, 0x0040e0d0);
-		jh_showCreditPage(jk_message, gl.yres-220, 0x0024AAFA);
+		jh_showCreditPage(jk_message, gl.yres-220, 0x0024AAFA, gl.xres, gl.yres, gl.textid);
 		jr_showCreditPage(jk_message, gl.yres-320, 0x0051f542);
 		et_showCreditPage(jk_message, gl.yres-420, 0x00B24BF3);
 		an_showCreditPage(jk_message, gl.yres-520, 0x00FF7025);
