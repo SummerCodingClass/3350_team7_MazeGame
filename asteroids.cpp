@@ -1068,7 +1068,10 @@ void render()
 jkuo_midterm_function_wed(gl.maze_state);
 
 //Jeff's Midterm
-jhicks_midterm_function(gl.maze_state);
+if (jhicks_midterm_function(gl.maze_state))
+	cout << "HOME SCREEN" << endl;
+else
+	cout << "NOT HOME SCREEN" << endl;
 
 //Jesus's Midterm
 
