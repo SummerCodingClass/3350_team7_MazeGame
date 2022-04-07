@@ -32,7 +32,7 @@ void jh_showCreditPage(Rect position, int defaultHeight, int color,
     position.bot = defaultHeight;
     ggprint8b(&position, 16, color, "Jeff Hicks:");
     ggprint8b(&position, 16, color, "Game Designer | Game Programmer");
-    /*
+    
     glPushMatrix();
     glTranslatef(xres/2, yres/2, 0);
     float w = 50.0;
@@ -46,7 +46,7 @@ void jh_showCreditPage(Rect position, int defaultHeight, int color,
     glEnd();
     glBindTexture(GL_TEXTURE_2D, 0);
     glPopMatrix();
-    */
+    
 }
 
 
