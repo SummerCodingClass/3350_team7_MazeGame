@@ -32,7 +32,7 @@ int getColumns (const char** maze, int rows);
 void jkuo_midterm_function_wed(int maze_state) 
 {
     // this test will fail on all pages aside from the map pages
-    // e.g. it will fail for welcome screen, but will pass for maze1 page
+    // e.g. it will fail for welcome screen, but will pass for "maze 1" page
     // it is testing the current maze_state constantly with each render
     // no need for extra user input. 
 
