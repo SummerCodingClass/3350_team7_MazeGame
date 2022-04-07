@@ -21,7 +21,8 @@ void et_showCreditPage(Rect position, int defaultHeight, int color) {
 void et_showRulesPage(Rect position, int defaultHeight, int color) {
   position.bot = defaultHeight;
   ggprint8b(&position, 16, color, "Rule 4:");
-  ggprint8b(&position, 16, color, "Once you exit the game, progress will NOT be saved.");
+  ggprint8b(&position, 16, color,
+     "Once you exit the game, progress will NOT be saved.");
 }
 
 void et_showWelcomePage(Rect position, int defaultHeight, int color) {

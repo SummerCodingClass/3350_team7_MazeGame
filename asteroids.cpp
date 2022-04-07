@@ -1080,10 +1080,6 @@ anicholasPrint(1);
 
 //Eidmone's Midterm
 etagaca_midterm("C++");
-etagaca_midterm("Cobol");
-
-
-
 
 
 	Rect r;
