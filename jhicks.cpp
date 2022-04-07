@@ -54,14 +54,16 @@ void jh_showRulesPage(Rect position, int defaultHeight, int color)
 {
     position.bot = defaultHeight;
     ggprint8b(&position, 16, color, "Rule 2:");
-    ggprint8b(&position, 16, color, "Timer will stop once you hit the exit.");
+    ggprint8b(&position, 16, color, 
+        "Timer will stop once you hit the exit.");
 }
 
 
 void jh_showWelcomePage(Rect position, int defaultHeight, int color)
 {
     position.bot = defaultHeight;
-    ggprint8b(&position, 16, color, "right click to print msgs to console");
+    ggprint8b(&position, 16, color, 
+        "right click to print msgs to console");
 }
 
 int GridCells:: setXcoord(int input)
