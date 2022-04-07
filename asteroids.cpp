@@ -1017,7 +1017,7 @@ void physics()
 
 
 extern void jk_showCreditPage(Rect position, int defaultHeight, int color);
-extern void jh_showCreditPage(Rect position, int defaultHeight, int color, int xres, int yres, unsigned int textid);
+extern void jh_showCreditPage(Rect position, int defaultHeight, int color);
 extern void jr_showCreditPage(Rect position, int defaultHeight, int color);
 extern void et_showCreditPage(Rect position, int defaultHeight, int color);
 extern void an_showCreditPage(Rect position, int defaultHeight, int color);
@@ -1044,7 +1044,7 @@ extern void jk_showSecretModeMessage(Rect position, int defaultHeight,
 																	int color);
 extern void jk_playerMovement(char* keys, int (&player)[2], Grid& grid);
 extern void jk_playerMovementForSecretMode(char* keys, int (&player)[2]);
-
+extern void jh_Image(int xres, int yres, unsigned int textid);
 //Jennifer's Midterm
 extern void jkuo_midterm_function_wed (int maze_state);
 
@@ -1172,10 +1172,10 @@ etagaca_midterm("C++");
 		ggprint13(&jk_titles, 16, 0x00ffffff, "CREDIT Page");
 		ggprint8b(&jk_titles, 16, 0x00ffffff, "press b to return to home");
 
-
+		jh_Image(gl.xres, gl.yres, gl.textid);
 		jk_showCreditPage(jk_message, gl.yres-20, 0x0040e0d0);
 		jk_showCreditPage(jk_message, gl.yres-120, 0x0040e0d0);
-		jh_showCreditPage(jk_message, gl.yres-220, 0x0024AAFA, gl.xres, gl.yres, gl.textid);
+		jh_showCreditPage(jk_message, gl.yres-220, 0x0024AAFA);
 		jr_showCreditPage(jk_message, gl.yres-320, 0x0051f542);
 		et_showCreditPage(jk_message, gl.yres-420, 0x00B24BF3);
 		an_showCreditPage(jk_message, gl.yres-520, 0x00FF7025);
