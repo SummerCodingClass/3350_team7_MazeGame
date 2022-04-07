@@ -10,7 +10,6 @@ using namespace std;
 
 extern int getColumns (const char** maze, int rows);
 
-
 void an_PrintMsg() {
     cout << "anicholas file worked!" << endl;
 }
