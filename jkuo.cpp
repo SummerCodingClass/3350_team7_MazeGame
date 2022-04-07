@@ -24,10 +24,6 @@ int getColumns (const char** maze, int rows);
 
 
 
-// bool jkuo_midterm_function2(bool firstRun, bool userInput)
-// {
-
-// }
 
 void jkuo_midterm_function_wed(int maze_state) 
 {
@@ -265,6 +261,10 @@ void jk_printMazeTest(Rect position, int defaultHeight, int color,
     }
 }
 
+
+// --------------------------------------------------------------------------
+// start of template for new maze
+// --------------------------------------------------------------------------
 void jk_printMaze1(Rect position, int defaultHeight, int color, 
             int (&player)[2], bool &firstRun, bool& endReached, Grid& mazeGrid, 
                                                                 int& maze_state)
@@ -275,7 +275,7 @@ void jk_printMaze1(Rect position, int defaultHeight, int color,
     int endingPosition[2] = {42, 29}; 
 
     // source: https://www.asciiart.eu/art-and-design/mazes
-    //the extra space in the corridor was messeing up the trail
+    // corridors need to be 1 space wide, or it will mess up the trail
  
 
     const char* maze[rows] = 
@@ -320,13 +320,9 @@ void jk_printMaze1(Rect position, int defaultHeight, int color,
     if (firstRun) {
         player[0] = startingPosition[0]; // x
         player[1] = startingPosition[1]; // y
-        // jk_printMazeGrid(position, maze, rows, player, defaultHeight, color, 
-                                                            // mazeName);
-        // Grid(rows, columns);
-        // printGrid();
-        // cout << "before Grid";
+
         mazeGrid = Grid(maze, rows, columns, player, endingPosition);
-        // cout << "after Grid";
+   
         mazeGrid.printGrid(position, rows, columns, player, defaultHeight, 
                                                 color, mazeName, endReached);
 
@@ -343,12 +339,15 @@ void jk_printMaze1(Rect position, int defaultHeight, int color,
         
 
     } else {
-        // jk_printMazeGrid(position, maze, rows, player, defaultHeight, color, 
-                                                          // mazeName);
+       
         mazeGrid.printGrid(position, rows, columns, player, defaultHeight, 
                                                 color, mazeName, endReached);
     }
 }
+
+// --------------------------------------------------------------------------
+// end of template for new maze
+// --------------------------------------------------------------------------
 
 
 void jk_printMaze2(Rect position, int defaultHeight, int color, 
@@ -468,6 +467,122 @@ void jk_printMaze3(Rect position, int defaultHeight, int color,
 
 
 }
+
+
+
+
+// --------------------------------------------------------------------------
+// start of template for new maze
+// --------------------------------------------------------------------------
+// 1. replace function name as well
+
+void jk_printMazeTemplate(Rect position, int defaultHeight, int color, 
+            int (&player)[2], bool &firstRun, bool& endReached, Grid& mazeGrid, 
+                                                                int& maze_state)
+{
+    const char* mazeName = "Maze Template";    // 2. replace
+    int rows = 31;                      // 3. replace: 
+                                        //          start counting from 1
+    int startingPosition[2] = {1, 29};  // 4. replace: 
+                                        //          start counting from 0.
+                                        //          1st number: left to right
+                                        //          2nd number: top to bottom
+                                        //  
+    int endingPosition[2] = {42, 29};   // 5. replace: 
+                                        //          same as #4. 
+                                        //          don't forget #6
+
+    // source: https://www.asciiart.eu/art-and-design/mazes
+    // corridors need to be 1 space wide, or it will mess up the trail
+ 
+
+    // 6. replace
+    const char* maze[rows] = 
+    {
+    
+        "+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+",
+        "|     |     |                             |",
+        "+ +-+ + +-+-+ +-+-+-+-+-+-+-+-+-+ +-+-+-+ +",
+        "|   |   |     |   |   |         |   |     |",
+        "+-+ + +-+ +-+-+ + + + + +-+-+-+ +-+ + +-+-+",
+        "|   | |   |     |   | |     | | |   |   | |",
+        "+ +-+ + +-+ +-+-+-+-+-+-+ +-+-+ +-+-+-+ +-+",
+        "| |   | | | |         | | |   |     | |   |",
+        "+ +-+-+ +-+ + +-+-+-+ + + + + +-+ + +-+-+ +",
+        "|     | |   |   |   | | |   |   | |       |",
+        "+ +-+ + + +-+-+ +-+ + +-+-+-+-+ + +-+-+-+-+",
+        "| |   | |     |   | |         | |       | |",
+        "+ + +-+ +-+-+-+-+ + +-+-+-+-+ + +-+ +-+ +-+",
+        "| | |             |         | |   | | |   |",
+        "+ + + +-+-+-+-+-+-+-+ +-+-+ + +-+ + + +-+ +",
+        "| |     |   |             | |   | |   |   |",
+        "+ +-+-+ + + + +-+ +-+-+ +-+-+ + + +-+ + +-+",
+        "| |     | | |   |     | |     | | | | |   |",
+        "+ + +-+-+ + +-+ + +-+-+-+ +-+-+-+ + + +-+ +",
+        "| | |     |   | |   |   |       | |   | | |",
+        "+ + + +-+-+-+-+ +-+ + +-+-+ +-+ + +-+-+-+ +",
+        "| |               | |     | |   |     | | |",
+        "+ + +-+-+-+-+ +-+-+-+-+ + +-+ +-+-+-+ +-+ +",
+        "| |     |   | |     | | | |         | |   |",
+        "+-+-+-+ + + + + +-+ +-+ +-+ +-+ +-+-+ + +-+",
+        "|   |   | | | | | |     | | |   |   | |   |",
+        "+ +-+ +-+ + + + +-+-+-+-+-+ + +-+ + + +-+-+",
+        "|       | | | |           | | |   | |     |",
+        "+-+-+-+ +-+ + +-+-+-+-+-+ + + +-+-+-+-+-+ +",
+        " X          |           |   |         |    ",
+        "+---+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+"
+    
+    };
+
+    int columns = getColumns(maze, rows);
+
+    if (firstRun) {
+        player[0] = startingPosition[0]; // x
+        player[1] = startingPosition[1]; // y
+
+        mazeGrid = Grid(maze, rows, columns, player, endingPosition);
+   
+        mazeGrid.printGrid(position, rows, columns, player, defaultHeight, 
+                                                color, mazeName, endReached);
+
+        firstRun = false;
+    } else if (endReached) {
+        cout << "end reached" << endl; 
+        mazeGrid.printGrid(position, rows, columns, player, defaultHeight, 
+                                                color, mazeName, endReached);
+
+        
+        maze_state = -1 * maze_state;
+        firstRun = true;
+        endReached = false;
+        
+
+    } else {
+       
+        mazeGrid.printGrid(position, rows, columns, player, defaultHeight, 
+                                                color, mazeName, endReached);
+    }
+}
+
+// --------------------------------------------------------------------------
+// end of template for new maze
+// --------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 void jk_page_transition(int& maze_state, const char* keyChecked, 

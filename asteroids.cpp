@@ -1076,7 +1076,7 @@ jr_midterm_func(55);
 jr_midterm_func(-108);
 
 //Adam's Midterm
-anicholasPrint(1);
+// anicholasPrint(1);
 
 //Eidmone's Midterm
 etagaca_midterm("C++");
