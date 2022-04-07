@@ -26,7 +26,6 @@ void et_showRulesPage(Rect position, int defaultHeight, int color) {
 
 void et_showWelcomePage(Rect position, int defaultHeight, int color) {
   position.bot = defaultHeight;
-  
   ggprint8b(&position, 16, color, "press 'C' to view credit page");
 }
 
@@ -50,8 +49,8 @@ bool GridCells::setEnd(bool input) {
 void etagaca_midterm(string name) {
   // If the input name is an empty string
   // then we display error to terminal
-  if (name == "") {
-    cout << "Error please enter a name!" << endl;
+  if (name == "Kotlin" || name == "Lisp" || name == "Cobol") {
+    cout << name << " is not that great" << endl;
   } else {
     // If the input is valid then output this
     cout << name << " is awesome!";

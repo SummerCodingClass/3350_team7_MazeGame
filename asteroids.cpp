@@ -1046,7 +1046,7 @@ extern void jk_playerMovement(char* keys, int (&player)[2], Grid& grid);
 extern void jk_playerMovementForSecretMode(char* keys, int (&player)[2]);
 
 //Jennifer's Midterm
-
+extern bool jkuo_midterm_function (int& maze_state, int desired_state);
 
 //Jeff's Midterm
 
@@ -1058,15 +1058,15 @@ extern void jk_playerMovementForSecretMode(char* keys, int (&player)[2]);
 extern void anicholasPrint(int num);
 
 //Eidmone's Midterm
-
+extern void etagaca_midterm(string name);
 
 
 void render()
 {
 
 //Jennifer's Midterm
-
-
+jkuo_midterm_function(gl.maze_state, 5);
+jkuo_midterm_function(gl.maze_state, 4);
 //Jeff's Midterm
 
 
@@ -1077,7 +1077,8 @@ void render()
 anicholasPrint(1);
 
 //Eidmone's Midterm
-
+etagaca_midterm("C++");
+etagaca_midterm("Cobol");
 
 
 
