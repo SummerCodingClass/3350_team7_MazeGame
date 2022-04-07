@@ -1052,7 +1052,7 @@ extern void jkuo_midterm_function_wed (int maze_state);
 extern bool jhicks_midterm_function(int& maze_state);
 
 //Jesus's Midterm
-
+extern void jr_MidtermFunc(int value);
 
 //Adam's Midterm
 extern void anicholasPrint(int num);
@@ -1074,7 +1074,8 @@ else
 	cout << "NOT HOME SCREEN" << endl;
 
 //Jesus's Midterm
-
+jr_MidtermFunc(55);
+jr_MidtermFunc(-108);
 
 //Adam's Midterm
 anicholasPrint(1);
