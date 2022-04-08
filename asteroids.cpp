@@ -151,7 +151,7 @@ class Image {
             unlink(ppmname);
 		//~Image() {delete [] data;}
     }
-} img("coder.png");
+} Image img[1] = {"coder.png"};
 
 
 class Ship {
