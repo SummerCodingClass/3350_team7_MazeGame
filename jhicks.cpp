@@ -71,7 +71,7 @@ void jh_Image(int xres, int yres, unsigned int textid)
 {
     glPushMatrix();
     glTranslatef(xres/2, yres/2, 0);
-    float w = 50.0;
+    float w = 200.0;
     glColor3ub(255, 255, 255);
     glBindTexture(GL_TEXTURE_2D, textid);
     glBegin(GL_QUADS);
@@ -82,4 +82,137 @@ void jh_Image(int xres, int yres, unsigned int textid)
     glEnd();
     glBindTexture(GL_TEXTURE_2D, 0);
     glPopMatrix();
+}
+
+extern int getColumns (const char** maze, int rows);
+
+void jh_printMaze5(Rect position, int defaultHeight, int color, 
+            int (&player)[2], bool &firstRun, bool& endReached, Grid& mazeGrid, 
+                                                                int& maze_state)
+{
+    const char* mazeName = "Maze 5";    
+    int rows = 13;                     
+                                        
+    int startingPosition[2] = {1, 12};  // 4. replace: 
+                                        //          start counting from 0.
+                                        //          1st number: left to right
+                                        //          2nd number: top to bottom
+                                        //  
+    int endingPosition[2] = {10, 0};   // 5. replace: 
+                                        //          same as #4. 
+                                        //          don't forget #6
+    int wallColor[3] = {0, 128, 0};
+    // source: https://www.asciiart.eu/art-and-design/mazes
+
+    // 6. replace
+    const char* maze[rows] = 
+    {
+    
+        ".--.--.--.  .--.--.",
+        "|     |        |  |",
+        ":  :--:  :  :  :  :",
+        "|  |     |  |     |",
+        ":  :  :  :--:--:--:",
+        "|  |  |           |",
+        ":  :  :--:--:--:  :",
+        "|  |        |  |  |",
+        ":  :--:--:  :  :  :",
+        "|     |     |  |  |",
+        ":--:  :  :--:  :  :",
+        "|        |        |",
+        ":X :--:--:--:--:--:"
+    
+    };
+
+    int columns = getColumns(maze, rows);
+
+    if (firstRun) {
+        player[0] = startingPosition[0]; // x
+        player[1] = startingPosition[1]; // y
+
+        mazeGrid = Grid(maze, rows, columns, player, endingPosition, wallColor);
+   
+        mazeGrid.printGrid(position, rows, columns, player, defaultHeight, 
+                                                color, mazeName, endReached);
+
+        firstRun = false;
+    } else if (endReached) {
+        cout << "end reached" << endl; 
+        mazeGrid.printGrid(position, rows, columns, player, defaultHeight, 
+                                                color, mazeName, endReached);
+
+        
+        maze_state = -1 * maze_state;
+        firstRun = true;
+        endReached = false;
+        
+
+    } else {
+       
+        mazeGrid.printGrid(position, rows, columns, player, defaultHeight, 
+                                                color, mazeName, endReached);
+    }
+}
+
+
+void jh_printMaze6(Rect position, int defaultHeight, int color, 
+            int (&player)[2], bool &firstRun, bool& endReached, Grid& mazeGrid, 
+                                                                int& maze_state)
+{
+    const char* mazeName = "Maze 6";   
+    int rows = 10;                    
+                                        //          start counting from 1
+    int startingPosition[2] = {1, 29};  // 4. replace: 
+                                        //          start counting from 0.
+                                        //          1st number: left to right
+                                        //          2nd number: top to bottom
+                                        //  
+    int endingPosition[2] = {42, 29};   // 5. replace: 
+
+    int wallColor[3] = {0, 128, 0};
+    // source: https://www.asciiart.eu/art-and-design/mazes
+
+    const char* maze[rows] = 
+    {
+                    
+        "┌─┬─────────────────────┬─┐", 
+        "│ └───┐ ╶─────┐ ╶───┬─╴ ╵ │", 
+        "├───┐ ├───╴ ┌─┴─┐ ╷ └─┬─┐ │", 
+        "│ ╷ │ │ ╶─┬─┘ ╷ │ └─┐ │ ╵ │", 
+        "│ ├─┘ ├───┤ ┌─┤ └───┤ └─┐ │", 
+        "│ │ ┌─┘ ╷ ╵ │ └───╴ │ ╷ │ │", 
+        "│ │ ╵ ┌─┼───┤ ┌─────┤ │ │ │", 
+        "│ └───┘ ╵ ╷ ╵ ╵ ┌─╴ └─┘ │ │", 
+        "└─────────┴─────┴───────┴─┘ "
+    
+    };
+
+    int columns = getColumns(maze, rows);
+
+    if (firstRun) {
+        player[0] = startingPosition[0]; // x
+        player[1] = startingPosition[1]; // y
+
+        mazeGrid = Grid(maze, rows, columns, player, endingPosition,wallColor);
+   
+        mazeGrid.printGrid(position, rows, columns, player, defaultHeight, 
+                                                color, mazeName, endReached);
+
+        firstRun = false;
+    } else if (endReached) {
+        cout << "end reached" << endl; 
+        mazeGrid.printGrid(position, rows, columns, player, defaultHeight, 
+                                                color, mazeName, endReached);
+
+        
+        maze_state = -1 * maze_state;
+        firstRun = true;
+        endReached = false;
+        
+
+    } else {
+       
+        mazeGrid.printGrid(position, rows, columns, player, defaultHeight, 
+                                                color, mazeName, endReached);
+    }
 }
