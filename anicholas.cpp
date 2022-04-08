@@ -53,11 +53,11 @@ void anicholasPrint(int num) {
     }
 }
 
-void an_printMaze9(Rect position, int defaultHeight, int color, 
+void an_printMazeTemplate(Rect position, int defaultHeight, int color, 
             int (&player)[2], bool &firstRun, bool& endReached, Grid& mazeGrid, 
                                                                 int& maze_state)
 {
-    const char* mazeName = "Maze 5";    // 2. replace
+    const char* mazeName = "Maze Template";    // 2. replace
     int rows = 31;                      // 3. replace: 
                                         //          start counting from 1
     int startingPosition[2] = {1, 29};  // 4. replace: 
@@ -66,14 +66,17 @@ void an_printMaze9(Rect position, int defaultHeight, int color,
                                         //          2nd number: top to bottom
                                         //  
     int endingPosition[2] = {42, 29};   // 5. replace: 
-                                        //          same as #4. 
-                                        //          don't forget #6
+                                        //          same as #4.           
+                                        //
+    int wallColor[3] = {0, 128, 0}; // 6. replace:
+                                        //          this is rgb color for wall. 
+                                        //          don't forget #7
 
     // source: https://www.asciiart.eu/art-and-design/mazes
     // corridors need to be 1 space wide, or it will mess up the trail
  
 
-    // 6. replace
+    // 7. replace
     const char* maze[rows] = 
     {
     
@@ -117,7 +120,8 @@ void an_printMaze9(Rect position, int defaultHeight, int color,
         player[0] = startingPosition[0]; // x
         player[1] = startingPosition[1]; // y
 
-        mazeGrid = Grid(maze, rows, columns, player, endingPosition);
+        mazeGrid = Grid(maze, rows, columns, player, endingPosition, 
+                                                                wallColor);
    
         mazeGrid.printGrid(position, rows, columns, player, defaultHeight, 
                                                 color, mazeName, endReached);
