@@ -694,6 +694,14 @@ int check_keys(XEvent *e)
 			jk_page_transition(gl.maze_state, "z", gl.firstRun, gl.maxMaze);
 			break;
 		
+		case XK_u:
+			jk_page_transition(gl.maze_state, "u", gl.firstRun, gl.maxMaze);
+			break;
+
+		case XK_p:
+			jk_page_transition(gl.maze_state, "p", gl.firstRun, gl.maxMaze);
+			break;
+
 		case XK_5:
 			jk_page_transition(gl.maze_state, "z", gl.firstRun, gl.maxMaze);
 			break;
