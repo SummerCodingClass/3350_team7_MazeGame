@@ -5,6 +5,11 @@
 #include "fonts.h"
 #include <iostream>
 #include "GridCells.h"
+// These are for the timers
+#include <ctime>
+#include <string>
+#include <cstdlib>
+#include <unistd.h>
 
 using namespace std;
 
@@ -58,3 +63,26 @@ void etagaca_midterm(string name) {
   }
 }
 
+int count = 0;
+
+void et_timer(Rect position, int defaultHeight, int color, int& maze_state,  bool& firstRun, int& current_time) {
+    position.bot = defaultHeight;
+
+    if (firstRun == true) {
+      count = 0;
+    }
+
+    string temp = "Time: " + to_string(count);
+
+    const char *c = temp.c_str();
+    
+    ggprint8b(&position, 16, color, c);
+
+    count++;
+    current_time = count;
+    sleep(1);
+
+    if (count == 1000) {
+      maze_state = 404;
+    }
+}

@@ -649,7 +649,7 @@ void jk_page_transition(int& maze_state, const char* keyChecked,
     if (strcmp(keyChecked, "b") == 0) {
         if (maze_state == 0) {
             //do nothing
-        } else if (maze_state == 1000) {
+        } else if (maze_state == 1000 || maze_state == 404) {
             maze_state = 0;
         } else if (maze_state > 230) {
             maze_state = 23;
@@ -658,6 +658,16 @@ void jk_page_transition(int& maze_state, const char* keyChecked,
         }
         
         return;
+    }
+
+    if (strcmp(keyChecked, "p") == 0) {
+        maze_state = 405; 
+        return; 
+    }
+
+    if (strcmp(keyChecked, "u") == 0) {
+        maze_state = 1; 
+        return; 
     }
 
 		//case XK_s;

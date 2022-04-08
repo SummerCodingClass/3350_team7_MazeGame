@@ -81,6 +81,7 @@ public:
 	int xres, yres;
 	char keys[65536];
 	int maze_state;
+	int current_time;
 	int player[2];
 	bool firstRun;
 	bool endReached;
@@ -1061,7 +1062,8 @@ extern void anicholasPrint(int num);
 
 //Eidmone's Midterm
 extern void etagaca_midterm(string name);
-
+//Eidmone's Timer
+extern void et_timer(Rect position, int defaultHeight, int color, int& maze_state,  bool& firstRun, int & current_time);
 
 void render()
 {
@@ -1149,6 +1151,7 @@ etagaca_midterm("C++");
 
 	jk_message.left = 50;
 
+
 	if (gl.maze_state == 11) {
 		glClear(GL_COLOR_BUFFER_BIT);
 		ggprint13(&jk_titles, 16, 0x00ffffff, "Rules Page");
@@ -1183,7 +1186,8 @@ etagaca_midterm("C++");
 		an_showCreditPage(jk_message, gl.yres-520, 0x00FF7025);
 		
 	}
-	
+
+	Rect et_message = jk_createRect(gl.yres+50, 100, 10, 0); 
 
 	if (gl.maze_state == 1) {
 		
@@ -1191,8 +1195,10 @@ etagaca_midterm("C++");
 		
 		ggprint8b(&r, 16, 0x00ffffff, "press s to switch to next maze");
 		ggprint8b(&r, 16, 0x00ffffff, "press b to return to home");
+		ggprint8b(&r, 16, 0x00ffffff, "press p to pause game");
 		ggprint8b(&r, 16, 0x00ffffff, "HOLD down the arrowkeys to move about");
 
+		et_timer(et_message, gl.yres-120, 0x00B24BF3, gl.maze_state, gl.firstRun, gl.current_time);
 
 		jk_playerMovement(gl.keys, gl.player, gl.mazeGrid);
 		jk_printMaze1(jk_t, gl.yres-100, 0x0040e0d0, gl.player, gl.firstRun, 
@@ -1255,10 +1261,24 @@ etagaca_midterm("C++");
 
 	}
 
+	if (gl.maze_state == 404) {
+
+		glClear(GL_COLOR_BUFFER_BIT);
+		ggprint8b(&r, 16, 0x00ffffff, "Timer is up, please Try again");
+		ggprint8b(&r, 16, 0x00ffffff, "press b to return to homepage");
+
+	}
 
 
+	if (gl.maze_state == 405) {
 
-
+		glClear(GL_COLOR_BUFFER_BIT);
+		ggprint8b(&r, 16, 0x00ffffff, "THE GAME IS PAUSED");
+		ggprint8b(&r, 16, 0x00ffffff, "press u to return to game");
+		string paused_time = "Elapsed Time: " + to_string(gl.current_time);
+		const char *p = paused_time.c_str();
+		ggprint8b(&r, 16, 0x00ffffff, p);
+	}
 
 
 	//secret mode
