@@ -1064,7 +1064,7 @@ extern void jk_playerMovement(char* keys, int (&player)[2], Grid& grid);
 extern void jk_playerMovementForSecretMode(char* keys, int (&player)[2]);
 extern void jh_Image(int xres, int yres, unsigned int textid);
 //Jennifer's Midterm
-extern void jkuo_midterm_function_wed (int maze_state);
+bool jkuo_midterm_checkState(int mazeState, int desiredState);
 
 //Jeff's Midterm
 extern bool jhicks_midterm_function(int& maze_state);
@@ -1078,13 +1078,14 @@ extern void anicholasPrint(int num);
 //Eidmone's Midterm
 extern void etagaca_midterm(string name);
 //Eidmone's Timer
-extern void et_timer(Rect position, int defaultHeight, int color, int& maze_state,  bool& firstRun, int & current_time);
+extern void et_timer(Rect position, int defaultHeight, int color, 
+						int& maze_state,  bool& firstRun, int & current_time);
 
 void render()
 {
 
 //Jennifer's Midterm
-jkuo_midterm_function_wed(gl.maze_state);
+// jkuo_midterm_function_wed(gl.mazeState);
 
 //Jeff's Midterm
 jhicks_midterm_function(gl.maze_state);
@@ -1118,7 +1119,8 @@ etagaca_midterm("C++");
 	jk_welcomeTitlePlaceHolder.center = 1;
 
 
-	if (gl.maze_state == 0) {
+	if (jkuo_midterm_checkState(gl.maze_state, 0)) {
+	// if (gl.maze_state == 0) {
 		
 		glClear(GL_COLOR_BUFFER_BIT);
 		ggprint8b(&r, 16, 0x00ff0000, "3350 - MAze");
@@ -1167,7 +1169,8 @@ etagaca_midterm("C++");
 	jk_message.left = 50;
 
 
-	if (gl.maze_state == 11) {
+	if (jkuo_midterm_checkState(gl.maze_state, 11)) {
+	// if (gl.maze_state == 11) {
 		glClear(GL_COLOR_BUFFER_BIT);
 		ggprint13(&jk_titles, 16, 0x00ffffff, "Rules Page");
 		ggprint8b(&jk_titles, 16, 0x00ffffff, "press b to return to home");
@@ -1185,15 +1188,14 @@ etagaca_midterm("C++");
 
 
 
-
-	if (gl.maze_state == 12) {
+	if (jkuo_midterm_checkState(gl.maze_state, 12)) {
+	// if (gl.maze_state == 12) {
 		glClear(GL_COLOR_BUFFER_BIT);
 		// load_ggfont(17); // arial 140
 		ggprint13(&jk_titles, 16, 0x00ffffff, "CREDIT Page");
 		ggprint8b(&jk_titles, 16, 0x00ffffff, "press b to return to home");
 
 		jh_Image(gl.xres, gl.yres, gl.textid);
-		jk_showCreditPage(jk_message, gl.yres-20, 0x0040e0d0);
 		jk_showCreditPage(jk_message, gl.yres-120, 0x0040e0d0);
 		jh_showCreditPage(jk_message, gl.yres-220, 0x0024AAFA);
 		jr_showCreditPage(jk_message, gl.yres-320, 0x0051f542);
@@ -1204,7 +1206,9 @@ etagaca_midterm("C++");
 
 	Rect et_message = jk_createRect(gl.yres+50, 100, 10, 0); 
 
-	if (gl.maze_state == 1) {
+
+	if (jkuo_midterm_checkState(gl.maze_state, 1)) {
+	// if (gl.maze_state == 1) {
 		
 		glClear(GL_COLOR_BUFFER_BIT);
 		
@@ -1219,7 +1223,9 @@ etagaca_midterm("C++");
 		jk_printMaze1(jk_t, gl.yres-100, 0x0040e0d0, gl.player, gl.firstRun, 
 									gl.endReached, gl.mazeGrid, gl.maze_state);
 	}
-	if (gl.maze_state == 2) {
+
+	if (jkuo_midterm_checkState(gl.maze_state, 2)) {
+	// if (gl.maze_state == 2) {
 		
 		glClear(GL_COLOR_BUFFER_BIT);
 		
@@ -1231,7 +1237,9 @@ etagaca_midterm("C++");
 		jk_printMaze2(jk_t, gl.yres-100, 0x0040e0d0, gl.player, gl.firstRun, 
 									gl.endReached, gl.mazeGrid, gl.maze_state);
 	}
-	if (gl.maze_state == 3) {
+
+	if (jkuo_midterm_checkState(gl.maze_state, 3)) {
+	// if (gl.maze_state == 3) {
 		
 		glClear(GL_COLOR_BUFFER_BIT);
 		
@@ -1243,7 +1251,10 @@ etagaca_midterm("C++");
 		jk_printMaze3(jk_t, gl.yres-100, 0x0040e0d0, gl.player, gl.firstRun, 
 									gl.endReached, gl.mazeGrid, gl.maze_state);
 	}
-	if (gl.maze_state == 4) {
+
+
+	if (jkuo_midterm_checkState(gl.maze_state, 4)) {
+	// if (gl.maze_state == 4) {
 		
 		glClear(GL_COLOR_BUFFER_BIT);
 		
@@ -1267,8 +1278,10 @@ etagaca_midterm("C++");
 	}
 
 	
-// gl.maze_state = 1000;
-	if (gl.maze_state == 1000) {
+	// gl.maze_state = 1000;
+
+	if (jkuo_midterm_checkState(gl.maze_state, 1000)) {
+	// if (gl.maze_state == 1000) {
 
 		glClear(GL_COLOR_BUFFER_BIT);
 		ggprint8b(&r, 16, 0x00ffffff, "congrats on beating everything!");
@@ -1276,7 +1289,8 @@ etagaca_midterm("C++");
 
 	}
 
-	if (gl.maze_state == 404) {
+	if (jkuo_midterm_checkState(gl.maze_state, 404)) {
+	// if (gl.maze_state == 404) {
 
 		glClear(GL_COLOR_BUFFER_BIT);
 		ggprint8b(&r, 16, 0x00ffffff, "Timer is up, please Try again");
@@ -1285,7 +1299,9 @@ etagaca_midterm("C++");
 	}
 
 
-	if (gl.maze_state == 405) {
+	
+	if (jkuo_midterm_checkState(gl.maze_state, 405)) {
+	// if (gl.maze_state == 405) {
 
 		glClear(GL_COLOR_BUFFER_BIT);
 		ggprint8b(&r, 16, 0x00ffffff, "THE GAME IS PAUSED");
@@ -1297,7 +1313,9 @@ etagaca_midterm("C++");
 
 
 	//secret mode
-	if (gl.maze_state == 23) {
+
+	if (jkuo_midterm_checkState(gl.maze_state, 23)) {
+	// if (gl.maze_state == 23) {
 		glClear(GL_COLOR_BUFFER_BIT);
 		ggprint8b(&r, 16, 0x00ff0000, "3350 - MAze");
 
@@ -1311,7 +1329,8 @@ etagaca_midterm("C++");
 
 	//zen mode stages
 
-	if (gl.maze_state == 231) {
+	if (jkuo_midterm_checkState(gl.maze_state, 231)) {
+	// if (gl.maze_state == 231) {
 		
 		glClear(GL_COLOR_BUFFER_BIT);
 		
@@ -1323,7 +1342,9 @@ etagaca_midterm("C++");
 		jk_printMazeSecretMode1(jk_t, gl.yres-100, 0x0040e0d0, gl.player, 
 												gl.firstRun);
 	}
-	if (gl.maze_state == 232) {
+
+	if (jkuo_midterm_checkState(gl.maze_state, 232)) {
+	// if (gl.maze_state == 232) {
 		
 		glClear(GL_COLOR_BUFFER_BIT);
 		
@@ -1335,7 +1356,9 @@ etagaca_midterm("C++");
 		jk_printMazeSecretMode2(jk_t, gl.yres-100, 0x0040e0d0, gl.player, 
 												gl.firstRun);
 	}
-	if (gl.maze_state == 233) {
+
+	if (jkuo_midterm_checkState(gl.maze_state, 233)) {
+	// if (gl.maze_state == 233) {
 		
 		glClear(GL_COLOR_BUFFER_BIT);
 		
@@ -1351,7 +1374,9 @@ etagaca_midterm("C++");
 
 
 //for midterm
-	if (gl.maze_state == 30) {
+
+	if (jkuo_midterm_checkState(gl.maze_state, 30)) {
+	// if (gl.maze_state == 30) {
 		glClear(GL_COLOR_BUFFER_BIT);
 		ggprint8b(&r, 16, 0x00ff0000, "3350 - MAze");
 		ggprint8b(&r, 16, 0x00ff0000, "transition succeeded.");		
@@ -1360,7 +1385,8 @@ etagaca_midterm("C++");
 		// jk_showSecretMode(jk_welcomeTitlePlaceHolder, 
 		// 									gl.yres - (gl.yres/2), 0x00FF0050);
 
-		// jk_showSecretModeMessage(jk_welcomeMessage, gl.yres - 400, 0x00CC5050);
+		// jk_showSecretModeMessage(jk_welcomeMessage, gl.yres - 400, 
+		// 0x00CC5050);
 
 	}
 
