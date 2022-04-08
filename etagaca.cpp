@@ -10,8 +10,11 @@
 #include <string>
 #include <cstdlib>
 #include <unistd.h>
+#include "Grid.h"
 
 using namespace std;
+
+extern int getColumns(const char** maze, int rows);
 
 void et_PrintMsg() {
     cout << "Eidmone's file fired" <<endl;
@@ -73,9 +76,8 @@ void et_timer(Rect position, int defaultHeight, int color, int& maze_state,  boo
     }
 
     string temp = "Time: " + to_string(count);
-
     const char *c = temp.c_str();
-    
+
     ggprint8b(&position, 16, color, c);
 
     count++;
@@ -84,5 +86,82 @@ void et_timer(Rect position, int defaultHeight, int color, int& maze_state,  boo
 
     if (count == 1000) {
       maze_state = 404;
+    }
+}
+
+void et_printMaze11(Rect position, int defaultHeight, int color, 
+            int (&player)[2], bool &firstRun, bool& endReached, Grid& mazeGrid, 
+                                                                int& maze_state)
+{
+    const char* mazeName = "Maze 11";    
+    int rows = 39;                                               
+    int startingPosition[2] = {1, 37};                                                        
+    int endingPosition[2] = {42, 37};                                                              
+    int wallColor[3] = {0, 128, 0}; 
+                                                                       
+    const char* maze[rows] = 
+    {
+        "+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+",
+        "|     |     |                             |",
+        "+ +-+ + +-+-+ +-+-+-+-+-+-+-+-+-+ +-+-+-+ +",
+        "|   |   |     |   |   |         |   |     |",
+        "+-+ + +-+ +-+-+ + + + + +-+-+-+ +-+ + +-+-+",
+        "|   | |   |     |   | |     | | |   |   | |",
+        "+ +-+ + +-+ +-+-+-+-+-+-+ +-+-+ +-+-+-+ +-+",
+        "| |   | | | |         | | |   |     | |   |",
+        "+ +-+-+ +-+ + +-+-+-+ + + + + +-+ + +-+-+ +",
+        "|     | |   |   |     | |   |   | |       |",
+        "+ +-+ + + +-+-  +-+ + +-+-+-+-+ + +-+-+-+-+",
+        "|     | |         | |         | |       | |",
+        "+ + +-+ +-+-+ +-+ + +-+-+-+-+ + +-+ +-+ +-+",
+        "| | |             |         | |   | | |   |",
+        "+ + + +-+-+-+- -+-+-+ +-+-+ + +-+ + + +-+ +",
+        "| |     |   |             | |   | |   |   |",
+        "+ +-+-+ + + + +-+ +-+-+ +-+-+ + + +-+ + +-+",
+        "| |     | | |   |     | |     | | | | |   |",
+        "+ + +-+-+ + +-+ + +-+-+-+ +-+-+-+ + + +-+ +",
+        "| | |     |   | |   |   |       | |   | | |",
+        "+ + + +-+-+-+-+ +-+ + +-+-+ +-+ + +-+-+-+ +",
+        "| |               | |     | |   |     | | |",
+        "+ + +-+-+-+-+ +-+-+-+-+ + +-+ +-+-+-+ +-+ +",
+        "| |     |             | | |         | |   |",
+        "+-+-+-+ + + + + + + +-+ +-+ +-+ +-+-+ + +-+",
+        "|   |   | | | | | |     | | |   |   | |   |",
+        "+ +-+ +-+ + + + + +-+-+-+-+ + +-+ + + +-+-+",
+        "|       | | | |           | | |   | |     |",
+        "+-+-+-+ +-+ + +-+ +-+-+-+ + + +-+-+-+-+-+ +",
+        "            |           |   |         |    ",
+        "+ + +-+-+-+-+ +-+-+-+-+ + +-+ +-+-+-+ +-+ +",
+        "| |     |           | | |           | |   |",
+        "+-+-+-+ + + + + +-+ +-+ +-+ +-+ +-+-+ + +-+",
+        "|   |   | | | | | |     | | |   |   | |   |",
+        "+ +-+ +-+ + + + +-+-+-+-+-+ + +-+ + + +-+-+",
+        "|       | | | |           | | |   | |     |",
+        "+-  +-+ +-+ + +-+-+-+- -+ + + +-+-+-+-+-+ +",
+        " X  |       |               |              ",
+        "+---+ +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+"
+    };
+
+    int columns = getColumns(maze, rows);
+
+    if (firstRun) {
+        player[0] = startingPosition[0]; // x
+        player[1] = startingPosition[1]; // y
+
+        mazeGrid = Grid(maze, rows, columns, player, endingPosition, 
+                                                                wallColor);
+        mazeGrid.printGrid(position, rows, columns, player, defaultHeight, 
+                                                color, mazeName, endReached);
+        firstRun = false;
+    } else if (endReached) {
+        cout << "end reached" << endl; 
+        mazeGrid.printGrid(position, rows, columns, player, defaultHeight, 
+                                                color, mazeName, endReached); 
+        maze_state = -1 * maze_state;
+        firstRun = true;
+        endReached = false;
+    } else {
+        mazeGrid.printGrid(position, rows, columns, player, defaultHeight, 
+                                                color, mazeName, endReached);
     }
 }
