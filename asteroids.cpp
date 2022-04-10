@@ -158,7 +158,7 @@ public:
 			unlink(ppmname);
 	}
 };
-Image img[1] = {"coder.png"};
+Image img[1] = {"mazeTitle.png"};
 
 
 class Ship {
@@ -1132,10 +1132,10 @@ etagaca_midterm("C++");
 		ggprint8b(&r, 16, 0x00ff0000, "3350 - MAze");
 
 		// will delete
-		jk_showWelcomePageTitle(jk_welcomeTitlePlaceHolder, 
-											gl.yres - (gl.yres/2), 0x00FF0000);
+		//jk_showWelcomePageTitle(jk_welcomeTitlePlaceHolder, 
+		//									gl.yres - (gl.yres/2), 0x00FF0000);
 
-
+		jh_Image(gl.xres, gl.yres,gl.textid);
 		jk_showWelcomePage(jk_welcomeMessage, gl.yres - 400, 0x00CC593F);
 		jh_showWelcomePage(jk_welcomeMessage, gl.yres - 490, 0x00CC593F);
 		jr_showWelcomePage(jk_welcomeMessage, gl.yres - 450, 0x00CC593F);
@@ -1201,7 +1201,7 @@ etagaca_midterm("C++");
 		ggprint13(&jk_titles, 16, 0x00ffffff, "CREDIT Page");
 		ggprint8b(&jk_titles, 16, 0x00ffffff, "press b to return to home");
 
-		jh_Image(gl.xres, gl.yres, gl.textid);
+		//jh_Image(gl.xres, gl.yres, gl.textid);
 		jk_showCreditPage(jk_message, gl.yres-120, 0x0040e0d0);
 		jh_showCreditPage(jk_message, gl.yres-220, 0x0024AAFA);
 		jr_showCreditPage(jk_message, gl.yres-320, 0x0051f542);
