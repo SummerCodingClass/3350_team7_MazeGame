@@ -15,6 +15,7 @@ class Grid {
     int rows;
     int columns;
     int mazeEnd[2];
+    int wallColor[3];
     // int currentPosition[2];
 
     
@@ -24,9 +25,12 @@ class Grid {
     vector <vector <GridCells>> mazeGrid; 
     
     int gridPlayer[2];
-
-// ref: https://www.geeksforgeeks.org/vector-of-vectors-in-c-stl-with-examples/
     
+    // ref for 2d vectors:
+    // https://www.geeksforgeeks.org/vector-of-vectors-in-c-stl-with-examples/
+    
+    void setWallColor(int colorChoice[3]);
+
 
 
     Grid() 
@@ -36,13 +40,88 @@ class Grid {
     }
 
 
+    // default wall color is green if unspecified
     Grid(const char** maze, int inputRows, int inputColumns, int player[2], 
-                                                                    int end[2]) 
+                                                int end[2]) 
     {
         rows = inputRows;
         columns = inputColumns;
         gridPlayer[1] = player[1];
         gridPlayer[0] = player[0];
+
+        int colorChoice[3] = {0, 128, 0};
+        setWallColor(colorChoice);
+
+     
+        for (int i = 0; i < rows; i++) {
+            vector <GridCells> v1;
+    
+            for (int j = 0; j < columns; j++) {
+                
+                GridCells temp;
+                temp.setXcoord(j);
+                temp.setYcoord(i);
+                
+                if (i == end[1] && j == end[0]) {
+                    temp.setEnd(true);
+                    mazeEnd[1] = i;
+                    mazeEnd[0] = j;
+
+                } else {
+                    temp.setEnd(false);
+                }
+
+
+
+                if (i == gridPlayer[1] && j == gridPlayer[0]) {
+                    temp.setCurrent(true);
+                    temp.setTraveled(false);
+                    
+
+                } else if (maze[i][j] == ' ') {
+                    temp.setSpace(true);
+                    temp.setWall(false);
+                    temp.setCurrent(false);
+                    temp.setTraveled(false);
+                    
+                } else if (maze[i][j] == 'X') {
+                    temp.setSpace(true);
+                    temp.setWall(false);
+                    temp.setCurrent(false);
+                    temp.setTraveled(false);
+                } else {
+                    temp.setSpace(false);
+                    temp.setWall(true);
+                    temp.setCurrent(false);
+                    temp.setTraveled(false);
+                }
+
+
+                v1.push_back(temp);
+                
+            }
+    
+        
+            mazeGrid.push_back(v1);
+        }
+
+
+        
+    }
+
+    
+  
+
+    // can specify wall color
+    Grid(const char** maze, int inputRows, int inputColumns, int player[2], 
+                                                int end[2], int colorChoice[3]) 
+    {
+        rows = inputRows;
+        columns = inputColumns;
+        gridPlayer[1] = player[1];
+        gridPlayer[0] = player[0];
+        setWallColor(colorChoice);
+
         // cout << "test";
 
         //mazeGrid = mazeGrid[];
@@ -71,7 +150,7 @@ class Grid {
                 
                 // bool isCurrent = false;
                 if (i == end[1] && j == end[0]) {
-                    cout << "end point at j: " << j << ", i: " << i << endl;
+                    // cout << "end point at j: " << j << ", i: " << i << endl;
                     temp.setEnd(true);
                     mazeEnd[1] = i;
                     mazeEnd[0] = j;
@@ -145,8 +224,8 @@ void printGrid(Rect position, int rows, int columns,
     ggprint8b(&position, 16, color, mazeName);
 
     // DON'T FORGET TO REMOVE!!!!
-    cout << "in printGrid: " << endl;
-    cout << "player: " << player[0] << ",  " << player[1] << endl;
+    // cout << "in printGrid: " << endl;
+    // cout << "player: " << player[0] << ",  " << player[1] << endl;
     // cout << "mazeEnd: " << mazeEnd[0] << ",  " << mazeEnd[1] << endl;
     
     if (player[1] == mazeEnd[1] && player[0] == mazeEnd[0]) {
@@ -166,7 +245,8 @@ void printGrid(Rect position, int rows, int columns,
             
             //color of wall
             // glColor3ub(200,50,50);
-            glColor3ub(0,128,0);
+            // glColor3ub(0,128,0);
+            glColor3ub(wallColor[0],wallColor[1], wallColor[2]);
 
             if(mazeGrid[i][j].isSpace()) {
                 glColor3ub(20,20,20);
