@@ -212,7 +212,7 @@ void jk_printMazeTest(Rect position, int defaultHeight, int color,
             int (&player)[2], bool &firstRun, bool& endReached, Grid& mazeGrid, 
                                                                 int& maze_state)
 {
-    const char* mazeName = "Maze Test";
+    const char* mazeName = "Maze Tutorial";
     int rows = 5;
     int startingPosition[2] = {1, 3};
     int endingPosition[2] = {10, 1}; 
@@ -312,7 +312,7 @@ void jk_printMaze1(Rect position, int defaultHeight, int color,
         "+ +-+ +-+ + + + +-+-+-+-+-+ + +-+ + + +-+-+",
         "|       | | | |           | | |   | |     |",
         "+-+-+-+ +-+ + +-+-+-+-+-+ + + +-+-+-+-+-+ +",
-        " X          |           |   |         |    ",
+        ".X          |           |   |         |    ",
         "+---+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+"
     
     };
@@ -440,7 +440,7 @@ void jk_printMaze3(Rect position, int defaultHeight, int color,
 {
     const char* mazeName = "Maze 3";
     int rows = 23;
-    int startingPosition[2] = {1, 22};
+    int startingPosition[2] = {1, 21};
     int endingPosition[2] = {35, 0}; 
     int wallColor[3] = {246, 190, 0};
 
@@ -472,7 +472,7 @@ void jk_printMaze3(Rect position, int defaultHeight, int color,
       "8 8   8 8 8     8     8 8   8       8",
       "8 8 aa8 8a8 aaa 8aaaa 8a8 a 8aaaa a 8",
       "8 8         8     8       8       8 8",
-      "8 8aaaaaaaaa8aaaaa8aaaaaaa8aaaaaaa8a8",
+      "8.8aaaaaaaaa8aaaaa8aaaaaaa8aaaaaaa8a8",
 
     };
 
@@ -629,7 +629,7 @@ void jk_printMazeTemplate(Rect position, int defaultHeight, int color,
 
 
 
-
+extern bool jhicks_midterm_function(int& maze_state);
 
 
 
@@ -652,7 +652,7 @@ void jk_page_transition(int& maze_state, const char* keyChecked,
 
     //     if (maze_state == 30) {
     //         bool success = jkuo_midterm_function(maze_state, 
-    //         100000000000000000000000000000000000000000000000000000000000000000);
+    //         100000000000000000000000000000000000000000000000000000000000000);
     //         cout << "test done. success =  " << success << endl;
     //         return;
     //     }
@@ -662,7 +662,9 @@ void jk_page_transition(int& maze_state, const char* keyChecked,
     
     //case XK_b;
     if (strcmp(keyChecked, "b") == 0) {
-        if (maze_state == 0) {
+        
+        if (jhicks_midterm_function(maze_state)) {
+        // if (maze_state == 0) {
             //do nothing
         } else if (maze_state == 1000 || maze_state == 404) {
             maze_state = 0;
@@ -670,24 +672,31 @@ void jk_page_transition(int& maze_state, const char* keyChecked,
             maze_state = 23;
         } else if (maze_state > 0) {
             maze_state = 0;
+            firstRun = true;
         }
         
         return;
     }
 
     if (strcmp(keyChecked, "p") == 0) {
-        maze_state = 405; 
-        return; 
+        if (maze_state >= 1 && maze_state <= maxMaze) {
+            maze_state = maze_state * 405000; // dedicated pause page 
+            return; 
+        }
     }
 
     if (strcmp(keyChecked, "u") == 0) {
-        maze_state = 1; 
-        return; 
+        if (maze_state >= 405000) {
+            maze_state = maze_state / 405000; 
+                                        // restoring from dedicated pause page
+            return; 
+        }
     }
 
 		//case XK_s;
     if (strcmp(keyChecked, "s") == 0) {
-        if (maze_state == 0) {
+        if (jhicks_midterm_function(maze_state)) {
+        // if (maze_state == 0) {
             firstRun = true;
 
             //for midterm:
@@ -744,7 +753,7 @@ void jk_page_transition(int& maze_state, const char* keyChecked,
 
     if (strcmp(keyChecked, "r") == 0) {
         if (maze_state == 0) {
-            maze_state = 11;
+            maze_state = 110;
         } else if(maze_state == 22) {
             maze_state = 23;
         }
@@ -753,7 +762,7 @@ void jk_page_transition(int& maze_state, const char* keyChecked,
     
     if (strcmp(keyChecked, "c") == 0) {
         if (maze_state == 0) {
-            maze_state = 12;
+            maze_state = 120;
         }
         return; 
     }
@@ -947,9 +956,11 @@ void jkuo_checkWall(int (&player)[2], int nextMove[2], Grid& grid)
 
     
 
-    if ( tempGrid[i][j].isWall() || 
-            player[1] >= (grid.rows-1) || player[0] >= (grid.columns-1)) {
-    // cout << "rows: " << grid.rows << " columns: " << grid.columns << endl;
+    if (tempGrid[i][j].isWall()) {
+    
+    // if ( tempGrid[i][j].isWall() || 
+    //         player[1] >= (grid.rows-1) || player[0] >= (grid.columns-1)) {
+    // // cout << "rows: " << grid.rows << " columns: " << grid.columns << endl;
         cout << "this is a wall" << endl;
         return;
         // do nothing, return player[2] as is

@@ -158,7 +158,7 @@ public:
 			unlink(ppmname);
 	}
 };
-Image img[1] = {"coder.png"};
+Image img[1] = {"mazeTitle.png"};
 
 
 class Ship {
@@ -1069,11 +1069,18 @@ extern void jk_showSecretModeMessage(Rect position, int defaultHeight,
 extern void jk_playerMovement(char* keys, int (&player)[2], Grid& grid);
 extern void jk_playerMovementForSecretMode(char* keys, int (&player)[2]);
 extern void jh_Image(int xres, int yres, unsigned int textid);
-//Jennifer's Midterm
-bool jkuo_midterm_checkState(int mazeState, int desiredState);
+//Eidmone's Timer
+extern void et_timer(Rect position, int defaultHeight, int color, 
+						int& maze_state,  bool& firstRun, int & current_time);
 
-//Jeff's Midterm
-extern bool jhicks_midterm_function(int& maze_state);
+
+
+
+//Jennifer's Midterm
+extern bool jkuo_midterm_checkState(int mazeState, int desiredState);
+
+//Jeff's Midterm - called in jkuo.cpp
+// extern bool jhicks_midterm_function(int& maze_state);
 
 //Jesus's Midterm
 extern void jr_midterm_func(int value);
@@ -1083,9 +1090,6 @@ extern void anicholasPrint(int num);
 
 //Eidmone's Midterm
 extern void etagaca_midterm(string name);
-//Eidmone's Timer
-extern void et_timer(Rect position, int defaultHeight, int color, 
-						int& maze_state,  bool& firstRun, int & current_time);
 
 void render()
 {
@@ -1094,7 +1098,7 @@ void render()
 // jkuo_midterm_function_wed(gl.mazeState);
 
 //Jeff's Midterm
-jhicks_midterm_function(gl.maze_state);
+// jhicks_midterm_function(gl.maze_state);
 
 
 //Jesus's Midterm
@@ -1132,10 +1136,10 @@ etagaca_midterm("C++");
 		ggprint8b(&r, 16, 0x00ff0000, "3350 - MAze");
 
 		// will delete
-		jk_showWelcomePageTitle(jk_welcomeTitlePlaceHolder, 
-											gl.yres - (gl.yres/2), 0x00FF0000);
+		//jk_showWelcomePageTitle(jk_welcomeTitlePlaceHolder, 
+		//									gl.yres - (gl.yres/2), 0x00FF0000);
 
-
+		jh_Image(gl.xres, gl.yres,gl.textid);
 		jk_showWelcomePage(jk_welcomeMessage, gl.yres - 400, 0x00CC593F);
 		jh_showWelcomePage(jk_welcomeMessage, gl.yres - 490, 0x00CC593F);
 		jr_showWelcomePage(jk_welcomeMessage, gl.yres - 450, 0x00CC593F);
@@ -1175,7 +1179,7 @@ etagaca_midterm("C++");
 	jk_message.left = 50;
 
 
-	if (jkuo_midterm_checkState(gl.maze_state, 11)) {
+	if (jkuo_midterm_checkState(gl.maze_state, 110)) {
 	// if (gl.maze_state == 11) {
 		glClear(GL_COLOR_BUFFER_BIT);
 		ggprint13(&jk_titles, 16, 0x00ffffff, "Rules Page");
@@ -1194,14 +1198,14 @@ etagaca_midterm("C++");
 
 
 
-	if (jkuo_midterm_checkState(gl.maze_state, 12)) {
+	if (jkuo_midterm_checkState(gl.maze_state, 120)) {
 	// if (gl.maze_state == 12) {
 		glClear(GL_COLOR_BUFFER_BIT);
 		// load_ggfont(17); // arial 140
 		ggprint13(&jk_titles, 16, 0x00ffffff, "CREDIT Page");
 		ggprint8b(&jk_titles, 16, 0x00ffffff, "press b to return to home");
 
-		jh_Image(gl.xres, gl.yres, gl.textid);
+		//jh_Image(gl.xres, gl.yres, gl.textid);
 		jk_showCreditPage(jk_message, gl.yres-120, 0x0040e0d0);
 		jh_showCreditPage(jk_message, gl.yres-220, 0x0024AAFA);
 		jr_showCreditPage(jk_message, gl.yres-320, 0x0051f542);
@@ -1223,7 +1227,8 @@ etagaca_midterm("C++");
 		ggprint8b(&r, 16, 0x00ffffff, "press p to pause game");
 		ggprint8b(&r, 16, 0x00ffffff, "HOLD down the arrowkeys to move about");
 
-		et_timer(et_message, gl.yres-120, 0x00B24BF3, gl.maze_state, gl.firstRun, gl.current_time);
+		et_timer(et_message, gl.yres-120, 0x00B24BF3, gl.maze_state, 
+												gl.firstRun, gl.current_time);
 
 		jk_playerMovement(gl.keys, gl.player, gl.mazeGrid);
 		jk_printMaze1(jk_t, gl.yres-100, 0x0040e0d0, gl.player, gl.firstRun, 
@@ -1239,6 +1244,9 @@ etagaca_midterm("C++");
 		ggprint8b(&r, 16, 0x00ffffff, "press b to return to home");
 		ggprint8b(&r, 16, 0x00ffffff, "HOLD down the arrowkeys to move about");
 
+		et_timer(et_message, gl.yres-120, 0x00B24BF3, gl.maze_state, 
+												gl.firstRun, gl.current_time);
+
 		jk_playerMovement(gl.keys, gl.player, gl.mazeGrid);
 		jk_printMaze2(jk_t, gl.yres-100, 0x0040e0d0, gl.player, gl.firstRun, 
 									gl.endReached, gl.mazeGrid, gl.maze_state);
@@ -1252,6 +1260,9 @@ etagaca_midterm("C++");
 		ggprint8b(&r, 16, 0x00ffffff, "press s to switch to next maze");
 		ggprint8b(&r, 16, 0x00ffffff, "press b to return to home");
 		ggprint8b(&r, 16, 0x00ffffff, "HOLD down the arrowkeys to move about");
+
+		et_timer(et_message, gl.yres-120, 0x00B24BF3, gl.maze_state, 
+												gl.firstRun, gl.current_time);
 
 		jk_playerMovement(gl.keys, gl.player, gl.mazeGrid);
 		jk_printMaze3(jk_t, gl.yres-100, 0x0040e0d0, gl.player, gl.firstRun, 
@@ -1267,6 +1278,9 @@ etagaca_midterm("C++");
 		ggprint8b(&r, 16, 0x00ffffff, "press s to switch to next maze");
 		ggprint8b(&r, 16, 0x00ffffff, "press b to return to home");
 		ggprint8b(&r, 16, 0x00ffffff, "HOLD down the arrowkeys to move about");
+
+		et_timer(et_message, gl.yres-120, 0x00B24BF3, gl.maze_state,
+												 gl.firstRun, gl.current_time);
 
 		jk_playerMovement(gl.keys, gl.player, gl.mazeGrid);
 		jk_printMazeTest(jk_t, gl.yres-100, 0x0040e0d0, gl.player, gl.firstRun, 
@@ -1305,7 +1319,8 @@ etagaca_midterm("C++");
 		ggprint8b(&r, 16, 0x00ffffff, "press p to pause game");
 		ggprint8b(&r, 16, 0x00ffffff, "HOLD down the arrowkeys to move about");
 
-		et_timer(et_message, gl.yres-120, 0x00B24BF3, gl.maze_state, gl.firstRun, gl.current_time);
+		et_timer(et_message, gl.yres-120, 0x00B24BF3, gl.maze_state, 
+												gl.firstRun, gl.current_time);
 
 		jk_playerMovement(gl.keys, gl.player, gl.mazeGrid);
 		et_printMaze11(jk_t, gl.yres-100, 0x0040e0d0, gl.player, gl.firstRun, 
@@ -1321,7 +1336,8 @@ etagaca_midterm("C++");
 		ggprint8b(&r, 16, 0x00ffffff, "press p to pause game");
 		ggprint8b(&r, 16, 0x00ffffff, "HOLD down the arrowkeys to move about");
 
-		et_timer(et_message, gl.yres-120, 0x00B24BF3, gl.maze_state, gl.firstRun, gl.current_time);
+		et_timer(et_message, gl.yres-120, 0x00B24BF3, gl.maze_state, 
+												gl.firstRun, gl.current_time);
 
 		jk_playerMovement(gl.keys, gl.player, gl.mazeGrid);
 		et_printMaze12(jk_t, gl.yres-100, 0x0040e0d0, gl.player, gl.firstRun, 
@@ -1339,8 +1355,8 @@ etagaca_midterm("C++");
 
 
 	
-	if (jkuo_midterm_checkState(gl.maze_state, 405)) {
-	// if (gl.maze_state == 405) {
+	// if (jkuo_midterm_checkState(gl.maze_state, 405)) {
+	if (gl.maze_state >= 405000) {
 
 		glClear(GL_COLOR_BUFFER_BIT);
 		ggprint8b(&r, 16, 0x00ffffff, "THE GAME IS PAUSED");

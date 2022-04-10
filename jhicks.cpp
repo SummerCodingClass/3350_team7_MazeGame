@@ -72,15 +72,15 @@ bool GridCells:: setSpace(bool input)
 void jh_Image(int xres, int yres, unsigned int textid)
 {
     glPushMatrix();
-    glTranslatef(xres/2, yres/2, 0);
-    float w = 200.0;
+    float w = 300.0;
+    glTranslatef(xres/2, yres -250, 0);
     glColor3ub(255, 255, 255);
     glBindTexture(GL_TEXTURE_2D, textid);
     glBegin(GL_QUADS);
-        glTexCoord2f(0.0f, 1.0f); glVertex2f(-w,-w);
-        glTexCoord2f(0.0f, 0.0f); glVertex2f(-w,w);
-        glTexCoord2f(1.0f, 1.0f); glVertex2f(w,w);
-        glTexCoord2f(1.0f, 1.0f); glVertex2f(w,-w);
+        glTexCoord2f(0.0f, 0.0f); glVertex2f(-w,  w);
+        glTexCoord2f(1.0f, 0.0f); glVertex2f( w,  w);
+        glTexCoord2f(1.0f, 1.0f); glVertex2f( w, -w);
+        glTexCoord2f(0.0f, 1.0f); glVertex2f(-w, -w);
     glEnd();
     glBindTexture(GL_TEXTURE_2D, 0);
     glPopMatrix();
@@ -103,14 +103,14 @@ void jh_printMaze5(Rect position, int defaultHeight, int color,
     int endingPosition[2] = {10, 0};   // 5. replace: 
                                         //          same as #4. 
                                         //          don't forget #6
-    int wallColor[3] = {0, 128, 0};
+    int wallColor[3] = {240,248,255};
     // source: https://www.asciiart.eu/art-and-design/mazes
 
     // 6. replace
     const char* maze[rows] = 
     {
     
-        ".--.--.--.  .--.--.",
+        ".--.--.--.-O.--.--.",
         "|     |        |  |",
         ":  :--:  :  :  :  :",
         "|  |     |  |     |",
@@ -121,8 +121,8 @@ void jh_printMaze5(Rect position, int defaultHeight, int color,
         ":  :--:--:  :  :  :",
         "|     |     |  |  |",
         ":--:  :  :--:  :  :",
-        "|        |        |",
-        ":X :--:--:--:--:--:"
+        "|X       |        |",
+        ":--:--:--:--:--:--:"
     
     };
 
@@ -171,7 +171,7 @@ void jh_printMaze6(Rect position, int defaultHeight, int color,
                                         //  
     int endingPosition[2] = {42, 29};   // 5. replace: 
 
-    int wallColor[3] = {0, 128, 0};
+    int wallColor[3] = {135,206,250};
     // source: https://www.asciiart.eu/art-and-design/mazes
 
     const char* maze[rows] = 
