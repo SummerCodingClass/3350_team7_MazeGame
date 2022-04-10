@@ -215,19 +215,30 @@ void jk_printMazeTest(Rect position, int defaultHeight, int color,
     const char* mazeName = "Maze Tutorial";
     int rows = 5;
     int startingPosition[2] = {1, 3};
-    int endingPosition[2] = {10, 1}; 
+    int endingPosition[2] = {3, 1}; 
     // column: count starting from 0, left being 0
     // row: also start from 0, but top being 0
     int wallColor[3] = {221, 160, 221};
     
+    //  const char* maze[rows] = 
+    // {
+    
+    //     "+-+-+-+-+-+",
+    //     "|     |    ",
+    //     "+ +-+ + +-+",
+    //     "| --|   |--",
+    //     "+-+-+-+-+-+"
+    
+    // };
+
      const char* maze[rows] = 
     {
     
-        "+-+-+-+-+-+",
-        "|     |    ",
-        "+ +-+ + +-+",
-        "| --|   |--",
-        "+-+-+-+-+-+"
+        "+-+-",
+        "|   ",
+        "+ +-",
+        "| --",
+        "+-+-"
     
     };
 
@@ -630,6 +641,7 @@ void jk_printMazeTemplate(Rect position, int defaultHeight, int color,
 
 
 extern bool jhicks_midterm_function(int& maze_state);
+extern bool jr_midterm_func(int value);
 
 
 
@@ -695,8 +707,8 @@ void jk_page_transition(int& maze_state, const char* keyChecked,
 
 		//case XK_s;
     if (strcmp(keyChecked, "s") == 0) {
-        if (jhicks_midterm_function(maze_state)) {
-        // if (maze_state == 0) {
+        // if (jhicks_midterm_function(maze_state)) {
+        if (maze_state == 0) {
             firstRun = true;
 
             //for midterm:
@@ -713,9 +725,11 @@ void jk_page_transition(int& maze_state, const char* keyChecked,
 
             // maze_state = 1;
         } else if (maze_state == -4 ) {
+            cout << "in maze_state -4" << endl;
             firstRun = true;
             maze_state = 1;
         
+        // } else if (jr_midterm_func(maze_state)) {
         } else if (maze_state < 0 ) {
             firstRun = true;
 
