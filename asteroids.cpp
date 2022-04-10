@@ -1223,7 +1223,8 @@ etagaca_midterm("C++");
 		ggprint8b(&r, 16, 0x00ffffff, "press p to pause game");
 		ggprint8b(&r, 16, 0x00ffffff, "HOLD down the arrowkeys to move about");
 
-		et_timer(et_message, gl.yres-120, 0x00B24BF3, gl.maze_state, gl.firstRun, gl.current_time);
+		et_timer(et_message, gl.yres-120, 0x00B24BF3, gl.maze_state, 
+												gl.firstRun, gl.current_time);
 
 		jk_playerMovement(gl.keys, gl.player, gl.mazeGrid);
 		jk_printMaze1(jk_t, gl.yres-100, 0x0040e0d0, gl.player, gl.firstRun, 
@@ -1239,7 +1240,8 @@ etagaca_midterm("C++");
 		ggprint8b(&r, 16, 0x00ffffff, "press b to return to home");
 		ggprint8b(&r, 16, 0x00ffffff, "HOLD down the arrowkeys to move about");
 
-		et_timer(et_message, gl.yres-120, 0x00B24BF3, gl.maze_state, gl.firstRun, gl.current_time);
+		et_timer(et_message, gl.yres-120, 0x00B24BF3, gl.maze_state, 
+												gl.firstRun, gl.current_time);
 
 		jk_playerMovement(gl.keys, gl.player, gl.mazeGrid);
 		jk_printMaze2(jk_t, gl.yres-100, 0x0040e0d0, gl.player, gl.firstRun, 
@@ -1255,7 +1257,8 @@ etagaca_midterm("C++");
 		ggprint8b(&r, 16, 0x00ffffff, "press b to return to home");
 		ggprint8b(&r, 16, 0x00ffffff, "HOLD down the arrowkeys to move about");
 
-		et_timer(et_message, gl.yres-120, 0x00B24BF3, gl.maze_state, gl.firstRun, gl.current_time);
+		et_timer(et_message, gl.yres-120, 0x00B24BF3, gl.maze_state, 
+												gl.firstRun, gl.current_time);
 
 		jk_playerMovement(gl.keys, gl.player, gl.mazeGrid);
 		jk_printMaze3(jk_t, gl.yres-100, 0x0040e0d0, gl.player, gl.firstRun, 
@@ -1272,7 +1275,8 @@ etagaca_midterm("C++");
 		ggprint8b(&r, 16, 0x00ffffff, "press b to return to home");
 		ggprint8b(&r, 16, 0x00ffffff, "HOLD down the arrowkeys to move about");
 
-		et_timer(et_message, gl.yres-120, 0x00B24BF3, gl.maze_state, gl.firstRun, gl.current_time);
+		et_timer(et_message, gl.yres-120, 0x00B24BF3, gl.maze_state,
+												 gl.firstRun, gl.current_time);
 
 		jk_playerMovement(gl.keys, gl.player, gl.mazeGrid);
 		jk_printMazeTest(jk_t, gl.yres-100, 0x0040e0d0, gl.player, gl.firstRun, 
@@ -1311,7 +1315,8 @@ etagaca_midterm("C++");
 		ggprint8b(&r, 16, 0x00ffffff, "press p to pause game");
 		ggprint8b(&r, 16, 0x00ffffff, "HOLD down the arrowkeys to move about");
 
-		et_timer(et_message, gl.yres-120, 0x00B24BF3, gl.maze_state, gl.firstRun, gl.current_time);
+		et_timer(et_message, gl.yres-120, 0x00B24BF3, gl.maze_state, 
+												gl.firstRun, gl.current_time);
 
 		jk_playerMovement(gl.keys, gl.player, gl.mazeGrid);
 		et_printMaze11(jk_t, gl.yres-100, 0x0040e0d0, gl.player, gl.firstRun, 
@@ -1327,7 +1332,8 @@ etagaca_midterm("C++");
 		ggprint8b(&r, 16, 0x00ffffff, "press p to pause game");
 		ggprint8b(&r, 16, 0x00ffffff, "HOLD down the arrowkeys to move about");
 
-		et_timer(et_message, gl.yres-120, 0x00B24BF3, gl.maze_state, gl.firstRun, gl.current_time);
+		et_timer(et_message, gl.yres-120, 0x00B24BF3, gl.maze_state, 
+												gl.firstRun, gl.current_time);
 
 		jk_playerMovement(gl.keys, gl.player, gl.mazeGrid);
 		et_printMaze12(jk_t, gl.yres-100, 0x0040e0d0, gl.player, gl.firstRun, 

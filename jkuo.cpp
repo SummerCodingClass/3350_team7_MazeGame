@@ -652,7 +652,7 @@ void jk_page_transition(int& maze_state, const char* keyChecked,
 
     //     if (maze_state == 30) {
     //         bool success = jkuo_midterm_function(maze_state, 
-    //         100000000000000000000000000000000000000000000000000000000000000000);
+    //         100000000000000000000000000000000000000000000000000000000000000);
     //         cout << "test done. success =  " << success << endl;
     //         return;
     //     }
@@ -670,19 +670,25 @@ void jk_page_transition(int& maze_state, const char* keyChecked,
             maze_state = 23;
         } else if (maze_state > 0) {
             maze_state = 0;
+            firstRun = true;
         }
         
         return;
     }
 
     if (strcmp(keyChecked, "p") == 0) {
-        maze_state = maze_state * 405000; // dedicated pause page 
-        return; 
+        if (maze_state >= 1 && maze_state <= maxMaze) {
+            maze_state = maze_state * 405000; // dedicated pause page 
+            return; 
+        }
     }
 
     if (strcmp(keyChecked, "u") == 0) {
-        maze_state = maze_state / 405000; // restoring from dedicated pause page
-        return; 
+        if (maze_state >= 405000) {
+            maze_state = maze_state / 405000; 
+                                        // restoring from dedicated pause page
+            return; 
+        }
     }
 
 		//case XK_s;
