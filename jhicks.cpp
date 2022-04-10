@@ -9,7 +9,7 @@
 #include "Grid.h"
 
 //determines if the maze state is the home page
-bool jhicks_midterm_function(int& maze_state)
+bool jhicks_midterm_function(int maze_state)
 {
     /*
     if (maze_state == 0)
