@@ -212,7 +212,7 @@ void jk_printMazeTest(Rect position, int defaultHeight, int color,
             int (&player)[2], bool &firstRun, bool& endReached, Grid& mazeGrid, 
                                                                 int& maze_state)
 {
-    const char* mazeName = "Maze Test";
+    const char* mazeName = "Maze Tutorial";
     int rows = 5;
     int startingPosition[2] = {1, 3};
     int endingPosition[2] = {10, 1}; 
@@ -312,7 +312,7 @@ void jk_printMaze1(Rect position, int defaultHeight, int color,
         "+ +-+ +-+ + + + +-+-+-+-+-+ + +-+ + + +-+-+",
         "|       | | | |           | | |   | |     |",
         "+-+-+-+ +-+ + +-+-+-+-+-+ + + +-+-+-+-+-+ +",
-        " X          |           |   |         |    ",
+        ".X          |           |   |         |    ",
         "+---+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+"
     
     };
@@ -440,7 +440,7 @@ void jk_printMaze3(Rect position, int defaultHeight, int color,
 {
     const char* mazeName = "Maze 3";
     int rows = 23;
-    int startingPosition[2] = {1, 22};
+    int startingPosition[2] = {1, 21};
     int endingPosition[2] = {35, 0}; 
     int wallColor[3] = {246, 190, 0};
 
@@ -472,7 +472,7 @@ void jk_printMaze3(Rect position, int defaultHeight, int color,
       "8 8   8 8 8     8     8 8   8       8",
       "8 8 aa8 8a8 aaa 8aaaa 8a8 a 8aaaa a 8",
       "8 8         8     8       8       8 8",
-      "8 8aaaaaaaaa8aaaaa8aaaaaaa8aaaaaaa8a8",
+      "8.8aaaaaaaaa8aaaaa8aaaaaaa8aaaaaaa8a8",
 
     };
 
@@ -947,9 +947,11 @@ void jkuo_checkWall(int (&player)[2], int nextMove[2], Grid& grid)
 
     
 
-    if ( tempGrid[i][j].isWall() || 
-            player[1] >= (grid.rows-1) || player[0] >= (grid.columns-1)) {
-    // cout << "rows: " << grid.rows << " columns: " << grid.columns << endl;
+    if (tempGrid[i][j].isWall()) {
+    
+    // if ( tempGrid[i][j].isWall() || 
+    //         player[1] >= (grid.rows-1) || player[0] >= (grid.columns-1)) {
+    // // cout << "rows: " << grid.rows << " columns: " << grid.columns << endl;
         cout << "this is a wall" << endl;
         return;
         // do nothing, return player[2] as is
