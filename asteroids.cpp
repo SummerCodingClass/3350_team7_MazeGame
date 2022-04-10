@@ -100,7 +100,7 @@ public:
 		endReached = false;
 		// Grid mazeGrid = NULL;
 		Grid mazeGrid;
-		maxMaze = 3;
+		maxMaze = 12;
 
 	}
 } gl;
@@ -1088,8 +1088,8 @@ extern bool jkuo_midterm_checkState(int mazeState, int desiredState);
 //Jeff's Midterm - called in jkuo.cpp
 // extern bool jhicks_midterm_function(int& maze_state);
 
-//Jesus's Midterm
-extern void jr_midterm_func(int value);
+//Jesus's Midterm - called in jkuo.cpp
+// extern void jr_midterm_func(int value);
 
 //Adam's Midterm
 extern void anicholasPrint(int num);
@@ -1108,14 +1108,14 @@ void render()
 
 
 //Jesus's Midterm
-jr_midterm_func(55);
-jr_midterm_func(-108);
+// jr_midterm_func(55);
+// jr_midterm_func(-108);
 
 //Adam's Midterm
 //anicholasPrint(1);
 
 //Eidmone's Midterm
-etagaca_midterm("C++");
+// etagaca_midterm("C++");
 
 
 	Rect r;
