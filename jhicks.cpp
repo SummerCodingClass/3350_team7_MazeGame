@@ -121,8 +121,8 @@ void jh_printMaze5(Rect position, int defaultHeight, int color,
         ":  :--:--:  :  :  :",
         "|     |     |  |  |",
         ":--:  :  :--:  :  :",
-        "|        |        |",
-        ":X-:--:--:--:--:--:"
+        "|X       |        |",
+        ":--:--:--:--:--:--:"
     
     };
 
