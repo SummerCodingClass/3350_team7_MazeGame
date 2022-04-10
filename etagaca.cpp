@@ -95,59 +95,100 @@ void et_printMaze11(Rect position, int defaultHeight, int color,
                                                                 int& maze_state)
 {
     const char* mazeName = "Maze 11";    
-    int rows = 39;                                               
-    int startingPosition[2] = {1, 37};                                                        
-    int endingPosition[2] = {42, 37};                                                              
-    int wallColor[3] = {0, 128, 0}; 
+    int rows = 23;                                               
+    int startingPosition[2] = {22, 21};                                                        
+    int endingPosition[2] = {29, 1};                                                              
+    int wallColor[3] = {220, 88, 42};
                                                                        
     const char* maze[rows] = 
     {
-        "+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+",
-        "|     |     |                             |",
-        "+ +-+ + +-+-+ +-+-+-+-+-+-+-+-+-+ +-+-+-+ +",
-        "|   |   |     |   |   |         |   |     |",
-        "+-+ + +-+ +-+-+ + + + + +-+-+-+ +-+ + +-+-+",
-        "|   | |   |     |   | |     | | |   |   | |",
-        "+ +-+ + +-+ +-+-+-+-+-+-+ +-+-+ +-+-+-+ +-+",
-        "| |   | | | |         | | |   |     | |   |",
-        "+ +-+-+ +-+ + +-+-+-+ + + + + +-+ + +-+-+ +",
-        "|     | |   |   |     | |   |   | |       |",
-        "+ +-+ + + +-+-  +-+ + +-+-+-+-+ + +-+-+-+-+",
-        "|     | |         | |         | |       | |",
-        "+ + +-+ +-+-+ +-+ + +-+-+-+-+ + +-+ +-+ +-+",
-        "| | |             |         | |   | | |   |",
-        "+ + + +-+-+-+- -+-+-+ +-+-+ + +-+ + + +-+ +",
-        "| |     |   |             | |   | |   |   |",
-        "+ +-+-+ + + + +-+ +-+-+ +-+-+ + + +-+ + +-+",
-        "| |     | | |   |     | |     | | | | |   |",
-        "+ + +-+-+ + +-+ + +-+-+-+ +-+-+-+ + + +-+ +",
-        "| | |     |   | |   |   |       | |   | | |",
-        "+ + + +-+-+-+-+ +-+ + +-+-+ +-+ + +-+-+-+ +",
-        "| |               | |     | |   |     | | |",
-        "+ + +-+-+-+-+ +-+-+-+-+ + +-+ +-+-+-+ +-+ +",
-        "| |     |             | | |         | |   |",
-        "+-+-+-+ + + + + + + +-+ +-+ +-+ +-+-+ + +-+",
-        "|   |   | | | | | |     | | |   |   | |   |",
-        "+ +-+ +-+ + + + + +-+-+-+-+ + +-+ + + +-+-+",
-        "|       | | | |           | | |   | |     |",
-        "+-+-+-+ +-+ + +-+ +-+-+-+ + + +-+-+-+-+-+ +",
-        "            |           |   |         |    ",
-        "+ + +-+-+-+-+ +-+-+-+-+ + +-+ +-+-+-+ +-+ +",
-        "| |     |           | | |           | |   |",
-        "+-+-+-+ + + + + +-+ +-+ +-+ +-+ +-+-+ + +-+",
-        "|   |   | | | | | |     | | |   |   | |   |",
-        "+ +-+ +-+ + + + +-+-+-+-+-+ + +-+ + + +-+-+",
-        "|       | | | |           | | |   | |     |",
-        "+-  +-+ +-+ + +-+-+-+- -+ + + +-+-+-+-+-+ +",
-        " X  |       |               |              ",
-        "+---+ +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+"
+      "-----------------------------",
+      "|     |     |                ",
+      "| --- - ----- --------------|",
+      "|   |   |     |   |   |     |",
+      "--- | --- ----- | | | | ----|",
+      "|   | |   |     |   | |     |",
+      "| --- | --- ------------- --|",
+      "| |   | | | |         | | | |",
+      "| ----| | |   ------- | | | |",
+      "|     | |   |   |     | |   |",
+      "- --- - - ---- ---- - ------|",
+      "|     | |         | |       |",
+      "- - --- ----- --- - --------|",
+      "| | |             |         |",
+      "- - - -------- ------ ----- |",
+      "| |     |   |             | |",
+      "- ----- - - - --- ----- ----|",
+      "| |     | | |   |     | |   |",
+      "- - ----- - --- - ------- --|",
+      "| | |     |   | |       |   |",
+      "- - - --------- --- - ----- |",
+      "| |               | | X   | |",
+      "-----------------------------"
     };
 
     int columns = getColumns(maze, rows);
 
     if (firstRun) {
-        player[0] = startingPosition[0]; // x
-        player[1] = startingPosition[1]; // y
+        player[0] = startingPosition[0];
+        player[1] = startingPosition[1];
+
+        mazeGrid = Grid(maze, rows, columns, player, endingPosition, 
+                                                                wallColor);
+        mazeGrid.printGrid(position, rows, columns, player, defaultHeight, 
+                                                color, mazeName, endReached);
+        firstRun = false;
+    } else if (endReached) {
+        cout << "end reached" << endl; 
+        mazeGrid.printGrid(position, rows, columns, player, defaultHeight, 
+                                                color, mazeName, endReached); 
+        maze_state = -1 * maze_state;
+        firstRun = true;
+        endReached = false;
+    } else {
+        mazeGrid.printGrid(position, rows, columns, player, defaultHeight, 
+                                                color, mazeName, endReached);
+    }
+}
+
+void et_printMaze12(Rect position, int defaultHeight, int color, 
+            int (&player)[2], bool &firstRun, bool& endReached, Grid& mazeGrid, 
+                                                                int& maze_state)
+{
+    const char* mazeName = "Maze 12";    
+    int rows = 19;                                               
+    int startingPosition[2] = {9, 17};                                                        
+    int endingPosition[2] = {0, 1};                                                              
+    int wallColor[3] = {220, 88, 42};
+                                                                       
+    const char* maze[rows] = 
+    {
+      "-----------------------------",
+      "      |     |               |",
+      "| --- - ----- --------------|",
+      "|   |   |     |   |   |     |",
+      "|-- | --- ----- | | | | ----|",
+      "|   | |   |     |   | |     |",
+      "| --- | --- ------------- --|",
+      "| | | | | | |    |    | | | |",
+      "| | --| | |   ------- | | | |",
+      "| |   | |   |   |     | | | |",
+      "| --- | | ----  --- - --- --|",
+      "|     | |         | |       |",
+      "| - --- ----- --- - --------|",
+      "| | |   |   |     |         |",
+      "| - | ------- ------- ----- |",
+      "| | |   |   |             | |",
+      "| | |--   - - --- ----- ----|",
+      "| |     |X| |   |     | |   |",
+      "-----------------------------"
+    };
+
+    int columns = getColumns(maze, rows);
+
+    if (firstRun) {
+        player[0] = startingPosition[0];
+        player[1] = startingPosition[1];
 
         mazeGrid = Grid(maze, rows, columns, player, endingPosition, 
                                                                 wallColor);
