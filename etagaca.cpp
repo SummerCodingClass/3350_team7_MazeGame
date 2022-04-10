@@ -67,7 +67,7 @@ void etagaca_midterm(string name) {
 }
 
 int count = 0;
-
+// 1 2
 void et_timer(Rect position, int defaultHeight, int color, int& maze_state,  
                                         bool& firstRun, int& current_time) {
     position.bot = defaultHeight;
