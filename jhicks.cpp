@@ -103,7 +103,7 @@ void jh_printMaze5(Rect position, int defaultHeight, int color,
     int endingPosition[2] = {10, 0};   // 5. replace: 
                                         //          same as #4. 
                                         //          don't forget #6
-    int wallColor[3] = {0, 128, 0};
+    int wallColor[3] = {240,248,255};
     // source: https://www.asciiart.eu/art-and-design/mazes
 
     // 6. replace
@@ -171,7 +171,7 @@ void jh_printMaze6(Rect position, int defaultHeight, int color,
                                         //  
     int endingPosition[2] = {42, 29};   // 5. replace: 
 
-    int wallColor[3] = {0, 128, 0};
+    int wallColor[3] = {135,206,250};
     // source: https://www.asciiart.eu/art-and-design/mazes
 
     const char* maze[rows] = 
