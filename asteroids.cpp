@@ -1175,7 +1175,7 @@ etagaca_midterm("C++");
 	jk_message.left = 50;
 
 
-	if (jkuo_midterm_checkState(gl.maze_state, 11)) {
+	if (jkuo_midterm_checkState(gl.maze_state, 110)) {
 	// if (gl.maze_state == 11) {
 		glClear(GL_COLOR_BUFFER_BIT);
 		ggprint13(&jk_titles, 16, 0x00ffffff, "Rules Page");
@@ -1194,7 +1194,7 @@ etagaca_midterm("C++");
 
 
 
-	if (jkuo_midterm_checkState(gl.maze_state, 12)) {
+	if (jkuo_midterm_checkState(gl.maze_state, 120)) {
 	// if (gl.maze_state == 12) {
 		glClear(GL_COLOR_BUFFER_BIT);
 		// load_ggfont(17); // arial 140
@@ -1339,8 +1339,8 @@ etagaca_midterm("C++");
 
 
 	
-	if (jkuo_midterm_checkState(gl.maze_state, 405)) {
-	// if (gl.maze_state == 405) {
+	// if (jkuo_midterm_checkState(gl.maze_state, 405)) {
+	if (gl.maze_state >= 405000) {
 
 		glClear(GL_COLOR_BUFFER_BIT);
 		ggprint8b(&r, 16, 0x00ffffff, "THE GAME IS PAUSED");

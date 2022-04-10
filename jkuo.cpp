@@ -676,12 +676,12 @@ void jk_page_transition(int& maze_state, const char* keyChecked,
     }
 
     if (strcmp(keyChecked, "p") == 0) {
-        maze_state = 405; 
+        maze_state = maze_state * 405000; // dedicated pause page 
         return; 
     }
 
     if (strcmp(keyChecked, "u") == 0) {
-        maze_state = 1; 
+        maze_state = maze_state / 405000; // restoring from dedicated pause page
         return; 
     }
 
@@ -744,7 +744,7 @@ void jk_page_transition(int& maze_state, const char* keyChecked,
 
     if (strcmp(keyChecked, "r") == 0) {
         if (maze_state == 0) {
-            maze_state = 11;
+            maze_state = 110;
         } else if(maze_state == 22) {
             maze_state = 23;
         }
@@ -753,7 +753,7 @@ void jk_page_transition(int& maze_state, const char* keyChecked,
     
     if (strcmp(keyChecked, "c") == 0) {
         if (maze_state == 0) {
-            maze_state = 12;
+            maze_state = 120;
         }
         return; 
     }
