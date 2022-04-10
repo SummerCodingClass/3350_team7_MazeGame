@@ -1069,11 +1069,18 @@ extern void jk_showSecretModeMessage(Rect position, int defaultHeight,
 extern void jk_playerMovement(char* keys, int (&player)[2], Grid& grid);
 extern void jk_playerMovementForSecretMode(char* keys, int (&player)[2]);
 extern void jh_Image(int xres, int yres, unsigned int textid);
-//Jennifer's Midterm
-bool jkuo_midterm_checkState(int mazeState, int desiredState);
+//Eidmone's Timer
+extern void et_timer(Rect position, int defaultHeight, int color, 
+						int& maze_state,  bool& firstRun, int & current_time);
 
-//Jeff's Midterm
-extern bool jhicks_midterm_function(int& maze_state);
+
+
+
+//Jennifer's Midterm
+extern bool jkuo_midterm_checkState(int mazeState, int desiredState);
+
+//Jeff's Midterm - called in jkuo.cpp
+// extern bool jhicks_midterm_function(int& maze_state);
 
 //Jesus's Midterm
 extern void jr_midterm_func(int value);
@@ -1083,9 +1090,6 @@ extern void anicholasPrint(int num);
 
 //Eidmone's Midterm
 extern void etagaca_midterm(string name);
-//Eidmone's Timer
-extern void et_timer(Rect position, int defaultHeight, int color, 
-						int& maze_state,  bool& firstRun, int & current_time);
 
 void render()
 {
@@ -1094,7 +1098,7 @@ void render()
 // jkuo_midterm_function_wed(gl.mazeState);
 
 //Jeff's Midterm
-jhicks_midterm_function(gl.maze_state);
+// jhicks_midterm_function(gl.maze_state);
 
 
 //Jesus's Midterm

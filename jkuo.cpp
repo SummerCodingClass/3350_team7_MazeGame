@@ -629,7 +629,7 @@ void jk_printMazeTemplate(Rect position, int defaultHeight, int color,
 
 
 
-
+extern bool jhicks_midterm_function(int& maze_state);
 
 
 
@@ -662,7 +662,9 @@ void jk_page_transition(int& maze_state, const char* keyChecked,
     
     //case XK_b;
     if (strcmp(keyChecked, "b") == 0) {
-        if (maze_state == 0) {
+        
+        if (jhicks_midterm_function(maze_state)) {
+        // if (maze_state == 0) {
             //do nothing
         } else if (maze_state == 1000 || maze_state == 404) {
             maze_state = 0;
@@ -693,7 +695,8 @@ void jk_page_transition(int& maze_state, const char* keyChecked,
 
 		//case XK_s;
     if (strcmp(keyChecked, "s") == 0) {
-        if (maze_state == 0) {
+        if (jhicks_midterm_function(maze_state)) {
+        // if (maze_state == 0) {
             firstRun = true;
 
             //for midterm:
