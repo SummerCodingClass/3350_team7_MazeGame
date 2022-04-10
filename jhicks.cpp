@@ -110,7 +110,7 @@ void jh_printMaze5(Rect position, int defaultHeight, int color,
     const char* maze[rows] = 
     {
     
-        ".--.--.--.  .--.--.",
+        ".--.--.--.-O.--.--.",
         "|     |        |  |",
         ":  :--:  :  :  :  :",
         "|  |     |  |     |",
@@ -122,7 +122,7 @@ void jh_printMaze5(Rect position, int defaultHeight, int color,
         "|     |     |  |  |",
         ":--:  :  :--:  :  :",
         "|        |        |",
-        ":X :--:--:--:--:--:"
+        ":X-:--:--:--:--:--:"
     
     };
 
