@@ -43,7 +43,7 @@ bool GridCells::isEnd() {
     return end;
 }
 
-bool an_Midterm(int value) {
+bool anicholas_Midterm(int value) {
     if (value > 0) {
         return true;
     } else {
