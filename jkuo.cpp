@@ -215,7 +215,8 @@ void jk_printMazeTest(Rect position, int defaultHeight, int color,
     const char* mazeName = "Maze Tutorial";
     int rows = 5;
     int startingPosition[2] = {1, 3};
-    int endingPosition[2] = {3, 1}; 
+    int endingPosition[2] = {1, 2}; 
+    // int endingPosition[2] = {3, 1}; 
     // column: count starting from 0, left being 0
     // row: also start from 0, but top being 0
     int wallColor[3] = {221, 160, 221};
@@ -283,7 +284,8 @@ void jk_printMaze1(Rect position, int defaultHeight, int color,
     const char* mazeName = "Maze 1";
     int rows = 31;
     int startingPosition[2] = {1, 29};
-    int endingPosition[2] = {42, 29}; 
+    int endingPosition[2] = {2, 29}; 
+    // int endingPosition[2] = {42, 29}; 
     // int wallColor[3] = {0, 128, 0};
     int wallColor[3] = {139, 0, 0};
 
@@ -370,7 +372,8 @@ void jk_printMaze2(Rect position, int defaultHeight, int color,
     const char* mazeName = "Maze 2";
     int rows = 27;
     int startingPosition[2] = {7, 23};
-    int endingPosition[2] = {13,26}; 
+    int endingPosition[2] = {8,23}; 
+    // int endingPosition[2] = {13,26}; 
     int wallColor[3] = {220, 88, 42};
 
     
@@ -452,7 +455,8 @@ void jk_printMaze3(Rect position, int defaultHeight, int color,
     const char* mazeName = "Maze 3";
     int rows = 23;
     int startingPosition[2] = {1, 21};
-    int endingPosition[2] = {35, 0}; 
+    int endingPosition[2] = {1, 20}; 
+    // int endingPosition[2] = {35, 0}; 
     int wallColor[3] = {246, 190, 0};
 
 
@@ -678,13 +682,14 @@ void jk_page_transition(int& maze_state, const char* keyChecked,
         if (jhicks_midterm_function(maze_state)) {
         // if (maze_state == 0) {
             //do nothing
+            // firstRun = true;
         } else if (maze_state == 1000 || maze_state == 404) {
             maze_state = 0;
         } else if (maze_state > 230) {
             maze_state = 23;
         } else if (maze_state > 0) {
             maze_state = 0;
-            firstRun = true;
+            // firstRun = true;
         }
         
         return;
@@ -733,7 +738,9 @@ void jk_page_transition(int& maze_state, const char* keyChecked,
         } else if (maze_state < 0 ) {
             firstRun = true;
 
-            if (maze_state >= (-1 * maxMaze)) {
+            if (maze_state == -3) {
+                maze_state = (maze_state* -1) + 2;
+            } else if (maze_state >= (-1 * maxMaze)) {
                 maze_state = (maze_state* -1) + 1;
             } else {
                 maze_state = 1000; // congrats on beating everything
@@ -747,8 +754,35 @@ void jk_page_transition(int& maze_state, const char* keyChecked,
             maze_state = 3;
         } else if (maze_state == 3) {
             firstRun = true;
+            maze_state = 5;
+        } else if (maze_state == 4) {
+            firstRun = true;
+            maze_state = 1;
+        } else if (maze_state == 5) {
+            firstRun = true;
+            maze_state = 6;
+        } else if (maze_state == 6) {
+            firstRun = true;
+            maze_state = 7;
+        } else if (maze_state == 7) {
+            firstRun = true;
+            maze_state = 8;
+        } else if (maze_state == 8) {
+            firstRun = true;
+            maze_state = 9;
+        } else if (maze_state == 9) {
+            firstRun = true;
+            maze_state = 10;
+        } else if (maze_state == 10) {
+            firstRun = true;
+            maze_state = 11;
+        } else if (maze_state == 11) {
+            firstRun = true;
+            maze_state = 12;
+        } else if (maze_state == 12) {
+            firstRun = true;
             maze_state = 0;
-        } else if (maze_state == 23) {
+        } else if (maze_state == 230) {
             firstRun = true;
             maze_state = 231;
         } else if (maze_state == 231) {
@@ -769,7 +803,7 @@ void jk_page_transition(int& maze_state, const char* keyChecked,
         if (maze_state == 0) {
             maze_state = 110;
         } else if(maze_state == 22) {
-            maze_state = 23;
+            maze_state = 230;
         }
         return; 
     }
@@ -782,7 +816,7 @@ void jk_page_transition(int& maze_state, const char* keyChecked,
     }
 
     if (strcmp(keyChecked, "q") == 0) {
-        if(maze_state == 11 || maze_state == 12) {
+        if(maze_state == 110 || maze_state == 120) {
             maze_state = 20;
         }
         return; 
@@ -804,6 +838,7 @@ void jk_page_transition(int& maze_state, const char* keyChecked,
 
     if (strcmp(keyChecked, "z") == 0) {
         if(maze_state == 0) {
+            firstRun = true;
             maze_state = 4; //test mode
         }
         return; 
@@ -854,6 +889,8 @@ void jk_showRulesPage(Rect position, int defaultHeight, int color)
     ggprint8b(&position, 16, color, "Rule 1:");
     ggprint8b(&position, 16, color, 
                               "Timer will start immediately upon game start.");
+    ggprint8b(&position, 16, color, 
+                              "You have 1000 seconds max per stage.");
 }
 
 
@@ -869,7 +906,7 @@ void jk_showWelcomePage3(Rect position, int defaultHeight, int color)
 {
     position.bot = defaultHeight;
   
-    ggprint8b(&position, 16, color, "press z to enter test map");
+    ggprint8b(&position, 16, color, "press 'Z' to start from tutorial stage");
 }
 
 //could be replaced by picture logo

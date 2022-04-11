@@ -512,7 +512,19 @@ extern void jh_printMaze5(Rect position, int defaultHeight, int color,
                                                             int& maze_state);
 extern void jh_printMaze6(Rect position, int defaultHeight, int color, 
             int (&player)[2], bool &firstRun, bool& endReached, Grid& mazeGrid, 
-                                                            int& maze_state);														
+                                                            int& maze_state);	
+extern void jr_printMaze7(Rect position, int defaultHeight, int color, 
+            int (&player)[2], bool &firstRun, bool& endReached, Grid& mazeGrid, 
+                                                            int& maze_state);	
+extern void jr_printMaze8(Rect position, int defaultHeight, int color, 
+            int (&player)[2], bool &firstRun, bool& endReached, Grid& mazeGrid, 
+                                                            int& maze_state);	
+// extern void an_printMaze9(Rect position, int defaultHeight, int color, 
+//             int (&player)[2], bool &firstRun, bool& endReached, Grid& mazeGrid, 
+//                                                             int& maze_state);	
+// extern void an_printMaze10(Rect position, int defaultHeight, int color, 
+//             int (&player)[2], bool &firstRun, bool& endReached, Grid& mazeGrid, 
+//                                                             int& maze_state);	
 extern void et_printMaze11(Rect position, int defaultHeight, int color, 
             int (&player)[2], bool &firstRun, bool& endReached, Grid& mazeGrid, 
                                                             int& maze_state);
@@ -1147,11 +1159,11 @@ void render()
 
 		jh_Image(gl.xres, gl.yres,gl.textid);
 		jk_showWelcomePage(jk_welcomeMessage, gl.yres - 400, 0x00CC593F);
-		jh_showWelcomePage(jk_welcomeMessage, gl.yres - 490, 0x00CC593F);
+		jh_showWelcomePage(jk_welcomeMessage, gl.yres - 510, 0x00CC593F);
 		jr_showWelcomePage(jk_welcomeMessage, gl.yres - 450, 0x00CC593F);
-		et_showWelcomePage(jk_welcomeMessage, gl.yres - 470, 0x00CC593F);
-		an_showWelcomePage(jk_welcomeMessage, gl.yres - 430, 0x00CC593F);
-		jk_showWelcomePage3(jk_welcomeMessage, gl.yres - 530, 0x00FF0050);
+		et_showWelcomePage(jk_welcomeMessage, gl.yres - 490, 0x00CC593F);
+		an_showWelcomePage(jk_welcomeMessage, gl.yres - 470, 0x00CC593F);
+		jk_showWelcomePage3(jk_welcomeMessage, gl.yres - 430, 0x00e3a90b);
 		jk_showWelcomePage2(jk_welcomeMessage, gl.yres - 550, 0x00FF0050);
 
 		//should display "level" and "timer" instead... 
@@ -1219,6 +1231,15 @@ void render()
 		an_showCreditPage(jk_message, gl.yres-520, 0x00FF7025);
 		
 	}
+
+	if (gl.maze_state < 0) {
+
+		glClear(GL_COLOR_BUFFER_BIT);
+		ggprint8b(&r, 16, 0x00ffffff, "victory!");
+		ggprint8b(&r, 16, 0x00ffffff, "press s to start the next level");
+
+	}
+
 
 	Rect et_message = jk_createRect(gl.yres+50, 100, 10, 0); 
 
@@ -1329,24 +1350,76 @@ void render()
 									gl.endReached, gl.mazeGrid, gl.maze_state);
 	}
 
-	if (gl.maze_state < 0) {
-
+	if (jkuo_midterm_checkState(gl.maze_state, 7)) {
+	// if (gl.maze_state == 1) {
+		
 		glClear(GL_COLOR_BUFFER_BIT);
-		ggprint8b(&r, 16, 0x00ffffff, "victory!");
-		ggprint8b(&r, 16, 0x00ffffff, "press s to start the next level");
+		
+		ggprint8b(&r, 16, 0x00ffffff, "press s to switch to next maze");
+		ggprint8b(&r, 16, 0x00ffffff, "press b to return to home");
+		ggprint8b(&r, 16, 0x00ffffff, "press p to pause game");
+		ggprint8b(&r, 16, 0x00ffffff, "HOLD down the arrowkeys to move about");
 
+		et_timer(et_message, gl.yres-120, 0x00B24BF3, gl.maze_state, 
+												gl.firstRun, gl.current_time);
+
+		jk_playerMovement(gl.keys, gl.player, gl.mazeGrid);
+		jr_printMaze7(jk_t, gl.yres-100, 0x0040e0d0, gl.player, gl.firstRun, 
+									gl.endReached, gl.mazeGrid, gl.maze_state);
 	}
 
-	
-	// gl.maze_state = 1000;
-
-	if (jkuo_midterm_checkState(gl.maze_state, 1000)) {
-	// if (gl.maze_state == 1000) {
-
+	if (jkuo_midterm_checkState(gl.maze_state, 8)) {
+	// if (gl.maze_state == 1) {
+		
 		glClear(GL_COLOR_BUFFER_BIT);
-		ggprint8b(&r, 16, 0x00ffffff, "congrats on beating everything!");
-		ggprint8b(&r, 16, 0x00ffffff, "press b to return to homepage");
+		
+		ggprint8b(&r, 16, 0x00ffffff, "press s to switch to next maze");
+		ggprint8b(&r, 16, 0x00ffffff, "press b to return to home");
+		ggprint8b(&r, 16, 0x00ffffff, "press p to pause game");
+		ggprint8b(&r, 16, 0x00ffffff, "HOLD down the arrowkeys to move about");
 
+		et_timer(et_message, gl.yres-120, 0x00B24BF3, gl.maze_state, 
+												gl.firstRun, gl.current_time);
+
+		jk_playerMovement(gl.keys, gl.player, gl.mazeGrid);
+		jr_printMaze8(jk_t, gl.yres-100, 0x0040e0d0, gl.player, gl.firstRun, 
+									gl.endReached, gl.mazeGrid, gl.maze_state);
+	}
+
+	if (jkuo_midterm_checkState(gl.maze_state, 9)) {
+	// if (gl.maze_state == 1) {
+		
+		glClear(GL_COLOR_BUFFER_BIT);
+		
+		ggprint8b(&r, 16, 0x00ffffff, "press s to switch to next maze");
+		ggprint8b(&r, 16, 0x00ffffff, "press b to return to home");
+		ggprint8b(&r, 16, 0x00ffffff, "press p to pause game");
+		ggprint8b(&r, 16, 0x00ffffff, "HOLD down the arrowkeys to move about");
+
+		et_timer(et_message, gl.yres-120, 0x00B24BF3, gl.maze_state, 
+												gl.firstRun, gl.current_time);
+
+		jk_playerMovement(gl.keys, gl.player, gl.mazeGrid);
+		// an_printMaze9(jk_t, gl.yres-100, 0x0040e0d0, gl.player, gl.firstRun, 
+		// 							gl.endReached, gl.mazeGrid, gl.maze_state);
+	}
+
+	if (jkuo_midterm_checkState(gl.maze_state, 10)) {
+	// if (gl.maze_state == 1) {
+		
+		glClear(GL_COLOR_BUFFER_BIT);
+		
+		ggprint8b(&r, 16, 0x00ffffff, "press s to switch to next maze");
+		ggprint8b(&r, 16, 0x00ffffff, "press b to return to home");
+		ggprint8b(&r, 16, 0x00ffffff, "press p to pause game");
+		ggprint8b(&r, 16, 0x00ffffff, "HOLD down the arrowkeys to move about");
+
+		et_timer(et_message, gl.yres-120, 0x00B24BF3, gl.maze_state, 
+												gl.firstRun, gl.current_time);
+
+		jk_playerMovement(gl.keys, gl.player, gl.mazeGrid);
+		// an_printMaze10(jk_t, gl.yres-100, 0x0040e0d0, gl.player, gl.firstRun, 
+		// 							gl.endReached, gl.mazeGrid, gl.maze_state);
 	}
 
 	if (jkuo_midterm_checkState(gl.maze_state, 11)) {
@@ -1384,6 +1457,22 @@ void render()
 									gl.endReached, gl.mazeGrid, gl.maze_state);
 	}
 
+
+
+
+	// gl.maze_state = 1000;
+
+	if (jkuo_midterm_checkState(gl.maze_state, 1000)) {
+	// if (gl.maze_state == 1000) {
+
+		glClear(GL_COLOR_BUFFER_BIT);
+		ggprint8b(&r, 16, 0x00ffffff, "congrats on beating everything!");
+		ggprint8b(&r, 16, 0x00ffffff, "press b to return to homepage");
+
+	}
+
+
+
 	if (jkuo_midterm_checkState(gl.maze_state, 404)) {
 	// if (gl.maze_state == 404) {
 
@@ -1409,7 +1498,7 @@ void render()
 
 	//secret mode
 
-	if (jkuo_midterm_checkState(gl.maze_state, 23)) {
+	if (jkuo_midterm_checkState(gl.maze_state, 230)) {
 	// if (gl.maze_state == 23) {
 		glClear(GL_COLOR_BUFFER_BIT);
 		ggprint8b(&r, 16, 0x00ff0000, "3350 - MAze");
