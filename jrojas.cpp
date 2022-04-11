@@ -101,8 +101,14 @@ void jr_printMaze7(Rect position, int defaultHeight, int color,
 {
     const char* mazeName = "Maze 7";
     int rows = 31;                      // Row Count
+    
+    //Original
     int startingPosition[2] = {17, 20}; // (Starting Position)
-    int endingPosition[2] = {30, 29};   // (Ending Position)
+    //int endingPosition[2] = {30, 29};   // (Ending Position)
+    
+    //Test
+    int endingPosition[2] = {17, 21};
+
     int wallColor[3] = {239, 66, 245};  // **PINK COLOR**
 
     // Maze source: https://www.asciiart.eu/art-and-design/mazes
@@ -178,12 +184,15 @@ void jr_printMaze8(Rect position, int defaultHeight, int color,
 {
     const char* mazeName = "Maze 8";
     int rows = 26;                      // Row Count
+    //Original
     int startingPosition[2] = {15, 24}; // (Starting Position)
+    //int endingPosition[2] = {30, 1};    // (Ending Position)    
                                         //          Counting from 0.
                                         //          1st number: left to right
                                         //          2nd number: top to bottom
-                                        //  
-    int endingPosition[2] = {30, 1};    // (Ending Position)    
+    //Testing  
+    int endingPosition[2] = {13, 24};    // (Ending Position)    
+    
     int wallColor[3] = {3, 107, 252};   // **BLUE COLOR**
 
     // Maze source: https://www.asciiart.eu/art-and-design/mazes
