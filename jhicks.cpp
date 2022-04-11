@@ -95,34 +95,34 @@ void jh_printMaze5(Rect position, int defaultHeight, int color,
     const char* mazeName = "Maze 5";    
     int rows = 13;                     
                                         
-    int startingPosition[2] = {1, 12};  // 4. replace: 
+    int startingPosition[2] = {4, 1};  // 4. replace: 
                                         //          start counting from 0.
                                         //          1st number: left to right
                                         //          2nd number: top to bottom
                                         //  
-    int endingPosition[2] = {10, 0};   // 5. replace: 
+    int endingPosition[2] = {6, 1};   // 5. replace: 
                                         //          same as #4. 
                                         //          don't forget #6
-    int wallColor[3] = {240,248,255};
+    int wallColor[3] = {0, 53, 148};
     // source: https://www.asciiart.eu/art-and-design/mazes
 
     // 6. replace
     const char* maze[rows] = 
     {
     
-        ".--.--.--.-O.--.--.",
-        "|     |        |  |",
-        ":  :--:  :  :  :  :",
-        "|  |     |  |     |",
-        ":  :  :  :--:--:--:",
-        "|  |  |           |",
-        ":  :  :--:--:--:  :",
-        "|  |        |  |  |",
-        ":  :--:--:  :  :  :",
-        "|     |     |  |  |",
-        ":--:  :  :--:  :  :",
-        "|X       |        |",
-        ":--:--:--:--:--:--:"
+        ".-.--.--.--.--.-.",
+        "|    |       -| |",
+        ": :--:--: -: -: :",
+        "| |    -| -|    |",
+        ": : -: -:--:--: :",
+        "| | -|        | |",
+        ": : -:--:--:- : :",
+        "| |        |- | |",
+        ": :--:--:- :- : :",
+        "|    |     |- | |",
+        ":-:- :- :--:- : :",
+        "|       |       |",
+        ":--:--:--:--:--::"
     
     };
 
@@ -162,32 +162,49 @@ void jh_printMaze6(Rect position, int defaultHeight, int color,
                                                                 int& maze_state)
 {
     const char* mazeName = "Maze 6";   
-    int rows = 10;                    
+    int rows = 23;                    
                                         //          start counting from 1
-    int startingPosition[2] = {1, 29};  // 4. replace: 
+    int startingPosition[2] = {1, 21};  // 4. replace: 
                                         //          start counting from 0.
                                         //          1st number: left to right
                                         //          2nd number: top to bottom
                                         //  
-    int endingPosition[2] = {42, 29};   // 5. replace: 
+    int endingPosition[2] = {19, 1};   // 5. replace: 
 
-    int wallColor[3] = {135,206,250};
+    int wallColor[3] = {70, 255, 0};
     // source: https://www.asciiart.eu/art-and-design/mazes
 
     const char* maze[rows] = 
     {
-                    
-        "┌─┬─────────────────────┬─┐", 
-        "│ └───┐ ╶─────┐ ╶───┬─╴ ╵ │", 
-        "├───┐ ├───╴ ┌─┴─┐ ╷ └─┬─┐ │", 
-        "│ ╷ │ │ ╶─┬─┘ ╷ │ └─┐ │ ╵ │", 
-        "│ ├─┘ ├───┤ ┌─┤ └───┤ └─┐ │", 
-        "│ │ ┌─┘ ╷ ╵ │ └───╴ │ ╷ │ │", 
-        "│ │ ╵ ┌─┼───┤ ┌─────┤ │ │ │", 
-        "│ └───┘ ╵ ╷ ╵ ╵ ┌─╴ └─┘ │ │", 
-        "└─────────┴─────┴───────┴─┘ "
     
+      "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "8 8       8       8     8         8 8",
+      "8 8 aaaaa 8 aaa aa8aa aa8 aaa aaa 8 8",
+      "8       8   8 8     8     8 8 8   8 8",
+      "8 aaa a 8aaa8 8aaaa 8aa a 8 8 8aaa8 8",
+      "8 8 8 8       8     8 8 8 8 8     8 8",
+      "8 a 8a8aaaa a 8 aaaa8 8a8 8 8aaaa 8 8",
+      "8 8       8 8 8   8     8     8   8 8",
+      "8 8aaaaaa 8a8 8aa 8 aaa 8aaaa 8 aa8 8",
+      "8     8   8 8   8 8   8     8 8     8",
+      "8 aaa 8aa 8 8aa 8 8aaa8 a a 8 8aaaaa8",
+      "8   8   8 8 8   8   8   8 8 8   8   8",
+      "8 aa8aa 8 8 8 aa8aa 8 aa8 8 8aa 8aa 8",
+      "8 8   8 8     8   8 8   8 8   8     8",
+      "8 aaa 8 8aaaa 8aa 8 8aa 8a8 aa8aaaa 8",
+      "8 8   8     8     8   8 8 8       8 8",
+      "8 8 aa8aa a 8aa aa8aa 8 8 8aaaaaa 8 8",
+      "8 8     8 8 8 8 8     8       8 8   8",
+      "8 8aaaa 8 8 8 8a8 8aaa8 aaaaa 8 8aaa8",
+      "8 8   8 8 8     8     8 8   8       8",
+      "8 8 aa8 8a8 aaa 8aaaa 8a8 a 8aaaa a 8",
+      "8 8         8     8       8       8 8",
+      "888aaaaaaaaa8aaaaa8aaaaaaa8aaaaaaa8a8",
+
     };
+
+                    
+
 
     int columns = getColumns(maze, rows);
 
