@@ -100,8 +100,8 @@ void jh_printMaze5(Rect position, int defaultHeight, int color,
                                         //          1st number: left to right
                                         //          2nd number: top to bottom
                                         //  
-    //int endingPosition[2] = {3, 1};   // 5. replace: 
-    int endingPosition[2] = {6, 1};
+    int endingPosition[2] = {3, 1};   // 5. replace: 
+    //int endingPosition[2] = {6, 1};
                                         //          same as #4. 
                                         //          don't forget #6
     int wallColor[3] = {0, 53, 148};
@@ -170,8 +170,8 @@ void jh_printMaze6(Rect position, int defaultHeight, int color,
                                         //          1st number: left to right
                                         //          2nd number: top to bottom
                                         // 
-    //int endingPosition[2] = {1, 20};                                      
-    int endingPosition[2] = {19, 1};   // 5. replace: 
+    int endingPosition[2] = {1, 20};                                      
+    //int endingPosition[2] = {19, 1};   // 5. replace: 
 
     int wallColor[3] = {70, 255, 0};
     // source: https://www.asciiart.eu/art-and-design/mazes
