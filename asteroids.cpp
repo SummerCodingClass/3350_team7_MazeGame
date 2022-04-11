@@ -527,9 +527,9 @@ extern void jr_printMaze7(Rect position, int defaultHeight, int color,
 extern void jr_printMaze8(Rect position, int defaultHeight, int color, 
             int (&player)[2], bool &firstRun, bool& endReached, Grid& mazeGrid, 
                                                             int& maze_state);	
-// extern void an_printMaze9(Rect position, int defaultHeight, int color, 
-//             int (&player)[2], bool &firstRun, bool& endReached, Grid& mazeGrid, 
-//                                                             int& maze_state);	
+extern void an_printMaze9(Rect position, int defaultHeight, int color, 
+            int (&player)[2], bool &firstRun, bool& endReached, Grid& mazeGrid, 
+                                                            int& maze_state);	
 // extern void an_printMaze10(Rect position, int defaultHeight, int color, 
 //             int (&player)[2], bool &firstRun, bool& endReached, Grid& mazeGrid, 
 //                                                             int& maze_state);	
@@ -1317,7 +1317,7 @@ void render()
 		ggprint8b(&r, 16, 0x00ffffff, "HOLD down the arrowkeys to move about");
 		
 		if(etagaca_midterm(gl.current_time)) {
-        ggprint8b(&r, 16, 0x00b19cd9, "10 seconds have passed");
+			ggprint8b(&r, 16, 0x00b19cd9, "5 seconds have passed");
    		}
 
 		et_timer(et_message, gl.yres-120, 0x00B24BF3, gl.maze_state,
@@ -1414,11 +1414,11 @@ void render()
 												gl.firstRun, gl.current_time);
 
 		jk_playerMovement(gl.keys, gl.player, gl.mazeGrid);
-		// an_printMaze9(jk_t, gl.yres-100, 0x0040e0d0, gl.player, gl.firstRun, 
-									// gl.endReached, gl.mazeGrid, gl.maze_state);
-		jk_showWelcomePageTitle(jk_welcomeTitlePlaceHolder, 
-											gl.yres - (gl.yres/2), 0x00FF0000);
-		ggprint8b(&r, 32, 0x0040e0d0, "maze 9");
+		an_printMaze9(jk_t, gl.yres-100, 0x0040e0d0, gl.player, gl.firstRun, 
+									gl.endReached, gl.mazeGrid, gl.maze_state);
+		// jk_showWelcomePageTitle(jk_welcomeTitlePlaceHolder, 
+		// 									gl.yres - (gl.yres/2), 0x00FF0000);
+		// ggprint8b(&r, 32, 0x0040e0d0, "maze 9");
 	}
 
 	if (jkuo_midterm_checkState(gl.maze_state, 10)) {
