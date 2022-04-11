@@ -638,14 +638,33 @@ void jk_printMazeTemplate(Rect position, int defaultHeight, int color,
 
 
 
-
-
-
-
+//----------------------------------------------------------------------------
+// midterm functions for group
+//----------------------------------------------------------------------------
 
 
 extern bool jhicks_midterm_function(int maze_state);
 extern bool jr_midterm_func(int value);
+// extern bool etagaca_midterm(int& current_time);
+
+
+// // void printTimerWarning(int& current_time, Rect position, 
+//                                                 int defaultHeight, int color)
+// {
+//     if(etagaca_midterm(current_time)) {
+//         ggprint8b(position, 16, 0x00b19cd9, "1 minutes have passed");
+//     }
+// }
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -734,8 +753,8 @@ void jk_page_transition(int& maze_state, const char* keyChecked,
             firstRun = true;
             maze_state = 1;
         
-        // } else if (jr_midterm_func(maze_state)) {
-        } else if (maze_state < 0 ) {
+        } else if (jr_midterm_func(maze_state)) {
+        // } else if (maze_state < 0 ) {
             firstRun = true;
 
             if (maze_state == -3) {
@@ -1113,6 +1132,18 @@ int getColumns (const char** maze, int rows)
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 //----------------------------------------------------------------------------
 // class functions for GridCells.h
 //----------------------------------------------------------------------------
@@ -1355,3 +1386,6 @@ void jk_printMazeSecretMode3(Rect position, int defaultHeight, int color,
                                                                     mazeName);
     }
 }
+
+
+

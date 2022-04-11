@@ -1112,10 +1112,11 @@ extern bool jkuo_midterm_checkState(int mazeState, int desiredState);
 // extern void jr_midterm_func(int value);
 
 //Adam's Midterm
-extern void anicholasPrint(int num);
+// extern void anicholasPrint(int num);
 
 //Eidmone's Midterm
-extern void etagaca_midterm(string name);
+// extern void etagaca_midterm(string name);
+extern bool etagaca_midterm(int& current_time);
 
 void render()
 {
@@ -1314,6 +1315,10 @@ void render()
 		ggprint8b(&r, 16, 0x00ffffff, "press s to switch to next maze");
 		ggprint8b(&r, 16, 0x00ffffff, "press b to return to home");
 		ggprint8b(&r, 16, 0x00ffffff, "HOLD down the arrowkeys to move about");
+		
+		if(etagaca_midterm(gl.current_time)) {
+        ggprint8b(&r, 16, 0x00b19cd9, "10 seconds have passed");
+   		}
 
 		et_timer(et_message, gl.yres-120, 0x00B24BF3, gl.maze_state,
 												 gl.firstRun, gl.current_time);
