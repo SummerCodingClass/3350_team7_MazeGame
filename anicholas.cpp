@@ -154,12 +154,12 @@ void an_printMaze10(Rect position, int defaultHeight, int color,
     // 7. replace
     const char* maze[rows] = 
     {
-  
+
         "+++++++++++",
-        "*     + + +",
+        "*       + +",
         "*** + * + +",
-        "* *   *   +",
-        "* ***** +++",
+        "* * + *   +",
+        "* * *** +++",
         "*       + +",
         "*** *** + +",
         "*   *     +",
