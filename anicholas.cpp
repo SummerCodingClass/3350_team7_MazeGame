@@ -133,45 +133,40 @@ void an_printMaze10(Rect position, int defaultHeight, int color,
                                                                 int& maze_state)
 {
     const char* mazeName = "Maze 10";            // 2. replace
-    int rows = 15;                              // 3. replace: 
+    int rows = 11;                              // 3. replace: 
                                                 //          start counting from 1
     int startingPosition[2] = {1, 1};          // 4. replace: 
                                                 //          start counting from 0.
                                                 //          1st number: left to right
                                                 //          2nd number: top to bottom
                                                 //  
-    int endingPosition[2] = {2, 1};           // 5. replace: 
-    //int endingPosition[2] = {5, 13};           // 5. replace: 
+    //int endingPosition[2] = {2, 1};           // 5. replace: 
+    int endingPosition[2] = {10, 9};           // 5. replace: 
                                                 //          same as #4.           
                                                 //
     int wallColor[3] = {102, 50, 168};             // 6. replace:
                                                 //          this is rgb color for wall. 
                                                 //          don't forget #7
 
-    // source: https://www.asciiart.eu/art-and-design/mazes
+    // source: https://www.dcode.fr/maze-generator
     // corridors need to be 1 space wide, or it will mess up the trail
- 
 
     // 7. replace
     const char* maze[rows] = 
     {
+  
+        "+++++++++++",
+        "*     + + +",
+        "*** + * + +",
+        "* *   *   +",
+        "* ***** +++",
+        "*       + +",
+        "*** *** + +",
+        "*   *     +",
+        "* * *** * +",
+        "* * *   * +",
+        "**********+"
 
-        ".-.-.-.-.-.",
-        "|   |     |",
-        ": :-: : :-:",
-        "|     | | |",
-        ":-:-:-: : :",
-        "|       | |",
-        ": : :-: : :",
-        "| |   |   |",
-        ": :-:-:-: :",
-        "| |     | |",
-        ": : :-: : :",
-        "|   |   | |",
-        ": :-: :-: :",
-        "|   | |   |",
-        ":-:-:-:-:-:",
-    
     };
 
     int columns = getColumns(maze, rows);
