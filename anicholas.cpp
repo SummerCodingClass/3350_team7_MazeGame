@@ -63,7 +63,8 @@ void an_printMaze9(Rect position, int defaultHeight, int color,
                                                 //          1st number: left to right
                                                 //          2nd number: top to bottom
                                                 //  
-    int endingPosition[2] = {5, 13};           // 5. replace: 
+    int endingPosition[2] = {2, 1};           // 5. replace: 
+    //int endingPosition[2] = {5, 13};           // 5. replace: 
                                                 //          same as #4.           
                                                 //
     int wallColor[3] = {64, 235, 52};             // 6. replace:
@@ -139,7 +140,8 @@ void an_printMaze10(Rect position, int defaultHeight, int color,
                                                 //          1st number: left to right
                                                 //          2nd number: top to bottom
                                                 //  
-    int endingPosition[2] = {5, 13};           // 5. replace: 
+    int endingPosition[2] = {2, 1};           // 5. replace: 
+    //int endingPosition[2] = {5, 13};           // 5. replace: 
                                                 //          same as #4.           
                                                 //
     int wallColor[3] = {102, 50, 168};             // 6. replace:
