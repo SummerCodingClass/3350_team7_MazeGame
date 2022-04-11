@@ -285,8 +285,8 @@ void jk_printMaze1(Rect position, int defaultHeight, int color,
     int rows = 31;
     int startingPosition[2] = {1, 29};
     // int endingPosition[2] = {5, 29}; 
-    // int endingPosition[2] = {2, 29}; 
-    int endingPosition[2] = {41, 29}; 
+    int endingPosition[2] = {2, 29}; 
+    // int endingPosition[2] = {41, 29}; 
     // int wallColor[3] = {0, 128, 0};
     int wallColor[3] = {139, 0, 0};
 
@@ -373,8 +373,8 @@ void jk_printMaze2(Rect position, int defaultHeight, int color,
     const char* mazeName = "Maze 2";
     int rows = 27;
     int startingPosition[2] = {7, 23};
-    // int endingPosition[2] = {8,23}; 
-    int endingPosition[2] = {13,25}; 
+    int endingPosition[2] = {8,23}; 
+    // int endingPosition[2] = {13,25}; 
     int wallColor[3] = {220, 88, 42};
 
     
@@ -456,8 +456,8 @@ void jk_printMaze3(Rect position, int defaultHeight, int color,
     const char* mazeName = "Maze 3";
     int rows = 23;
     int startingPosition[2] = {1, 21};
-    // int endingPosition[2] = {1, 20}; 
-    int endingPosition[2] = {35, 1}; 
+    int endingPosition[2] = {1, 20}; 
+    // int endingPosition[2] = {35, 1}; 
     int wallColor[3] = {246, 190, 0};
 
 
