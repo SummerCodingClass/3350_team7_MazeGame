@@ -51,11 +51,11 @@ bool an_Midterm(int value) {
     }
 }
 
-void an_printMazeTemplate(Rect position, int defaultHeight, int color, 
+void an_printMaze9(Rect position, int defaultHeight, int color, 
             int (&player)[2], bool &firstRun, bool& endReached, Grid& mazeGrid, 
                                                                 int& maze_state)
 {
-    const char* mazeName = "Maze Template";     // 2. replace
+    const char* mazeName = "Maze 9";            // 2. replace
     int rows = 31;                              // 3. replace: 
                                                 //          start counting from 1
     int startingPosition[2] = {1, 29};          // 4. replace: 
