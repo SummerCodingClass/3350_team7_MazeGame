@@ -215,8 +215,8 @@ void jk_printMazeTest(Rect position, int defaultHeight, int color,
     const char* mazeName = "Maze Tutorial";
     int rows = 5;
     int startingPosition[2] = {1, 3};
-    int endingPosition[2] = {1, 2}; 
-    // int endingPosition[2] = {3, 1}; 
+    // int endingPosition[2] = {1, 2}; 
+    int endingPosition[2] = {2, 1}; 
     // column: count starting from 0, left being 0
     // row: also start from 0, but top being 0
     int wallColor[3] = {221, 160, 221};
@@ -236,7 +236,7 @@ void jk_printMazeTest(Rect position, int defaultHeight, int color,
     {
     
         "+-+-",
-        "|   ",
+        "|  .",
         "+ +-",
         "| --",
         "+-+-"
@@ -284,8 +284,9 @@ void jk_printMaze1(Rect position, int defaultHeight, int color,
     const char* mazeName = "Maze 1";
     int rows = 31;
     int startingPosition[2] = {1, 29};
-    int endingPosition[2] = {2, 29}; 
-    // int endingPosition[2] = {42, 29}; 
+    // int endingPosition[2] = {5, 29}; 
+    // int endingPosition[2] = {2, 29}; 
+    int endingPosition[2] = {41, 29}; 
     // int wallColor[3] = {0, 128, 0};
     int wallColor[3] = {139, 0, 0};
 
@@ -325,7 +326,7 @@ void jk_printMaze1(Rect position, int defaultHeight, int color,
         "+ +-+ +-+ + + + +-+-+-+-+-+ + +-+ + + +-+-+",
         "|       | | | |           | | |   | |     |",
         "+-+-+-+ +-+ + +-+-+-+-+-+ + + +-+-+-+-+-+ +",
-        ".X          |           |   |         |    ",
+        ".X          |           |   |         |   z",
         "+---+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+"
     
     };
@@ -372,8 +373,8 @@ void jk_printMaze2(Rect position, int defaultHeight, int color,
     const char* mazeName = "Maze 2";
     int rows = 27;
     int startingPosition[2] = {7, 23};
-    int endingPosition[2] = {8,23}; 
-    // int endingPosition[2] = {13,26}; 
+    // int endingPosition[2] = {8,23}; 
+    int endingPosition[2] = {13,25}; 
     int wallColor[3] = {220, 88, 42};
 
     
@@ -408,7 +409,7 @@ void jk_printMaze2(Rect position, int defaultHeight, int color,
         "| |   |X    | | | | | | | |",
         "| ` . `---- | | `-! | `-! |",
         "|   |       | |     |     |",
-        "`---`-------! `-----`-----!"
+        "`---`-------!.`-----`-----!"
     
     };
 
@@ -455,8 +456,8 @@ void jk_printMaze3(Rect position, int defaultHeight, int color,
     const char* mazeName = "Maze 3";
     int rows = 23;
     int startingPosition[2] = {1, 21};
-    int endingPosition[2] = {1, 20}; 
-    // int endingPosition[2] = {35, 0}; 
+    // int endingPosition[2] = {1, 20}; 
+    int endingPosition[2] = {35, 1}; 
     int wallColor[3] = {246, 190, 0};
 
 
@@ -465,7 +466,7 @@ void jk_printMaze3(Rect position, int defaultHeight, int color,
       const char* maze[rows] = 
     {
     
-      "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa a",
+      "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaza",
       "8 8       8       8     8         8 8",
       "8 8 aaaaa 8 aaa aa8aa aa8 aaa aaa 8 8",
       "8       8   8 8     8     8 8 8   8 8",
@@ -761,7 +762,7 @@ void jk_page_transition(int& maze_state, const char* keyChecked,
 
             if (maze_state == -3) {
                 maze_state = (maze_state* -1) + 2;
-            } else if (maze_state >= (-1 * maxMaze)) {
+            } else if (maze_state > (-1 * maxMaze)) {
                 maze_state = (maze_state* -1) + 1;
             } else {
                 maze_state = 1000; // congrats on beating everything

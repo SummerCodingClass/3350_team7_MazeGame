@@ -230,7 +230,7 @@ void printGrid(Rect position, int rows, int columns,
     
     if (player[1] == mazeEnd[1] && player[0] == mazeEnd[0]) {
             
-            cout << "in printGrid, endReached marked true" << endl;
+            // cout << "in printGrid, endReached marked true" << endl;
             endReached = true;
             
     }

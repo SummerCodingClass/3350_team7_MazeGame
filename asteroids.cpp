@@ -87,6 +87,7 @@ public:
 	bool endReached;
 	Grid mazeGrid;
 	int maxMaze;
+	int timeBeaten[13];
 	
 
 	Global() {
@@ -101,6 +102,7 @@ public:
 		// Grid mazeGrid = NULL;
 		Grid mazeGrid;
 		maxMaze = 12;
+		// timeBeaten = {0};
 
 	}
 } gl;
@@ -1247,6 +1249,15 @@ void render()
 		//ggprint8b(&r, 16, 0x00ffffff, "victory!");
 		ggprint8b(&r, 16, 0x00ffffff, "press s to start next level");
 		jh_Image(gl.xres, gl.yres -50, gl.textid[1]);
+
+		
+		string paused_time = "Elapsed Time: " + to_string(gl.current_time);
+		const char *p = paused_time.c_str();
+		ggprint8b(&r, 16, 0x00ffffff, p);
+
+		int levelBeaten = gl.maze_state * -1;
+		gl.timeBeaten[levelBeaten] = gl.current_time;
+
 
 	}
 
