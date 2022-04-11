@@ -1401,7 +1401,10 @@ void render()
 
 		jk_playerMovement(gl.keys, gl.player, gl.mazeGrid);
 		// an_printMaze9(jk_t, gl.yres-100, 0x0040e0d0, gl.player, gl.firstRun, 
-		// 							gl.endReached, gl.mazeGrid, gl.maze_state);
+									// gl.endReached, gl.mazeGrid, gl.maze_state);
+		jk_showWelcomePageTitle(jk_welcomeTitlePlaceHolder, 
+											gl.yres - (gl.yres/2), 0x00FF0000);
+		ggprint8b(&r, 32, 0x0040e0d0, "maze 9");
 	}
 
 	if (jkuo_midterm_checkState(gl.maze_state, 10)) {
@@ -1420,6 +1423,10 @@ void render()
 		jk_playerMovement(gl.keys, gl.player, gl.mazeGrid);
 		// an_printMaze10(jk_t, gl.yres-100, 0x0040e0d0, gl.player, gl.firstRun, 
 		// 							gl.endReached, gl.mazeGrid, gl.maze_state);
+		
+		jk_showWelcomePageTitle(jk_welcomeTitlePlaceHolder, 
+											gl.yres - (gl.yres/2), 0x00FF0000);
+		ggprint8b(&r, 32, 0x0040e0d0, "maze 10");
 	}
 
 	if (jkuo_midterm_checkState(gl.maze_state, 11)) {

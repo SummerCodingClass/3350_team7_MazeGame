@@ -76,30 +76,30 @@ bool jkuo_midterm_function_mon(int& maze_state, int desired_state)
 {
     cout << endl << endl;
 
-    if (desired_state <= 0 || desired_state > 4) {
-        cout << "failed. please try a POSITIVE integer that's <= 4" << endl;
+    if (desired_state <= 0 || desired_state >= 12) {
+        // cout << "failed. please try a POSITIVE integer that's <= 4" << endl;
         return false;
     }
     
 
 
-    cout << "current maze_state: page" << maze_state << endl;
-    cout << "desired maze_state: page" << desired_state << endl;
+    // cout << "current maze_state: page" << maze_state << endl;
+    // cout << "desired maze_state: page" << desired_state << endl;
 
     maze_state = desired_state;
 
     if (maze_state != desired_state) {
 
-        cout << endl;
-        cout << "results: page transition failed. returned false." << endl;
-        cout << endl << endl;
+        // cout << endl;
+        // cout << "results: page transition failed. returned false." << endl;
+        // cout << endl << endl;
 
         return false;
     }
 
-    cout << endl;
-    cout << "results: page transition succeeded. returned true." << endl;
-    cout << endl << endl;
+    // cout << endl;
+    // cout << "results: page transition succeeded. returned true." << endl;
+    // cout << endl << endl;
 
     return true;
 }
@@ -914,7 +914,8 @@ void jk_showWelcomePageTitle(Rect position, int defaultHeight, int color)
 {
     position.bot = defaultHeight;
   
-    ggprint40(&position, 16, color, "The MAze Game");
+    // ggprint40(&position, 16, color, "The MAze Game");
+    ggprint40(&position, 16, color, "Placeholder for Adam");
 }
 
 
@@ -1012,14 +1013,14 @@ void jkuo_checkWall(int (&player)[2], int nextMove[2], Grid& grid)
     // if ( tempGrid[i][j].isWall() || 
     //         player[1] >= (grid.rows-1) || player[0] >= (grid.columns-1)) {
     // // cout << "rows: " << grid.rows << " columns: " << grid.columns << endl;
-        cout << "this is a wall" << endl;
+        // cout << "this is a wall" << endl;
         return;
         // do nothing, return player[2] as is
     }
     else {
 
         // cout << "is it entering here?" << endl;
-        cout << "NOT a wall" << endl;
+        // cout << "NOT a wall" << endl;
         // cout << "before: " << player[0] << ", " << player[1] << endl;
         // tempGrid[i][j].setCurrent(true);
 
