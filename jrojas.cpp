@@ -35,8 +35,6 @@ void jrojas(int userInput)
     }
 }
 
-
-
 /*
 void jr_midterm_func(int value) {
     //Test value if postive, negative or invalid input
@@ -97,18 +95,19 @@ bool GridCells::isSpace() {
 /* ---------------
 * jr_printMaze7
 *-----------------*/
-/*
-void jr_printMaze7(Rect position, int defaultHeight, int color, int (&player)[2], bool &firstRun, bool& endReached, Grid& mazeGrid, int& maze_state)
+void jr_printMaze7(Rect position, int defaultHeight, int color, 
+            int (&player)[2], bool &firstRun, bool& endReached, Grid& mazeGrid, 
+                                                               int& maze_state)
 {
-    const char* mazeName = "Maze 6";    // 2. replace
+    const char* mazeName = "Maze 7";    // 2. replace
     int rows = 31;                      // 3. replace: 
                                         //          start counting from 1
-    int startingPosition[2] = {17, 19}; // 4. replace: 
+    int startingPosition[2] = {17, 20}; // 4. replace: 
                                         //          start counting from 0.
                                         //          1st number: left to right
                                         //          2nd number: top to bottom
                                         //  
-    int endingPosition[2] = {21, 30};   // 5. replace: 
+    int endingPosition[2] = {14, 30};   // 5. replace: 
                                         //          same as #4.           
                                         //
     int wallColor[3] = {239, 66, 245};  // 6. replace: **PINK COLOR**
@@ -121,37 +120,37 @@ void jr_printMaze7(Rect position, int defaultHeight, int color, int (&player)[2]
 
     const char* maze[rows] = 
     {    
-        "+ - - - - . - - - - - - - - - +",
+        "+++++++++++++++++++++++++++++++",
         "|         |                   |",  
-        "|   - - . ` - - -   , -   ,   |",  
+        "|   +++++++++++++   ++++  +   |",  
         "|       |           |     |   |",  
-        "| , - . : - - - . , , - - " - :",  
+        "| +++++ | +++++++++++++++++ + |",  
         "| |   | |       | |           |",  
-        "| | . | | . ,   | | , . - - . |",  
+        "| | + | | ++++  | | +++++++++ |",  
         "| | | | | | |   | | | |     | |",  
-        "| | ` : | ` " - ' | " `   . | |",  
+        "| | + | | + ++++++| + +   + | |",  
         "| |   | |         |       | | |",  
-        "| ` . | ` - - - - ' , - - " ' |",  
+        "| ++++| +++++++++++++++++ + + |",  
         "|   | |             |         |",  
-        ": . | ` - - - - - . ' , - . . |",  
-        "| | |             |   |   | | |",  
-        "| | :   , - . - . | , ' . " | |", 
+        "| + | +++++++++++++ ++++++++++|",  
+        "| | |             |       | | |",  
+        "| | |   +++++++++ | +++++ | | |", 
         "| | |   |   |   | | |   |   | |",  
-        "| " | , "   `   | | |   " - ' |",  
+        "| | | + +   +   | | |   + ++++|",  
         "|   | |         | | |         |",  
-        ": . | | , . - . | | | , - - - :",  
+        "|++ | | ++++++++| | | ++++++++|",  
         "| | | | | |   | | | | |       |",  
-        "| | | | | `   | | | | | , - . |",  
+        "| | | | | +   | |X| | | +++++ |",  
         "| | | | |     | | | | | |   | |",  
-        "| | | | |   - ' | | | | | . | |",  
+        "| | | | |   ++++| | | | | + | |",  
         "| | | | |       | | | | | | | |",  
-        "| " | | ` - - - ' | | | ` ' | |",  
+        "| | | | +++++++++ | | | ++++| |",  
         "|   | |           | | |     | |",  
-        "| , ' | , - - . - ' | ` .   | |",  
+        "| ++++| ++++++++++++| ++++  | |",  
         "| |   | |     |     |   |   | |",  
-        "| `   | ` -   | , - "   ` - ' |",  
-        "|     |       | |             |",  
-        "+ - - " - - - ' - - - - - - - +"
+        "| +   | ++++  | +++ +   +++++ |",  
+        "|             | |             |",  
+        "+++++++++++++++ +++++++++++++++"
     };
 
     int columns = getColumns(maze, rows);
@@ -180,6 +179,113 @@ void jr_printMaze7(Rect position, int defaultHeight, int color, int (&player)[2]
 
     } else {
             mazeGrid.printGrid(position, rows, columns, player, defaultHeight, 
-                                                color, mazeName, endReached);
+                                                 color, mazeName, endReached);
     }
-}*/
+}
+
+/* ---------------
+* jr_printMaze8
+*-----------------*/
+void jr_printMaze8(Rect position, int defaultHeight, int color, 
+            int (&player)[2], bool &firstRun, bool& endReached, Grid& mazeGrid, 
+                                                               int& maze_state)
+{
+    const char* mazeName = "Maze 8";    // 2. replace
+    int rows = 47;                      // 3. replace: 
+                                        //          start counting from 1
+    int startingPosition[2] = {15, 46}; // 4. replace: 
+                                        //          start counting from 0.
+                                        //          1st number: left to right
+                                        //          2nd number: top to bottom
+                                        //  
+    int endingPosition[2] = {15, 0};   // 5. replace: 
+                                        //          same as #4.           
+                                        //
+    int wallColor[3] = {202, 3, 252};  // 6. replace: **PURPLE COLOR**
+                                        //          this is rgb color for wall. 
+                                        //          don't forget #7
+
+    // source: https://www.asciiart.eu/art-and-design/mazes
+    // corridors need to be 1 space wide, or it will mess up the trail
+    // 7. replace
+
+    const char* maze[rows] = 
+    {    
+        "+-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+",
+        "|             |     |   |   | |",
+        "| |-| |-|-|-|-| |-| | | | | | |",
+        "|   |   |         |   |   | | |",
+        "|-| |-| | |-|-|-| |-|-|-| | | |",
+        "|   |   |   |   |       | | | |",
+        "|-|-| |-| |-| | |-|-| | | | | |",
+        "|     |   |   |       | | |   |",
+        "| |-|-| |-| | |-| |-|-| | |-|-|",
+        "|       |   |   | |   | | |   |",
+        "|-|-|-|-| |-|-| |-| |-| | | | |",
+        "| | |   | | |   |     |   | | |",
+        "| | |-| | | |-| |-|-|-|-| | | |",
+        "| |   |       | |       | |   |",
+        "|-|-| |-|-|-| |-| |-|-| | |-|-|",
+        "|   | |   |       |   | | |   |",
+        "| | |-| | | |-|-|-| | | | | | |",
+        "| | |   | |       | | | |   | |",
+        "| | | |-|-| |-|-| | | |-|-|-| |",
+        "| | | |   |   |   | |     |   |",
+        "| | | | | |-| | |-|-| |-| | |-|",
+        "| |   | | |   |     |   | |   |",
+        "| |-|-| | |-|-|-|-| | | |-|-| |",
+        "|     | |   |   |   | | |   | |",
+        "| |-| | |-| | | | |-|-| | | | |",
+        "| |   | |   | |   |   | | | | |",
+        "| | |-| | |-| |-|-| | | | |-| |",
+        "| |   | | |         |   |   | |",
+        "| | |-| |-| |-|-|-|-| |-| | | |",
+        "| |   |     |       |   | |   |",
+        "| |-| |-|-|-| |-|-| |-| |-|-|-|",
+        "| |   |       |     | |       |",
+        "| | |-|-|-|-| | |-|-| | |-|-| |",
+        "| |   |   |   | |   |   |   | |",
+        "| |-| | | | |-| | |-| |-| | |-|",
+        "| |   | | |   |   |   |   |   |",
+        "| |-|-| | | | |-|-| |-| |-|-| |",
+        "| |     | | | |   | |     |   |",
+        "| | | |-| | | | | | |-|-| | |-|",
+        "|   |   | | | | | |       | | |",
+        "| |-|-| | | | | |-| |-|-|-| | |",
+        "|   |   |   | | |   |     | | |",
+        "|-|-| | | | |-|-|-|-| | | | | |",
+        "|   | | | |   |   |   | | |   |",
+        "| | | |-| | |-| | | | |-| | |-|",
+        "| |       |     |   | |       |",
+        "+-+-+-+-+-+-+-+ +-+-+X+-+-+-+-+",
+    };
+
+    int columns = getColumns(maze, rows);
+
+    if (firstRun) {
+        player[0] = startingPosition[0]; // x
+        player[1] = startingPosition[1]; // y
+
+        mazeGrid = Grid(maze, rows, columns, player, endingPosition, 
+                                                                wallColor);
+   
+        mazeGrid.printGrid(position, rows, columns, player, defaultHeight, 
+                                                color, mazeName, endReached);
+
+        firstRun = false;
+    } else if (endReached) {
+        cout << "end reached" << endl; 
+        mazeGrid.printGrid(position, rows, columns, player, defaultHeight, 
+                                                color, mazeName, endReached);
+
+        
+        maze_state = -1 * maze_state;
+        firstRun = true;
+        endReached = false;
+        
+
+    } else {
+            mazeGrid.printGrid(position, rows, columns, player, defaultHeight, 
+                                                 color, mazeName, endReached);
+    }
+}
