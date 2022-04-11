@@ -54,7 +54,7 @@ bool GridCells::setEnd(bool input) {
 }
 
 bool etagaca_midterm(int& current_time) {
-  if (current_time == 60) {
+  if (current_time == 5) {
     return true;
   } 
   return false;
@@ -91,7 +91,7 @@ void et_printMaze11(Rect position, int defaultHeight, int color,
     const char* mazeName = "Maze 11";    
     int rows = 23;                                               
     int startingPosition[2] = {22, 21};                                                        
-    int endingPosition[2] = {29, 1};                                                              
+    int endingPosition[2] = {23, 21};                                                              
     int wallColor[3] = {220, 88, 42};
                                                                        
     const char* maze[rows] = 
@@ -152,7 +152,7 @@ void et_printMaze12(Rect position, int defaultHeight, int color,
     const char* mazeName = "Maze 12";    
     int rows = 19;                                               
     int startingPosition[2] = {9, 17};                                                        
-    int endingPosition[2] = {0, 1};                                                              
+    int endingPosition[2] = {9, 16};                                                              
     int wallColor[3] = {220, 88, 42};
                                                                        
     const char* maze[rows] = 
