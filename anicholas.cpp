@@ -56,17 +56,17 @@ void an_printMaze9(Rect position, int defaultHeight, int color,
                                                                 int& maze_state)
 {
     const char* mazeName = "Maze 9";            // 2. replace
-    int rows = 31;                              // 3. replace: 
+    int rows = 14;                              // 3. replace: 
                                                 //          start counting from 1
-    int startingPosition[2] = {1, 29};          // 4. replace: 
+    int startingPosition[2] = {0, 1};          // 4. replace: 
                                                 //          start counting from 0.
                                                 //          1st number: left to right
                                                 //          2nd number: top to bottom
                                                 //  
-    int endingPosition[2] = {42, 29};           // 5. replace: 
+    int endingPosition[2] = {13, 5};           // 5. replace: 
                                                 //          same as #4.           
                                                 //
-    int wallColor[3] = {0, 128, 0};             // 6. replace:
+    int wallColor[3] = {64, 235, 52};             // 6. replace:
                                                 //          this is rgb color for wall. 
                                                 //          don't forget #7
 
@@ -77,22 +77,22 @@ void an_printMaze9(Rect position, int defaultHeight, int color,
     // 7. replace
     const char* maze[rows] = 
     {
-    
-        ".--.--.--.--.  .",
-        "|     |        |",
-        ":  :--:  :  :--:",
-        "|        |  |  |",
-        ":--:--:--:  :  :",
-        "|           |  |",
-        ":  :  :--:  :  :",
-        "|  |     |     |",
-        ":  :--:--:--:  :",
-        "|  |        |  |",
-        ":  :  :--:  :  :",
-        "|     |     |  |",
-        ":  :--:  :--:  :",
-        "|     |  |     |",
-        ":--:--:  :--:--:",
+
+        ".-.-.-.-. .",
+        "|   |     |",
+        ": :-: : :-:",
+        "|     | | |",
+        ":-:-:-: : :",
+        "|       | |",
+        ": : :-: : :",
+        "| |   |   |",
+        ": :-:-:-: :",
+        "| |     | |",
+        ": : :-: : :",
+        "|   |   | |",
+        ": :-: :-: :",
+        "|   | |   |",
+        ":-:-:-:-:-:",
     
     };
 
