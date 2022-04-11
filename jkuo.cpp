@@ -640,7 +640,7 @@ void jk_printMazeTemplate(Rect position, int defaultHeight, int color,
 
 
 
-extern bool jhicks_midterm_function(int& maze_state);
+extern bool jhicks_midterm_function(int maze_state);
 extern bool jr_midterm_func(int value);
 
 
