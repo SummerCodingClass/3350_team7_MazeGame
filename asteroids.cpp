@@ -77,7 +77,7 @@ extern void timeCopy(struct timespec *dest, struct timespec *source);
 
 class Global {
 public:
-	unsigned int textid;
+	unsigned int textid[2];
 	int xres, yres;
 	char keys[65536];
 	int maze_state;
@@ -158,7 +158,7 @@ public:
 			unlink(ppmname);
 	}
 };
-Image img[1] = {"mazeTitle.png"};
+Image img[2] = {"mazeTitle.png", "victoryTitle.png"};
 
 
 class Ship {
@@ -460,12 +460,20 @@ void init_opengl(void)
    glEnable(GL_TEXTURE_2D);
    initialize_fonts();
  
-   glGenTextures(1, &gl.textid);
-   glBindTexture(GL_TEXTURE_2D, gl.textid);
+   glGenTextures(1, &gl.textid[0]);
+   glBindTexture(GL_TEXTURE_2D, gl.textid[0]);
    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
    glTexImage2D(GL_TEXTURE_2D, 0, 3, img[0].width, img[0].height, 0,
        GL_RGB, GL_UNSIGNED_BYTE, img[0].data);
+	glBindTexture(GL_TEXTURE_2D, 0);
+
+   glGenTextures(1, &gl.textid[1]);
+   glBindTexture(GL_TEXTURE_2D, gl.textid[1]);
+   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+   glTexImage2D(GL_TEXTURE_2D, 0, 3, img[1].width, img[1].height, 0,
+       GL_RGB, GL_UNSIGNED_BYTE, img[1].data);
 	glBindTexture(GL_TEXTURE_2D, 0);
 }
 
@@ -1157,7 +1165,7 @@ void render()
 		//jk_showWelcomePageTitle(jk_welcomeTitlePlaceHolder, 
 		//									gl.yres - (gl.yres/2), 0x00FF0000);
 
-		jh_Image(gl.xres, gl.yres,gl.textid);
+		jh_Image(gl.xres, gl.yres,gl.textid[0]);
 		jk_showWelcomePage(jk_welcomeMessage, gl.yres - 400, 0x00CC593F);
 		jh_showWelcomePage(jk_welcomeMessage, gl.yres - 510, 0x00CC593F);
 		jr_showWelcomePage(jk_welcomeMessage, gl.yres - 450, 0x00CC593F);
@@ -1235,8 +1243,9 @@ void render()
 	if (gl.maze_state < 0) {
 
 		glClear(GL_COLOR_BUFFER_BIT);
-		ggprint8b(&r, 16, 0x00ffffff, "victory!");
-		ggprint8b(&r, 16, 0x00ffffff, "press s to start the next level");
+		//ggprint8b(&r, 16, 0x00ffffff, "victory!");
+		ggprint8b(&r, 16, 0x00ffffff, "press s to start next level");
+		jh_Image(gl.xres, gl.yres -50, gl.textid[1]);
 
 	}
 
