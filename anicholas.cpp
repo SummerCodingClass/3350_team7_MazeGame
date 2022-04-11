@@ -43,13 +43,11 @@ bool GridCells::isEnd() {
     return end;
 }
 
-void anicholasPrint(int num) {
-    num = 1;
-
-    if (num == 1) {
-        cout << "Odin Username: anicholas" << endl;
+bool an_Midterm(int value) {
+    if (value > 0) {
+        return true;
     } else {
-        cout << "Cannot display username!" << endl;
+        return false;
     }
 }
 
@@ -57,20 +55,20 @@ void an_printMazeTemplate(Rect position, int defaultHeight, int color,
             int (&player)[2], bool &firstRun, bool& endReached, Grid& mazeGrid, 
                                                                 int& maze_state)
 {
-    const char* mazeName = "Maze Template";    // 2. replace
-    int rows = 31;                      // 3. replace: 
-                                        //          start counting from 1
-    int startingPosition[2] = {1, 29};  // 4. replace: 
-                                        //          start counting from 0.
-                                        //          1st number: left to right
-                                        //          2nd number: top to bottom
-                                        //  
-    int endingPosition[2] = {42, 29};   // 5. replace: 
-                                        //          same as #4.           
-                                        //
-    int wallColor[3] = {0, 128, 0}; // 6. replace:
-                                        //          this is rgb color for wall. 
-                                        //          don't forget #7
+    const char* mazeName = "Maze Template";     // 2. replace
+    int rows = 31;                              // 3. replace: 
+                                                //          start counting from 1
+    int startingPosition[2] = {1, 29};          // 4. replace: 
+                                                //          start counting from 0.
+                                                //          1st number: left to right
+                                                //          2nd number: top to bottom
+                                                //  
+    int endingPosition[2] = {42, 29};           // 5. replace: 
+                                                //          same as #4.           
+                                                //
+    int wallColor[3] = {0, 128, 0};             // 6. replace:
+                                                //          this is rgb color for wall. 
+                                                //          don't forget #7
 
     // source: https://www.asciiart.eu/art-and-design/mazes
     // corridors need to be 1 space wide, or it will mess up the trail
