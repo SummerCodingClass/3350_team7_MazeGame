@@ -53,21 +53,15 @@ bool GridCells::setEnd(bool input) {
   return end;
 }
 
-// ===> Added function for the midterm <===
-// Info: receives a string input and outputs it to terminal
-void etagaca_midterm(string name) {
-  // If the input name is an empty string
-  // then we display error to terminal
-  if (name == "Kotlin" || name == "Lisp" || name == "Cobol") {
-    cout << name << " is not that great" << endl;
-  } else {
-    // If the input is valid then output this
-    cout << name << " is awesome!";
-  }
+bool etagaca_midterm(int& current_time) {
+  if (current_time == 60) {
+    return true;
+  } 
+  return false;
 }
 
 int count = 0;
-// 1 2
+
 void et_timer(Rect position, int defaultHeight, int color, int& maze_state,  
                                         bool& firstRun, int& current_time) {
     position.bot = defaultHeight;
