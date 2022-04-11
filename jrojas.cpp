@@ -75,7 +75,7 @@ void jr_showRulesPage(Rect position, int defaultHeight, int color) {
 
 void jr_showWelcomePage(Rect position, int defaultHeight, int color) {
   position.bot = defaultHeight;
-  ggprint8b(&position, 16, color, "press 'S' to start game");
+  ggprint8b(&position, 16, color, "press 'S' to start from Maze 1");
 }
 
 bool GridCells::setCurrent(bool input) {
@@ -178,7 +178,7 @@ void jr_printMaze8(Rect position, int defaultHeight, int color,
 {
     const char* mazeName = "Maze 8";
     int rows = 26;                      // Row Count
-    int startingPosition[2] = {15, 25}; // (Starting Position)
+    int startingPosition[2] = {15, 24}; // (Starting Position)
                                         //          Counting from 0.
                                         //          1st number: left to right
                                         //          2nd number: top to bottom
@@ -214,8 +214,8 @@ void jr_printMaze8(Rect position, int defaultHeight, int color,
         "|-|-|-|-| | |-|-|-|-| | | | | |",
         "| | |   | |   |   |   | | |   |",
         "| | | |-|-|-|-| | | | |-| | |-|",
-        "|               |   | |       |",
-        "+-+-+-+-+-+-+-+X+-+-+-+-+-+-+-+",
+        "|              X|   | |       |",
+        "+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+",
     };
 
     int columns = getColumns(maze, rows);
