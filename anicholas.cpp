@@ -58,12 +58,12 @@ void an_printMaze9(Rect position, int defaultHeight, int color,
     const char* mazeName = "Maze 9";            // 2. replace
     int rows = 15;                              // 3. replace: 
                                                 //          start counting from 1
-    int startingPosition[2] = {1, 0};          // 4. replace: 
+    int startingPosition[2] = {1, 1};          // 4. replace: 
                                                 //          start counting from 0.
                                                 //          1st number: left to right
                                                 //          2nd number: top to bottom
                                                 //  
-    int endingPosition[2] = {2, 0};           // 5. replace: 
+    int endingPosition[2] = {5, 13};           // 5. replace: 
                                                 //          same as #4.           
                                                 //
     int wallColor[3] = {64, 235, 52};             // 6. replace:
@@ -78,7 +78,7 @@ void an_printMaze9(Rect position, int defaultHeight, int color,
     const char* maze[rows] = 
     {
 
-        ".-.-.-.-. .",
+        ".-.-.-.-.-.",
         "|   |     |",
         ": :-: : :-:",
         "|     | | |",
