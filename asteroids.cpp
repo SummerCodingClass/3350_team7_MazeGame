@@ -1119,8 +1119,12 @@ extern bool jkuo_midterm_checkState(int mazeState, int desiredState);
 extern bool etagaca_midterm(int& current_time);
 
 extern bool jk_allStagesBeaten(int timeBeaten[], int maxMaze);
-void jk_displayScore(int timeBeaten[], int maxMaze, Rect position1, 
+extern void jk_displayScore(int timeBeaten[], int maxMaze, Rect position1, 
 								Rect position2, int defaultHeight, int color);
+extern void highScoreMessages(int& maze_state, int (&timeBeaten)[13], 
+        int current_time, bool& firstAttempt, bool& newHighScore, 
+										int& oldScore, int& newScore, Rect r);
+
 
 
 void jk_stageSetUp(Rect r, Rect timerPosition) 
@@ -1337,84 +1341,56 @@ void render()
 			const char *p = paused_time.c_str();
 			ggprint8b(&r, 16, 0x00ffffff, p);
 
-			int levelBeaten = gl.maze_state * -1;
+			// int levelBeaten = gl.maze_state * -1;
 
-			if (gl.timeBeaten[levelBeaten] == -1) {
-				gl.timeBeaten[levelBeaten] = gl.current_time;
-				gl.firstAttempt = true;
+			// if (gl.timeBeaten[levelBeaten] == -1) {
+			// 	gl.timeBeaten[levelBeaten] = gl.current_time;
+			// 	gl.firstAttempt = true;
 				
 
+			// } else if (gl.current_time < gl.timeBeaten[levelBeaten]) {
 
-				// string record = "current high score: " 
-				// 		+ to_string(gl.timeBeaten[levelBeaten]) + " seconds";
-				// const char *recordChar = record.c_str();			
-				// ggprint8b(&r, 16, 0x00ffffff, recordChar);
-
-
-
-			} else if (gl.current_time < gl.timeBeaten[levelBeaten]) {
-
-				gl.newHighScore = true;
-				gl.oldScore = gl.timeBeaten[levelBeaten];
-				gl.timeBeaten[levelBeaten] = gl.current_time;
-				gl.newScore = gl.timeBeaten[levelBeaten];
-			}
-				// ggprint8b(&r, 16, 0x00ffffff, 
-				// 					"Congratulations! You beated the record!");
-				
-				// string record = "record beaten: " 
-				// 		+ to_string(gl.timeBeaten[levelBeaten]) + " seconds";
-				// const char *recordChar = record.c_str();			
-				// ggprint8b(&r, 16, 0x00ffffff, recordChar);
-
-
-				// gl.timeBeaten[levelBeaten] = gl.current_time;
-
-				
-				// record = "new high score: " 
-				// 		+ to_string(gl. timeBeaten[levelBeaten]) + " seconds";
-				// recordChar = record.c_str();			
-				// ggprint8b(&r, 16, 0x00ffffff, recordChar);
-
-
-				// ggprint8b(&r, 16, 0x00ffffff, 
-				// 					"The new high score has been recorded");	
-
-
+			// 	gl.newHighScore = true;
+			// 	gl.oldScore = gl.timeBeaten[levelBeaten];
+			// 	gl.timeBeaten[levelBeaten] = gl.current_time;
+			// 	gl.newScore = gl.timeBeaten[levelBeaten];
+			// }
+		
 			
-			if (gl.firstAttempt) {
-				string record = "current high score: " 
-						+ to_string(gl.timeBeaten[levelBeaten]) + " seconds";
-				const char *recordChar = record.c_str();			
-				ggprint8b(&r, 16, 0x00ffffff, recordChar);
+			// if (gl.firstAttempt) {
+			// 	string record = "current high score: " 
+			// 			+ to_string(gl.timeBeaten[levelBeaten]) + " seconds";
+			// 	const char *recordChar = record.c_str();			
+			// 	ggprint8b(&r, 16, 0x00ffffff, recordChar);
 
-			} else if (gl.newHighScore) {
-				ggprint8b(&r, 16, 0x00ffffff, 
-									"Congratulations! You beated the record!");
+			// } else if (gl.newHighScore) {
+			// 	ggprint8b(&r, 16, 0x00ffffff, 
+			// 						"Congratulations! You beated the record!");
 				
-				string record = "record beaten: " 
-						+ to_string(gl.oldScore) + " seconds";
-				const char *recordChar = record.c_str();			
-				ggprint8b(&r, 16, 0x00ffffff, recordChar);
+			// 	string record = "record beaten: " 
+			// 			+ to_string(gl.oldScore) + " seconds";
+			// 	const char *recordChar = record.c_str();			
+			// 	ggprint8b(&r, 16, 0x00ffffff, recordChar);
 
 
 				
-				record = "new high score: " 
-						+ to_string(gl.newScore) + " seconds";
-				recordChar = record.c_str();			
-				ggprint8b(&r, 16, 0x00ffffff, recordChar);
+			// 	record = "new high score: " 
+			// 			+ to_string(gl.newScore) + " seconds";
+			// 	recordChar = record.c_str();			
+			// 	ggprint8b(&r, 16, 0x00ffffff, recordChar);
 
 
-				ggprint8b(&r, 16, 0x00ffffff, 
-									"The new high score has been recorded");	
-			} else {
-				string record = "high score: " 
-						+ to_string(gl.timeBeaten[levelBeaten]) + " seconds";
-				const char *recordChar = record.c_str();			
-				ggprint8b(&r, 16, 0x00ffffff, recordChar);
-			}
+			// 	ggprint8b(&r, 16, 0x00ffffff, 
+			// 						"The new high score has been recorded");	
+			// } else {
+			// 	string record = "high score: " 
+			// 			+ to_string(gl.timeBeaten[levelBeaten]) + " seconds";
+			// 	const char *recordChar = record.c_str();			
+			// 	ggprint8b(&r, 16, 0x00ffffff, recordChar);
+			// }
 
-
+			highScoreMessages(gl.maze_state, gl.timeBeaten, gl.current_time,
+				gl.firstAttempt, gl.newHighScore, gl.oldScore, gl.newScore, r);
 
 
 			bool allBeaten = jk_allStagesBeaten(gl.timeBeaten, gl.maxMaze);
@@ -1453,6 +1429,15 @@ void render()
 			glClear(GL_COLOR_BUFFER_BIT);
 			ggprint8b(&r, 16, 0x00ffffff, "congrats on beating everything!");
 			ggprint8b(&r, 16, 0x00ffffff, "press b to return to homepage");
+
+
+			ggprint13(&jk_titles, 16, 0x00ffffff, "Scoreboard");
+			ggprint8b(&jk_titles, 16, 0x00ffffff, "scores are erased upon exit");
+			ggprint8b(&jk_titles, 16, 0x00ffffff, "press a again to resume");
+
+			jk_displayScore(gl.timeBeaten, gl.maxMaze, jk_scoreColumn1, 
+								jk_scoreColumn2, gl.yres - 150, 0x00e3a90b);
+
 
 		}
 
