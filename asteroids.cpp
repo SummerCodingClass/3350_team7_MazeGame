@@ -1162,7 +1162,7 @@ void render()
 	// if (gl.maze_state == 0) {
 		
 		glClear(GL_COLOR_BUFFER_BIT);
-		ggprint8b(&r, 16, 0x00ff0000, "3350 - MAze");
+		// ggprint8b(&r, 16, 0x00ff0000, "3350 - MAze");
 
 		// will delete
 		//jk_showWelcomePageTitle(jk_welcomeTitlePlaceHolder, 

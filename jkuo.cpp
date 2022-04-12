@@ -215,33 +215,34 @@ void jk_printMazeTest(Rect position, int defaultHeight, int color,
     const char* mazeName = "Maze Tutorial";
     int rows = 5;
     int startingPosition[2] = {1, 3};
-    // int endingPosition[2] = {1, 2}; 
-    int endingPosition[2] = {2, 1}; 
+    int endingPosition[2] = {1, 2}; 
+    // int endingPosition[2] = {9, 1}; 
+    // int endingPosition[2] = {2, 1}; 
     // column: count starting from 0, left being 0
     // row: also start from 0, but top being 0
     int wallColor[3] = {221, 160, 221};
     
-    //  const char* maze[rows] = 
-    // {
-    
-    //     "+-+-+-+-+-+",
-    //     "|     |    ",
-    //     "+ +-+ + +-+",
-    //     "| --|   |--",
-    //     "+-+-+-+-+-+"
-    
-    // };
-
      const char* maze[rows] = 
     {
     
-        "+-+-",
-        "|  .",
-        "+ +-",
-        "| --",
-        "+-+-"
+        "+-+-+-+-+-+",
+        "|     |   z",
+        "+ +-+ + +-+",
+        "| --|   |--",
+        "+-+-+-+-+-+"
     
     };
+
+    //  const char* maze[rows] = 
+    // {
+    
+    //     "+-+-",
+    //     "|  .",
+    //     "+ +-",
+    //     "| --",
+    //     "+-+-"
+    
+    // };
 
     int columns = getColumns(maze, rows);
 
@@ -752,7 +753,7 @@ void jk_page_transition(int& maze_state, const char* keyChecked,
 
             // maze_state = 1;
         } else if (maze_state == -4 ) {
-            cout << "in maze_state -4" << endl;
+            // cout << "in maze_state -4" << endl;
             firstRun = true;
             maze_state = 1;
         
@@ -913,6 +914,8 @@ void jk_showRulesPage(Rect position, int defaultHeight, int color)
                               "Timer will start immediately upon game start.");
     ggprint8b(&position, 16, color, 
                               "You have 1000 seconds max per stage.");
+    ggprint8b(&position, 16, color, 
+                              "The grey square represents the exit.");
 }
 
 
@@ -1176,20 +1179,6 @@ int GridCells::getYcoord()
 
 
 
-//----------------------------------------------------------------------------
-// class functions for Grid.h
-//----------------------------------------------------------------------------
-
-
-void Grid::setWallColor(int colorChoice[3]) 
-{
-    wallColor[0] = colorChoice[0];
-    wallColor[1] = colorChoice[1];
-    wallColor[2] = colorChoice[2];
-}
-
-
-
 
 
 
@@ -1392,3 +1381,289 @@ void jk_printMazeSecretMode3(Rect position, int defaultHeight, int color,
 
 
 
+
+
+
+
+//----------------------------------------------------------------------------
+// class functions for Grid.h
+//----------------------------------------------------------------------------
+
+
+void Grid::setWallColor(int colorChoice[3]) 
+{
+    wallColor[0] = colorChoice[0];
+    wallColor[1] = colorChoice[1];
+    wallColor[2] = colorChoice[2];
+}
+
+
+
+
+//----------------------------------------------------------------------------
+// class functions for Grid.h - developed together in group meetings
+//----------------------------------------------------------------------------
+
+
+Grid::Grid() 
+{
+    rows = 0;
+    columns = 0;
+}
+
+
+
+
+// default wall color is green if unspecified
+Grid::Grid(const char** maze, int inputRows, int inputColumns, 
+                                                    int player[2], int end[2]) 
+{
+    rows = inputRows;
+    columns = inputColumns;
+    gridPlayer[1] = player[1];
+    gridPlayer[0] = player[0];
+
+    int colorChoice[3] = {0, 128, 0};
+    setWallColor(colorChoice);
+
+    
+    for (int i = 0; i < rows; i++) {
+        vector <GridCells> v1;
+
+        for (int j = 0; j < columns; j++) {
+            
+            GridCells temp;
+            temp.setXcoord(j);
+            temp.setYcoord(i);
+            
+            if (i == end[1] && j == end[0]) {
+                temp.setEnd(true);
+                mazeEnd[1] = i;
+                mazeEnd[0] = j;
+
+            } else {
+                temp.setEnd(false);
+            }
+
+
+
+            if (i == gridPlayer[1] && j == gridPlayer[0]) {
+                temp.setCurrent(true);
+                temp.setTraveled(false);
+                
+
+            } else if (maze[i][j] == ' ') {
+                temp.setSpace(true);
+                temp.setWall(false);
+                temp.setCurrent(false);
+                temp.setTraveled(false);
+                
+            } else if (maze[i][j] == 'X') {
+                temp.setSpace(true);
+                temp.setWall(false);
+                temp.setCurrent(false);
+                temp.setTraveled(false);
+            } else {
+                temp.setSpace(false);
+                temp.setWall(true);
+                temp.setCurrent(false);
+                temp.setTraveled(false);
+            }
+
+
+            v1.push_back(temp);
+            
+        }
+
+    
+        mazeGrid.push_back(v1);
+    }
+
+
+    
+}
+
+
+
+// can specify wall color
+Grid::Grid(const char** maze, int inputRows, int inputColumns, 
+                                int player[2], int end[2], int colorChoice[3]) 
+{
+    rows = inputRows;
+    columns = inputColumns;
+    gridPlayer[1] = player[1];
+    gridPlayer[0] = player[0];
+    setWallColor(colorChoice);
+
+    // cout << "test";
+
+    //mazeGrid = mazeGrid[];
+
+
+    // for (int i = 0; i < rows; i++) { 
+    //     for (int j = 0; j < columns; j++) {
+    //         printf("%c\n", maze[i][j]);
+            
+    //     }
+            
+    // }
+    
+
+
+    // Inserting elements into vector
+    for (int i = 0; i < rows; i++) {
+        // Vector to store column elements
+        vector <GridCells> v1;
+
+        for (int j = 0; j < columns; j++) {
+            
+            GridCells temp;
+            temp.setXcoord(j);
+            temp.setYcoord(i);
+            
+            // bool isCurrent = false;
+            if (i == end[1] && j == end[0]) {
+                // cout << "end point at j: " << j << ", i: " << i << endl;
+                temp.setEnd(true);
+                mazeEnd[1] = i;
+                mazeEnd[0] = j;
+
+            } else {
+                temp.setEnd(false);
+            }
+
+
+
+            if (i == gridPlayer[1] && j == gridPlayer[0]) {
+                temp.setCurrent(true);
+                temp.setTraveled(false);
+                // currentPosition[0] = j;
+                // currentPosition[1] = i;
+                // isCurrent = true;
+
+            } else if (maze[i][j] == ' ') {
+                temp.setSpace(true);
+                temp.setWall(false);
+                temp.setCurrent(false);
+                temp.setTraveled(false);
+                
+            } else if (maze[i][j] == 'X') {
+                temp.setSpace(true);
+                temp.setWall(false);
+                temp.setCurrent(false);
+                temp.setTraveled(false);
+            } else {
+                temp.setSpace(false);
+                temp.setWall(true);
+                temp.setCurrent(false);
+                temp.setTraveled(false);
+            }
+
+
+            v1.push_back(temp);
+            
+        }
+
+        // Pushing back above 1D vector
+        // to create the 2D vector
+        mazeGrid.push_back(v1);
+    }
+
+
+    
+}
+
+
+vector <vector <GridCells>> Grid::GridGetter() 
+{
+    return mazeGrid;
+}
+
+
+
+
+   
+void Grid::printGrid(Rect position, int rows, int columns,
+        int (&player)[2], int defaultHeight, int color, const char* mazeName,
+                                                            bool& endReached) 
+{
+
+    ggprint8b(&position, 16, color, mazeName);
+
+    // DON'T FORGET TO REMOVE!!!!
+    // cout << "in printGrid: " << endl;
+    // cout << "player: " << player[0] << ",  " << player[1] << endl;
+    // cout << "mazeEnd: " << mazeEnd[0] << ",  " << mazeEnd[1] << endl;
+    
+    if (player[1] == mazeEnd[1] && player[0] == mazeEnd[0]) {
+            
+            // cout << "in printGrid, endReached marked true" << endl;
+            endReached = true;
+            
+    }
+
+
+
+    // ==============================
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < columns; j++) {
+
+            
+            
+            //color of wall
+            // glColor3ub(200,50,50);
+            // glColor3ub(0,128,0);
+            glColor3ub(wallColor[0],wallColor[1], wallColor[2]);
+
+            if(mazeGrid[i][j].isSpace()) {
+                glColor3ub(20,20,20);
+            }
+
+
+            
+            if(mazeGrid[i][j].isEnd()) {
+                glColor3ub(128,128,128);
+            }
+
+
+
+
+            if(mazeGrid[i][j].playerCurrent()) {
+                glColor3ub(255,250,250);
+                // cout << "is player current: " <<
+                // mazeGrid[i][j].playerCurrent() << endl;
+            }
+
+
+
+            if(mazeGrid[i][j].hasTraveled()) {
+                // glColor3ub(255,255,0); // yellow
+                glColor3ub(0,255,255);
+            }
+
+            // -----------------alternative: this works too-----------------
+            // if(i == player[1] && j == player[0]) {
+            //     glColor3ub(255,250,250);
+            //     mazeGrid[i][j].setTraveled(true);
+            // }
+            // // ---------------------------------------------------
+            
+
+
+            float w = 5.0f;
+            glPushMatrix();
+            glTranslatef(20+j*(w+1)*2, defaultHeight-50-i*(w+1)*2, 0);
+            glBegin(GL_QUADS);
+            glVertex2f(-w, -w);
+            glVertex2f(-w,  w);
+            glVertex2f( w,  w);
+            glVertex2f( w, -w);
+            glEnd();
+            glPopMatrix();
+        
+
+
+        }
+    }
+}
+    
