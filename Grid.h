@@ -18,10 +18,6 @@ class Grid {
 
         Grid();
 
-        // default wall color is green if unspecified
-        // Grid(const char** maze, int inputRows, int inputColumns, int player[2], 
-        //                                                             int end[2]); 
-        // // can specify wall color
         Grid(const char** maze, int inputRows, int inputColumns, int player[2], 
                                                 int end[2], int colorChoice[3]); 
 
@@ -30,6 +26,7 @@ class Grid {
         void setWallColor(int colorChoice[3]);
 
         void printGrid(Rect position, int rows, int columns,
+
         int (&player)[2], int defaultHeight, int color, const char* mazeName,
                                                             bool& endReached);
 

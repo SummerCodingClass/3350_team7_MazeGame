@@ -1409,7 +1409,7 @@ void jk_printMazeSecretMode3(Rect position, int defaultHeight, int color,
 
 
 //----------------------------------------------------------------------------
-// class functions for Grid.h
+// nonessential class functions for Grid.h
 //----------------------------------------------------------------------------
 
 
@@ -1421,10 +1421,14 @@ void Grid::setWallColor(int colorChoice[3])
 }
 
 
+vector <vector <GridCells>> Grid::GridGetter() 
+{
+    return mazeGrid;
+}
 
 
 //----------------------------------------------------------------------------
-// class functions for Grid.h - developed together in group meetings
+// essential functions for Grid.h - developed together in group meetings
 //----------------------------------------------------------------------------
 
 
@@ -1435,80 +1439,6 @@ Grid::Grid()
 }
 
 
-
-
-// // default wall color is green if unspecified
-// Grid::Grid(const char** maze, int inputRows, int inputColumns, 
-//                                                     int player[2], int end[2]) 
-// {
-//     rows = inputRows;
-//     columns = inputColumns;
-//     gridPlayer[1] = player[1];
-//     gridPlayer[0] = player[0];
-
-//     int colorChoice[3] = {0, 128, 0};
-//     setWallColor(colorChoice);
-
-    
-//     for (int i = 0; i < rows; i++) {
-//         vector <GridCells> v1;
-
-//         for (int j = 0; j < columns; j++) {
-            
-//             GridCells temp;
-//             temp.setXcoord(j);
-//             temp.setYcoord(i);
-            
-//             if (i == end[1] && j == end[0]) {
-//                 temp.setEnd(true);
-//                 mazeEnd[1] = i;
-//                 mazeEnd[0] = j;
-
-//             } else {
-//                 temp.setEnd(false);
-//             }
-
-
-
-//             if (i == gridPlayer[1] && j == gridPlayer[0]) {
-//                 temp.setCurrent(true);
-//                 temp.setTraveled(false);
-                
-
-//             } else if (maze[i][j] == ' ') {
-//                 temp.setSpace(true);
-//                 temp.setWall(false);
-//                 temp.setCurrent(false);
-//                 temp.setTraveled(false);
-                
-//             } else if (maze[i][j] == 'X') {
-//                 temp.setSpace(true);
-//                 temp.setWall(false);
-//                 temp.setCurrent(false);
-//                 temp.setTraveled(false);
-//             } else {
-//                 temp.setSpace(false);
-//                 temp.setWall(true);
-//                 temp.setCurrent(false);
-//                 temp.setTraveled(false);
-//             }
-
-
-//             v1.push_back(temp);
-            
-//         }
-
-    
-//         mazeGrid.push_back(v1);
-//     }
-
-
-    
-// }
-
-
-
-// can specify wall color
 Grid::Grid(const char** maze, int inputRows, int inputColumns, 
                                 int player[2], int end[2], int colorChoice[3]) 
 {
@@ -1571,14 +1501,6 @@ Grid::Grid(const char** maze, int inputRows, int inputColumns,
 
     
 }
-
-
-vector <vector <GridCells>> Grid::GridGetter() 
-{
-    return mazeGrid;
-}
-
-
 
 
    
