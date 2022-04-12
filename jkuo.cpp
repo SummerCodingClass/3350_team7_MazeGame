@@ -178,7 +178,7 @@ void jk_printMazeTest(Rect position, int defaultHeight, int color,
             int (&player)[2], bool &firstRun, bool& endReached, Grid& mazeGrid, 
                                                                 int& maze_state)
 {
-    const char* mazeName = "Maze Tutorial";
+    const char* mazeName = "Tutorial Stage: Maze 4";
     int rows = 5;
     int startingPosition[2] = {1, 3};
     int endingPosition[2] = {1, 2}; 
@@ -708,56 +708,82 @@ void jk_page_transition(int& maze_state, const char* keyChecked,
             } else {
                 maze_state = 1000; // congrats on beating everything
             }
-             
-        } else if (maze_state == 1) {
-            firstRun = true;
-            maze_state = 2;
-        } else if (maze_state == 2) {
-            firstRun = true;
-            maze_state = 3;
+
+
         } else if (maze_state == 3) {
             firstRun = true;
             maze_state = 5;
         } else if (maze_state == 4) {
             firstRun = true;
             maze_state = 1;
-        } else if (maze_state == 5) {
-            firstRun = true;
-            maze_state = 6;
-        } else if (maze_state == 6) {
-            firstRun = true;
-            maze_state = 7;
-        } else if (maze_state == 7) {
-            firstRun = true;
-            maze_state = 8;
-        } else if (maze_state == 8) {
-            firstRun = true;
-            maze_state = 9;
-        } else if (maze_state == 9) {
-            firstRun = true;
-            maze_state = 10;
-        } else if (maze_state == 10) {
-            firstRun = true;
-            maze_state = 11;
-        } else if (maze_state == 11) {
-            firstRun = true;
-            maze_state = 12;
         } else if (maze_state == 12) {
             firstRun = true;
             maze_state = 0;
-        } else if (maze_state == 230) {
+        } else if (maze_state == 1 || maze_state == 2 || maze_state == 5 ||
+                   maze_state == 6 || maze_state == 7 || maze_state == 8 ||
+                   maze_state == 9 || maze_state == 10 || maze_state == 11) {
             firstRun = true;
-            maze_state = 231;
-        } else if (maze_state == 231) {
+            maze_state++;
+        } else if (maze_state == 230 || maze_state == 231 
+                                     || maze_state == 232) {
             firstRun = true;
-            maze_state = 232;
-        } else if (maze_state == 232) {
-            firstRun = true;
-            maze_state = 233;
+            maze_state++;
         } else if (maze_state == 233) {
             firstRun = true;
-            maze_state = 23;
-        }
+            maze_state = 230;
+        }        
+        
+            
+
+        // } else if (maze_state == 1) {
+        //     firstRun = true;
+        //     maze_state = 2;
+        // } else if (maze_state == 2) {
+        //     firstRun = true;
+        //     maze_state = 3;
+        // } else if (maze_state == 3) {
+        //     firstRun = true;
+        //     maze_state = 5;
+        // } else if (maze_state == 4) {
+        //     firstRun = true;
+        //     maze_state = 1;
+        // } else if (maze_state == 5) {
+        //     firstRun = true;
+        //     maze_state = 6;
+        // } else if (maze_state == 6) {
+        //     firstRun = true;
+        //     maze_state = 7;
+        // } else if (maze_state == 7) {
+        //     firstRun = true;
+        //     maze_state = 8;
+        // } else if (maze_state == 8) {
+        //     firstRun = true;
+        //     maze_state = 9;
+        // } else if (maze_state == 9) {
+        //     firstRun = true;
+        //     maze_state = 10;
+        // } else if (maze_state == 10) {
+        //     firstRun = true;
+        //     maze_state = 11;
+        // } else if (maze_state == 11) {
+        //     firstRun = true;
+        //     maze_state = 12;
+        // } else if (maze_state == 12) {
+        //     firstRun = true;
+        //     maze_state = 0;
+        // } else if (maze_state == 230) {
+        //     firstRun = true;
+        //     maze_state = 231;
+        // } else if (maze_state == 231) {
+        //     firstRun = true;
+        //     maze_state = 232;
+        // } else if (maze_state == 232) {
+        //     firstRun = true;
+        //     maze_state = 233;
+        // } else if (maze_state == 233) {
+        //     firstRun = true;
+        //     maze_state = 23;
+        // }
 
         return; 
     }
