@@ -1326,16 +1326,16 @@ void jk_displayScore(int timeBeaten[], int maxMaze, Rect position1,
         const char *name = mazeLevel.c_str();
 
         // ggprint13(&position1, 16, color, "Maze 1: ");
-        ggprint13(&position1, 30, color, name);
+        ggprint13(&position1, 35, color, name);
     
         if (timeBeaten[level] == -1) {
-            ggprint13(&position2, 30, 0x00FF8C00, "no attempt yet");
+            ggprint13(&position2, 35, 0x00FF8C00, "no attempt yet");
         } else {
     
             int time = timeBeaten[level];
             string mazeTime = "completed in " + to_string(time) + " seconds";
             const char *highScore = mazeTime.c_str();
-            ggprint13(&position2, 30, color, highScore);
+            ggprint13(&position2, 35, color, highScore);
         }    
     }
 
