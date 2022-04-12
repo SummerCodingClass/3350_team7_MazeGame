@@ -1116,6 +1116,10 @@ void jk_stageSetUp(Rect r, Rect timerPosition) {
 
 	et_timer(timerPosition, gl.yres-120, 0x00B24BF3, gl.maze_state, 
 											gl.firstRun, gl.current_time);
+	if(etagaca_midterm(gl.current_time)) {
+		ggprint8b(&r, 16, 0x00b19cd9, 
+						"5 seconds have passed. Have you started playing?");
+	}											
 
 	jk_playerMovement(gl.keys, gl.player, gl.mazeGrid);
 }
@@ -1253,16 +1257,6 @@ void render()
 	// if (gl.maze_state == 4) {
 		
 		jk_stageSetUp(r, et_message);
-
-		if(etagaca_midterm(gl.current_time)) {
-			ggprint8b(&r, 16, 0x00b19cd9, ""); // placeholder
-			ggprint8b(&r, 16, 0x00b19cd9, ""); // placeholder
-			ggprint8b(&r, 16, 0x00b19cd9, ""); // placeholder
-			ggprint8b(&r, 16, 0x00b19cd9, ""); // placeholder
-			ggprint8b(&r, 16, 0x00b19cd9, 
-							"5 seconds have passed. Have you started playing?");
-   		}
-
 		jk_printMazeTest(jk_t, gl.yres-100, 0x0040e0d0, gl.player, gl.firstRun, 
 									gl.endReached, gl.mazeGrid, gl.maze_state);
 	}
