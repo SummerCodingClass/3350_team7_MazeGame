@@ -537,25 +537,6 @@ void jk_printMazeTemplate(Rect position, int defaultHeight, int color,
 extern bool jhicks_midterm_function(int maze_state);
 extern bool jrojas_midterm_func(int value);
 extern bool anicholas_Midterm(int value);
-// extern bool etagaca_midterm(int& current_time); called in main
-
-
-// // void printTimerWarning(int& current_time, Rect position, 
-//                                                 int defaultHeight, int color)
-// {
-//     if(etagaca_midterm(current_time)) {
-//         ggprint8b(position, 16, 0x00b19cd9, "1 minutes have passed");
-//     }
-// }
-
-
-
-
-
-
-
-
-
 
 
 
@@ -567,12 +548,13 @@ void jk_page_transition(int& maze_state, const char* keyChecked,
     //case XK_b;
     if (strcmp(keyChecked, "b") == 0) {
         
-        if (jhicks_midterm_function(maze_state)) { // if (maze_state == 0) {
+        // if (maze_state == 0) {
+        if (jhicks_midterm_function(maze_state)) { 
             //do nothing
         } else if (maze_state == 1000 || maze_state == 404) {
             maze_state = 0;
         } else if (maze_state > 230) {
-            maze_state = 23;
+            maze_state = 230;
         // } else if (maze_state > 0) {
         } else if (anicholas_Midterm(maze_state)) {
             maze_state = 0;
