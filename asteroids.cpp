@@ -1080,7 +1080,7 @@ extern void jr_showRulesPage(Rect position, int defaultHeight, int color);
 extern void et_showRulesPage(Rect position, int defaultHeight, int color);
 extern void an_showRulesPage(Rect position, int defaultHeight, int color);
 
-// can be replaced by picture logo
+// now called in secret page
 extern void jk_showWelcomePageTitle(Rect position, int defaultHeight, 
 																int color);
 
@@ -1097,48 +1097,17 @@ extern void jk_showSecretModeMessage(Rect position, int defaultHeight,
 extern void jk_playerMovement(char* keys, int (&player)[2], Grid& grid);
 extern void jk_playerMovementForSecretMode(char* keys, int (&player)[2]);
 extern void jh_Image(int xres, int yres, unsigned int textid);
-//Eidmone's Timer
 extern void et_timer(Rect position, int defaultHeight, int color, 
 						int& maze_state,  bool& firstRun, int & current_time);
 
-
-
-
-//Jennifer's Midterm
 extern bool jkuo_midterm_checkState(int mazeState, int desiredState);
-
-//Jeff's Midterm - called in jkuo.cpp
-// extern bool jhicks_midterm_function(int& maze_state);
-
-//Jesus's Midterm - called in jkuo.cpp
-// extern void jr_midterm_func(int value);
-
-//Adam's Midterm
-// extern void anicholasPrint(int num);
-
-//Eidmone's Midterm
-// extern void etagaca_midterm(string name);
 extern bool etagaca_midterm(int& current_time);
+
+
+
 
 void render()
 {
-
-//Jennifer's Midterm
-// jkuo_midterm_function_wed(gl.mazeState);
-
-//Jeff's Midterm
-// jhicks_midterm_function(gl.maze_state);
-
-
-//Jesus's Midterm
-// jr_midterm_func(55);
-// jr_midterm_func(-108);
-
-//Adam's Midterm
-//anicholasPrint(1);
-
-//Eidmone's Midterm
-// etagaca_midterm("C++");
 
 
 	Rect r;
