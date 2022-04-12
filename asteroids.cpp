@@ -1301,7 +1301,8 @@ void render()
 		ggprint8b(&r, 16, 0x00ffffff, "HOLD down the arrowkeys to move about");
 		
 		if(etagaca_midterm(gl.current_time)) {
-			ggprint8b(&r, 16, 0x00b19cd9, "5 seconds have passed");
+			ggprint8b(&r, 16, 0x00b19cd9, 
+							"5 seconds have passed. Have you started playing?");
    		}
 
 		et_timer(et_message, gl.yres-120, 0x00B24BF3, gl.maze_state,
