@@ -1295,16 +1295,10 @@ bool jk_allStagesBeaten(int timeBeaten[], int maxMaze)
 {
     
     for (int i = 1; i <= maxMaze; i++) {
-
-        // cout << "timeBeaten[" << i << "]: " << timeBeaten[i] << endl;
         if (i == 4) {
-        //     // do nothing. tutorial doesn't count
-        //     cout << "stage 4" << endl;
+            //do nothing. tutorial stage doesn't count against progress
         } else {
             if(timeBeaten[i] == -1) {   
-                
-                // cout << "timeBeaten[" << i << "]: " << timeBeaten[i] << endl;
-                // cout << "stage " << i << " returned false" << endl;
                 return false;
             }
         }

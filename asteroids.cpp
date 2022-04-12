@@ -573,46 +573,13 @@ void check_mouse(XEvent *e)
 {
 	//Did the mouse move?
 	//Was a mouse button clicked?
-	// static int savex = 0;
-	// static int savey = 0;
-	// //
-	// static int ct=0;
-	//std::cout << "m" << std::endl << std::flush;
+
 	if (e->type == ButtonRelease) {
 		return;
 	}
 	if (e->type == ButtonPress) {
 		if (e->xbutton.button==1) {
 			//Left button is down
-			//a little time between each bullet
-			// struct timespec bt;
-			// clock_gettime(CLOCK_REALTIME, &bt);
-			// double ts = timeDiff(&g.bulletTimer, &bt);
-			// if (ts > 0.1) {
-			// 	timeCopy(&g.bulletTimer, &bt);
-			// 	//shoot a bullet...
-			// 	if (g.nbullets < MAX_BULLETS) {
-			// 		Bullet *b = &g.barr[g.nbullets];
-			// 		timeCopy(&b->time, &bt);
-			// 		b->pos[0] = g.ship.pos[0];
-			// 		b->pos[1] = g.ship.pos[1];
-			// 		b->vel[0] = g.ship.vel[0];
-			// 		b->vel[1] = g.ship.vel[1];
-			// 		//convert ship angle to radians
-			// 		Flt rad = ((g.ship.angle+90.0) / 360.0f) * PI * 2.0;
-			// 		//convert angle to a vector
-			// 		Flt xdir = cos(rad);
-			// 		Flt ydir = sin(rad);
-			// 		b->pos[0] += xdir*20.0f;
-			// 		b->pos[1] += ydir*20.0f;
-			// 		b->vel[0] += xdir*6.0f + rnd()*0.1;
-			// 		b->vel[1] += ydir*6.0f + rnd()*0.1;
-			// 		b->color[0] = 1.0f;
-			// 		b->color[1] = 1.0f;
-			// 		b->color[2] = 1.0f;
-			// 		++g.nbullets;
-			// 	}
-			// }
 		}
 		if (e->xbutton.button==3) {
 			//Right button is down
@@ -625,58 +592,10 @@ void check_mouse(XEvent *e)
 			jr_PrintMsg();
 			et_PrintMsg();
 			an_PrintMsg();
-		
-
 
 
 		}
 	}
-	// //keys[XK_Up] = 0;
-	// if (savex != e->xbutton.x || savey != e->xbutton.y) {
-	// 	//Mouse moved
-	// 	int xdiff = savex - e->xbutton.x;
-	// 	int ydiff = savey - e->xbutton.y;
-	// 	if (++ct < 10)
-	// 		return;		
-	// 	//std::cout << "savex: " << savex << std::endl << std::flush;
-	// 	//std::cout << "e->xbutton.x: " << e->xbutton.x << std::endl <<
-	// 	//std::flush;
-	// 	if (xdiff > 0) {
-	// 		//std::cout << "xdiff: " << xdiff << std::endl << std::flush;
-	// 		g.ship.angle += 0.05f * (float)xdiff;
-	// 		if (g.ship.angle >= 360.0f)
-	// 			g.ship.angle -= 360.0f;
-	// 	}
-	// 	else if (xdiff < 0) {
-	// 		//std::cout << "xdiff: " << xdiff << std::endl << std::flush;
-	// 		g.ship.angle += 0.05f * (float)xdiff;
-	// 		if (g.ship.angle < 0.0f)
-	// 			g.ship.angle += 360.0f;
-	// 	}
-	// 	if (ydiff > 0) {
-	// 		//apply thrust
-	// 		//convert ship angle to radians
-	// 		Flt rad = ((g.ship.angle+90.0) / 360.0f) * PI * 2.0;
-	// 		//convert angle to a vector
-	// 		Flt xdir = cos(rad);
-	// 		Flt ydir = sin(rad);
-	// 		g.ship.vel[0] += xdir * (float)ydiff * 0.01f;
-	// 		g.ship.vel[1] += ydir * (float)ydiff * 0.01f;
-	// 		Flt speed = sqrt(g.ship.vel[0]*g.ship.vel[0]+
-	// 											g.ship.vel[1]*g.ship.vel[1]);
-	// 		if (speed > 10.0f) {
-	// 			speed = 10.0f;
-	// 			normalize2d(g.ship.vel);
-	// 			g.ship.vel[0] *= speed;
-	// 			g.ship.vel[1] *= speed;
-	// 		}
-	// 		g.mouseThrustOn = true;
-	// 		clock_gettime(CLOCK_REALTIME, &g.mouseThrustTimer);
-	// 	}
-	// 	x11.set_mouse_position(100,100);
-	// 	savex = 100;
-	// 	savey = 100;
-	// }
 }
 
 
@@ -774,7 +693,10 @@ int check_keys(XEvent *e)
 			break;
 
 
-		// what was this? who tried this?
+		// I couldn't tell what this was trying to do. 
+		// lemme know if you want to keep it and we'll see if we can get
+		// what you needed implemented
+
 		// case XK_5:
 		// 	jk_page_transition(gl.maze_state, "z", gl.firstRun, gl.maxMaze);
 		// 	break;
@@ -797,289 +719,6 @@ int check_keys(XEvent *e)
 	}
 	return 0;
 }
-
-// void deleteAsteroid(Game *g, Asteroid *node)
-// {
-// 	//Remove a node from doubly-linked list
-// 	//Must look at 4 special cases below.
-// 	if (node->prev == NULL) {
-// 		if (node->next == NULL) {
-// 			//only 1 item in list.
-// 			g->ahead = NULL;
-// 		} else {
-// 			//at beginning of list.
-// 			node->next->prev = NULL;
-// 			g->ahead = node->next;
-// 		}
-// 	} else {
-// 		if (node->next == NULL) {
-// 			//at end of list.
-// 			node->prev->next = NULL;
-// 		} else {
-// 			//in middle of list.
-// 			node->prev->next = node->next;
-// 			node->next->prev = node->prev;
-// 		}
-// 	}
-// 	delete node;
-// 	node = NULL;
-// }
-
-// void buildAsteroidFragment(Asteroid *ta, Asteroid *a)
-// {
-// 	//build ta from a
-// 	ta->nverts = 8;
-// 	ta->radius = a->radius / 2.0;
-// 	Flt r2 = ta->radius / 2.0;
-// 	Flt angle = 0.0f;
-// 	Flt inc = (PI * 2.0) / (Flt)ta->nverts;
-// 	for (int i=0; i<ta->nverts; i++) {
-// 		ta->vert[i][0] = sin(angle) * (r2 + rnd() * ta->radius);
-// 		ta->vert[i][1] = cos(angle) * (r2 + rnd() * ta->radius);
-// 		angle += inc;
-// 	}
-// 	ta->pos[0] = a->pos[0] + rnd()*10.0-5.0;
-// 	ta->pos[1] = a->pos[1] + rnd()*10.0-5.0;
-// 	ta->pos[2] = 0.0f;
-// 	ta->angle = 0.0;
-// 	ta->rotate = a->rotate + (rnd() * 4.0 - 2.0);
-// 	ta->color[0] = 0.8;
-// 	ta->color[1] = 0.8;
-// 	ta->color[2] = 0.7;
-// 	ta->vel[0] = a->vel[0] + (rnd()*2.0-1.0);
-// 	ta->vel[1] = a->vel[1] + (rnd()*2.0-1.0);
-// 	//std::cout << "frag" << std::endl;
-// }
-
-// // void physics()
-// // {
-// // 	Flt d0,d1,dist;
-// // 	//Update ship position
-// // 	g.ship.pos[0] += g.ship.vel[0];
-// // 	g.ship.pos[1] += g.ship.vel[1];
-// // 	//Check for collision with window edges
-// // 	if (g.ship.pos[0] < 0.0) {
-// // 		g.ship.pos[0] += (float)gl.xres;
-// // 	}
-// // 	else if (g.ship.pos[0] > (float)gl.xres) {
-// // 		g.ship.pos[0] -= (float)gl.xres;
-// // 	}
-// // 	else if (g.ship.pos[1] < 0.0) {
-// // 		g.ship.pos[1] += (float)gl.yres;
-// // 	}
-// // 	else if (g.ship.pos[1] > (float)gl.yres) {
-// // 		g.ship.pos[1] -= (float)gl.yres;
-// // 	}
-// // 	//
-// // 	//
-// // 	//Update bullet positions
-// // 	struct timespec bt;
-// // 	clock_gettime(CLOCK_REALTIME, &bt);
-// // 	int i = 0;
-// // 	while (i < g.nbullets) {
-// // 		Bullet *b = &g.barr[i];
-// // 		//How long has bullet been alive?
-// // 		double ts = timeDiff(&b->time, &bt);
-// // 		if (ts > 2.5) {
-// // 			//time to delete the bullet.
-// // 			memcpy(&g.barr[i], &g.barr[g.nbullets-1],
-// // 				sizeof(Bullet));
-// // 			g.nbullets--;
-// // 			//do not increment i.
-// // 			continue;
-// // 		}
-// // 		//move the bullet
-// // 		b->pos[0] += b->vel[0];
-// // 		b->pos[1] += b->vel[1];
-// // 		//Check for collision with window edges
-// // 		if (b->pos[0] < 0.0) {
-// // 			b->pos[0] += (float)gl.xres;
-// // 		}
-// // 		else if (b->pos[0] > (float)gl.xres) {
-// // 			b->pos[0] -= (float)gl.xres;
-// // 		}
-// // 		else if (b->pos[1] < 0.0) {
-// // 			b->pos[1] += (float)gl.yres;
-// // 		}
-// // 		else if (b->pos[1] > (float)gl.yres) {
-// // 			b->pos[1] -= (float)gl.yres;
-// // 		}
-// // 		++i;
-// // 	}
-// // 	//
-// // 	//Update asteroid positions
-// // 	Asteroid *a = g.ahead;
-// // 	while (a) {
-// // 		a->pos[0] += a->vel[0];
-// // 		a->pos[1] += a->vel[1];
-// // 		//Check for collision with window edges
-// // 		if (a->pos[0] < -100.0) {
-// // 			a->pos[0] += (float)gl.xres+200;
-// // 		}
-// // 		else if (a->pos[0] > (float)gl.xres+100) {
-// // 			a->pos[0] -= (float)gl.xres+200;
-// // 		}
-// // 		else if (a->pos[1] < -100.0) {
-// // 			a->pos[1] += (float)gl.yres+200;
-// // 		}
-// // 		else if (a->pos[1] > (float)gl.yres+100) {
-// // 			a->pos[1] -= (float)gl.yres+200;
-// // 		}
-// // 		a->angle += a->rotate;
-// // 		a = a->next;
-// // 	}
-// // 	//
-// // 	//Asteroid collision with bullets?
-// // 	//If collision detected:
-// // 	//     1. delete the bullet
-// // 	//     2. break the asteroid into pieces
-// // 	//        if asteroid small, delete it
-// // 	a = g.ahead;
-// // 	while (a) {
-// // 		//is there a bullet within its radius?
-// // 		int i=0;
-// // 		while (i < g.nbullets) {
-// // 			Bullet *b = &g.barr[i];
-// // 			d0 = b->pos[0] - a->pos[0];
-// // 			d1 = b->pos[1] - a->pos[1];
-// // 			dist = (d0*d0 + d1*d1);
-// // 			if (dist < (a->radius*a->radius)) {
-// // 				//std::cout << "asteroid hit." << std::endl;
-// // 				//this asteroid is hit.
-// // 				if (a->radius > MINIMUM_ASTEROID_SIZE) {
-// // 					//break it into pieces.
-// // 					Asteroid *ta = a;
-// // 					buildAsteroidFragment(ta, a);
-// // 					int r = rand()%10+5;
-// // 					for (int k=0; k<r; k++) {
-// // 						//get the next asteroid position in the array
-// // 						Asteroid *ta = new Asteroid;
-// // 						buildAsteroidFragment(ta, a);
-// // 						//add to front of asteroid linked list
-// // 						ta->next = g.ahead;
-// // 						if (g.ahead != NULL)
-// // 							g.ahead->prev = ta;
-// // 						g.ahead = ta;
-// // 						g.nasteroids++;
-// // 					}
-// // 				} else {
-// // 					a->color[0] = 1.0;
-// // 					a->color[1] = 0.1;
-// // 					a->color[2] = 0.1;
-// // 					//asteroid is too small to break up
-// // 					//delete the asteroid and bullet
-// // 					Asteroid *savea = a->next;
-// // 					deleteAsteroid(&g, a);
-// // 					a = savea;
-// // 					g.nasteroids--;
-// // 				}
-// // 				//delete the bullet...
-// // 				memcpy(&g.barr[i], &g.barr[g.nbullets-1], sizeof(Bullet));
-// // 				g.nbullets--;
-// // 				if (a == NULL)
-// // 					break;
-// // 			}
-// // 			i++;
-// // 		}
-// // 		if (a == NULL)
-// // 			break;
-// // 		a = a->next;
-// // 	}
-// // 	//---------------------------------------------------
-// // 	//check keys pressed now
-// // 	if (gl.keys[XK_Left]) {
-// // 		// g.ship.angle += 4.0;
-// // 		// if (g.ship.angle >= 360.0f)
-// // 		// 	g.ship.angle -= 360.0f;
-// // 		// gl.player[0] = gl.player[1] - 1;
-// // 	}
-// // 	if (gl.keys[XK_Right]) {
-// // 		// g.ship.angle -= 4.0;
-// // 		// if (g.ship.angle < 0.0f)
-// // 		// 	g.ship.angle += 360.0f;
-
-// // 		// gl.player[0] = gl.player[1] + 1;
-// // 	}
-// // 	if (gl.keys[XK_Up]) {
-// // 		//apply thrust
-// // 		//convert ship angle to radians
-// // 		// Flt rad = ((g.ship.angle+90.0) / 360.0f) * PI * 2.0;
-// // 		// //convert angle to a vector
-// // 		// Flt xdir = cos(rad);
-// // 		// Flt ydir = sin(rad);
-// // 		// g.ship.vel[0] += xdir*0.02f;
-// // 		// g.ship.vel[1] += ydir*0.02f;
-// // 		// Flt speed = sqrt(g.ship.vel[0]*g.ship.vel[0]+
-// // 		// 		g.ship.vel[1]*g.ship.vel[1]);
-// // 		// if (speed > 10.0f) {
-// // 		// 	speed = 10.0f;
-// // 		// 	normalize2d(g.ship.vel);
-// // 		// 	g.ship.vel[0] *= speed;
-// // 		// 	g.ship.vel[1] *= speed;
-// // 		// }
-
-// // 		// gl.player[1] = gl.player[1] - 1;
-// // 	}
-// // 	if (gl.keys[XK_space]) {
-// // 		//a little time between each bullet
-// // 		struct timespec bt;
-// // 		clock_gettime(CLOCK_REALTIME, &bt);
-// // 		double ts = timeDiff(&g.bulletTimer, &bt);
-// // 		if (ts > 0.1) {
-// // 			timeCopy(&g.bulletTimer, &bt);
-// // 			if (g.nbullets < MAX_BULLETS) {
-// // 				//shoot a bullet...
-// // 				//Bullet *b = new Bullet;
-// // 				Bullet *b = &g.barr[g.nbullets];
-// // 				timeCopy(&b->time, &bt);
-// // 				b->pos[0] = g.ship.pos[0];
-// // 				b->pos[1] = g.ship.pos[1];
-// // 				b->vel[0] = g.ship.vel[0];
-// // 				b->vel[1] = g.ship.vel[1];
-// // 				//convert ship angle to radians
-// // 				Flt rad = ((g.ship.angle+90.0) / 360.0f) * PI * 2.0;
-// // 				//convert angle to a vector
-// // 				Flt xdir = cos(rad);
-// // 				Flt ydir = sin(rad);
-// // 				b->pos[0] += xdir*20.0f;
-// // 				b->pos[1] += ydir*20.0f;
-// // 				b->vel[0] += xdir*6.0f + rnd()*0.1;
-// // 				b->vel[1] += ydir*6.0f + rnd()*0.1;
-// // 				b->color[0] = 1.0f;
-// // 				b->color[1] = 1.0f;
-// // 				b->color[2] = 1.0f;
-// // 				g.nbullets++;
-// // 			}
-// // 		}
-// // 	}
-
-// // 	// Rect jk_t = jk_createRect(gl.yres, 100, 10, 0);
-// // 	// if (gl.keys[XK_1]) {
-// // 	// 	glClear(GL_COLOR_BUFFER_BIT);
-// // 	// 	jk_printMaze1(jk_t, gl.yres-100, 0x0040e0d0);
-// // 	// }
-// // 	// if (gl.keys[XK_2]) {
-// // 	// 	glClear(GL_COLOR_BUFFER_BIT);
-// // 	// 	jk_printMaze2(jk_t, gl.yres-100, 0x0040e0d0);
-// // 	// }
-// // 	// if (gl.keys[XK_3]) {
-// // 	// 	glClear(GL_COLOR_BUFFER_BIT);
-// // 	// 	jk_printMaze3(jk_t, gl.yres-100, 0x0040e0d0);
-// // 	// }
-
-
-
-// // 	if (g.mouseThrustOn) {
-// // 		//should thrust be turned off
-// // 		struct timespec mtt;
-// // 		clock_gettime(CLOCK_REALTIME, &mtt);
-// // 		double tdif = timeDiff(&mtt, &g.mouseThrustTimer);
-// // 		//std::cout << "tdif: " << tdif << std::endl;
-// // 		if (tdif < -0.3)
-// // 			g.mouseThrustOn = false;
-// // 	}
-// // }
-
 
 
 extern void jk_showCreditPage(Rect position, int defaultHeight, int color);
@@ -1118,7 +757,7 @@ extern void et_timer(Rect position, int defaultHeight, int color,
 extern bool jkuo_midterm_checkState(int mazeState, int desiredState);
 extern bool etagaca_midterm(int& current_time);
 
-extern bool jk_allStagesBeaten(int timeBeaten[], int maxMaze);
+
 extern void jk_displayScore(int timeBeaten[], int maxMaze, Rect position1, 
 								Rect position2, int defaultHeight, int color);
 extern void highScoreMessages(int& maze_state, int (&timeBeaten)[13], 
@@ -1141,7 +780,7 @@ void jk_stageSetUp(Rect r, Rect timerPosition)
 											gl.firstRun, gl.current_time);
 	if(etagaca_midterm(gl.current_time)) {
 		ggprint8b(&r, 16, 0x00b19cd9, 
-						"5 seconds have passed. Have you started playing?");
+						"5 seconds have passed. Let's get started!");
 	}											
 
 	jk_playerMovement(gl.keys, gl.player, gl.mazeGrid);
@@ -1245,10 +884,6 @@ void render()
 	
 
 
-	// bool firstAttempt = false;
-	// bool newHighScore = false;
-	// int oldScore = 0;
-	// int newScore = 0;
 
 
 	if (gl.showScores) {
@@ -1284,14 +919,7 @@ void render()
 
 		}
 
-		// Rect jk_t = jk_createRect(gl.yres, 100, 10, 0);
-		// Rect jk_message = jk_createRect(gl.yres+50, 100, 10, 0); 
-		// Rect jk_titles = jk_createRect(gl.yres+50, 100, 10, 0);
-		
-		// jk_titles.left = gl.xres / 2;
-		// jk_titles.center = 1;
 
-		// jk_message.left = 50;
 
 
 		if (jkuo_midterm_checkState(gl.maze_state, 110)) {
@@ -1341,64 +969,10 @@ void render()
 			const char *p = paused_time.c_str();
 			ggprint8b(&r, 16, 0x00ffffff, p);
 
-			// int levelBeaten = gl.maze_state * -1;
-
-			// if (gl.timeBeaten[levelBeaten] == -1) {
-			// 	gl.timeBeaten[levelBeaten] = gl.current_time;
-			// 	gl.firstAttempt = true;
-				
-
-			// } else if (gl.current_time < gl.timeBeaten[levelBeaten]) {
-
-			// 	gl.newHighScore = true;
-			// 	gl.oldScore = gl.timeBeaten[levelBeaten];
-			// 	gl.timeBeaten[levelBeaten] = gl.current_time;
-			// 	gl.newScore = gl.timeBeaten[levelBeaten];
-			// }
-		
-			
-			// if (gl.firstAttempt) {
-			// 	string record = "current high score: " 
-			// 			+ to_string(gl.timeBeaten[levelBeaten]) + " seconds";
-			// 	const char *recordChar = record.c_str();			
-			// 	ggprint8b(&r, 16, 0x00ffffff, recordChar);
-
-			// } else if (gl.newHighScore) {
-			// 	ggprint8b(&r, 16, 0x00ffffff, 
-			// 						"Congratulations! You beated the record!");
-				
-			// 	string record = "record beaten: " 
-			// 			+ to_string(gl.oldScore) + " seconds";
-			// 	const char *recordChar = record.c_str();			
-			// 	ggprint8b(&r, 16, 0x00ffffff, recordChar);
-
-
-				
-			// 	record = "new high score: " 
-			// 			+ to_string(gl.newScore) + " seconds";
-			// 	recordChar = record.c_str();			
-			// 	ggprint8b(&r, 16, 0x00ffffff, recordChar);
-
-
-			// 	ggprint8b(&r, 16, 0x00ffffff, 
-			// 						"The new high score has been recorded");	
-			// } else {
-			// 	string record = "high score: " 
-			// 			+ to_string(gl.timeBeaten[levelBeaten]) + " seconds";
-			// 	const char *recordChar = record.c_str();			
-			// 	ggprint8b(&r, 16, 0x00ffffff, recordChar);
-			// }
-
 			highScoreMessages(gl.maze_state, gl.timeBeaten, gl.current_time,
 				gl.firstAttempt, gl.newHighScore, gl.oldScore, gl.newScore, r,
 																gl.maxMaze);
 
-
-			// bool allBeaten = jk_allStagesBeaten(gl.timeBeaten, gl.maxMaze);
-
-			// if (allBeaten == true) {
-			// 	gl.maze_state = 1000;
-			// }
 		}
 
 
@@ -1536,19 +1110,12 @@ void render()
 			jk_playerMovementForSecretMode(gl.keys, gl.player);
 			jk_printMazeSecretMode3(jk_t, gl.yres-100, 0x0040e0d0, gl.player, 
 													gl.firstRun);
-													// gl.firstRun, gl.mazeGrid);
+													
 		}
 
 
 	}
 
-
-
-	//tutorial doesn't count
-	// bool allBeaten = jk_allStagesBeaten(gl.timeBeaten, gl.maxMaze);
-	// if (allBeaten == true) {
-	// 	gl.maze_state = 1000;
-	// }
 
 }
 
