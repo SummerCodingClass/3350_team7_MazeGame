@@ -1239,3 +1239,25 @@ void Grid::printGrid(Rect position, int rows, int columns,
 
 }
     
+
+
+
+// scene construction:
+
+// void jk_stageSetUp(Rect msgPosition, Rect timerPosition, int defaultHeight, 
+//             int color, int maze_state, int firstRun, int current_time) 
+// {
+
+//     glClear(GL_COLOR_BUFFER_BIT);
+	
+// 	ggprint8b(&r, 16, 0x00ffffff, "press s to switch to next maze");
+// 	ggprint8b(&r, 16, 0x00ffffff, "press b to return to home");
+// 	ggprint8b(&r, 16, 0x00ffffff, "press p to pause game");
+// 	ggprint8b(&r, 16, 0x00ffffff, "HOLD down the arrowkeys to move about");
+
+// 	et_timer(et_message, gl.yres-120, 0x00B24BF3, gl.maze_state, 
+// 											gl.firstRun, gl.current_time);
+
+// 	jk_playerMovement(gl.keys, gl.player, gl.mazeGrid);
+
+// }
