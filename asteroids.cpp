@@ -1123,7 +1123,7 @@ extern void jk_displayScore(int timeBeaten[], int maxMaze, Rect position1,
 								Rect position2, int defaultHeight, int color);
 extern void highScoreMessages(int& maze_state, int (&timeBeaten)[13], 
         int current_time, bool& firstAttempt, bool& newHighScore, 
-										int& oldScore, int& newScore, Rect r);
+							int& oldScore, int& newScore, Rect r, int maxMaze);
 
 
 
@@ -1390,14 +1390,15 @@ void render()
 			// }
 
 			highScoreMessages(gl.maze_state, gl.timeBeaten, gl.current_time,
-				gl.firstAttempt, gl.newHighScore, gl.oldScore, gl.newScore, r);
+				gl.firstAttempt, gl.newHighScore, gl.oldScore, gl.newScore, r,
+																gl.maxMaze);
 
 
-			bool allBeaten = jk_allStagesBeaten(gl.timeBeaten, gl.maxMaze);
+			// bool allBeaten = jk_allStagesBeaten(gl.timeBeaten, gl.maxMaze);
 
-			if (allBeaten == true) {
-				gl.maze_state = 1000;
-			}
+			// if (allBeaten == true) {
+			// 	gl.maze_state = 1000;
+			// }
 		}
 
 
@@ -1427,12 +1428,14 @@ void render()
 		// if (gl.maze_state == 1000) {
 
 			glClear(GL_COLOR_BUFFER_BIT);
-			ggprint13(&jk_titles, 16, 0x00ffffff, "congrats on beating everything!");
-			ggprint8b(&jk_titles, 16, 0x00ffffff, "press b to return to homepage");
+			ggprint13(&jk_titles, 16, 0x00ffffff, 
+									"congrats on beating everything!");
 			ggprint8b(&jk_titles, 16, 0x00ffffff, 
-								"note 1: scores are erased upon exit");
+									"press b to return to homepage");
 			ggprint8b(&jk_titles, 16, 0x00ffffff, 
-							"note 2: maze 4 is an optional tutorial stage.");
+									"scores are erased upon exit");
+			ggprint8b(&jk_titles, 16, 0x00ffffff, 
+									"maze 4 is an optional tutorial stage");
 
 			Rect jk_scoreColumn3 = jk_createRect(gl.yres, 100, 10, 0);
 			jk_scoreColumn3.left = 50;

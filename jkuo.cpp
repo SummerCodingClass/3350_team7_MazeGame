@@ -1343,26 +1343,16 @@ void jk_displayScore(int timeBeaten[], int maxMaze, Rect position1,
 }
 
 
-// void highScoreMessages(int& maze_state, int (&timeBeaten)[], int current_time, 
-//         bool& firstAttempt, bool& newHighScore, int& oldScore, int& newScore,
-//         Rect r)
+
 void highScoreMessages(int& maze_state, int (&timeBeaten)[13], int current_time, 
         bool& firstAttempt, bool& newHighScore, int& oldScore, int& newScore,
-        Rect r)
+        Rect r, int maxMaze)
 {
     int levelBeaten = maze_state * -1;
 
     if (timeBeaten[levelBeaten] == -1) {
         timeBeaten[levelBeaten] = current_time;
         firstAttempt = true;
-        
-
-
-        // string record = "current high score: " 
-        // 		+ to_string(gl.timeBeaten[levelBeaten]) + " seconds";
-        // const char *recordChar = record.c_str();			
-        // ggprint8b(&r, 16, 0x00ffffff, recordChar);
-
 
 
     } else if (current_time < timeBeaten[levelBeaten]) {
@@ -1372,27 +1362,6 @@ void highScoreMessages(int& maze_state, int (&timeBeaten)[13], int current_time,
         timeBeaten[levelBeaten] = current_time;
         newScore = timeBeaten[levelBeaten];
     }
-        // ggprint8b(&r, 16, 0x00ffffff, 
-        // 					"Congratulations! You beated the record!");
-        
-        // string record = "record beaten: " 
-        // 		+ to_string(gl.timeBeaten[levelBeaten]) + " seconds";
-        // const char *recordChar = record.c_str();			
-        // ggprint8b(&r, 16, 0x00ffffff, recordChar);
-
-
-        // gl.timeBeaten[levelBeaten] = gl.current_time;
-
-        
-        // record = "new high score: " 
-        // 		+ to_string(gl. timeBeaten[levelBeaten]) + " seconds";
-        // recordChar = record.c_str();			
-        // ggprint8b(&r, 16, 0x00ffffff, recordChar);
-
-
-        // ggprint8b(&r, 16, 0x00ffffff, 
-        // 					"The new high score has been recorded");	
-
 
     
     if (firstAttempt) {
@@ -1430,9 +1399,9 @@ void highScoreMessages(int& maze_state, int (&timeBeaten)[13], int current_time,
 
 
 
-    // bool allBeaten = jk_allStagesBeaten(gl.timeBeaten, gl.maxMaze);
+    bool allBeaten = jk_allStagesBeaten(timeBeaten, maxMaze);
 
-    // if (allBeaten == true) {
-    // 	gl.maze_state = 1000;
-    // }
+    if (allBeaten == true) {
+    	maze_state = 1000;
+    }
 }
