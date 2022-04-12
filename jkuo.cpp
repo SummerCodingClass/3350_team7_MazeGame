@@ -245,47 +245,6 @@ void jk_printMazeTest(Rect position, int defaultHeight, int color,
             endReached, mazeGrid, maze_state, mazeName, rows, startingPosition,
             endingPosition, wallColor, maze);
 
-    //  const char* maze[rows] = 
-    // {
-    
-    //     "+-+-",
-    //     "|  .",
-    //     "+ +-",
-    //     "| --",
-    //     "+-+-"
-    
-    // };
-
-    // int columns = getColumns(maze, rows);
-
-    // if (firstRun) {
-    //     player[0] = startingPosition[0]; // x
-    //     player[1] = startingPosition[1]; // y
-     
-    //     mazeGrid = Grid(maze, rows, columns, player, endingPosition, 
-    //                                                             wallColor);
-
-    //     // mazeGrid.setWallColor(wallColor);
-     
-    //     mazeGrid.printGrid(position, rows, columns, player, defaultHeight, 
-    //                                             color, mazeName, endReached);
-
-    //     firstRun = false;
-    // } else if (endReached) {
-    //     cout << "end reached" << endl; 
-    //     mazeGrid.printGrid(position, rows, columns, player, defaultHeight, 
-    //                                             color, mazeName, endReached);
-
-        
-    //     maze_state = -1 * maze_state;
-    //     firstRun = true;
-    //     endReached = false;
-        
-
-    // } else {
-    //     mazeGrid.printGrid(position, rows, columns, player, defaultHeight, 
-    //                                             color, mazeName, endReached);
-    // }
 }
 
 
@@ -347,37 +306,7 @@ void jk_printMaze1(Rect position, int defaultHeight, int color,
     jk_printMazeGeneral(position, defaultHeight, color, player, firstRun,
             endReached, mazeGrid, maze_state, mazeName, rows, startingPosition,
             endingPosition, wallColor, maze);
-    // int columns = getColumns(maze, rows);
-
-    // if (firstRun) {
-    //     player[0] = startingPosition[0]; // x
-    //     player[1] = startingPosition[1]; // y
-
-    //     mazeGrid = Grid(maze, rows, columns, player, endingPosition, 
-    //                                                             wallColor);
-
-    //     // mazeGrid.setWallColor(wallColor);
-
-    //     mazeGrid.printGrid(position, rows, columns, player, defaultHeight, 
-    //                                             color, mazeName, endReached);
-
-    //     firstRun = false;
-    // } else if (endReached) {
-    //     cout << "end reached" << endl; 
-    //     mazeGrid.printGrid(position, rows, columns, player, defaultHeight, 
-    //                                             color, mazeName, endReached);
-
-        
-    //     maze_state = -1 * maze_state;
-    //     firstRun = true;
-    //     endReached = false;
-        
-
-    // } else {
-       
-    //     mazeGrid.printGrid(position, rows, columns, player, defaultHeight, 
-    //                                             color, mazeName, endReached);
-    // }
+  
 }
 
 
@@ -433,37 +362,7 @@ void jk_printMaze2(Rect position, int defaultHeight, int color,
     jk_printMazeGeneral(position, defaultHeight, color, player, firstRun,
             endReached, mazeGrid, maze_state, mazeName, rows, startingPosition,
             endingPosition, wallColor, maze);
-    // int columns = getColumns(maze, rows);
-
-    // if (firstRun) {
-    //     player[0] = startingPosition[0]; // x
-    //     player[1] = startingPosition[1]; // y
-
-    //     mazeGrid = Grid(maze, rows, columns, player, endingPosition, 
-    //                                                             wallColor);
-
-    //     // mazeGrid.setWallColor(wallColor);
-   
-    //     mazeGrid.printGrid(position, rows, columns, player, defaultHeight, 
-    //                                             color, mazeName, endReached);
-
-    //     firstRun = false;
-    // } else if (endReached) {
-    //     cout << "end reached" << endl; 
-    //     mazeGrid.printGrid(position, rows, columns, player, defaultHeight, 
-    //                                             color, mazeName, endReached);
-
-        
-    //     maze_state = -1 * maze_state;
-    //     firstRun = true;
-    //     endReached = false;
-        
-
-    // } else {
-       
-    //     mazeGrid.printGrid(position, rows, columns, player, defaultHeight, 
-    //                                             color, mazeName, endReached);
-    // }
+  
 
 }
 
@@ -515,38 +414,7 @@ void jk_printMaze3(Rect position, int defaultHeight, int color,
             endReached, mazeGrid, maze_state, mazeName, rows, startingPosition,
             endingPosition, wallColor, maze);
     
-    // int columns = getColumns(maze, rows);
-
-    // if (firstRun) {
-    //     player[0] = startingPosition[0]; // x
-    //     player[1] = startingPosition[1]; // y
-
-    //     mazeGrid = Grid(maze, rows, columns, player, endingPosition, 
-    //                                                             wallColor);
-
-    //     // mazeGrid.setWallColor(wallColor);
-   
-    //     mazeGrid.printGrid(position, rows, columns, player, defaultHeight, 
-    //                                             color, mazeName, endReached);
-
-    //     firstRun = false;
-    // } else if (endReached) {
-    //     cout << "end reached" << endl; 
-    //     mazeGrid.printGrid(position, rows, columns, player, defaultHeight, 
-    //                                             color, mazeName, endReached);
-
-        
-    //     maze_state = -1 * maze_state;
-    //     firstRun = true;
-    //     endReached = false;
-        
-
-    // } else {
-       
-    //     mazeGrid.printGrid(position, rows, columns, player, defaultHeight, 
-    //                                             color, mazeName, endReached);
-    // }
-
+  
 
 }
 
