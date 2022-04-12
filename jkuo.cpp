@@ -26,8 +26,7 @@ int getColumns (const char** maze, int rows);
 
 bool jkuo_midterm_checkState(int mazeState, int desiredState) 
 {
-    // this test will test if we have a positive 
-    // number of mazes in our collections
+    // this test will test if the current maze state is a certain value
 
     if (mazeState == desiredState) {
         return true;
@@ -35,39 +34,6 @@ bool jkuo_midterm_checkState(int mazeState, int desiredState)
     
     return false;
 }
-
-
-
-
-
-// void jkuo_midterm_function_wed(int maze_state) 
-// {
-//     // this test will fail on all pages aside from the map pages
-//     // e.g. it will fail for welcome screen, but will pass for "maze 1" page
-//     // it is testing the current maze_state constantly with each render
-//     // no need for extra user input. 
-    
-//     cout << endl << endl;
-//     cout << "====================================================" << endl;
-
-
-//     if (maze_state < 1 || maze_state > 4) {
-//         cout << endl << endl;
-//         cout << "test FAILED." << endl
-//              << "the inputted maze state is: " << maze_state << "." << endl
-//              << "which is NOT within the range of 1 - 4." << endl 
-//              << "this means you are NOT on a map page" << endl << endl;
-//         cout << endl << endl;
-//         return;
-//     }
-    
-//     cout << endl << endl;
-//     cout << "test PASSED. maze_state is: " << maze_state << endl
-//          << "it IS within the range of 1 - 4" << endl
-//          << "this means you ARE on a map page" << endl << endl;
-//     cout << endl << endl;
-//     return;
-// }
 
 
 
@@ -674,37 +640,12 @@ extern bool anicholas_Midterm(int value);
 void jk_page_transition(int& maze_state, const char* keyChecked, 
                                                     bool& firstRun, int maxMaze) 
 {
-
-    //for midterm
-    // if (strcmp(keyChecked, "5") == 0) {
-    //     //true
-    //     if (maze_state == 0) {
-    //         firstRun = true;
-    //         bool success = jkuo_midterm_function(maze_state, 30);
-    //         cout << "test done. success =  " << success << endl; 
-    //         return;
-    //     }
-    // }
-
-    // if (strcmp(keyChecked, "6") == 0) {
-
-    //     if (maze_state == 30) {
-    //         bool success = jkuo_midterm_function(maze_state, 
-    //         100000000000000000000000000000000000000000000000000000000000000);
-    //         cout << "test done. success =  " << success << endl;
-    //         return;
-    //     }
-
-    // }
-
-    
+   
     //case XK_b;
     if (strcmp(keyChecked, "b") == 0) {
         
-        if (jhicks_midterm_function(maze_state)) {
-        // if (maze_state == 0) {
+        if (jhicks_midterm_function(maze_state)) { // if (maze_state == 0) {
             //do nothing
-            // firstRun = true;
         } else if (maze_state == 1000 || maze_state == 404) {
             maze_state = 0;
         } else if (maze_state > 230) {
@@ -712,7 +653,6 @@ void jk_page_transition(int& maze_state, const char* keyChecked,
         // } else if (maze_state > 0) {
         } else if (anicholas_Midterm(maze_state)) {
             maze_state = 0;
-            // firstRun = true;
         }
         
         return;
@@ -866,30 +806,8 @@ void jk_page_transition(int& maze_state, const char* keyChecked,
         }
         return; 
     }
-
-
-    // if (strcmp(keyChecked, "up") == 0) {
-    //   if (maze_state == 1 || maze_state == 2 || maze_state == 3) {
-        
-    //   }
-    // return; 
-    // }
-
-
 }
 
-
-// void jk_printMaze4(Rect position, int defaultHeight, int color) 
-// {
-   
-    
-//     jk_printMazeGrid(position, maze, rows, defaultHeight, color, mazeName);
-    
-//     // jk_printMazeGeneral(position, maze, rows, defaultHeight, color);
-    
-
-
-// }
 
 
 
@@ -905,7 +823,6 @@ void jk_showCreditPage(Rect position, int defaultHeight, int color)
     ggprint8b(&position, 16, color, "Game Designer | Game Programmer");
 }
 
-
 void jk_showRulesPage(Rect position, int defaultHeight, int color) 
 {
     position.bot = defaultHeight;
@@ -917,8 +834,6 @@ void jk_showRulesPage(Rect position, int defaultHeight, int color)
     ggprint8b(&position, 16, color, 
                               "The grey square represents the exit.");
 }
-
-
 
 void jk_showWelcomePage(Rect position, int defaultHeight, int color) 
 {
@@ -938,9 +853,8 @@ void jk_showWelcomePage3(Rect position, int defaultHeight, int color)
 void jk_showWelcomePageTitle(Rect position, int defaultHeight, int color) 
 {
     position.bot = defaultHeight;
-  
-    // ggprint40(&position, 16, color, "The MAze Game");
-    ggprint40(&position, 16, color, "Placeholder for Adam");
+
+    ggprint40(&position, 16, color, "The MAze Game");
 }
 
 
@@ -981,43 +895,21 @@ void jk_showSecretModeMessage(Rect position, int defaultHeight, int color)
 
 
 
-
-
-
-
 //----------------------------------------------------------------------------
 // helper functions for the maze
 //----------------------------------------------------------------------------
 
-
-//for secrete mode
-void jk_playerMovementForSecretMode(char* keys, int (&player)[2]) 
+int getColumns (const char** maze, int rows) 
 {
-    //player[0] = column = "j"
-    //player[1] = row = "i"
-
-    //up
-    if (keys[XK_Up]) {
-        player[1] = player[1] - 1;
+    int columns = strlen(maze[0]);
+    for (int i = 1; i < rows; i++) {
+        if ((int)strlen(maze[i]) > columns) {
+            columns = strlen(maze[i]);
+        }
     }
 
-    //down
-    if (keys[XK_Down]) {
-        player[1] = player[1] + 1;
-    }
-  
-    //left
-    if (keys[XK_Left]) {
-        player[0] = player[0] - 1;
-    }
-
-    //right
-    if (keys[XK_Right]) {
-        player[0] = player[0] + 1;
-    }
+    return columns;
 }
-
-
 
 void jkuo_checkWall(int (&player)[2], int nextMove[2], Grid& grid) 
 {
@@ -1028,57 +920,35 @@ void jkuo_checkWall(int (&player)[2], int nextMove[2], Grid& grid)
     
     vector <vector <GridCells>> tempGrid = grid.GridGetter();
     
-    // cout << "i: " << i << " j: " << j << endl;
-    // cout << "before isWall()." << endl;
-
-    
 
     if (tempGrid[i][j].isWall()) {
-    
-    // if ( tempGrid[i][j].isWall() || 
-    //         player[1] >= (grid.rows-1) || player[0] >= (grid.columns-1)) {
-    // // cout << "rows: " << grid.rows << " columns: " << grid.columns << endl;
-        // cout << "this is a wall" << endl;
-        return;
+
         // do nothing, return player[2] as is
-    }
-    else {
+        return;
 
-        // cout << "is it entering here?" << endl;
-        // cout << "NOT a wall" << endl;
-        // cout << "before: " << player[0] << ", " << player[1] << endl;
-        // tempGrid[i][j].setCurrent(true);
+    } else {
 
-        // set present to NOT current
         grid.mazeGrid[orig_i][orig_j].setCurrent(false);
-        // grid.mazeGrid[orig_i][orig_j].setTraveled(true);
-        // set next as current
         grid.mazeGrid[i][j].setCurrent(true);
 
         if (grid.mazeGrid[i][j].hasTraveled() == true) {
+
             grid.mazeGrid[i][j].setTraveled(false);
             grid.mazeGrid[orig_i][orig_j].setTraveled(false);
+
         } else {
+
             grid.mazeGrid[orig_i][orig_j].setTraveled(true);
+
         }
 
-        
-
-        
         player[0] = nextMove[0];
         player[1] = nextMove[1];
         
-
-        // if (tempGrid[i][j].isEnd()) {
-        
-        // }
-        // cout << "after: " << player[0] << ", " << player[1] << endl;
         return;
     }
 }
 
-
-//for normal mode
 void jk_playerMovement(char* keys, int (&player)[2], Grid& grid) 
 {
     //player[0] = column = "j"
@@ -1120,31 +990,32 @@ void jk_playerMovement(char* keys, int (&player)[2], Grid& grid)
     }
 }
 
-
-
-
-
-int getColumns (const char** maze, int rows) 
+//for secrete mode
+void jk_playerMovementForSecretMode(char* keys, int (&player)[2]) 
 {
-    int columns = strlen(maze[0]);
-    for (int i = 1; i < rows; i++) {
-        if ((int)strlen(maze[i]) > columns) {
-            columns = strlen(maze[i]);
-        }
+    //player[0] = column = "j"
+    //player[1] = row = "i"
+
+    //up
+    if (keys[XK_Up]) {
+        player[1] = player[1] - 1;
     }
 
-    return columns;
+    //down
+    if (keys[XK_Down]) {
+        player[1] = player[1] + 1;
+    }
+  
+    //left
+    if (keys[XK_Left]) {
+        player[0] = player[0] - 1;
+    }
+
+    //right
+    if (keys[XK_Right]) {
+        player[0] = player[0] + 1;
+    }
 }
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -1175,7 +1046,9 @@ int GridCells::getYcoord()
     return ycoord;
 }
 
-GridCells::GridCells() {
+GridCells::GridCells() 
+{
+
     xcoord = 0;
     ycoord = 0;
     space = true;
@@ -1184,10 +1057,12 @@ GridCells::GridCells() {
     end = true;
     currentPosition = true;
     traveled = true;
+
 }
 
 GridCells::GridCells(int x, int y, bool uspace, bool uwall, 
-                bool ustart, bool uend, bool ucurrent, bool utravel) {
+                bool ustart, bool uend, bool ucurrent, bool utravel) 
+{
 
     xcoord = x;
     ycoord = y;
@@ -1198,12 +1073,7 @@ GridCells::GridCells(int x, int y, bool uspace, bool uwall,
     currentPosition = ucurrent;
     traveled = utravel;
 
-
 }
-
-
-
-
 
 
 
@@ -1263,20 +1133,13 @@ void jk_printMazeSecretMode1(Rect position, int defaultHeight, int color,
 
     };
 
-    // int columns = getColumns(maze, rows);
+    
 
     if (firstRun) {
         player[0] = startingPosition[0]; // x
         player[1] = startingPosition[1]; // y
         jk_printMazeGrid(position, maze, rows, player, defaultHeight, color, 
-                                                                    mazeName);
-        // // Grid(rows, columns);
-        // // printGrid();
-
-        // mazeGrid = Grid(maze, rows, columns); // just to avoid warning
-        // mazeGrid.printGrid(position, rows, columns, player, defaultHeight, 
-                              // color, mazeName);
-        
+                                                                    mazeName);      
 
         firstRun = false;
     }
@@ -1284,8 +1147,7 @@ void jk_printMazeSecretMode1(Rect position, int defaultHeight, int color,
     else {
         jk_printMazeGrid(position, maze, rows, player, defaultHeight, color, 
                                                                     mazeName);
-        // mazeGrid.printGrid(position, rows, columns, player, defaultHeight, 
-                              // color, mazeName);                                                          
+        
     }
 }
 

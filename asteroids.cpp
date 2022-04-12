@@ -1535,13 +1535,14 @@ void render()
 	//secret mode
 
 	if (jkuo_midterm_checkState(gl.maze_state, 230)) {
-	// if (gl.maze_state == 23) {
+	// if (gl.maze_state == 230) {
 		glClear(GL_COLOR_BUFFER_BIT);
 		ggprint8b(&r, 16, 0x00ff0000, "3350 - MAze");
 
-		// will delete
+		jk_showWelcomePageTitle(jk_welcomeTitlePlaceHolder, 
+											gl.yres - (gl.yres/2), 0x00FF0000);
 		jk_showSecretMode(jk_welcomeTitlePlaceHolder, 
-											gl.yres - (gl.yres/2), 0x00FF0050);
+								gl.yres - (gl.yres/2 - gl.yres/4), 0x00FF0050);
 
 		jk_showSecretModeMessage(jk_welcomeMessage, gl.yres - 400, 0x00CC5050);
 
