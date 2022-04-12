@@ -1227,17 +1227,6 @@ void render()
 	if (jkuo_midterm_checkState(gl.maze_state, 1)) {
 	// if (gl.maze_state == 1) {
 		
-		// glClear(GL_COLOR_BUFFER_BIT);
-		
-		// ggprint8b(&r, 16, 0x00ffffff, "press s to switch to next maze");
-		// ggprint8b(&r, 16, 0x00ffffff, "press b to return to home");
-		// ggprint8b(&r, 16, 0x00ffffff, "press p to pause game");
-		// ggprint8b(&r, 16, 0x00ffffff, "HOLD down the arrowkeys to move about");
-
-		// et_timer(et_message, gl.yres-120, 0x00B24BF3, gl.maze_state, 
-		// 										gl.firstRun, gl.current_time);
-
-		// jk_playerMovement(gl.keys, gl.player, gl.mazeGrid);
 		jk_stageSetUp(r, et_message);
 		jk_printMaze1(jk_t, gl.yres-100, 0x0040e0d0, gl.player, gl.firstRun, 
 									gl.endReached, gl.mazeGrid, gl.maze_state);
@@ -1246,17 +1235,6 @@ void render()
 	if (jkuo_midterm_checkState(gl.maze_state, 2)) {
 	// if (gl.maze_state == 2) {
 		
-		// glClear(GL_COLOR_BUFFER_BIT);
-		
-		// ggprint8b(&r, 16, 0x00ffffff, "press s to switch to next maze");
-		// ggprint8b(&r, 16, 0x00ffffff, "press b to return to home");
-		// ggprint8b(&r, 16, 0x00ffffff, "press p to pause game");
-		// ggprint8b(&r, 16, 0x00ffffff, "HOLD down the arrowkeys to move about");
-
-		// et_timer(et_message, gl.yres-120, 0x00B24BF3, gl.maze_state, 
-		// 										gl.firstRun, gl.current_time);
-
-		// jk_playerMovement(gl.keys, gl.player, gl.mazeGrid);
 		jk_stageSetUp(r, et_message);
 		jk_printMaze2(jk_t, gl.yres-100, 0x0040e0d0, gl.player, gl.firstRun, 
 									gl.endReached, gl.mazeGrid, gl.maze_state);
@@ -1265,17 +1243,6 @@ void render()
 	if (jkuo_midterm_checkState(gl.maze_state, 3)) {
 	// if (gl.maze_state == 3) {
 		
-		// glClear(GL_COLOR_BUFFER_BIT);
-		
-		// ggprint8b(&r, 16, 0x00ffffff, "press s to switch to next maze");
-		// ggprint8b(&r, 16, 0x00ffffff, "press b to return to home");
-		// ggprint8b(&r, 16, 0x00ffffff, "press p to pause game");
-		// ggprint8b(&r, 16, 0x00ffffff, "HOLD down the arrowkeys to move about");
-
-		// et_timer(et_message, gl.yres-120, 0x00B24BF3, gl.maze_state, 
-		// 										gl.firstRun, gl.current_time);
-
-		// jk_playerMovement(gl.keys, gl.player, gl.mazeGrid);
 		jk_stageSetUp(r, et_message);
 		jk_printMaze3(jk_t, gl.yres-100, 0x0040e0d0, gl.player, gl.firstRun, 
 									gl.endReached, gl.mazeGrid, gl.maze_state);
@@ -1285,22 +1252,6 @@ void render()
 	if (jkuo_midterm_checkState(gl.maze_state, 4)) {
 	// if (gl.maze_state == 4) {
 		
-		// glClear(GL_COLOR_BUFFER_BIT);
-		
-		// ggprint8b(&r, 16, 0x00ffffff, "press s to switch to next maze");
-		// ggprint8b(&r, 16, 0x00ffffff, "press b to return to home");
-		// ggprint8b(&r, 16, 0x00ffffff, "press p to pause game");
-		// ggprint8b(&r, 16, 0x00ffffff, "HOLD down the arrowkeys to move about");
-		
-		// if(etagaca_midterm(gl.current_time)) {
-		// 	ggprint8b(&r, 16, 0x00b19cd9, 
-		// 					"5 seconds have passed. Have you started playing?");
-   		// }
-
-		// et_timer(et_message, gl.yres-120, 0x00B24BF3, gl.maze_state,
-		// 										 gl.firstRun, gl.current_time);
-
-		// jk_playerMovement(gl.keys, gl.player, gl.mazeGrid);
 		jk_stageSetUp(r, et_message);
 
 		if(etagaca_midterm(gl.current_time)) {
@@ -1317,95 +1268,40 @@ void render()
 	}
 
 	if (jkuo_midterm_checkState(gl.maze_state, 5)) {
-	// if (gl.maze_state == 1) {
-		
-		// glClear(GL_COLOR_BUFFER_BIT);
-		
-		// ggprint8b(&r, 16, 0x00ffffff, "press s to switch to next maze");
-		// ggprint8b(&r, 16, 0x00ffffff, "press b to return to home");
-		// ggprint8b(&r, 16, 0x00ffffff, "press p to pause game");
-		// ggprint8b(&r, 16, 0x00ffffff, "HOLD down the arrowkeys to move about");
+	// if (gl.maze_state == 5) {
 
-		// et_timer(et_message, gl.yres-120, 0x00B24BF3, gl.maze_state, 
-		// 										gl.firstRun, gl.current_time);
-
-		// jk_playerMovement(gl.keys, gl.player, gl.mazeGrid);
 		jk_stageSetUp(r, et_message);
 		jh_printMaze5(jk_t, gl.yres-100, 0x0040e0d0, gl.player, gl.firstRun, 
 									gl.endReached, gl.mazeGrid, gl.maze_state);
 	}
 
 	if (jkuo_midterm_checkState(gl.maze_state, 6)) {
-	// if (gl.maze_state == 1) {
+	// if (gl.maze_state == 6) {
 		
-		// glClear(GL_COLOR_BUFFER_BIT);
-		
-		// ggprint8b(&r, 16, 0x00ffffff, "press s to switch to next maze");
-		// ggprint8b(&r, 16, 0x00ffffff, "press b to return to home");
-		// ggprint8b(&r, 16, 0x00ffffff, "press p to pause game");
-		// ggprint8b(&r, 16, 0x00ffffff, "HOLD down the arrowkeys to move about");
-
-		// et_timer(et_message, gl.yres-120, 0x00B24BF3, gl.maze_state, 
-		// 										gl.firstRun, gl.current_time);
-
-		// jk_playerMovement(gl.keys, gl.player, gl.mazeGrid);
 		jk_stageSetUp(r, et_message);
 		jh_printMaze6(jk_t, gl.yres-100, 0x0040e0d0, gl.player, gl.firstRun, 
 									gl.endReached, gl.mazeGrid, gl.maze_state);
 	}
 
 	if (jkuo_midterm_checkState(gl.maze_state, 7)) {
-	// if (gl.maze_state == 1) {
-		
-		// glClear(GL_COLOR_BUFFER_BIT);
-		
-		// ggprint8b(&r, 16, 0x00ffffff, "press s to switch to next maze");
-		// ggprint8b(&r, 16, 0x00ffffff, "press b to return to home");
-		// ggprint8b(&r, 16, 0x00ffffff, "press p to pause game");
-		// ggprint8b(&r, 16, 0x00ffffff, "HOLD down the arrowkeys to move about");
+	// if (gl.maze_state == 7) {
 
-		// et_timer(et_message, gl.yres-120, 0x00B24BF3, gl.maze_state, 
-		// 										gl.firstRun, gl.current_time);
-
-		// jk_playerMovement(gl.keys, gl.player, gl.mazeGrid);
 		jk_stageSetUp(r, et_message);
 		jr_printMaze7(jk_t, gl.yres-100, 0x0040e0d0, gl.player, gl.firstRun, 
 									gl.endReached, gl.mazeGrid, gl.maze_state);
 	}
 
 	if (jkuo_midterm_checkState(gl.maze_state, 8)) {
-	// if (gl.maze_state == 1) {
-		
-		// glClear(GL_COLOR_BUFFER_BIT);
-		
-		// ggprint8b(&r, 16, 0x00ffffff, "press s to switch to next maze");
-		// ggprint8b(&r, 16, 0x00ffffff, "press b to return to home");
-		// ggprint8b(&r, 16, 0x00ffffff, "press p to pause game");
-		// ggprint8b(&r, 16, 0x00ffffff, "HOLD down the arrowkeys to move about");
+	// if (gl.maze_state == 8) {
 
-		// et_timer(et_message, gl.yres-120, 0x00B24BF3, gl.maze_state, 
-		// 										gl.firstRun, gl.current_time);
-
-		// jk_playerMovement(gl.keys, gl.player, gl.mazeGrid);
 		jk_stageSetUp(r, et_message);
 		jr_printMaze8(jk_t, gl.yres-100, 0x0040e0d0, gl.player, gl.firstRun, 
 									gl.endReached, gl.mazeGrid, gl.maze_state);
 	}
 
 	if (jkuo_midterm_checkState(gl.maze_state, 9)) {
-	// if (gl.maze_state == 1) {
+	// if (gl.maze_state == 9) {
 		
-		// glClear(GL_COLOR_BUFFER_BIT);
-		
-		// ggprint8b(&r, 16, 0x00ffffff, "press s to switch to next maze");
-		// ggprint8b(&r, 16, 0x00ffffff, "press b to return to home");
-		// ggprint8b(&r, 16, 0x00ffffff, "press p to pause game");
-		// ggprint8b(&r, 16, 0x00ffffff, "HOLD down the arrowkeys to move about");
-
-		// et_timer(et_message, gl.yres-120, 0x00B24BF3, gl.maze_state, 
-		// 										gl.firstRun, gl.current_time);
-
-		// jk_playerMovement(gl.keys, gl.player, gl.mazeGrid);
 		jk_stageSetUp(r, et_message);
 		an_printMaze9(jk_t, gl.yres-100, 0x0040e0d0, gl.player, gl.firstRun, 
 									gl.endReached, gl.mazeGrid, gl.maze_state);
@@ -1415,60 +1311,25 @@ void render()
 	}
 
 	if (jkuo_midterm_checkState(gl.maze_state, 10)) {
-	// if (gl.maze_state == 1) {
-		
-		// glClear(GL_COLOR_BUFFER_BIT);
-		
-		// ggprint8b(&r, 16, 0x00ffffff, "press s to switch to next maze");
-		// ggprint8b(&r, 16, 0x00ffffff, "press b to return to home");
-		// ggprint8b(&r, 16, 0x00ffffff, "press p to pause game");
-		// ggprint8b(&r, 16, 0x00ffffff, "HOLD down the arrowkeys to move about");
+	// if (gl.maze_state == 10) {
 
-		// et_timer(et_message, gl.yres-120, 0x00B24BF3, gl.maze_state, 
-		// 										gl.firstRun, gl.current_time);
-
-		// jk_playerMovement(gl.keys, gl.player, gl.mazeGrid);
 		jk_stageSetUp(r, et_message);
 		an_printMaze10(jk_t, gl.yres-100, 0x0040e0d0, gl.player, gl.firstRun, 
 									gl.endReached, gl.mazeGrid, gl.maze_state);
-		
-		// jk_showWelcomePageTitle(jk_welcomeTitlePlaceHolder, 
-		// 									gl.yres - (gl.yres/2), 0x00FF0000);
-		// ggprint8b(&r, 32, 0x0040e0d0, "maze 10");
 	}
 
 	if (jkuo_midterm_checkState(gl.maze_state, 11)) {
-	// if (gl.maze_state == 1) {
-		
-		// glClear(GL_COLOR_BUFFER_BIT);
-		
-		// ggprint8b(&r, 16, 0x00ffffff, "press s to switch to next maze");
-		// ggprint8b(&r, 16, 0x00ffffff, "press b to return to home");
-		// ggprint8b(&r, 16, 0x00ffffff, "press p to pause game");
-		// ggprint8b(&r, 16, 0x00ffffff, "HOLD down the arrowkeys to move about");
+	// if (gl.maze_state == 11) {
 
-		// et_timer(et_message, gl.yres-120, 0x00B24BF3, gl.maze_state, 
-		// 										gl.firstRun, gl.current_time);
-
-		// jk_playerMovement(gl.keys, gl.player, gl.mazeGrid);
 		jk_stageSetUp(r, et_message);
 		et_printMaze11(jk_t, gl.yres-100, 0x0040e0d0, gl.player, gl.firstRun, 
 									gl.endReached, gl.mazeGrid, gl.maze_state);
 	}
 
 	if (jkuo_midterm_checkState(gl.maze_state, 12)) {
+	// if (gl.maze_state == 12) {
 		
-		glClear(GL_COLOR_BUFFER_BIT);
-		
-		// ggprint8b(&r, 16, 0x00ffffff, "press s to switch to next maze");
-		// ggprint8b(&r, 16, 0x00ffffff, "press b to return to home");
-		// ggprint8b(&r, 16, 0x00ffffff, "press p to pause game");
-		// ggprint8b(&r, 16, 0x00ffffff, "HOLD down the arrowkeys to move about");
-
-		// et_timer(et_message, gl.yres-120, 0x00B24BF3, gl.maze_state, 
-		// 										gl.firstRun, gl.current_time);
-
-		// jk_playerMovement(gl.keys, gl.player, gl.mazeGrid);
+	
 		jk_stageSetUp(r, et_message);
 		et_printMaze12(jk_t, gl.yres-100, 0x0040e0d0, gl.player, gl.firstRun, 
 									gl.endReached, gl.mazeGrid, gl.maze_state);
