@@ -1427,16 +1427,21 @@ void render()
 		// if (gl.maze_state == 1000) {
 
 			glClear(GL_COLOR_BUFFER_BIT);
-			ggprint8b(&r, 16, 0x00ffffff, "congrats on beating everything!");
-			ggprint8b(&r, 16, 0x00ffffff, "press b to return to homepage");
+			ggprint13(&jk_titles, 16, 0x00ffffff, "congrats on beating everything!");
+			ggprint8b(&jk_titles, 16, 0x00ffffff, "press b to return to homepage");
+			ggprint8b(&jk_titles, 16, 0x00ffffff, 
+								"note 1: scores are erased upon exit");
+			ggprint8b(&jk_titles, 16, 0x00ffffff, 
+							"note 2: maze 4 is an optional tutorial stage.");
 
+			Rect jk_scoreColumn3 = jk_createRect(gl.yres, 100, 10, 0);
+			jk_scoreColumn3.left = 50;
+			
+			Rect jk_scoreColumn4 = jk_createRect(gl.yres, 100, 10, 0);
+			jk_scoreColumn4.left = 130;
 
-			ggprint13(&jk_titles, 16, 0x00ffffff, "Scoreboard");
-			ggprint8b(&jk_titles, 16, 0x00ffffff, "scores are erased upon exit");
-			ggprint8b(&jk_titles, 16, 0x00ffffff, "press a again to resume");
-
-			jk_displayScore(gl.timeBeaten, gl.maxMaze, jk_scoreColumn1, 
-								jk_scoreColumn2, gl.yres - 150, 0x00e3a90b);
+			jk_displayScore(gl.timeBeaten, gl.maxMaze, jk_scoreColumn3, 
+								jk_scoreColumn4, gl.yres - 150, 0x00e3a90b);
 
 
 		}
