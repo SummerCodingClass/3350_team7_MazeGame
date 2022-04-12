@@ -553,7 +553,7 @@ void jk_printMazeSecretMode3(Rect position, int defaultHeight, int color,
 
 											
 extern void jk_page_transition(int& maze_state, const char* keyChecked, 
-                                                bool& firstRun, int maxMaze);
+                                bool& firstRun, int maxMaze, bool& showScores); 
 
 
 void check_mouse(XEvent *e)
@@ -706,43 +706,58 @@ int check_keys(XEvent *e)
 			break;
 
 		case XK_b:
-			jk_page_transition(gl.maze_state, "b", gl.firstRun, gl.maxMaze);
+			jk_page_transition(gl.maze_state, "b", gl.firstRun, gl.maxMaze, 
+															gl.showScores);
 			break;
 		
 		case XK_s:
-			jk_page_transition(gl.maze_state, "s", gl.firstRun, gl.maxMaze);
+			jk_page_transition(gl.maze_state, "s", gl.firstRun, gl.maxMaze, 
+															gl.showScores);
 			break;
 
 		case XK_c:
-			jk_page_transition(gl.maze_state, "c", gl.firstRun, gl.maxMaze);
+			jk_page_transition(gl.maze_state, "c", gl.firstRun, gl.maxMaze, 
+															gl.showScores);
 			break;
 		
 		case XK_r:
-			jk_page_transition(gl.maze_state, "r", gl.firstRun, gl.maxMaze);
+			jk_page_transition(gl.maze_state, "r", gl.firstRun, gl.maxMaze, 
+															gl.showScores);
 			break;
 		
 		case XK_q:
-			jk_page_transition(gl.maze_state, "q", gl.firstRun, gl.maxMaze);
+			jk_page_transition(gl.maze_state, "q", gl.firstRun, gl.maxMaze, 
+															gl.showScores);
 			break;
 
 		case XK_w:
-			jk_page_transition(gl.maze_state, "w", gl.firstRun, gl.maxMaze);
+			jk_page_transition(gl.maze_state, "w", gl.firstRun, gl.maxMaze, 
+															gl.showScores);
 			break;
 
 		case XK_e:
-			jk_page_transition(gl.maze_state, "e", gl.firstRun, gl.maxMaze);
+			jk_page_transition(gl.maze_state, "e", gl.firstRun, gl.maxMaze, 
+															gl.showScores);
 			break;
 
 		case XK_z:
-			jk_page_transition(gl.maze_state, "z", gl.firstRun, gl.maxMaze);
+			jk_page_transition(gl.maze_state, "z", gl.firstRun, gl.maxMaze, 
+															gl.showScores);
 			break;
 		
 		case XK_u:
-			jk_page_transition(gl.maze_state, "u", gl.firstRun, gl.maxMaze);
+			jk_page_transition(gl.maze_state, "u", gl.firstRun, gl.maxMaze, 
+															gl.showScores);
 			break;
 
 		case XK_p:
-			jk_page_transition(gl.maze_state, "p", gl.firstRun, gl.maxMaze);
+			jk_page_transition(gl.maze_state, "p", gl.firstRun, gl.maxMaze, 
+															gl.showScores);
+			break;
+		
+		case XK_a:
+			jk_page_transition(gl.maze_state, "a", gl.firstRun, gl.maxMaze, 
+															gl.showScores);
 			break;
 
 
@@ -1077,6 +1092,7 @@ extern void et_showWelcomePage(Rect position, int defaultHeight, int color);
 extern void an_showWelcomePage(Rect position, int defaultHeight, int color);
 extern void jk_showWelcomePage2(Rect position, int defaultHeight, int color);
 extern void jk_showWelcomePage3(Rect position, int defaultHeight, int color);
+extern void jk_showWelcomePage4(Rect position, int defaultHeight, int color);
 extern void jk_showSecretMode(Rect position, int defaultHeight, int color);
 extern void jk_showSecretModeMessage(Rect position, int defaultHeight, 
 																	int color);
@@ -1185,201 +1201,223 @@ void render()
 	jk_welcomeMessage.left = gl.xres / 2;
 	jk_welcomeMessage.center = 1;
 
+	
 	Rect jk_welcomeTitlePlaceHolder = jk_createRect(gl.yres, 100, 10, 0);
 	jk_welcomeTitlePlaceHolder.left = gl.xres / 2;
 	jk_welcomeTitlePlaceHolder.center = 1;
-
-
-
 	
-
-	if (jkuo_midterm_checkState(gl.maze_state, 0)) {
-	// if (gl.maze_state == 0) {
-		
-		glClear(GL_COLOR_BUFFER_BIT);
-
-		jh_Image(gl.xres, gl.yres,gl.textid[0]);
-		jk_showWelcomePage(jk_welcomeMessage, gl.yres - 400, 0x00CC593F);
-		jh_showWelcomePage(jk_welcomeMessage, gl.yres - 510, 0x00CC593F);
-		jr_showWelcomePage(jk_welcomeMessage, gl.yres - 450, 0x00CC593F);
-		et_showWelcomePage(jk_welcomeMessage, gl.yres - 490, 0x00CC593F);
-		an_showWelcomePage(jk_welcomeMessage, gl.yres - 470, 0x00CC593F);
-		jk_showWelcomePage3(jk_welcomeMessage, gl.yres - 430, 0x00e3a90b);
-		jk_showWelcomePage2(jk_welcomeMessage, gl.yres - 550, 0x00FF0050);
-
-	}
-
-	Rect jk_t = jk_createRect(gl.yres, 100, 10, 0);
-	Rect jk_message = jk_createRect(gl.yres+50, 100, 10, 0); 
 	Rect jk_titles = jk_createRect(gl.yres+50, 100, 10, 0);
-	
 	jk_titles.left = gl.xres / 2;
 	jk_titles.center = 1;
 
+	Rect jk_message = jk_createRect(gl.yres+50, 100, 10, 0); 
 	jk_message.left = 50;
 
+	Rect jk_t = jk_createRect(gl.yres, 100, 10, 0);
+	
 
-	if (jkuo_midterm_checkState(gl.maze_state, 110)) {
-	// if (gl.maze_state == 11) {
+
+	if (gl.showScores) {
 		glClear(GL_COLOR_BUFFER_BIT);
-		ggprint13(&jk_titles, 16, 0x00ffffff, "Rules Page");
-		ggprint8b(&jk_titles, 16, 0x00ffffff, "press b to return to home");
-
-		jk_showRulesPage(jk_message, gl.yres-120, 0x0040e0d0);
-		jh_showRulesPage(jk_message, gl.yres-220, 0x0024AAFA);
-		jr_showRulesPage(jk_message, gl.yres-320, 0x0051f542);
-		et_showRulesPage(jk_message, gl.yres-420, 0x00B24BF3);
-		an_showRulesPage(jk_message, gl.yres-520, 0x00FF7025);
-	}
+		ggprint13(&jk_titles, 16, 0x00ffffff, "Scoreboard");
+		ggprint8b(&jk_titles, 16, 0x00ffffff, "press a again to resume");
 
 
 
+	} else {
 
-	if (jkuo_midterm_checkState(gl.maze_state, 120)) {
-	// if (gl.maze_state == 12) {
-		glClear(GL_COLOR_BUFFER_BIT);
-		// load_ggfont(17); // arial 140
-		ggprint13(&jk_titles, 16, 0x00ffffff, "CREDIT Page");
-		ggprint8b(&jk_titles, 16, 0x00ffffff, "press b to return to home");
+		if (jkuo_midterm_checkState(gl.maze_state, 0)) {
+		// if (gl.maze_state == 0) {
+			
+			glClear(GL_COLOR_BUFFER_BIT);
 
-		//jh_Image(gl.xres, gl.yres, gl.textid);
-		jk_showCreditPage(jk_message, gl.yres-120, 0x0040e0d0);
-		jh_showCreditPage(jk_message, gl.yres-220, 0x0024AAFA);
-		jr_showCreditPage(jk_message, gl.yres-320, 0x0051f542);
-		et_showCreditPage(jk_message, gl.yres-420, 0x00B24BF3);
-		an_showCreditPage(jk_message, gl.yres-520, 0x00FF7025);
-	}
+			jh_Image(gl.xres, gl.yres,gl.textid[0]);
+			jk_showWelcomePage(jk_welcomeMessage, gl.yres - 380, 0x00CC593F);
+			jh_showWelcomePage(jk_welcomeMessage, gl.yres - 510, 0x00CC593F);
+			jr_showWelcomePage(jk_welcomeMessage, gl.yres - 450, 0x00CC593F);
+			et_showWelcomePage(jk_welcomeMessage, gl.yres - 490, 0x00CC593F);
+			an_showWelcomePage(jk_welcomeMessage, gl.yres - 470, 0x00CC593F);
+			jk_showWelcomePage3(jk_welcomeMessage, gl.yres - 430, 0x00e3a90b);
+			jk_showWelcomePage2(jk_welcomeMessage, gl.yres - 550, 0x00FF0050);
+			jk_showWelcomePage4(jk_welcomeMessage, gl.yres - 410, 0x00e3a90b);
 
-	if (gl.maze_state < 0) {
-		glClear(GL_COLOR_BUFFER_BIT);
-		//ggprint8b(&r, 16, 0x00ffffff, "victory!");
-		ggprint8b(&r, 16, 0x00ffffff, "press s to start next level");
-		jh_Image(gl.xres, gl.yres -50, gl.textid[1]);
+		}
+
+		// Rect jk_t = jk_createRect(gl.yres, 100, 10, 0);
+		// Rect jk_message = jk_createRect(gl.yres+50, 100, 10, 0); 
+		// Rect jk_titles = jk_createRect(gl.yres+50, 100, 10, 0);
+		
+		// jk_titles.left = gl.xres / 2;
+		// jk_titles.center = 1;
+
+		// jk_message.left = 50;
+
+
+		if (jkuo_midterm_checkState(gl.maze_state, 110)) {
+		// if (gl.maze_state == 11) {
+			glClear(GL_COLOR_BUFFER_BIT);
+			ggprint13(&jk_titles, 16, 0x00ffffff, "Rules Page");
+			ggprint8b(&jk_titles, 16, 0x00ffffff, "press b to return to home");
+
+			jk_showRulesPage(jk_message, gl.yres-120, 0x0040e0d0);
+			jh_showRulesPage(jk_message, gl.yres-220, 0x0024AAFA);
+			jr_showRulesPage(jk_message, gl.yres-320, 0x0051f542);
+			et_showRulesPage(jk_message, gl.yres-420, 0x00B24BF3);
+			an_showRulesPage(jk_message, gl.yres-520, 0x00FF7025);
+		}
+
+
+
+
+		if (jkuo_midterm_checkState(gl.maze_state, 120)) {
+		// if (gl.maze_state == 12) {
+			glClear(GL_COLOR_BUFFER_BIT);
+			// load_ggfont(17); // arial 140
+			ggprint13(&jk_titles, 16, 0x00ffffff, "CREDIT Page");
+			ggprint8b(&jk_titles, 16, 0x00ffffff, "press b to return to home");
+
+			//jh_Image(gl.xres, gl.yres, gl.textid);
+			jk_showCreditPage(jk_message, gl.yres-120, 0x0040e0d0);
+			jh_showCreditPage(jk_message, gl.yres-220, 0x0024AAFA);
+			jr_showCreditPage(jk_message, gl.yres-320, 0x0051f542);
+			et_showCreditPage(jk_message, gl.yres-420, 0x00B24BF3);
+			an_showCreditPage(jk_message, gl.yres-520, 0x00FF7025);
+		}
+
+		if (gl.maze_state < 0) {
+			glClear(GL_COLOR_BUFFER_BIT);
+			//ggprint8b(&r, 16, 0x00ffffff, "victory!");
+			ggprint8b(&r, 16, 0x00ffffff, "press s to start next level");
+			jh_Image(gl.xres, gl.yres -50, gl.textid[1]);
+
+			
+			string paused_time = "Completed in: " + to_string(gl.current_time) 
+																  + " seconds";
+			const char *p = paused_time.c_str();
+			ggprint8b(&r, 16, 0x00ffffff, p);
+
+			int levelBeaten = gl.maze_state * -1;
+			gl.timeBeaten[levelBeaten] = gl.current_time;
+		}
+
+
+		Rect et_message = jk_createRect(gl.yres+50, 100, 10, 0); 
+
+
+		// maze 1 - 12
+		if (gl.maze_state >= 1 && gl.maze_state <= 12) {
+			jk_stageSetUp(r, et_message);
+			printTheRightMaze(jk_t, gl.yres-100, 0x0040e0d0, 
+									gl.player, gl.firstRun, gl.endReached, 
+									gl.mazeGrid, gl.maze_state);
+		}
+
+
+
+
+		// gl.maze_state = 1000;
+
+		if (jkuo_midterm_checkState(gl.maze_state, 1000)) {
+		// if (gl.maze_state == 1000) {
+
+			glClear(GL_COLOR_BUFFER_BIT);
+			ggprint8b(&r, 16, 0x00ffffff, "congrats on beating everything!");
+			ggprint8b(&r, 16, 0x00ffffff, "press b to return to homepage");
+
+		}
+
+
+
+		if (jkuo_midterm_checkState(gl.maze_state, 404)) {
+		// if (gl.maze_state == 404) {
+
+			glClear(GL_COLOR_BUFFER_BIT);
+			ggprint8b(&r, 16, 0x00ffffff, "Timer is up, please Try again");
+			ggprint8b(&r, 16, 0x00ffffff, "press b to return to homepage");
+
+		}
+
 
 		
-		string paused_time = "Completed in: " + to_string(gl.current_time) + 
-																	" seconds";
-		const char *p = paused_time.c_str();
-		ggprint8b(&r, 16, 0x00ffffff, p);
+		// if (jkuo_midterm_checkState(gl.maze_state, 405)) {
+		if (gl.maze_state >= 405000) {
 
-		int levelBeaten = gl.maze_state * -1;
-		gl.timeBeaten[levelBeaten] = gl.current_time;
-	}
-
-
-	Rect et_message = jk_createRect(gl.yres+50, 100, 10, 0); 
-
-
-	// maze 1 - 12
-	if (gl.maze_state >= 1 && gl.maze_state <= 12) {
-		jk_stageSetUp(r, et_message);
-		printTheRightMaze(jk_t, gl.yres-100, 0x0040e0d0, 
-								gl.player, gl.firstRun, gl.endReached, 
-								gl.mazeGrid, gl.maze_state);
-	}
+			glClear(GL_COLOR_BUFFER_BIT);
+			ggprint8b(&r, 16, 0x00ffffff, "THE GAME IS PAUSED");
+			ggprint8b(&r, 16, 0x00ffffff, "press u to return to game");
+			string paused_time = "Elapsed Time: " + to_string(gl.current_time);
+			const char *p = paused_time.c_str();
+			ggprint8b(&r, 16, 0x00ffffff, p);
+		}
 
 
+		//secret mode
 
+		if (jkuo_midterm_checkState(gl.maze_state, 230)) {
+		// if (gl.maze_state == 230) {
+			glClear(GL_COLOR_BUFFER_BIT);
+			ggprint8b(&r, 16, 0x00ff0000, "3350 - MAze");
 
-	// gl.maze_state = 1000;
-
-	if (jkuo_midterm_checkState(gl.maze_state, 1000)) {
-	// if (gl.maze_state == 1000) {
-
-		glClear(GL_COLOR_BUFFER_BIT);
-		ggprint8b(&r, 16, 0x00ffffff, "congrats on beating everything!");
-		ggprint8b(&r, 16, 0x00ffffff, "press b to return to homepage");
-
-	}
-
-
-
-	if (jkuo_midterm_checkState(gl.maze_state, 404)) {
-	// if (gl.maze_state == 404) {
-
-		glClear(GL_COLOR_BUFFER_BIT);
-		ggprint8b(&r, 16, 0x00ffffff, "Timer is up, please Try again");
-		ggprint8b(&r, 16, 0x00ffffff, "press b to return to homepage");
-
-	}
-
-
-	
-	// if (jkuo_midterm_checkState(gl.maze_state, 405)) {
-	if (gl.maze_state >= 405000) {
-
-		glClear(GL_COLOR_BUFFER_BIT);
-		ggprint8b(&r, 16, 0x00ffffff, "THE GAME IS PAUSED");
-		ggprint8b(&r, 16, 0x00ffffff, "press u to return to game");
-		string paused_time = "Elapsed Time: " + to_string(gl.current_time);
-		const char *p = paused_time.c_str();
-		ggprint8b(&r, 16, 0x00ffffff, p);
-	}
-
-
-	//secret mode
-
-	if (jkuo_midterm_checkState(gl.maze_state, 230)) {
-	// if (gl.maze_state == 230) {
-		glClear(GL_COLOR_BUFFER_BIT);
-		ggprint8b(&r, 16, 0x00ff0000, "3350 - MAze");
-
-		jk_showWelcomePageTitle(jk_welcomeTitlePlaceHolder, 
+			jk_showWelcomePageTitle(jk_welcomeTitlePlaceHolder, 
 											gl.yres - (gl.yres/2), 0x00FF0000);
-		jk_showSecretMode(jk_welcomeTitlePlaceHolder, 
+			jk_showSecretMode(jk_welcomeTitlePlaceHolder, 
 								gl.yres - (gl.yres/2 - gl.yres/4), 0x00FF0050);
 
-		jk_showSecretModeMessage(jk_welcomeMessage, gl.yres - 400, 0x00CC5050);
+			jk_showSecretModeMessage(jk_welcomeMessage, gl.yres - 400, 
+																	0x00CC5050);
+
+		}
+
+		//zen mode stages
+
+		if (jkuo_midterm_checkState(gl.maze_state, 231)) {
+		// if (gl.maze_state == 231) {
+			
+			glClear(GL_COLOR_BUFFER_BIT);
+			
+			ggprint8b(&r, 16, 0x00ffffff, "press s to switch to next maze");
+			ggprint8b(&r, 16, 0x00ffffff, "press b to return to secret home");
+			ggprint8b(&r, 16, 0x00ffffff, 
+									"HOLD down the arrowkeys to move about");
+
+			jk_playerMovementForSecretMode(gl.keys, gl.player);
+			jk_printMazeSecretMode1(jk_t, gl.yres-100, 0x0040e0d0, gl.player, 
+													gl.firstRun);
+		}
+
+		if (jkuo_midterm_checkState(gl.maze_state, 232)) {
+		// if (gl.maze_state == 232) {
+			
+			glClear(GL_COLOR_BUFFER_BIT);
+			
+			ggprint8b(&r, 16, 0x00ffffff, "press s to switch to next maze");
+			ggprint8b(&r, 16, 0x00ffffff, "press b to return to secret home");
+			ggprint8b(&r, 16, 0x00ffffff, 
+									"HOLD down the arrowkeys to move about");
+
+			jk_playerMovementForSecretMode(gl.keys, gl.player);
+			jk_printMazeSecretMode2(jk_t, gl.yres-100, 0x0040e0d0, gl.player, 
+													gl.firstRun);
+		}
+
+		if (jkuo_midterm_checkState(gl.maze_state, 233)) {
+		// if (gl.maze_state == 233) {
+			
+			glClear(GL_COLOR_BUFFER_BIT);
+			
+			ggprint8b(&r, 16, 0x00ffffff, "press s to switch to next maze");
+			ggprint8b(&r, 16, 0x00ffffff, "press b to return to secret home");
+			ggprint8b(&r, 16, 0x00ffffff, 
+									"HOLD down the arrowkeys to move about");
+
+			jk_playerMovementForSecretMode(gl.keys, gl.player);
+			jk_printMazeSecretMode3(jk_t, gl.yres-100, 0x0040e0d0, gl.player, 
+													gl.firstRun);
+													// gl.firstRun, gl.mazeGrid);
+		}
+
 
 	}
-
-	//zen mode stages
-
-	if (jkuo_midterm_checkState(gl.maze_state, 231)) {
-	// if (gl.maze_state == 231) {
-		
-		glClear(GL_COLOR_BUFFER_BIT);
-		
-		ggprint8b(&r, 16, 0x00ffffff, "press s to switch to next maze");
-		ggprint8b(&r, 16, 0x00ffffff, "press b to return to secret home");
-		ggprint8b(&r, 16, 0x00ffffff, "HOLD down the arrowkeys to move about");
-
-		jk_playerMovementForSecretMode(gl.keys, gl.player);
-		jk_printMazeSecretMode1(jk_t, gl.yres-100, 0x0040e0d0, gl.player, 
-												gl.firstRun);
-	}
-
-	if (jkuo_midterm_checkState(gl.maze_state, 232)) {
-	// if (gl.maze_state == 232) {
-		
-		glClear(GL_COLOR_BUFFER_BIT);
-		
-		ggprint8b(&r, 16, 0x00ffffff, "press s to switch to next maze");
-		ggprint8b(&r, 16, 0x00ffffff, "press b to return to secret home");
-		ggprint8b(&r, 16, 0x00ffffff, "HOLD down the arrowkeys to move about");
-
-		jk_playerMovementForSecretMode(gl.keys, gl.player);
-		jk_printMazeSecretMode2(jk_t, gl.yres-100, 0x0040e0d0, gl.player, 
-												gl.firstRun);
-	}
-
-	if (jkuo_midterm_checkState(gl.maze_state, 233)) {
-	// if (gl.maze_state == 233) {
-		
-		glClear(GL_COLOR_BUFFER_BIT);
-		
-		ggprint8b(&r, 16, 0x00ffffff, "press s to switch to next maze");
-		ggprint8b(&r, 16, 0x00ffffff, "press b to return to secret home");
-		ggprint8b(&r, 16, 0x00ffffff, "HOLD down the arrowkeys to move about");
-
-		jk_playerMovementForSecretMode(gl.keys, gl.player);
-		jk_printMazeSecretMode3(jk_t, gl.yres-100, 0x0040e0d0, gl.player, 
-												   gl.firstRun);
-												// gl.firstRun, gl.mazeGrid);
-	}
-
-
-
 	
 }
 

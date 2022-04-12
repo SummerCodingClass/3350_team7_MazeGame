@@ -427,7 +427,7 @@ extern bool anicholas_Midterm(int value);
 
 
 void jk_page_transition(int& maze_state, const char* keyChecked, 
-                                                    bool& firstRun, int maxMaze) 
+                                bool& firstRun, int maxMaze, bool& showScores) 
 {
     //case XK_b;
     if (strcmp(keyChecked, "b") == 0) {        
@@ -510,6 +510,16 @@ void jk_page_transition(int& maze_state, const char* keyChecked,
             maze_state = 230;
         }        
         return; 
+    }
+
+    
+    if (strcmp(keyChecked, "a") == 0) {
+        if (showScores) {
+            showScores = false;
+            return; 
+        }
+        showScores = true;
+        return;
     }
 
     if (strcmp(keyChecked, "r") == 0) {
@@ -603,6 +613,13 @@ void jk_showWelcomePage3(Rect position, int defaultHeight, int color)
     position.bot = defaultHeight;
   
     ggprint8b(&position, 16, color, "press 'Z' to start from tutorial stage");
+}
+
+void jk_showWelcomePage4(Rect position, int defaultHeight, int color) 
+{
+    position.bot = defaultHeight;
+  
+    ggprint8b(&position, 16, color, "press 'A' any time for scoreboard");
 }
 
 
