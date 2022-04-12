@@ -484,9 +484,12 @@ void jk_page_transition(int& maze_state, const char* keyChecked,
                 maze_state = (maze_state* -1) + 2;
             } else if (maze_state > (-1 * maxMaze)) {
                 maze_state = (maze_state* -1) + 1;
-            } else {
-                maze_state = 1000; // congrats on beating everything
+            } else if (maze_state == (-1 * maxMaze)) {
+                maze_state = 0;
             }
+            // } else {
+                // maze_state = 1000; // congrats on beating everything
+            // }
         } else if (maze_state == 3) {
             firstRun = true;
             maze_state = 5;
@@ -1278,3 +1281,63 @@ void Grid::printGrid(Rect position, int rows, int columns,
 // 	jk_playerMovement(gl.keys, gl.player, gl.mazeGrid);
 
 // }
+
+
+
+
+
+
+//============================================================================
+// Scoreboard
+//============================================================================
+
+bool jk_allStagesBeaten(int timeBeaten[], int maxMaze)
+{
+    
+    for (int i = 1; i <= maxMaze; i++) {
+
+        // cout << "timeBeaten[" << i << "]: " << timeBeaten[i] << endl;
+        if (i == 4) {
+        //     // do nothing. tutorial doesn't count
+        //     cout << "stage 4" << endl;
+        } else {
+            if(timeBeaten[i] == -1) {   
+                
+                // cout << "timeBeaten[" << i << "]: " << timeBeaten[i] << endl;
+                // cout << "stage " << i << " returned false" << endl;
+                return false;
+            }
+        }
+    }
+
+    return true;
+}
+
+void jk_displayScore(int timeBeaten[], int maxMaze, Rect position1, 
+                                   Rect position2, int defaultHeight, int color)
+{
+    position1.bot = defaultHeight;
+    position2.bot = defaultHeight;
+    
+
+    for (int level = 1; level <= maxMaze; level++) {
+
+        string mazeLevel = "Maze " + to_string(level) + ": ";
+        const char *name = mazeLevel.c_str();
+
+        // ggprint13(&position1, 16, color, "Maze 1: ");
+        ggprint13(&position1, 30, color, name);
+    
+        if (timeBeaten[level] == -1) {
+            ggprint13(&position2, 30, 0x00FF8C00, "no attempt yet");
+        } else {
+    
+            int time = timeBeaten[level];
+            string mazeTime = "completed in " + to_string(time) + " seconds";
+            const char *highScore = mazeTime.c_str();
+            ggprint13(&position2, 30, color, highScore);
+        }    
+    }
+
+
+}

@@ -88,6 +88,7 @@ public:
 	Grid mazeGrid;
 	bool showScores;
 	int maxMaze;
+	// int timeBeaten[];
 	int timeBeaten[13];
 	
 
@@ -102,9 +103,12 @@ public:
 		endReached = false;
 		// Grid mazeGrid = NULL;
 		Grid mazeGrid;
-		maxMaze = 12;
 		showScores = false;
-		// timeBeaten = {0};
+		maxMaze = 12;
+		// timeBeaten[13] = {-1};
+		for (int i = 0; i <= maxMaze; i++) {
+			timeBeaten[i] = -1;
+		}
 
 	}
 } gl;
@@ -1105,14 +1109,19 @@ extern void et_timer(Rect position, int defaultHeight, int color,
 extern bool jkuo_midterm_checkState(int mazeState, int desiredState);
 extern bool etagaca_midterm(int& current_time);
 
+extern bool jk_allStagesBeaten(int timeBeaten[], int maxMaze);
+void jk_displayScore(int timeBeaten[], int maxMaze, Rect position1, 
+								Rect position2, int defaultHeight, int color);
+
 
 void jk_stageSetUp(Rect r, Rect timerPosition) 
 {
 	glClear(GL_COLOR_BUFFER_BIT);
 	
-	ggprint8b(&r, 16, 0x00ffffff, "press s to switch to next maze");
-	ggprint8b(&r, 16, 0x00ffffff, "press b to return to home");
+	ggprint8b(&r, 16, 0x00ffffff, 
+				"press s to switch to next maze. press b to return to home");
 	ggprint8b(&r, 16, 0x00ffffff, "press p to pause game");
+	ggprint8b(&r, 16, 0x00ffffff, "press a any time to view scoreboard");
 	ggprint8b(&r, 16, 0x00ffffff, "HOLD down the arrowkeys to move about");
 
 	et_timer(timerPosition, gl.yres-120, 0x00B24BF3, gl.maze_state, 
@@ -1215,12 +1224,21 @@ void render()
 
 	Rect jk_t = jk_createRect(gl.yres, 100, 10, 0);
 	
+	Rect jk_scoreColumn1 = jk_createRect(gl.yres, 100, 10, 0);
+	jk_scoreColumn1.left = gl.xres/4;
+	
+	Rect jk_scoreColumn2 = jk_createRect(gl.yres, 100, 10, 0);
+	jk_scoreColumn2.left = jk_scoreColumn1.left + 100;
+	
 
 
 	if (gl.showScores) {
 		glClear(GL_COLOR_BUFFER_BIT);
 		ggprint13(&jk_titles, 16, 0x00ffffff, "Scoreboard");
 		ggprint8b(&jk_titles, 16, 0x00ffffff, "press a again to resume");
+
+		jk_displayScore(gl.timeBeaten, gl.maxMaze, jk_scoreColumn1, 
+								jk_scoreColumn2, gl.yres - 100, 0x00e3a90b);
 
 
 
@@ -1284,6 +1302,10 @@ void render()
 			an_showCreditPage(jk_message, gl.yres-520, 0x00FF7025);
 		}
 
+
+
+
+
 		if (gl.maze_state < 0) {
 			glClear(GL_COLOR_BUFFER_BIT);
 			//ggprint8b(&r, 16, 0x00ffffff, "victory!");
@@ -1297,8 +1319,57 @@ void render()
 			ggprint8b(&r, 16, 0x00ffffff, p);
 
 			int levelBeaten = gl.maze_state * -1;
-			gl.timeBeaten[levelBeaten] = gl.current_time;
+
+			if (gl.timeBeaten[levelBeaten] == -1) {
+				gl.timeBeaten[levelBeaten] = gl.current_time;
+
+				string record = "current high score: " 
+						+ to_string(gl.timeBeaten[levelBeaten]) + " seconds";
+				const char *recordChar = record.c_str();			
+				ggprint8b(&r, 16, 0x00ffffff, recordChar);
+
+
+
+			} else if (gl.current_time < gl.timeBeaten[levelBeaten]) {
+				ggprint8b(&r, 16, 0x00ffffff, 
+									"Congratulations! You beated the record!");
+				
+				string record = "record beaten: " 
+						+ to_string(gl.timeBeaten[levelBeaten]) + " seconds";
+				const char *recordChar = record.c_str();			
+				ggprint8b(&r, 16, 0x00ffffff, recordChar);
+
+
+				gl.timeBeaten[levelBeaten] = gl.current_time;
+
+				
+				record = "new high score: " 
+						+ to_string(gl. timeBeaten[levelBeaten]) + " seconds";
+				recordChar = record.c_str();			
+				ggprint8b(&r, 16, 0x00ffffff, recordChar);
+
+
+				ggprint8b(&r, 16, 0x00ffffff, 
+									"The new high score has been recorded");	
+
+
+			} else {
+				string record = "high score: " 
+						+ to_string(gl.timeBeaten[levelBeaten]) + " seconds";
+				const char *recordChar = record.c_str();			
+				ggprint8b(&r, 16, 0x00ffffff, recordChar);
+			}
+
+
+			bool allBeaten = jk_allStagesBeaten(gl.timeBeaten, gl.maxMaze);
+
+			if (allBeaten == true) {
+				gl.maze_state = 1000;
+			}
 		}
+
+
+
 
 
 		Rect et_message = jk_createRect(gl.yres+50, 100, 10, 0); 
@@ -1418,7 +1489,15 @@ void render()
 
 
 	}
-	
+
+
+
+	//tutorial doesn't count
+	// bool allBeaten = jk_allStagesBeaten(gl.timeBeaten, gl.maxMaze);
+	// if (allBeaten == true) {
+	// 	gl.maze_state = 1000;
+	// }
+
 }
 
 
