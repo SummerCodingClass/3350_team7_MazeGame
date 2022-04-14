@@ -1,5 +1,5 @@
-//Jesus Rojas
-//Group Project Source file
+/*Jesus Rojas
+Group Project Source file*/
 
 #include <iostream>
 #include "fonts.h"
@@ -61,34 +61,40 @@ void jr_PrintMsg()
     cout << "jrojas -testing this out! Hello there!" << endl;
 }
 
-void jr_showCreditPage(Rect position, int defaultHeight, int color) {
+void jr_showCreditPage(Rect position, int defaultHeight, int color) 
+{
   position.bot = defaultHeight;
   ggprint8b(&position, 16, color, "Jesus Rojas:");
   ggprint8b(&position, 16, color, "Game Designer | Game Programmer");
 }
 
-void jr_showRulesPage(Rect position, int defaultHeight, int color) {
+void jr_showRulesPage(Rect position, int defaultHeight, int color) 
+{
   position.bot = defaultHeight;
   ggprint8b(&position, 16, color, "Rule 3:");
   ggprint8b(&position, 16, color, "You could pause game and resume.");
 }
 
-void jr_showWelcomePage(Rect position, int defaultHeight, int color) {
+void jr_showWelcomePage(Rect position, int defaultHeight, int color) 
+{
   position.bot = defaultHeight;
   ggprint8b(&position, 16, color, "press 'S' to start from Maze 1");
 }
 
-bool GridCells::setCurrent(bool input) {
+bool GridCells::setCurrent(bool input) 
+{
     currentPosition = input;
     return currentPosition;
 }
 
-bool GridCells::setTraveled(bool input) {
+bool GridCells::setTraveled(bool input) 
+{
     traveled = input;
     return traveled;
 }
 
-bool GridCells::isSpace() {
+bool GridCells::isSpace() 
+{
     return space;
 }
 
@@ -102,12 +108,12 @@ void jr_printMaze7(Rect position, int defaultHeight, int color,
     const char* mazeName = "Maze 7";
     int rows = 31;                      // Row Count
     
-    //Original
+    //Original Starting Points
     int startingPosition[2] = {17, 20}; // (Starting Position)
-    //int endingPosition[2] = {29, 29};   // (Ending Position)
+    int endingPosition[2] = {29, 29};   // (Ending Position)
     
-    //Test
-    int endingPosition[2] = {17, 21};
+    //Test Starting Points
+    //int endingPosition[2] = {17, 21};
 
     int wallColor[3] = {239, 66, 245};  // **PINK COLOR**
 
@@ -184,14 +190,14 @@ void jr_printMaze8(Rect position, int defaultHeight, int color,
 {
     const char* mazeName = "Maze 8";
     int rows = 26;                      // Row Count
-    //Original
+    //Original Starting Points
     int startingPosition[2] = {15, 24}; // (Starting Position)
-    //int endingPosition[2] = {29, 1};    // (Ending Position)    
+    int endingPosition[2] = {29, 1};    // (Ending Position)    
                                         //          Counting from 0.
                                         //          1st number: left to right
                                         //          2nd number: top to bottom
-    //Testing  
-    int endingPosition[2] = {13, 24};    // (Ending Position)    
+    //Test Starting Points
+    //int endingPosition[2] = {13, 24};    // (Ending Position)    
     
     int wallColor[3] = {3, 107, 252};   // **BLUE COLOR**
 
