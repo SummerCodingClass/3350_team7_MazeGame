@@ -1238,7 +1238,7 @@ void Grid::printGrid(Rect position, int rows, int columns,
         } else {
             colorChange = colorChange + 50;
         }
-    } else if (wallColor[2] <= 50) {
+    } else if (wallColor[2] <= 52) {
         if (colorChange == wallColor[2]) {
             colorChange++;
         } else if (colorChange < 0 || colorChange > 240) {
@@ -1264,7 +1264,7 @@ void Grid::printGrid(Rect position, int rows, int columns,
         }
     }
 
-    cout << colorChange << " ";
+    // cout << colorChange << " ";
 
 
     // ========================== start of for loops ========================
