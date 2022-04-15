@@ -1216,6 +1216,56 @@ void Grid::printGrid(Rect position, int rows, int columns,
     }
     
 
+    // static int colorChange = wallColor[1];
+    // if (colorChange == wallColor[1]) {
+    //     colorChange++;
+    // } else if (colorChange < 0 || colorChange > 240 
+    //             || (wallColor[1] + 50) < colorChange
+    //             || (wallColor[1] - 50) > colorChange) {
+    //     //255, 255, 255 is white, so used 240 to prevent that
+    //     colorChange = wallColor[1];
+    // } else {
+    //     colorChange = colorChange - 10;
+    // }
+    static int colorChange = wallColor[2];
+
+    if (wallColor[2] == 0) {
+        if (colorChange == wallColor[2]) {
+            colorChange++;
+        } else if (colorChange < 0 || colorChange > 240) {
+            //255, 255, 255 is white, so used 240 to prevent that
+            colorChange = 0 + 10;
+        } else {
+            colorChange = colorChange + 50;
+        }
+    } else if (wallColor[2] <= 50) {
+        if (colorChange == wallColor[2]) {
+            colorChange++;
+        } else if (colorChange < 0 || colorChange > 240) {
+            colorChange = wallColor[2] + 10;
+        } else {
+            colorChange = colorChange + 50;
+        }    
+    } else if (wallColor[2] >= 240) {
+        if (colorChange == wallColor[2]) {
+            colorChange++;
+        } else if (colorChange < 0 || colorChange > 240) {
+            colorChange = 240 - 10;
+        } else {
+            colorChange = colorChange - 50;
+        }
+    } else {
+        if (colorChange == wallColor[2]) {
+            colorChange++;
+        } else if (colorChange < 0 || colorChange > 240) {
+            colorChange = wallColor[2];
+        } else {
+            colorChange = colorChange - 50;
+        }
+    }
+
+    cout << colorChange << " ";
+
 
     // ========================== start of for loops ========================
     for (int i = 0; i < rows; i++) {
@@ -1224,7 +1274,11 @@ void Grid::printGrid(Rect position, int rows, int columns,
             
             
             //color of wall
-            glColor3ub(wallColor[0],wallColor[1], wallColor[2]);
+
+            
+
+            // glColor3ub(wallColor[0],wallColor[1], wallColor[2]);
+            glColor3ub(wallColor[0],wallColor[1], colorChange);
 
             if(mazeGrid[i][j].isSpace()) {
                 glColor3ub(20,20,20);
