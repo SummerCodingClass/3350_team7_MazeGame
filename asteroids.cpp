@@ -77,7 +77,7 @@ extern void timeCopy(struct timespec *dest, struct timespec *source);
 
 class Global {
 public:
-	unsigned int textid[2];
+	unsigned int textid[4];
 	int xres, yres;
 	char keys[65536];
 	int maze_state;
@@ -175,7 +175,7 @@ public:
 			unlink(ppmname);
 	}
 };
-Image img[2] = {"mazeTitle.png", "victoryTitle.png"};
+Image img[4] = {"mazeTitle.png", "victoryTitle.png", "STAR.png", "cave.png"};
 
 
 class Ship {
@@ -491,6 +491,22 @@ void init_opengl(void)
    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
    glTexImage2D(GL_TEXTURE_2D, 0, 3, img[1].width, img[1].height, 0,
        GL_RGB, GL_UNSIGNED_BYTE, img[1].data);
+	glBindTexture(GL_TEXTURE_2D, 0);
+
+   glGenTextures(1, &gl.textid[2]);
+   glBindTexture(GL_TEXTURE_2D, gl.textid[2]);
+   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+   glTexImage2D(GL_TEXTURE_2D, 0, 3, img[2].width, img[2].height, 0,
+       GL_RGB, GL_UNSIGNED_BYTE, img[2].data);
+	glBindTexture(GL_TEXTURE_2D, 0);
+
+   glGenTextures(1, &gl.textid[3]);
+   glBindTexture(GL_TEXTURE_2D, gl.textid[3]);
+   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+   glTexImage2D(GL_TEXTURE_2D, 0, 3, img[3].width, img[3].height, 0,
+       GL_RGB, GL_UNSIGNED_BYTE, img[3].data);
 	glBindTexture(GL_TEXTURE_2D, 0);
 }
 
