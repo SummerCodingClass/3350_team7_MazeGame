@@ -528,7 +528,7 @@ void jk_page_transition(int& maze_state, const char* keyChecked,
     if (strcmp(keyChecked, "r") == 0) {
         if (maze_state == 0) {
             maze_state = 110;
-        } else if(maze_state == 22) {
+        } else if (maze_state == 22) {
             maze_state = 230;
         }
         return; 
@@ -542,28 +542,28 @@ void jk_page_transition(int& maze_state, const char* keyChecked,
     }
 
     if (strcmp(keyChecked, "q") == 0) {
-        if(maze_state == 110 || maze_state == 120) {
+        if (maze_state == 110 || maze_state == 120) {
             maze_state = 20;
         }
         return; 
     }
 
     if (strcmp(keyChecked, "w") == 0) {
-        if(maze_state == 20) {
+        if (maze_state == 20) {
             maze_state = 21;
         }
         return; 
     }
 
     if (strcmp(keyChecked, "e") == 0) {
-        if(maze_state == 21) {
+        if (maze_state == 21) {
             maze_state = 22;
         }
         return; 
     }
 
     if (strcmp(keyChecked, "z") == 0) {
-        if(maze_state == 0) {
+        if (maze_state == 0) {
             firstRun = true;
             maze_state = 4; //test mode
         }
@@ -1045,7 +1045,6 @@ void jk_printMazeSecretMode2(Rect position, int defaultHeight, int color,
 }
 
 
-
 void jk_printMazeSecretMode3(Rect position, int defaultHeight, int color, 
                                           int (&player)[2], bool& firstRun)
 {
@@ -1058,29 +1057,29 @@ void jk_printMazeSecretMode3(Rect position, int defaultHeight, int color,
     const char* maze[rows] = 
     {
     
-        "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa   a",
-        "8   8               8               8           8                   8   8",
-        "8   8   aaaaaaaaa   8   aaaaa   aaaa8aaaa   aaaa8   aaaaa   aaaaa   8   8",
-        "8               8       8   8           8           8   8   8       8   8",
-        "8aaaaaaaa   a   8aaaaaaa8   8aaaaaaaa   8aaaa   a   8   8   8aaaaaaa8   8",
-        "8       8   8               8           8   8   8   8   8           8   8",
-        "8   a   8aaa8aaaaaaaa   a   8   aaaaaaaa8   8aaa8   8   8aaaaaaaa   8   8",
-        "8   8               8   8   8       8           8           8       8   8",
-        "8   8aaaaaaaaaaaa   8aaa8   8aaaa   8   aaaaa   8aaaaaaaa   8   aaaa8   8",
-        "8           8       8   8       8   8       8           8   8           8",
-        "8   aaaaa   8aaaa   8   8aaaa   8   8aaaaaaa8   a   a   8   8aaaaaaaaaaa8",
-        "8       8       8   8   8       8       8       8   8   8       8       8",
-        "8aaaaaaa8aaaa   8   8   8   aaaa8aaaa   8   aaaa8   8   8aaaa   8aaaa   8",
-        "8           8   8           8       8   8       8   8       8           8",
-        "8   aaaaa   8   8aaaaaaaa   8aaaa   8   8aaaa   8aaa8   aaaa8aaaaaaaa   8",
-        "8   8       8           8           8       8   8   8               8   8",
-        "8   8   aaaa8aaaa   a   8aaaa   aaaa8aaaa   8   8   8aaaaaaaaaaaa   8   8",
-        "8   8           8   8   8   8   8           8               8   8       8",
-        "8   8aaaaaaaa   8   8   8   8aaa8   8aaaaaaa8   aaaaaaaaa   8   8aaaaaaa8",
-        "8   8       8   8   8           8           8   8       8               8",
-        "8   8   aaaa8   8aaa8   aaaaa   8aaaaaaaa   8aaa8   a   8aaaaaaaa   a   8",
-        "8   8                   8           8               8               8   8",
-        "8   8aaaaaaaaaaaaaaaaaaa8aaaaaaaaaaa8aaaaaaaaaaaaaaa8aaaaaaaaaaaaaaa8aaa8",
+    "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa   a",
+    "8   8               8               8           8                   8   8",
+    "8   8   aaaaaaaaa   8   aaaaa   aaaa8aaaa   aaaa8   aaaaa   aaaaa   8   8",
+    "8               8       8   8           8           8   8   8       8   8",
+    "8aaaaaaaa   a   8aaaaaaa8   8aaaaaaaa   8aaaa   a   8   8   8aaaaaaa8   8",
+    "8       8   8               8           8   8   8   8   8           8   8",
+    "8   a   8aaa8aaaaaaaa   a   8   aaaaaaaa8   8aaa8   8   8aaaaaaaa   8   8",
+    "8   8               8   8   8       8           8           8       8   8",
+    "8   8aaaaaaaaaaaa   8aaa8   8aaaa   8   aaaaa   8aaaaaaaa   8   aaaa8   8",
+    "8           8       8   8       8   8       8           8   8           8",
+    "8   aaaaa   8aaaa   8   8aaaa   8   8aaaaaaa8   a   a   8   8aaaaaaaaaaa8",
+    "8       8       8   8   8       8       8       8   8   8       8       8",
+    "8aaaaaaa8aaaa   8   8   8   aaaa8aaaa   8   aaaa8   8   8aaaa   8aaaa   8",
+    "8           8   8           8       8   8       8   8       8           8",
+    "8   aaaaa   8   8aaaaaaaa   8aaaa   8   8aaaa   8aaa8   aaaa8aaaaaaaa   8",
+    "8   8       8           8           8       8   8   8               8   8",
+    "8   8   aaaa8aaaa   a   8aaaa   aaaa8aaaa   8   8   8aaaaaaaaaaaa   8   8",
+    "8   8           8   8   8   8   8           8               8   8       8",
+    "8   8aaaaaaaa   8   8   8   8aaa8   8aaaaaaa8   aaaaaaaaa   8   8aaaaaaa8",
+    "8   8       8   8   8           8           8   8       8               8",
+    "8   8   aaaa8   8aaa8   aaaaa   8aaaaaaaa   8aaa8   a   8aaaaaaaa   a   8",
+    "8   8                   8           8               8               8   8",
+    "8   8aaaaaaaaaaaaaaaaaaa8aaaaaaaaaaa8aaaaaaaaaaaaaaa8aaaaaaaaaaaaaaa8aaa8",
 
     };
 
@@ -1280,19 +1279,19 @@ void Grid::printGrid(Rect position, int rows, int columns,
             // glColor3ub(wallColor[0],wallColor[1], wallColor[2]);
             glColor3ub(wallColor[0],wallColor[1], colorChange);
 
-            if(mazeGrid[i][j].isSpace()) {
+            if (mazeGrid[i][j].isSpace()) {
                 glColor3ub(20,20,20);
             }
             
-            if(mazeGrid[i][j].isEnd()) {
+            if (mazeGrid[i][j].isEnd()) {
                 glColor3ub(128,128,128);
             }
 
-            if(mazeGrid[i][j].playerCurrent()) {
+            if (mazeGrid[i][j].playerCurrent()) {
                 glColor3ub(255,250,250);
             }
 
-            if(mazeGrid[i][j].hasTraveled()) {
+            if (mazeGrid[i][j].hasTraveled()) {
                 glColor3ub(0,255,255);
             }
 
@@ -1323,16 +1322,16 @@ void Grid::printGrid(Rect position, int rows, int columns,
 // {
 
 //     glClear(GL_COLOR_BUFFER_BIT);
-	
-// 	ggprint8b(&r, 16, 0x00ffffff, "press s to switch to next maze");
-// 	ggprint8b(&r, 16, 0x00ffffff, "press b to return to home");
-// 	ggprint8b(&r, 16, 0x00ffffff, "press p to pause game");
-// 	ggprint8b(&r, 16, 0x00ffffff, "HOLD down the arrowkeys to move about");
+    
+//  ggprint8b(&r, 16, 0x00ffffff, "press s to switch to next maze");
+//  ggprint8b(&r, 16, 0x00ffffff, "press b to return to home");
+//  ggprint8b(&r, 16, 0x00ffffff, "press p to pause game");
+//  ggprint8b(&r, 16, 0x00ffffff, "HOLD down the arrowkeys to move about");
 
-// 	et_timer(et_message, gl.yres-120, 0x00B24BF3, gl.maze_state, 
-// 											gl.firstRun, gl.current_time);
+//  et_timer(et_message, gl.yres-120, 0x00B24BF3, gl.maze_state, 
+//                                          gl.firstRun, gl.current_time);
 
-// 	jk_playerMovement(gl.keys, gl.player, gl.mazeGrid);
+//  jk_playerMovement(gl.keys, gl.player, gl.mazeGrid);
 
 // }
 
@@ -1352,7 +1351,7 @@ bool jk_allStagesBeaten(int timeBeaten[], int maxMaze)
         if (i == 4) {
             //do nothing. tutorial stage doesn't count against progress
         } else {
-            if(timeBeaten[i] == -1) {   
+            if (timeBeaten[i] == -1) {   
                 return false;
             }
         }
@@ -1415,7 +1414,7 @@ void highScoreMessages(int& maze_state, int (&timeBeaten)[13], int current_time,
     if (firstAttempt) {
         string record = "current high score: " 
                 + to_string(timeBeaten[levelBeaten]) + " seconds";
-        const char *recordChar = record.c_str();			
+        const char *recordChar = record.c_str();
         ggprint8b(&r, 16, 0x00ffffff, recordChar);
 
     } else if (newHighScore) {
@@ -1424,23 +1423,23 @@ void highScoreMessages(int& maze_state, int (&timeBeaten)[13], int current_time,
         
         string record = "record beaten: " 
                 + to_string(oldScore) + " seconds";
-        const char *recordChar = record.c_str();			
+        const char *recordChar = record.c_str();
         ggprint8b(&r, 16, 0x00ffffff, recordChar);
 
 
         
         record = "new high score: " 
                 + to_string(newScore) + " seconds";
-        recordChar = record.c_str();			
+        recordChar = record.c_str();
         ggprint8b(&r, 16, 0x00ffffff, recordChar);
 
 
         ggprint8b(&r, 16, 0x00ffffff, 
-                            "The new high score has been recorded");	
+                            "The new high score has been recorded");
     } else {
         string record = "high score: " 
                 + to_string(timeBeaten[levelBeaten]) + " seconds";
-        const char *recordChar = record.c_str();			
+        const char *recordChar = record.c_str();
         ggprint8b(&r, 16, 0x00ffffff, recordChar);
     }
 
@@ -1450,6 +1449,6 @@ void highScoreMessages(int& maze_state, int (&timeBeaten)[13], int current_time,
     bool allBeaten = jk_allStagesBeaten(timeBeaten, maxMaze);
 
     if (allBeaten == true) {
-    	maze_state = 1000;
+        maze_state = 1000;
     }
 }
