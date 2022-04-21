@@ -1,7 +1,6 @@
 //Author: Jennifer K
 //Individual Source File for Project
 
-
 #include "fonts.h"
 #include <iostream>
 #include <cstring> //for strlen()
@@ -9,17 +8,10 @@
 #include "GridCells.h"
 #include "Grid.h"
 
-
 using namespace std;
-
-
-
-
 
 //functions that need prototypes
 int getColumns (const char** maze, int rows);
-
-
 
 bool jkuo_midterm_checkState(int mazeState, int desiredState) 
 {
@@ -30,8 +22,6 @@ bool jkuo_midterm_checkState(int mazeState, int desiredState)
     
     return false;
 }
-
-
 
 bool jkuo_midterm_function_mon(int& maze_state, int desired_state) 
 {
@@ -47,8 +37,6 @@ bool jkuo_midterm_function_mon(int& maze_state, int desired_state)
     return true;
 }
 
-
-
 void jk_PrintMsg() 
 {
     cout << endl << endl;
@@ -57,8 +45,6 @@ void jk_PrintMsg()
     cout << endl;
     cout << "Test message from jk" << endl;
 }
-
-
 
 Rect jk_createRect(int yres, int height, int left, int center) 
 {
@@ -70,15 +56,12 @@ Rect jk_createRect(int yres, int height, int left, int center)
     return results;
 }
 
-
-
 void jk_printMazeGeneral(Rect position, int defaultHeight, int color, 
             int (&player)[2], bool &firstRun, bool& endReached, Grid& mazeGrid, 
             int& maze_state, const char* mazeName, int rows, 
             int startingPosition[2], int endingPosition[2], int wallColor[3],
             const char* maze[])
 {
-
     int columns = getColumns(maze, rows);
 
     if (firstRun) {
@@ -108,8 +91,6 @@ void jk_printMazeGeneral(Rect position, int defaultHeight, int color,
     }
 }
 
-
-
 void jk_printMazeTest(Rect position, int defaultHeight, int color, 
             int (&player)[2], bool &firstRun, bool& endReached, Grid& mazeGrid, 
                                                                 int& maze_state)
@@ -119,27 +100,22 @@ void jk_printMazeTest(Rect position, int defaultHeight, int color,
     int startingPosition[2] = {1, 3};
     // int endingPosition[2] = {1, 2}; 
     int endingPosition[2] = {9, 1}; 
-     
     
     int wallColor[3] = {221, 160, 221};
     
     const char* maze[rows] = 
     {
-    
         "+-+-+-+-+-+",
         "|     |   z",
         "+ +-+ + +-+",
         "| --|   |--",
         "+-+-+-+-+-+"
-    
     };
 
     jk_printMazeGeneral(position, defaultHeight, color, player, firstRun,
             endReached, mazeGrid, maze_state, mazeName, rows, startingPosition,
             endingPosition, wallColor, maze);
 }
-
-
 
 void jk_printMaze1(Rect position, int defaultHeight, int color, 
             int (&player)[2], bool &firstRun, bool& endReached, Grid& mazeGrid, 
@@ -159,7 +135,6 @@ void jk_printMaze1(Rect position, int defaultHeight, int color,
  
     const char* maze[rows] = 
     {
-    
         "+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+",
         "|     |     |                             |",
         "+ +-+ + +-+-+ +-+-+-+-+-+-+-+-+-+ +-+-+-+ +",
@@ -191,15 +166,12 @@ void jk_printMaze1(Rect position, int defaultHeight, int color,
         "+-+-+-+ +-+ + +-+-+-+-+-+ + + +-+-+-+-+-+ +",
         ".X          |           |   |         |   z",
         "+---+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+"
-    
     };
 
     jk_printMazeGeneral(position, defaultHeight, color, player, firstRun,
             endReached, mazeGrid, maze_state, mazeName, rows, startingPosition,
             endingPosition, wallColor, maze);
 }
-
-
 
 void jk_printMaze2(Rect position, int defaultHeight, int color, 
             int (&player)[2], bool &firstRun, bool& endReached, Grid& mazeGrid, 
@@ -211,13 +183,11 @@ void jk_printMaze2(Rect position, int defaultHeight, int color,
     // int endingPosition[2] = {8,23}; 
     int endingPosition[2] = {13,25}; 
     int wallColor[3] = {220, 88, 42};
-
     
     // source: https://www.asciiart.eu/art-and-design/mazes
     
       const char* maze[rows] = 
     {
-    
         ",-----------.-------------.",
         "|           |             |",
         "| . . ,---- | ----------. |",
@@ -245,16 +215,12 @@ void jk_printMaze2(Rect position, int defaultHeight, int color,
         "| ` . `---- | | `-! | `-! |",
         "|   |       | |     |     |",
         "`---`-------!.`-----`-----!"
-    
     };
-
 
     jk_printMazeGeneral(position, defaultHeight, color, player, firstRun,
             endReached, mazeGrid, maze_state, mazeName, rows, startingPosition,
             endingPosition, wallColor, maze);
 }
-
-
 
 void jk_printMaze3(Rect position, int defaultHeight, int color, 
             int (&player)[2], bool &firstRun, bool& endReached, Grid& mazeGrid, 
@@ -267,12 +233,10 @@ void jk_printMaze3(Rect position, int defaultHeight, int color,
     int endingPosition[2] = {35, 1}; 
     int wallColor[3] = {246, 190, 0};
 
-
     // source: https://www.asciiart.eu/art-and-design/mazes
    
       const char* maze[rows] = 
     {
-    
       "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaza",
       "8 8       8       8     8         8 8",
       "8 8 aaaaa 8 aaa aa8aa aa8 aaa aaa 8 8",
@@ -296,17 +260,12 @@ void jk_printMaze3(Rect position, int defaultHeight, int color,
       "8 8 aa8 8a8 aaa 8aaaa 8a8 a 8aaaa a 8",
       "8 8         8     8       8       8 8",
       "8.8aaaaaaaaa8aaaaa8aaaaaaa8aaaaaaa8a8",
-
     };
 
     jk_printMazeGeneral(position, defaultHeight, color, player, firstRun,
             endReached, mazeGrid, maze_state, mazeName, rows, startingPosition,
             endingPosition, wallColor, maze);
 }
-
-
-
-
 
 // --------------------------------------------------------------------------
 // start of template for new maze
@@ -331,15 +290,12 @@ void jk_printMazeTemplate(Rect position, int defaultHeight, int color,
     int wallColor[3] = {0, 128, 0}; // 6. replace:
                                         //          this is rgb color for wall. 
                                         //          don't forget #7
-
     // source: https://www.asciiart.eu/art-and-design/mazes
     // corridors need to be 1 space wide, or it will mess up the trail
  
-
     // 7. replace
     const char* maze[rows] = 
     {
-    
         "+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+",
         "|     |     |                             |",
         "+ +-+ + +-+-+ +-+-+-+-+-+-+-+-+-+ +-+-+-+ +",
@@ -371,7 +327,6 @@ void jk_printMazeTemplate(Rect position, int defaultHeight, int color,
         "+-+-+-+ +-+ + +-+-+-+-+-+ + + +-+-+-+-+-+ +",
         " X          |           |   |         |    ",
         "+---+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+"
-    
     };
 
     int columns = getColumns(maze, rows);
@@ -391,13 +346,11 @@ void jk_printMazeTemplate(Rect position, int defaultHeight, int color,
         cout << "end reached" << endl; 
         mazeGrid.printGrid(position, rows, columns, player, defaultHeight, 
                                                 color, mazeName, endReached);
-
         
         maze_state = -1 * maze_state;
         firstRun = true;
         endReached = false;
         
-
     } else {
        
         mazeGrid.printGrid(position, rows, columns, player, defaultHeight, 
@@ -409,13 +362,6 @@ void jk_printMazeTemplate(Rect position, int defaultHeight, int color,
 // end of template for new maze
 // --------------------------------------------------------------------------
 
-
-
-
-
-
-
-
 //----------------------------------------------------------------------------
 // midterm functions for group
 //----------------------------------------------------------------------------
@@ -423,8 +369,6 @@ void jk_printMazeTemplate(Rect position, int defaultHeight, int color,
 extern bool jhicks_midterm_function(int maze_state);
 extern bool jrojas_midterm_func(int value);
 extern bool anicholas_Midterm(int value);
-
-
 
 void jk_page_transition(int& maze_state, const char* keyChecked, 
                                 bool& firstRun, int maxMaze, bool& showScores) 
@@ -514,7 +458,6 @@ void jk_page_transition(int& maze_state, const char* keyChecked,
         }        
         return; 
     }
-
     
     if (strcmp(keyChecked, "a") == 0) {
         if (showScores) {
@@ -571,10 +514,6 @@ void jk_page_transition(int& maze_state, const char* keyChecked,
     }
 }
 
-
-
-
-
 //----------------------------------------------------------------------------
 // printing texts - general
 //----------------------------------------------------------------------------
@@ -585,8 +524,6 @@ void jk_showCreditPage(Rect position, int defaultHeight, int color)
     ggprint8b(&position, 16, color, "Jennifer Kuo:");
     ggprint8b(&position, 16, color, "Game Designer | Game Programmer");
 }
-
-
 
 void jk_showRulesPage(Rect position, int defaultHeight, int color) 
 {
@@ -600,16 +537,12 @@ void jk_showRulesPage(Rect position, int defaultHeight, int color)
                               "The grey square represents the exit.");
 }
 
-
-
 void jk_showWelcomePage(Rect position, int defaultHeight, int color) 
 {
     position.bot = defaultHeight;
   
     ggprint13(&position, 16, color, "------------ Instructions ------------");
 }
-
-
 
 void jk_showWelcomePage3(Rect position, int defaultHeight, int color) 
 {
@@ -625,18 +558,12 @@ void jk_showWelcomePage4(Rect position, int defaultHeight, int color)
     ggprint8b(&position, 16, color, "press 'A' any time for scoreboard");
 }
 
-
-
 void jk_showWelcomePageTitle(Rect position, int defaultHeight, int color) 
 {
     position.bot = defaultHeight;
 
     ggprint40(&position, 16, color, "The MAze Game");
 }
-
-
-
-
 
 //----------------------------------------------------------------------------
 // printing texts - secret page related
@@ -650,16 +577,12 @@ void jk_showWelcomePage2(Rect position, int defaultHeight, int color)
     ggprint8b(&position, 16, color, "type qwer in order");
 }
 
-
-
 void jk_showSecretMode(Rect position, int defaultHeight, int color) 
 {
     position.bot = defaultHeight;
   
     ggprint40(&position, 16, color, "Welcome to Secret Mode");
 }
-
-
 
 void jk_showSecretModeMessage(Rect position, int defaultHeight, int color) 
 {
@@ -670,10 +593,6 @@ void jk_showSecretModeMessage(Rect position, int defaultHeight, int color)
     ggprint8b(&position, 32, color, "press b to go back to the main page");
 }
 //----------------------------------------------------------------------------
-
-
-
-
 
 //----------------------------------------------------------------------------
 // helper functions for the maze
@@ -691,8 +610,6 @@ int getColumns (const char** maze, int rows)
     return columns;
 }
 
-
-
 void jkuo_checkWall(int (&player)[2], int nextMove[2], Grid& grid) 
 {
     int orig_i = player[1];
@@ -701,7 +618,6 @@ void jkuo_checkWall(int (&player)[2], int nextMove[2], Grid& grid)
     int j = nextMove[0];
     
     vector <vector <GridCells>> tempGrid = grid.GridGetter();
-    
 
     if (tempGrid[i][j].isWall()) {
 
@@ -730,8 +646,6 @@ void jkuo_checkWall(int (&player)[2], int nextMove[2], Grid& grid)
         return;
     }
 }
-
-
 
 void jk_playerMovement(char* keys, int (&player)[2], Grid& grid) 
 {
@@ -769,8 +683,6 @@ void jk_playerMovement(char* keys, int (&player)[2], Grid& grid)
     }
 }
 
-
-
 //for secrete mode
 void jk_playerMovementForSecretMode(char* keys, int (&player)[2]) 
 {
@@ -800,10 +712,6 @@ void jk_playerMovementForSecretMode(char* keys, int (&player)[2])
     }
 }
 
-
-
-
-
 //----------------------------------------------------------------------------
 // class functions for GridCells.h
 //----------------------------------------------------------------------------
@@ -813,28 +721,20 @@ bool GridCells::playerCurrent()
     return currentPosition;
 }
 
-
-
 bool GridCells::hasTraveled() 
 {
     return traveled;
 }
-
-
 
 int GridCells::getXcoord() 
 {
     return xcoord;
 }
 
-
-
 int GridCells::getYcoord() 
 {
     return ycoord;
 }
-
-
 
 GridCells::GridCells() 
 {
@@ -850,12 +750,9 @@ GridCells::GridCells()
 
 }
 
-
-
 GridCells::GridCells(int x, int y, bool uspace, bool uwall, 
                 bool ustart, bool uend, bool ucurrent, bool utravel) 
 {
-
     xcoord = x;
     ycoord = y;
     space = uspace;
@@ -864,12 +761,7 @@ GridCells::GridCells(int x, int y, bool uspace, bool uwall,
     end = uend;
     currentPosition = ucurrent;
     traveled = utravel;
-
 }
-
-
-
-
 
 //----------------------------------------------------------------------------
 //
@@ -919,8 +811,6 @@ void jk_printMazeGrid(Rect position, const char* maze[], int rows,
     }
 }
 
-
-
 void jk_printMazeSecretMode1(Rect position, int defaultHeight, int color, 
                         int (&player)[2], bool &firstRun)
 {
@@ -931,7 +821,6 @@ void jk_printMazeSecretMode1(Rect position, int defaultHeight, int color,
     // source: https://www.asciiart.eu/art-and-design/mazes
     const char* maze[rows] = 
     {
-    
         "+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+",
         "|        |        |                                            |",
         "+  +--+  +  +--+--+  +--+--+--+--+--+--+--+--+--+  +--+--+--+  +",
@@ -963,10 +852,7 @@ void jk_printMazeSecretMode1(Rect position, int defaultHeight, int color,
         "+--+--+--+  +--+  +  +--+--+--+--+--+  +  +  +--+--+--+--+--+  +",
         " X                |                 |     |              |      ",
         "+-----+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+"
-
     };
-
-    
 
     if (firstRun) {
         player[0] = startingPosition[0]; // x
@@ -975,16 +861,12 @@ void jk_printMazeSecretMode1(Rect position, int defaultHeight, int color,
                                                                     mazeName);      
 
         firstRun = false;
-    }
-    
-    else {
+    } else {
         jk_printMazeGrid(position, maze, rows, player, defaultHeight, color, 
                                                                     mazeName);
         
     }
 }
-
-
 
 void jk_printMazeSecretMode2(Rect position, int defaultHeight, int color, 
                                           int (&player)[2], bool& firstRun)
@@ -992,12 +874,10 @@ void jk_printMazeSecretMode2(Rect position, int defaultHeight, int color,
     const char* mazeName = "Maze 2";
     int rows = 27;
     int startingPosition[2] = {17, 23};
-
     
     // source: https://www.asciiart.eu/art-and-design/mazes
     const char* maze[rows] = 
     {
-    
         ",-----------------------------.----------------------------------.",
         "|                             |                                  |",
         "|    .    .    ,---------     |     ------------------------.    |",
@@ -1025,10 +905,7 @@ void jk_printMazeSecretMode2(Rect position, int defaultHeight, int color,
         "|    `    .    `---------     |    |    `----!    |    `----!    |",
         "|         |                   |    |              |              |",
         "`---------`-------------------!    `--------------`--------------!"
-    
     };
-
-    
 
     if (firstRun) {
         player[0] = startingPosition[0]; // x
@@ -1036,14 +913,11 @@ void jk_printMazeSecretMode2(Rect position, int defaultHeight, int color,
         jk_printMazeGrid(position, maze, rows, player, defaultHeight, color, 
                                                                     mazeName);
         firstRun = false;
-    }
-    
-    else {
+    } else {
         jk_printMazeGrid(position, maze, rows, player, defaultHeight, color, 
                                                                     mazeName);
     }
 }
-
 
 void jk_printMazeSecretMode3(Rect position, int defaultHeight, int color, 
                                           int (&player)[2], bool& firstRun)
@@ -1052,11 +926,9 @@ void jk_printMazeSecretMode3(Rect position, int defaultHeight, int color,
     int rows = 23;
     int startingPosition[2] = {1, 22};
 
-
     // source: https://www.asciiart.eu/art-and-design/mazes
     const char* maze[rows] = 
     {
-    
     "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa   a",
     "8   8               8               8           8                   8   8",
     "8   8   aaaaaaaaa   8   aaaaa   aaaa8aaaa   aaaa8   aaaaa   aaaaa   8   8",
@@ -1080,7 +952,6 @@ void jk_printMazeSecretMode3(Rect position, int defaultHeight, int color,
     "8   8   aaaa8   8aaa8   aaaaa   8aaaaaaaa   8aaa8   a   8aaaaaaaa   a   8",
     "8   8                   8           8               8               8   8",
     "8   8aaaaaaaaaaaaaaaaaaa8aaaaaaaaaaa8aaaaaaaaaaaaaaa8aaaaaaaaaaaaaaa8aaa8",
-
     };
 
     
@@ -1090,17 +961,11 @@ void jk_printMazeSecretMode3(Rect position, int defaultHeight, int color,
         jk_printMazeGrid(position, maze, rows, player, defaultHeight, color, 
                                                                     mazeName);
         firstRun = false;
-    }
-    
-    else {
+    } else {
         jk_printMazeGrid(position, maze, rows, player, defaultHeight, color, 
                                                                     mazeName);
     }
 }
-
-
-
-
 
 //----------------------------------------------------------------------------
 // nonessential class functions for Grid.h
@@ -1113,26 +978,20 @@ void Grid::setWallColor(int colorChoice[3])
     wallColor[2] = colorChoice[2];
 }
 
-
-
 vector <vector <GridCells>> Grid::GridGetter() 
 {
     return mazeGrid;
 }
 
-
-
 //----------------------------------------------------------------------------
 // essential functions for Grid.h - developed together in group meetings
 //----------------------------------------------------------------------------
-
 
 Grid::Grid() 
 {
     rows = 0;
     columns = 0;
 }
-
 
 Grid::Grid(const char** maze, int inputRows, int inputColumns, 
                                 int player[2], int end[2], int colorChoice[3]) 
@@ -1183,7 +1042,6 @@ Grid::Grid(const char** maze, int inputRows, int inputColumns,
                 temp.setTraveled(false);
             }
 
-
             v1.push_back(temp);
             
         }
@@ -1191,29 +1049,22 @@ Grid::Grid(const char** maze, int inputRows, int inputColumns,
         // Pushing back above 1D vector
         // to create the 2D vector
         mazeGrid.push_back(v1);
-    }
 
-
-    
+    }   
 }
-
-
    
 void Grid::printGrid(Rect position, int rows, int columns,
         int (&player)[2], int defaultHeight, int color, const char* mazeName,
                                                             bool& endReached) 
 {
-
     ggprint8b(&position, 16, color, mazeName);
 
-    
     // player reached the ending position
     if (player[1] == mazeEnd[1] && player[0] == mazeEnd[0]) {
 
-            endReached = true;
-            
+        endReached = true;
+
     }
-    
 
     // static int colorChange = wallColor[1];
     // if (colorChange == wallColor[1]) {
@@ -1265,16 +1116,11 @@ void Grid::printGrid(Rect position, int rows, int columns,
 
     // cout << colorChange << " ";
 
-
     // ========================== start of for loops ========================
     for (int i = 0; i < rows; i++) {
         for (int j = 0; j < columns; j++) {
 
-            
-            
             //color of wall
-
-            
 
             // glColor3ub(wallColor[0],wallColor[1], wallColor[2]);
             glColor3ub(wallColor[0],wallColor[1], colorChange);
@@ -1309,11 +1155,7 @@ void Grid::printGrid(Rect position, int rows, int columns,
         }
     }
     // ========================== end of for loops ========================
-
 }
-    
-
-
 
 // scene construction:
 
@@ -1334,11 +1176,6 @@ void Grid::printGrid(Rect position, int rows, int columns,
 //  jk_playerMovement(gl.keys, gl.player, gl.mazeGrid);
 
 // }
-
-
-
-
-
 
 //============================================================================
 // Scoreboard
@@ -1366,7 +1203,6 @@ void jk_displayScore(int timeBeaten[], int maxMaze, Rect position1,
     position1.bot = defaultHeight;
     position2.bot = defaultHeight;
     
-
     for (int level = 1; level <= maxMaze; level++) {
 
         string mazeLevel = "Maze " + to_string(level) + ": ";
@@ -1385,11 +1221,7 @@ void jk_displayScore(int timeBeaten[], int maxMaze, Rect position1,
             ggprint13(&position2, 35, color, highScore);
         }    
     }
-
-
 }
-
-
 
 void highScoreMessages(int& maze_state, int (&timeBeaten)[13], int current_time, 
         bool& firstAttempt, bool& newHighScore, int& oldScore, int& newScore,
@@ -1401,7 +1233,6 @@ void highScoreMessages(int& maze_state, int (&timeBeaten)[13], int current_time,
         timeBeaten[levelBeaten] = current_time;
         firstAttempt = true;
 
-
     } else if (current_time < timeBeaten[levelBeaten]) {
 
         newHighScore = true;
@@ -1409,7 +1240,6 @@ void highScoreMessages(int& maze_state, int (&timeBeaten)[13], int current_time,
         timeBeaten[levelBeaten] = current_time;
         newScore = timeBeaten[levelBeaten];
     }
-
     
     if (firstAttempt) {
         string record = "current high score: " 
@@ -1425,14 +1255,11 @@ void highScoreMessages(int& maze_state, int (&timeBeaten)[13], int current_time,
                 + to_string(oldScore) + " seconds";
         const char *recordChar = record.c_str();
         ggprint8b(&r, 16, 0x00ffffff, recordChar);
-
-
         
         record = "new high score: " 
                 + to_string(newScore) + " seconds";
         recordChar = record.c_str();
         ggprint8b(&r, 16, 0x00ffffff, recordChar);
-
 
         ggprint8b(&r, 16, 0x00ffffff, 
                             "The new high score has been recorded");
@@ -1442,9 +1269,6 @@ void highScoreMessages(int& maze_state, int (&timeBeaten)[13], int current_time,
         const char *recordChar = record.c_str();
         ggprint8b(&r, 16, 0x00ffffff, recordChar);
     }
-
-
-
 
     bool allBeaten = jk_allStagesBeaten(timeBeaten, maxMaze);
 
