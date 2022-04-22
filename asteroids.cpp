@@ -77,7 +77,7 @@ extern void timeCopy(struct timespec *dest, struct timespec *source);
 
 class Global {
 public:
-	unsigned int textid[4];
+	unsigned int textid[5];
 	int xres, yres;
 	char keys[65536];
 	int maze_state;
@@ -175,7 +175,8 @@ public:
 			unlink(ppmname);
 	}
 };
-Image img[4] = {"mazeTitle.png", "victoryTitle.png", "STAR.png", "cave.png"};
+Image img[5] = {"mazeTitle.png", "victoryTitle.png", "STAR.png", "cave.png",
+													"star_grey.png"};
 
 
 class Ship {
@@ -456,6 +457,49 @@ int main()
 	return 0;
 }
 
+unsigned char *buildAlphaData(Image *img)
+{
+	//Add 4th component to an RGB stream...
+	//RGBA
+	//When you do this, OpenGL is able to use the A component to determine
+	//transparency information.
+	//It is used in this application to erase parts of a texture-map from view.
+	int i;
+	int a,b,c;
+	unsigned char *newdata, *ptr;
+	unsigned char *data = (unsigned char *)img->data;
+	newdata = (unsigned char *)malloc(img->width * img->height * 4);
+	ptr = newdata;
+	for (i=0; i<img->width * img->height * 3; i+=3) {
+		a = *(data+0);
+		b = *(data+1);
+		c = *(data+2);
+		*(ptr+0) = a;
+		*(ptr+1) = b;
+		*(ptr+2) = c;
+		//-----------------------------------------------
+		//get largest color component...
+		//*(ptr+3) = (unsigned char)((
+		//		(int)*(ptr+0) +
+		//		(int)*(ptr+1) +
+		//		(int)*(ptr+2)) / 3);
+		//d = a;
+		//if (b >= a && b >= c) d = b;
+		//if (c >= a && c >= b) d = c;
+		//*(ptr+3) = d;
+		//-----------------------------------------------
+		//this code optimizes the commented code above.
+		//code contributed by student: Chris Smith
+		//
+		*(ptr+3) = ((255-a)|(255-b)|(255-c));
+		// *(ptr+3) = (a|b|c);
+		//-----------------------------------------------
+		ptr += 4;
+		data += 3;
+	}
+	return newdata;
+}
+
 void init_opengl(void)
 {
    //OpenGL initialization
@@ -483,7 +527,7 @@ void init_opengl(void)
    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
    glTexImage2D(GL_TEXTURE_2D, 0, 3, img[0].width, img[0].height, 0,
        GL_RGB, GL_UNSIGNED_BYTE, img[0].data);
-	glBindTexture(GL_TEXTURE_2D, 0);
+   glBindTexture(GL_TEXTURE_2D, 0);
 
    glGenTextures(1, &gl.textid[1]);
    glBindTexture(GL_TEXTURE_2D, gl.textid[1]);
@@ -491,15 +535,15 @@ void init_opengl(void)
    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
    glTexImage2D(GL_TEXTURE_2D, 0, 3, img[1].width, img[1].height, 0,
        GL_RGB, GL_UNSIGNED_BYTE, img[1].data);
-	glBindTexture(GL_TEXTURE_2D, 0);
-
+   glBindTexture(GL_TEXTURE_2D, 0);
+	
    glGenTextures(1, &gl.textid[2]);
    glBindTexture(GL_TEXTURE_2D, gl.textid[2]);
    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
    glTexImage2D(GL_TEXTURE_2D, 0, 3, img[2].width, img[2].height, 0,
        GL_RGB, GL_UNSIGNED_BYTE, img[2].data);
-	glBindTexture(GL_TEXTURE_2D, 0);
+   glBindTexture(GL_TEXTURE_2D, 0);
 
    glGenTextures(1, &gl.textid[3]);
    glBindTexture(GL_TEXTURE_2D, gl.textid[3]);
@@ -508,6 +552,34 @@ void init_opengl(void)
    glTexImage2D(GL_TEXTURE_2D, 0, 3, img[3].width, img[3].height, 0,
        GL_RGB, GL_UNSIGNED_BYTE, img[3].data);
 	glBindTexture(GL_TEXTURE_2D, 0);
+
+
+// --------------testing-----------------
+
+
+
+   glGenTextures(1, &gl.textid[4]);
+   glBindTexture(GL_TEXTURE_2D, gl.textid[4]);
+   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+
+   unsigned char *silhouetteData = buildAlphaData(&img[4]);	
+   int w = img[4].width;
+   int h = img[4].height;
+   
+//    glTexImage2D(GL_TEXTURE_2D, 0, 3, img[2].width, img[2].height, 0,
+//        GL_RGB, GL_UNSIGNED_BYTE, img[2].data);
+   
+   glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, w, h, 0,
+   							GL_RGBA, GL_UNSIGNED_BYTE, silhouetteData);
+   free(silhouetteData);	   
+   
+   glBindTexture(GL_TEXTURE_2D, 0);
+
+// --------------testing-----------------
+
+
+
 }
 
 
@@ -1011,7 +1083,8 @@ void render()
 			printTheRightMaze(jk_t, gl.yres-100, 0x0040e0d0, 
 									gl.player, gl.firstRun, gl.endReached, 
 									gl.mazeGrid, gl.maze_state);
-			playerImage (gl.yres - 100, gl.textid[2], gl.player);
+			// playerImage (gl.yres - 100, gl.textid[2], gl.player);
+			playerImage (gl.yres - 100, gl.textid[4], gl.player);
 		}
 
 

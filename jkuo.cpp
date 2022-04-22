@@ -1134,7 +1134,9 @@ void Grid::printGrid(Rect position, int rows, int columns,
             }
 
             if (mazeGrid[i][j].playerCurrent()) {
-                glColor3ub(255,250,250);
+                // glColor3ub(255,250,250);
+                glColor3ub(20,20,20);
+
             }
 
             if (mazeGrid[i][j].hasTraveled()) {
@@ -1287,6 +1289,7 @@ void playerImage (int yres, unsigned int textid, int player[2])
     // glTranslatef(xres/2, yres -250, 0);
 	glTranslatef(20+y*(w+1)*2, yres-50-x*(w+1)*2, 0);
     glColor3ub(255, 255, 255);
+    // glColor3ub(20, 20, 20);
     glBindTexture(GL_TEXTURE_2D, textid);
     glBegin(GL_QUADS);
         glTexCoord2f(0.0f + x, 0.0f + y); glVertex2f(-w,  w);
