@@ -840,6 +840,7 @@ extern void jk_playerMovement(char* keys, int (&player)[2], Grid& grid);
 extern void jk_playerMovementForSecretMode(char* keys, int (&player)[2]);
 extern void jh_Image(int xres, int yres, unsigned int textid);
 extern void playerImage (int yres, unsigned int textid, int player[2]);
+extern void backgroundImage (int xres, int yres, unsigned int textid);
 
 extern void et_timer(Rect position, int defaultHeight, int color, 
 						int& maze_state,  bool& firstRun, int & current_time);
@@ -874,6 +875,7 @@ void jk_stageSetUp(Rect r, Rect timerPosition)
 	}											
 
 	jk_playerMovement(gl.keys, gl.player, gl.mazeGrid);
+	// backgroundImage(gl.xres, gl.yres,gl.textid[3]);
 }
 
 void printTheRightMaze(Rect position, int defaultHeight, int color, 
@@ -934,6 +936,10 @@ void printTheRightMaze(Rect position, int defaultHeight, int color,
 			break;
 	}
 }
+
+
+
+
 
 
 
@@ -999,6 +1005,7 @@ void render()
 
 			glClear(GL_COLOR_BUFFER_BIT);
 
+			backgroundImage(gl.xres, gl.yres,gl.textid[3]);
 			jh_Image(gl.xres, gl.yres,gl.textid[0]);
 			jk_showWelcomePage(jk_welcomeMessage, gl.yres - 380, 0x00CC593F);
 			jh_showWelcomePage(jk_welcomeMessage, gl.yres - 510, 0x00CC593F);
@@ -1006,7 +1013,8 @@ void render()
 			et_showWelcomePage(jk_welcomeMessage, gl.yres - 490, 0x00CC593F);
 			an_showWelcomePage(jk_welcomeMessage, gl.yres - 470, 0x00CC593F);
 			jk_showWelcomePage3(jk_welcomeMessage, gl.yres - 430, 0x00e3a90b);
-			jk_showWelcomePage2(jk_welcomeMessage, gl.yres - 550, 0x00FF0050);
+			// jk_showWelcomePage2(jk_welcomeMessage, gl.yres - 550, 0x00FF0050);
+			jk_showWelcomePage2(jk_welcomeMessage, gl.yres - 150, 0x00FF0050);
 			jk_showWelcomePage4(jk_welcomeMessage, gl.yres - 410, 0x00e3a90b);
 
 		}
@@ -1080,6 +1088,7 @@ void render()
 			gl.newHighScore = false;
 
 			jk_stageSetUp(r, et_message);
+			// backgroundImage(gl.xres, gl.yres,gl.textid[3]);
 			printTheRightMaze(jk_t, gl.yres-100, 0x0040e0d0, 
 									gl.player, gl.firstRun, gl.endReached, 
 									gl.mazeGrid, gl.maze_state);

@@ -1281,13 +1281,13 @@ void highScoreMessages(int& maze_state, int (&timeBeaten)[13], int current_time,
 
 void playerImage (int yres, unsigned int textid, int player[2])
 {
-	int x = player[1];
-	int y = player[0];
-	
+    int x = player[1];
+    int y = player[0];
+    
     glPushMatrix();
     float w = 5.0f;
     // glTranslatef(xres/2, yres -250, 0);
-	glTranslatef(20+y*(w+1)*2, yres-50-x*(w+1)*2, 0);
+    glTranslatef(20+y*(w+1)*2, yres-50-x*(w+1)*2, 0);
     glColor3ub(255, 255, 255);
     // glColor3ub(20, 20, 20);
     glBindTexture(GL_TEXTURE_2D, textid);
@@ -1298,5 +1298,26 @@ void playerImage (int yres, unsigned int textid, int player[2])
         glTexCoord2f(0.0f + x, 1.0f + y); glVertex2f(-w, -w);
     glEnd();
     glBindTexture(GL_TEXTURE_2D, 0);
+    glPopMatrix();
+}
+
+void backgroundImage (int xres, int yres, unsigned int textid)
+{
+    glPushMatrix();
+    float w = 500.0f;
+    static float xc = 0.0f;
+    glTranslatef(xres/2, yres/2, 0);
+    glColor3ub(255, 255, 255);
+    glBindTexture(GL_TEXTURE_2D, textid);
+    glBegin(GL_QUADS);
+        glTexCoord2f(xc + 0.0f, 0.0f); glVertex2f(-w,  w);
+        glTexCoord2f(xc + 1.0f, 0.0f); glVertex2f( w,  w);
+        glTexCoord2f(xc + 1.0f, 1.0f); glVertex2f( w, -w);
+        glTexCoord2f(xc + 0.0f, 1.0f); glVertex2f(-w, -w);
+        
+    glEnd();
+    glBindTexture(GL_TEXTURE_2D, 0);
+
+    xc += 0.01;
     glPopMatrix();
 }
