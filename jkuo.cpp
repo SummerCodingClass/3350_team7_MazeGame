@@ -382,7 +382,9 @@ void jk_page_transition(int& maze_state, const char* keyChecked,
         // if (maze_state == 0) {
         if (jhicks_midterm_function(maze_state)) { 
             //do nothing
-        } else if (maze_state == 1000 || maze_state == 404) {
+        } else if (maze_state == 1000) {
+            maze_state = 120;
+        } else if (maze_state == 404) {
             maze_state = 0;
         } else if (maze_state > 230) {
             maze_state = 230;
@@ -1191,7 +1193,6 @@ void Grid::printGrid(Rect position, int rows, int columns,
             glVertex2f( w, -w);
             glEnd();
             glPopMatrix();
-
         }
     }
     // ========================== end of for loops ========================
