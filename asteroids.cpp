@@ -767,6 +767,8 @@ extern void jk_showSecretModeMessage(Rect position, int defaultHeight,
 extern void jk_playerMovement(char* keys, int (&player)[2], Grid& grid);
 extern void jk_playerMovementForSecretMode(char* keys, int (&player)[2]);
 extern void jh_Image(int xres, int yres, unsigned int textid);
+extern void playerImage (int yres, unsigned int textid, int player[2]);
+
 extern void et_timer(Rect position, int defaultHeight, int color, 
 						int& maze_state,  bool& firstRun, int & current_time);
 
@@ -860,6 +862,8 @@ void printTheRightMaze(Rect position, int defaultHeight, int color,
 			break;
 	}
 }
+
+
 
 
 void render()
@@ -1007,6 +1011,7 @@ void render()
 			printTheRightMaze(jk_t, gl.yres-100, 0x0040e0d0, 
 									gl.player, gl.firstRun, gl.endReached, 
 									gl.mazeGrid, gl.maze_state);
+			playerImage (gl.yres - 100, gl.textid[2], gl.player);
 		}
 
 
