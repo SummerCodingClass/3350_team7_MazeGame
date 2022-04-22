@@ -1127,6 +1127,32 @@ void Grid::printGrid(Rect position, int rows, int columns,
     }
 
     // cout << colorChange << " ";
+    //painting a background
+
+            glColor3ub(20,20,20);
+            // float u = 5.5f;
+            // float w = (columns + 3) * u;
+            // float h = (rows + 2) * u;
+
+
+            float u = 5.0f;
+            float w = (columns + 2 + (columns * 0.2)) * u;
+            float h = (rows + 2 + (rows * 0.25)) * u;
+            // float u = 5.3f;
+            // float w = (columns + (columns * 0.2)) * u;
+            // float h = (rows + (rows * 0.25)) * u;
+            glPushMatrix();
+            // glTranslatef(20+(w+1)*2, defaultHeight-50-(w+1)*2, 0);
+            // glTranslatef(20 + w-10, defaultHeight-75, 0);
+            glTranslatef(20 + w-15, defaultHeight-30-h, 0);
+            glBegin(GL_QUADS);
+            glVertex2f(-w, -h);
+            glVertex2f(-w,  h);
+            glVertex2f( w,  h);
+            glVertex2f( w, -h);
+            glEnd();
+            glPopMatrix();
+
 
     // ========================== start of for loops ========================
     for (int i = 0; i < rows; i++) {
@@ -1315,12 +1341,34 @@ void playerImage (int yres, unsigned int textid, int player[2])
     glPopMatrix();
 }
 
-void backgroundImage (int xres, int yres, unsigned int textid)
+void backgroundImageWelcome (int xres, int yres, unsigned int textid)
 {
     glPushMatrix();
     float w = 500.0f;
     static float xc = 0.0f;
     glTranslatef(xres/2, yres/2, 0);
+    glColor3ub(255, 255, 255);
+    glBindTexture(GL_TEXTURE_2D, textid);
+    glBegin(GL_QUADS);
+        glTexCoord2f(xc + 0.0f, 0.0f); glVertex2f(-w,  w);
+        glTexCoord2f(xc + 1.0f, 0.0f); glVertex2f( w,  w);
+        glTexCoord2f(xc + 1.0f, 1.0f); glVertex2f( w, -w);
+        glTexCoord2f(xc + 0.0f, 1.0f); glVertex2f(-w, -w);
+        
+    glEnd();
+    glBindTexture(GL_TEXTURE_2D, 0);
+
+    xc += 0.01;
+    glPopMatrix();
+}
+
+void backgroundImageMap (int xres, int yres, unsigned int textid)
+{
+    glPushMatrix();
+    float w = 400.0f;
+    static float xc = 0.0f;
+    glTranslatef(xres/2, yres/2 - 80, 0);
+    glScalef(1.2, 0.8, 1.0);
     glColor3ub(255, 255, 255);
     glBindTexture(GL_TEXTURE_2D, textid);
     glBegin(GL_QUADS);
