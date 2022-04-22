@@ -57,7 +57,7 @@ Rect jk_createRect(int yres, int height, int left, int center)
 }
 
 void jk_printMazeGeneral(Rect position, int defaultHeight, int color, 
-            int (&player)[2], bool &firstRun, bool& endReached, Grid& mazeGrid, 
+            int (&player)[2], bool &firstRun, bool& endReached, Grid& mazeGrid,
             int& maze_state, const char* mazeName, int rows, 
             int startingPosition[2], int endingPosition[2], int wallColor[3],
             const char* maze[])
@@ -858,7 +858,7 @@ void jk_printMazeSecretMode1(Rect position, int defaultHeight, int color,
         player[0] = startingPosition[0]; // x
         player[1] = startingPosition[1]; // y
         jk_printMazeGrid(position, maze, rows, player, defaultHeight, color, 
-                                                                    mazeName);      
+                                                                    mazeName);
 
         firstRun = false;
     } else {
@@ -1223,7 +1223,7 @@ void jk_displayScore(int timeBeaten[], int maxMaze, Rect position1,
     }
 }
 
-void highScoreMessages(int& maze_state, int (&timeBeaten)[13], int current_time, 
+void highScoreMessages(int& maze_state, int (&timeBeaten)[13], int current_time,
         bool& firstAttempt, bool& newHighScore, int& oldScore, int& newScore,
         Rect r, int maxMaze)
 {
