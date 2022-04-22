@@ -68,6 +68,8 @@ void jk_printMazeGeneral(Rect position, int defaultHeight, int color,
         player[0] = startingPosition[0]; // x
         player[1] = startingPosition[1]; // y
 
+        // mazeGrid.gridFirstRun = true;
+
         mazeGrid = Grid(maze, rows, columns, player, endingPosition, 
                                                                 wallColor);
 
@@ -75,6 +77,7 @@ void jk_printMazeGeneral(Rect position, int defaultHeight, int color,
                                                 color, mazeName, endReached);
 
         firstRun = false;
+        // mazeGrid.gridFirstRun = false;
     } else if (endReached) {
         cout << "end reached" << endl; 
         mazeGrid.printGrid(position, rows, columns, player, defaultHeight, 
@@ -83,6 +86,7 @@ void jk_printMazeGeneral(Rect position, int defaultHeight, int color,
         maze_state = -1 * maze_state;
         firstRun = true;
         endReached = false;
+        mazeGrid.gridFirstRun = true;
 
     } else {
        
@@ -996,6 +1000,7 @@ Grid::Grid()
 Grid::Grid(const char** maze, int inputRows, int inputColumns, 
                                 int player[2], int end[2], int colorChoice[3]) 
 {
+    gridFirstRun = true;
     rows = inputRows;
     columns = inputColumns;
     gridPlayer[1] = player[1];
@@ -1063,6 +1068,7 @@ void Grid::printGrid(Rect position, int rows, int columns,
     if (player[1] == mazeEnd[1] && player[0] == mazeEnd[0]) {
 
         endReached = true;
+        // movingNext = true;
 
     }
 
@@ -1079,38 +1085,44 @@ void Grid::printGrid(Rect position, int rows, int columns,
     // }
     static int colorChange = wallColor[2];
 
-    if (wallColor[2] == 0) {
-        if (colorChange == wallColor[2]) {
-            colorChange++;
-        } else if (colorChange < 0 || colorChange > 240) {
-            //255, 255, 255 is white, so used 240 to prevent that
-            colorChange = 0 + 10;
-        } else {
-            colorChange = colorChange + 50;
-        }
-    } else if (wallColor[2] <= 52) {
-        if (colorChange == wallColor[2]) {
-            colorChange++;
-        } else if (colorChange < 0 || colorChange > 240) {
-            colorChange = wallColor[2] + 10;
-        } else {
-            colorChange = colorChange + 50;
-        }    
-    } else if (wallColor[2] >= 240) {
-        if (colorChange == wallColor[2]) {
-            colorChange++;
-        } else if (colorChange < 0 || colorChange > 240) {
-            colorChange = 240 - 10;
-        } else {
-            colorChange = colorChange - 50;
-        }
+    // if (movingNext) {
+    if (gridFirstRun) {
+        colorChange = wallColor[2];
+        // movingNext = false;
     } else {
-        if (colorChange == wallColor[2]) {
-            colorChange++;
-        } else if (colorChange < 0 || colorChange > 240) {
-            colorChange = wallColor[2];
+        if (wallColor[2] == 0) {
+            if (colorChange == wallColor[2]) {
+                colorChange++;
+            } else if (colorChange < 0 || colorChange > 240) {
+                //255, 255, 255 is white, so used 240 to prevent that
+                colorChange = 0 + 10;
+            } else {
+                colorChange = colorChange + 50;
+            }
+        } else if (wallColor[2] <= 52) {
+            if (colorChange == wallColor[2]) {
+                colorChange++;
+            } else if (colorChange < 0 || colorChange > 240) {
+                colorChange = wallColor[2] + 10;
+            } else {
+                colorChange = colorChange + 50;
+            }    
+        } else if (wallColor[2] >= 240) {
+            if (colorChange == wallColor[2]) {
+                colorChange++;
+            } else if (colorChange < 0 || colorChange > 240) {
+                colorChange = 240 - 10;
+            } else {
+                colorChange = colorChange - 50;
+            }
         } else {
-            colorChange = colorChange - 50;
+            if (colorChange == wallColor[2]) {
+                colorChange++;
+            } else if (colorChange < 0 || colorChange > 240) {
+                colorChange = wallColor[2];
+            } else {
+                colorChange = colorChange - 50;
+            }
         }
     }
 
@@ -1157,6 +1169,8 @@ void Grid::printGrid(Rect position, int rows, int columns,
         }
     }
     // ========================== end of for loops ========================
+
+    gridFirstRun = false;
 }
 
 // scene construction:

@@ -11,10 +11,9 @@ class Grid {
         int mazeEnd[2];
         int wallColor[3];
         int gridPlayer[2];
+        // bool movingNext;
+        bool gridFirstRun;
         vector <vector <GridCells>> mazeGrid; 
-
-
-
 
         Grid();
 
