@@ -7,11 +7,13 @@
 #include <GL/glx.h>
 #include "GridCells.h"
 #include "Grid.h"
+#include "Global.h"
 
 using namespace std;
 
 //functions that need prototypes
 int getColumns (const char** maze, int rows);
+extern Global gl;
 
 bool jkuo_midterm_checkState(int mazeState, int desiredState) 
 {

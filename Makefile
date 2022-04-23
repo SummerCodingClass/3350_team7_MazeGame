@@ -1,7 +1,7 @@
 CFLAGS = -I ./include
 ##LIB    = ./libggfonts.so
 LFLAGS = -lrt -lX11 -lGLU -lGL -pthread -lm #-lXrandr
-REQUIRED = anicholas.cpp etagaca.cpp jhicks.cpp jkuo.cpp jrojas.cpp
+REQUIRED = anicholas.cpp etagaca.cpp jhicks.cpp jkuo.cpp jrojas.cpp Global.cpp
 
 all: maze
 

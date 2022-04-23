@@ -35,6 +35,11 @@
 #include "GridCells.h"
 #include "Grid.h"
 
+#include "Global.h"
+// #ifndef GLOBAL_H_
+// #define GLOBAL_H_
+// #include "Global.h"
+// #endif //GLOBAL_H_
 
 
 //for testing:
@@ -75,52 +80,55 @@ extern double timeDiff(struct timespec *start, struct timespec *end);
 extern void timeCopy(struct timespec *dest, struct timespec *source);
 //-----------------------------------------------------------------------------
 
-class Global {
-public:
-	unsigned int textid[8];
-	int xres, yres;
-	char keys[65536];
-	int maze_state;
-	int current_time;
-	int player[2];
-	bool firstRun;
-	bool endReached;
-	Grid mazeGrid;
-	bool showScores;
-	int maxMaze;
-	// int timeBeaten[];
-	int timeBeaten[13];
-	bool firstAttempt;
-	bool newHighScore;
-	int oldScore;
-	int newScore;
+// class Global {
+// public:
+// 	unsigned int textid[8];
+// 	int xres, yres;
+// 	char keys[65536];
+// 	int maze_state;
+// 	int current_time;
+// 	int player[2];
+// 	bool firstRun;
+// 	bool endReached;
+// 	Grid mazeGrid;
+// 	bool showScores;
+// 	int maxMaze;
+// 	// int timeBeaten[];
+// 	int timeBeaten[13];
+// 	bool firstAttempt;
+// 	bool newHighScore;
+// 	int oldScore;
+// 	int newScore;
 
 	
 
-	Global() {
-		xres = 960;
-		yres = 600;
-		memset(keys, 0, 65536);
-		maze_state = 0;
-		player[0] = 0;
-		player[1] = 0;
-		firstRun = true;
-		endReached = false;
-		// Grid mazeGrid = NULL;
-		Grid mazeGrid;
-		showScores = false;
-		maxMaze = 12;
-		// timeBeaten[13] = {-1};
-		for (int i = 0; i <= maxMaze; i++) {
-			timeBeaten[i] = -1;
-		}
-		firstAttempt = false;
-		newHighScore = false;
-		oldScore = 0;
-		newScore = 0;
+// 	Global() {
+// 		xres = 960;
+// 		yres = 600;
+// 		memset(keys, 0, 65536);
+// 		maze_state = 0;
+// 		player[0] = 0;
+// 		player[1] = 0;
+// 		firstRun = true;
+// 		endReached = false;
+// 		// Grid mazeGrid = NULL;
+// 		Grid mazeGrid;
+// 		showScores = false;
+// 		maxMaze = 12;
+// 		// timeBeaten[13] = {-1};
+// 		for (int i = 0; i <= maxMaze; i++) {
+// 			timeBeaten[i] = -1;
+// 		}
+// 		firstAttempt = false;
+// 		newHighScore = false;
+// 		oldScore = 0;
+// 		newScore = 0;
 
-	}
-} gl;
+// 	}
+// } gl;
+
+Global gl;
+
 
 class Image {
 public:
