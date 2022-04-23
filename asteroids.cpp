@@ -615,15 +615,25 @@ void init_opengl(void)
    glBindTexture(GL_TEXTURE_2D, 0);
 
 // #7. mazeWall.png
+//    glGenTextures(1, &gl.textid[7]);
+//    glBindTexture(GL_TEXTURE_2D, gl.textid[7]);
+//    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+//    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+//    glTexImage2D(GL_TEXTURE_2D, 0, 3, img[7].width, img[7].height, 0,
+//        GL_RGB, GL_UNSIGNED_BYTE, img[7].data);
+//    glBindTexture(GL_TEXTURE_2D, 0);
+
    glGenTextures(1, &gl.textid[7]);
    glBindTexture(GL_TEXTURE_2D, gl.textid[7]);
    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-   glTexImage2D(GL_TEXTURE_2D, 0, 3, img[7].width, img[7].height, 0,
-       GL_RGB, GL_UNSIGNED_BYTE, img[7].data);
+   silhouetteData = buildAlphaData(&img[7]);	
+   w = img[7].width;
+   h = img[7].height;
+   glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, w, h, 0,
+   							GL_RGBA, GL_UNSIGNED_BYTE, silhouetteData);
+   free(silhouetteData);	   
    glBindTexture(GL_TEXTURE_2D, 0);
-
-
 
 
 }

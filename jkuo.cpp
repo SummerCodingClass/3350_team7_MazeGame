@@ -1186,13 +1186,13 @@ void Grid::printGrid(Rect position, int rows, int columns,
                 glColor3ub(0,255,255);
             }
 
-            //printing the exit image seemed to interfere with wall printing
+            // printing the wall image seemed to interfere with wall printing
             // if (mazeGrid[i][j].isWall()) {
             //     glColor3ub(wallColor[0],wallColor[1], colorChange);
             // }
 
             float w = 5.0f;
-            glEnable(GL_TEXTURE_2D);
+            // glEnable(GL_TEXTURE_2D);
             glPushMatrix();
             glTranslatef(20+j*(w+1)*2, defaultHeight-50-i*(w+1)*2, 0);
             glBegin(GL_QUADS);
@@ -1202,11 +1202,17 @@ void Grid::printGrid(Rect position, int rows, int columns,
             glVertex2f( w, -w);
             glEnd();
             glPopMatrix();
+            // glDisable(GL_TEXTURE_2D);
+
 
             
-            //doing it after drawing the square places the key above the square.
+            // doing it after drawing the squares places the image 
+            // above the square rather than below.
             if (mazeGrid[i][j].isEnd()) {
                 exitImage(i, j);
+            }
+            if (mazeGrid[i][j].isWall()) {
+                // wallImage(i, j, wallColor[0], wallColor[1], colorChange);
             }
         }
     }
@@ -1439,10 +1445,78 @@ void Grid::exitImage (int i, int j)
         glTexCoord2f(1.0f, 1.0f); glVertex2f( w, -w);
         glTexCoord2f(0.0f, 1.0f); glVertex2f(-w, -w);
     glEnd();
-    // glBindTexture(GL_TEXTURE_2D, 0);
+    glBindTexture(GL_TEXTURE_2D, 0);
     glPopMatrix();
     glDisable(GL_ALPHA_TEST);
-    glDisable(GL_TEXTURE_2D);
-    glBindTexture(GL_TEXTURE_2D, 0);
+    // glDisable(GL_TEXTURE_2D);
+    // glBindTexture(GL_TEXTURE_2D, 0);
+}
 
+// void Grid::wallImage(int i, int j, int r, int g, int b)
+// {
+//     unsigned int textid = gl.textid[7];
+//     int yres = 600;
+//     int defaultHeight = yres - 100;
+    
+//     glPushMatrix();
+//     float w = 4.0f;
+//     float wp = 5.0f;
+//     // glTranslatef(xres/2, yres -250, 0);
+//     // glTranslatef(20+y*(w+1)*2, yres-50-x*(w+1)*2, 0);
+//     // glTranslatef(20+y*(wp+1)*2, yres-50-x*(wp+1)*2, 0);
+//     glTranslatef(20+j*(wp+1)*2, defaultHeight-50-i*(wp+1)*2, 0);
+
+//     // glColor3ub(255, 255, 255);
+//     glBindTexture(GL_TEXTURE_2D, textid);
+//     glBegin(GL_QUADS);
+//         glTexCoord2f(0.0f, 0.0f); glVertex2f(-w,  w);
+//         glTexCoord2f(1.0f, 0.0f); glVertex2f( w,  w);
+//         glTexCoord2f(1.0f, 1.0f); glVertex2f( w, -w);
+//         glTexCoord2f(0.0f, 1.0f); glVertex2f(-w, -w);
+        
+//     glEnd();
+//     glBindTexture(GL_TEXTURE_2D, 0);
+
+//     glPopMatrix();
+//     // glBindTexture(GL_TEXTURE_2D, 0);
+// }
+
+void Grid::wallImage(int i, int j, int r, int g, int b)
+{
+    unsigned int textid = gl.textid[7];
+    int yres = 600;
+    int defaultHeight = yres - 100;
+    
+    r++; //remove
+    g++; //remove
+    b++; //remove
+
+
+    glPushMatrix();
+    float w = 4.0f;
+    float wp = 5.0f;
+    // glTranslatef(xres/2, yres -250, 0);
+    // glTranslatef(20+y*(w+1)*2, yres-50-x*(w+1)*2, 0);
+    // glTranslatef(20+y*(wp+1)*2, yres-50-x*(wp+1)*2, 0);
+    glTranslatef(20+j*(wp+1)*2, defaultHeight-50-i*(wp+1)*2, 0);
+
+    glColor3ub(255, 255, 255);
+    // glColor3ub(20, 20, 20);
+    glBindTexture(GL_TEXTURE_2D, textid);
+
+    glEnable(GL_ALPHA_TEST);
+    glAlphaFunc(GL_GREATER, 0.0f);
+    glColor4ub(255,255,255,255);
+
+    glBegin(GL_QUADS);
+        glTexCoord2f(0.0f, 0.0f); glVertex2f(-w,  w);
+        glTexCoord2f(1.0f, 0.0f); glVertex2f( w,  w);
+        glTexCoord2f(1.0f, 1.0f); glVertex2f( w, -w);
+        glTexCoord2f(0.0f, 1.0f); glVertex2f(-w, -w);
+    glEnd();
+    glBindTexture(GL_TEXTURE_2D, 0);
+    glPopMatrix();
+    glDisable(GL_ALPHA_TEST);
+    // glDisable(GL_TEXTURE_2D);
+    // glBindTexture(GL_TEXTURE_2D, 0);
 }

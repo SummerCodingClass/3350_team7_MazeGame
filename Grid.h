@@ -31,6 +31,8 @@ class Grid {
 
         void exitImage(int i, int j);
 
+        void wallImage(int i, int j, int r, int g, int b);
+
 };
 
 
