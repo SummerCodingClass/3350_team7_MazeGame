@@ -175,9 +175,11 @@ public:
 			unlink(ppmname);
 	}
 };
-Image img[5] = {"mazeTitle.png", "victoryTitle.png", "STAR.png", "cave.png",
-													"star_grey.png"};
+// Image img[5] = {"mazeTitle.png", "victoryTitle.png", "STAR.png", "cave.png",
+// 													"star_grey.png"};
 
+Image img[5] = {"mazeTitle.png", "victoryTitle.png", "STAR.png", "cave.png",
+												"img_blackbg/star_black.png"};
 
 class Ship {
 public:
@@ -491,8 +493,8 @@ unsigned char *buildAlphaData(Image *img)
 		//this code optimizes the commented code above.
 		//code contributed by student: Chris Smith
 		//
-		*(ptr+3) = ((255-a)|(255-b)|(255-c));
-		// *(ptr+3) = (a|b|c);
+		// *(ptr+3) = ((255-a)|(255-b)|(255-c));
+		*(ptr+3) = (a|b|c);
 		//-----------------------------------------------
 		ptr += 4;
 		data += 3;

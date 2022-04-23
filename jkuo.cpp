@@ -1326,12 +1326,20 @@ void playerImage (int yres, unsigned int textid, int player[2])
     int y = player[0];
     
     glPushMatrix();
-    float w = 5.0f;
+    float w = 10.0f;
+    float wp = 5.0f;
     // glTranslatef(xres/2, yres -250, 0);
-    glTranslatef(20+y*(w+1)*2, yres-50-x*(w+1)*2, 0);
+    // glTranslatef(20+y*(w+1)*2, yres-50-x*(w+1)*2, 0);
+    glTranslatef(20+y*(wp+1)*2, yres-50-x*(wp+1)*2, 0);
+
     glColor3ub(255, 255, 255);
     // glColor3ub(20, 20, 20);
     glBindTexture(GL_TEXTURE_2D, textid);
+
+    glEnable(GL_ALPHA_TEST);
+    glAlphaFunc(GL_GREATER, 0.0f);
+    glColor4ub(255,255,255,255);
+
     glBegin(GL_QUADS);
         glTexCoord2f(0.0f + x, 0.0f + y); glVertex2f(-w,  w);
         glTexCoord2f(1.0f + x, 0.0f + y); glVertex2f( w,  w);
