@@ -1332,7 +1332,7 @@ void playerImage (int yres, unsigned int textid, int player[2])
     // glTranslatef(20+y*(w+1)*2, yres-50-x*(w+1)*2, 0);
     glTranslatef(20+y*(wp+1)*2, yres-50-x*(wp+1)*2, 0);
 
-    glColor3ub(255, 255, 255);
+    // glColor3ub(255, 255, 255);
     // glColor3ub(20, 20, 20);
     glBindTexture(GL_TEXTURE_2D, textid);
 
@@ -1346,8 +1346,10 @@ void playerImage (int yres, unsigned int textid, int player[2])
         glTexCoord2f(1.0f + x, 1.0f + y); glVertex2f( w, -w);
         glTexCoord2f(0.0f + x, 1.0f + y); glVertex2f(-w, -w);
     glEnd();
-    glBindTexture(GL_TEXTURE_2D, 0);
+    // glBindTexture(GL_TEXTURE_2D, 0);
     glPopMatrix();
+    glDisable(GL_ALPHA_TEST);
+
 }
 
 void backgroundImageWelcome (int xres, int yres, unsigned int textid)
@@ -1365,7 +1367,7 @@ void backgroundImageWelcome (int xres, int yres, unsigned int textid)
         glTexCoord2f(xc + 0.0f, 1.0f); glVertex2f(-w, -w);
         
     glEnd();
-    glBindTexture(GL_TEXTURE_2D, 0);
+    // glBindTexture(GL_TEXTURE_2D, 0);
 
     xc += 0.01;
     glPopMatrix();
@@ -1387,7 +1389,7 @@ void backgroundImageMap (int xres, int yres, unsigned int textid)
         glTexCoord2f(xc + 0.0f, 1.0f); glVertex2f(-w, -w);
         
     glEnd();
-    glBindTexture(GL_TEXTURE_2D, 0);
+    // glBindTexture(GL_TEXTURE_2D, 0);
 
     xc += 0.01;
     glPopMatrix();

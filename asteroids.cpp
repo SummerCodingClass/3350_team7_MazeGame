@@ -77,7 +77,7 @@ extern void timeCopy(struct timespec *dest, struct timespec *source);
 
 class Global {
 public:
-	unsigned int textid[6];
+	unsigned int textid[8];
 	int xres, yres;
 	char keys[65536];
 	int maze_state;
@@ -178,8 +178,16 @@ public:
 // Image img[5] = {"mazeTitle.png", "victoryTitle.png", "STAR.png", "cave.png",
 // 													"star_grey.png"};
 
-Image img[6] = {"mazeTitle.png", "victoryTitle.png", "STAR.png", "cave.png",
-				"img_blackbg/star_black.png", "img_blackbg/newTitlePage.png"};
+Image img[8] = {
+				"img_unused_ver/mazeTitle.png", //0
+				"img_used/victoryTitle.png", 	//1
+				"img_unused_ver/STAR.png", 		//2
+				"img_used/cave.png",			//3
+				"img_used/star_black.png", 		//4
+				"img_used/newTitlePage.png",	//5
+				"img_used/exit_key_black.png", 	//6
+				"img_used/mazeWall.png"			//7
+				};
 
 class Ship {
 public:
@@ -559,29 +567,20 @@ void init_opengl(void)
 // --------------testing: success-----------------
 
 
-// star.png
+// #4. star_black.png
    glGenTextures(1, &gl.textid[4]);
    glBindTexture(GL_TEXTURE_2D, gl.textid[4]);
    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-
    unsigned char *silhouetteData = buildAlphaData(&img[4]);	
    int w = img[4].width;
    int h = img[4].height;
-   
-//    glTexImage2D(GL_TEXTURE_2D, 0, 3, img[2].width, img[2].height, 0,
-//        GL_RGB, GL_UNSIGNED_BYTE, img[2].data);
-   
    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, w, h, 0,
    							GL_RGBA, GL_UNSIGNED_BYTE, silhouetteData);
    free(silhouetteData);	   
-   
-   glBindTexture(GL_TEXTURE_2D, 0);
+//    glBindTexture(GL_TEXTURE_2D, 0);
 
-// --------------testing: success-----------------
-
-// newTitlePage.png
-
+// #5. newTitlePage.png
    glGenTextures(1, &gl.textid[5]);
    glBindTexture(GL_TEXTURE_2D, gl.textid[5]);
    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
@@ -592,8 +591,29 @@ void init_opengl(void)
    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, w, h, 0,
    							GL_RGBA, GL_UNSIGNED_BYTE, silhouetteData);
    free(silhouetteData);	   
-   glBindTexture(GL_TEXTURE_2D, 0);
+//    glBindTexture(GL_TEXTURE_2D, 0);
 
+// #6. exit_key_black.png
+   glGenTextures(1, &gl.textid[6]);
+   glBindTexture(GL_TEXTURE_2D, gl.textid[6]);
+   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+   silhouetteData = buildAlphaData(&img[6]);	
+   w = img[6].width;
+   h = img[6].height;
+   glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, w, h, 0,
+   							GL_RGBA, GL_UNSIGNED_BYTE, silhouetteData);
+   free(silhouetteData);	   
+//    glBindTexture(GL_TEXTURE_2D, 0);
+
+// #7. mazeWall.png
+   glGenTextures(1, &gl.textid[7]);
+   glBindTexture(GL_TEXTURE_2D, gl.textid[7]);
+   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+   glTexImage2D(GL_TEXTURE_2D, 0, 3, img[7].width, img[7].height, 0,
+       GL_RGB, GL_UNSIGNED_BYTE, img[7].data);
+//    glBindTexture(GL_TEXTURE_2D, 0);
 
 
 
@@ -961,13 +981,12 @@ void printTheRightMaze(Rect position, int defaultHeight, int color,
 
 void testBackgroundImage (int xres, int yres, unsigned int textid)
 {
-        
     glPushMatrix();
     float w = 300;
 
     glTranslatef(xres/2, yres - 300, 0);
 
-    glColor3ub(255, 255, 255);
+    // glColor3ub(255, 255, 255);
     glBindTexture(GL_TEXTURE_2D, textid);
 
     glEnable(GL_ALPHA_TEST);
@@ -980,8 +999,9 @@ void testBackgroundImage (int xres, int yres, unsigned int textid)
         glTexCoord2f(1.0f, 1.0f); glVertex2f( w, -w);
         glTexCoord2f(0.0f, 1.0f); glVertex2f(-w, -w);
     glEnd();
-    glBindTexture(GL_TEXTURE_2D, 0);
+    // glBindTexture(GL_TEXTURE_2D, 0);
     glPopMatrix();
+	glDisable(GL_ALPHA_TEST);
 }
 
 
