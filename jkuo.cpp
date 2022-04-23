@@ -1179,7 +1179,6 @@ void Grid::printGrid(Rect position, int rows, int columns,
             if (mazeGrid[i][j].playerCurrent()) {
                 // glColor3ub(255,250,250);
                 glColor3ub(20,20,20);
-
             }
 
             if (mazeGrid[i][j].hasTraveled()) {
@@ -1212,7 +1211,11 @@ void Grid::printGrid(Rect position, int rows, int columns,
                 exitImage(i, j);
             }
             if (mazeGrid[i][j].isWall()) {
-                // wallImage(i, j, wallColor[0], wallColor[1], colorChange);
+                wallImage(i, j, wallColor[0], wallColor[1], colorChange);
+            }
+            if (mazeGrid[i][j].playerCurrent()) {
+                glColor3ub(20,20,20);
+                playerImage (gl.yres - 100, gl.textid[4], gl.player);
             }
         }
     }
@@ -1277,6 +1280,7 @@ void jk_displayScore(int timeBeaten[], int maxMaze, Rect position1,
     
         if (timeBeaten[level] == -1) {
             ggprint13(&position2, 35, 0x00FF8C00, "no attempt yet");
+        // ggprint13(&position2, 35, 0x00FF8C00, "completed in 1000 seconds");
         } else {
     
             int time = timeBeaten[level];
@@ -1341,7 +1345,40 @@ void highScoreMessages(int& maze_state, int (&timeBeaten)[13], int current_time,
     }
 }
 
-void playerImage (int yres, unsigned int textid, int player[2])
+// void playerImage (int yres, unsigned int textid, int player[2])
+// {
+//     int x = player[1];
+//     int y = player[0];
+    
+//     glPushMatrix();
+//     float w = 10.0f;
+//     float wp = 5.0f;
+//     // glTranslatef(xres/2, yres -250, 0);
+//     // glTranslatef(20+y*(w+1)*2, yres-50-x*(w+1)*2, 0);
+//     glTranslatef(20+y*(wp+1)*2, yres-50-x*(wp+1)*2, 0);
+
+//     // glColor3ub(255, 255, 255);
+//     // glColor3ub(20, 20, 20);
+//     glBindTexture(GL_TEXTURE_2D, textid);
+
+//     glEnable(GL_ALPHA_TEST);
+//     glAlphaFunc(GL_GREATER, 0.0f);
+//     glColor4ub(255,255,255,255);
+
+//     glBegin(GL_QUADS);
+//         glTexCoord2f(0.0f + x, 0.0f + y); glVertex2f(-w,  w);
+//         glTexCoord2f(1.0f + x, 0.0f + y); glVertex2f( w,  w);
+//         glTexCoord2f(1.0f + x, 1.0f + y); glVertex2f( w, -w);
+//         glTexCoord2f(0.0f + x, 1.0f + y); glVertex2f(-w, -w);
+//     glEnd();
+//     glBindTexture(GL_TEXTURE_2D, 0);
+//     glPopMatrix();
+//     glDisable(GL_ALPHA_TEST);
+
+// }
+
+
+void Grid::playerImage (int yres, unsigned int textid, int player[2])
 {
     int x = player[1];
     int y = player[0];
@@ -1487,9 +1524,9 @@ void Grid::wallImage(int i, int j, int r, int g, int b)
     int yres = 600;
     int defaultHeight = yres - 100;
     
-    r++; //remove
-    g++; //remove
-    b++; //remove
+    // r++; //remove
+    // g++; //remove
+    // b++; //remove
 
 
     glPushMatrix();
@@ -1500,8 +1537,37 @@ void Grid::wallImage(int i, int j, int r, int g, int b)
     // glTranslatef(20+y*(wp+1)*2, yres-50-x*(wp+1)*2, 0);
     glTranslatef(20+j*(wp+1)*2, defaultHeight-50-i*(wp+1)*2, 0);
 
-    glColor3ub(255, 255, 255);
+    // glColor3ub(255, 255, 255);
     // glColor3ub(20, 20, 20);
+    glBindTexture(GL_TEXTURE_2D, textid);
+
+    glEnable(GL_ALPHA_TEST);
+    glAlphaFunc(GL_GREATER, 0.0f);
+    // glColor4ub(255,255,255,255);
+    glColor4ub(r,g,b,255);
+
+    glBegin(GL_QUADS);
+        glTexCoord2f(0.0f, 0.0f); glVertex2f(-w,  w);
+        glTexCoord2f(1.0f, 0.0f); glVertex2f( w,  w);
+        glTexCoord2f(1.0f, 1.0f); glVertex2f( w, -w);
+        glTexCoord2f(0.0f, 1.0f); glVertex2f(-w, -w);
+    glEnd();
+    glBindTexture(GL_TEXTURE_2D, 0);
+    glPopMatrix();
+    glDisable(GL_ALPHA_TEST);
+    // glDisable(GL_TEXTURE_2D);
+    // glBindTexture(GL_TEXTURE_2D, 0);
+}
+
+//gonna move to Jeff's
+void testBackgroundImage2 (int xres, int yres, unsigned int textid)
+{
+    glPushMatrix();
+    float w = 300;
+
+    glTranslatef(xres/2, yres - 300, 0);
+
+    // glColor3ub(255, 255, 255);
     glBindTexture(GL_TEXTURE_2D, textid);
 
     glEnable(GL_ALPHA_TEST);
@@ -1516,7 +1582,55 @@ void Grid::wallImage(int i, int j, int r, int g, int b)
     glEnd();
     glBindTexture(GL_TEXTURE_2D, 0);
     glPopMatrix();
-    glDisable(GL_ALPHA_TEST);
-    // glDisable(GL_TEXTURE_2D);
-    // glBindTexture(GL_TEXTURE_2D, 0);
+	glDisable(GL_ALPHA_TEST);
+}
+
+void creditsImage (int xres, int yres, unsigned int textid)
+{
+    glPushMatrix();
+    float w = 250;
+
+    glTranslatef(xres * 2/3, yres - 320, 0);
+
+    // glColor3ub(255, 255, 255);
+    glBindTexture(GL_TEXTURE_2D, textid);
+
+    glEnable(GL_ALPHA_TEST);
+    glAlphaFunc(GL_GREATER, 0.0f);
+    glColor4ub(255,255,255,255);
+
+    glBegin(GL_QUADS);
+        glTexCoord2f(0.0f, 0.0f); glVertex2f(-w,  w);
+        glTexCoord2f(1.0f, 0.0f); glVertex2f( w,  w);
+        glTexCoord2f(1.0f, 1.0f); glVertex2f( w, -w);
+        glTexCoord2f(0.0f, 1.0f); glVertex2f(-w, -w);
+    glEnd();
+    glBindTexture(GL_TEXTURE_2D, 0);
+    glPopMatrix();
+	glDisable(GL_ALPHA_TEST);
+}
+
+void overallVictoryImage (int xres, int yres, unsigned int textid)
+{
+    glPushMatrix();
+    float w = 200;
+
+    glTranslatef(xres - (xres/3) + 30, yres - 330, 0);
+
+    // glColor3ub(255, 255, 255);
+    glBindTexture(GL_TEXTURE_2D, textid);
+
+    glEnable(GL_ALPHA_TEST);
+    glAlphaFunc(GL_GREATER, 0.0f);
+    glColor4ub(255,255,255,255);
+
+    glBegin(GL_QUADS);
+        glTexCoord2f(0.0f, 0.0f); glVertex2f(-w,  w);
+        glTexCoord2f(1.0f, 0.0f); glVertex2f( w,  w);
+        glTexCoord2f(1.0f, 1.0f); glVertex2f( w, -w);
+        glTexCoord2f(0.0f, 1.0f); glVertex2f(-w, -w);
+    glEnd();
+    glBindTexture(GL_TEXTURE_2D, 0);
+    glPopMatrix();
+	glDisable(GL_ALPHA_TEST);
 }

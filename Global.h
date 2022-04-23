@@ -9,7 +9,7 @@
 
 class Global {
 public:
-	unsigned int textid[8];
+	unsigned int textid[10];
 	int xres, yres;
 	char keys[65536];
 	int maze_state;

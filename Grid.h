@@ -33,6 +33,7 @@ class Grid {
 
         void wallImage(int i, int j, int r, int g, int b);
 
+        void playerImage (int yres, unsigned int textid, int player[2]);
 };
 
 

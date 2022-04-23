@@ -186,15 +186,17 @@ public:
 // Image img[5] = {"mazeTitle.png", "victoryTitle.png", "STAR.png", "cave.png",
 // 													"star_grey.png"};
 
-Image img[8] = {
-				"img_unused_ver/mazeTitle.png", //0
-				"img_used/victoryTitle.png", 	//1
-				"img_unused_ver/STAR.png", 		//2
-				"img_used/cave.png",			//3
-				"img_used/star_black.png", 		//4
-				"img_used/newTitlePage.png",	//5
-				"img_used/exitV2_black.png", 	//6
-				"img_used/mazeWall.png"			//7
+Image img[10] = {
+				"img_unused_ver/mazeTitle.png", 		//0
+				"img_used/victoryTitle.png", 			//1
+				"img_unused_ver/STAR.png", 				//2
+				"img_used/cave.png",					//3
+				"img_used/star_black.png", 				//4
+				"img_used/newTitlePage.png",			//5
+				"img_used/exitV2_black.png", 			//6
+				"img_used/mazeWall.png",				//7
+				"img_used/overall_victory_page.png",	//8
+				"img_used/credits_page.png"				//9
 				};
 
 class Ship {
@@ -636,7 +638,38 @@ void init_opengl(void)
    glBindTexture(GL_TEXTURE_2D, 0);
 
 
+
+
+// #8. overall_victory_page.png
+   glGenTextures(1, &gl.textid[8]);
+   glBindTexture(GL_TEXTURE_2D, gl.textid[8]);
+   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+   silhouetteData = buildAlphaData(&img[8]);	
+   w = img[8].width;
+   h = img[8].height;
+   glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, w, h, 0,
+   							GL_RGBA, GL_UNSIGNED_BYTE, silhouetteData);
+   free(silhouetteData);	   
+   glBindTexture(GL_TEXTURE_2D, 0);
+
+// #9. credits_page.png
+   glGenTextures(1, &gl.textid[9]);
+   glBindTexture(GL_TEXTURE_2D, gl.textid[9]);
+   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+   silhouetteData = buildAlphaData(&img[9]);	
+   w = img[9].width;
+   h = img[9].height;
+   glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, w, h, 0,
+   							GL_RGBA, GL_UNSIGNED_BYTE, silhouetteData);
+   free(silhouetteData);	   
+   glBindTexture(GL_TEXTURE_2D, 0);
+
+
+
 }
+
 
 
 void normalize2d(Vec v)
@@ -894,8 +927,12 @@ extern void jk_showSecretModeMessage(Rect position, int defaultHeight,
 																	int color);
 extern void jk_playerMovement(char* keys, int (&player)[2], Grid& grid);
 extern void jk_playerMovementForSecretMode(char* keys, int (&player)[2]);
+
 extern void jh_Image(int xres, int yres, unsigned int textid);
 extern void playerImage(int yres, unsigned int textid, int player[2]);
+extern void creditsImage (int xres, int yres, unsigned int textid);
+extern void overallVictoryImage (int xres, int yres, unsigned int textid);
+
 extern void backgroundImageWelcome(int xres, int yres, unsigned int textid);
 extern void backgroundImageMap (int xres, int yres, unsigned int textid);
 
@@ -1129,6 +1166,7 @@ void render()
 			ggprint8b(&jk_titles, 16, 0x00ffffff, "press b to return to home");
 
 			//jh_Image(gl.xres, gl.yres, gl.textid);
+			creditsImage(gl.xres, gl.yres, gl.textid[9]);
 			jk_showCreditPage(jk_message, gl.yres-120, 0x0040e0d0);
 			jh_showCreditPage(jk_message, gl.yres-220, 0x0024AAFA);
 			jr_showCreditPage(jk_message, gl.yres-320, 0x0051f542);
@@ -1176,7 +1214,8 @@ void render()
 									gl.player, gl.firstRun, gl.endReached, 
 									gl.mazeGrid, gl.maze_state);
 			// playerImage (gl.yres - 100, gl.textid[2], gl.player);
-			playerImage (gl.yres - 100, gl.textid[4], gl.player);
+			
+			// playerImage (gl.yres - 100, gl.textid[4], gl.player);
 		}
 
 
@@ -1198,13 +1237,15 @@ void render()
 									"maze 4 is an optional tutorial stage");
 
 			Rect jk_scoreColumn3 = jk_createRect(gl.yres, 100, 10, 0);
-			jk_scoreColumn3.left = 50;
+			jk_scoreColumn3.left = 100;
 			
 			Rect jk_scoreColumn4 = jk_createRect(gl.yres, 100, 10, 0);
-			jk_scoreColumn4.left = 130;
+			jk_scoreColumn4.left = 180;
 
 			jk_displayScore(gl.timeBeaten, gl.maxMaze, jk_scoreColumn3, 
 								jk_scoreColumn4, gl.yres - 150, 0x00e3a90b);
+
+			overallVictoryImage(gl.xres, gl.yres, gl.textid[8]);
 
 
 		}
