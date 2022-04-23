@@ -77,7 +77,7 @@ extern void timeCopy(struct timespec *dest, struct timespec *source);
 
 class Global {
 public:
-	unsigned int textid[5];
+	unsigned int textid[6];
 	int xres, yres;
 	char keys[65536];
 	int maze_state;
@@ -178,8 +178,8 @@ public:
 // Image img[5] = {"mazeTitle.png", "victoryTitle.png", "STAR.png", "cave.png",
 // 													"star_grey.png"};
 
-Image img[5] = {"mazeTitle.png", "victoryTitle.png", "STAR.png", "cave.png",
-												"img_blackbg/star_black.png"};
+Image img[6] = {"mazeTitle.png", "victoryTitle.png", "STAR.png", "cave.png",
+				"img_blackbg/star_black.png", "img_blackbg/newTitlePage.png"};
 
 class Ship {
 public:
@@ -556,10 +556,10 @@ void init_opengl(void)
 	glBindTexture(GL_TEXTURE_2D, 0);
 
 
-// --------------testing-----------------
+// --------------testing: success-----------------
 
 
-
+// star.png
    glGenTextures(1, &gl.textid[4]);
    glBindTexture(GL_TEXTURE_2D, gl.textid[4]);
    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
@@ -578,7 +578,23 @@ void init_opengl(void)
    
    glBindTexture(GL_TEXTURE_2D, 0);
 
-// --------------testing-----------------
+// --------------testing: success-----------------
+
+// newTitlePage.png
+
+   glGenTextures(1, &gl.textid[5]);
+   glBindTexture(GL_TEXTURE_2D, gl.textid[5]);
+   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+   silhouetteData = buildAlphaData(&img[5]);	
+   w = img[5].width;
+   h = img[5].height;
+   glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, w, h, 0,
+   							GL_RGBA, GL_UNSIGNED_BYTE, silhouetteData);
+   free(silhouetteData);	   
+   glBindTexture(GL_TEXTURE_2D, 0);
+
+
 
 
 
@@ -941,7 +957,32 @@ void printTheRightMaze(Rect position, int defaultHeight, int color,
 }
 
 
+// gonna move to Jeff's
 
+void testBackgroundImage (int xres, int yres, unsigned int textid)
+{
+        
+    glPushMatrix();
+    float w = 300;
+
+    glTranslatef(xres/2, yres - 300, 0);
+
+    glColor3ub(255, 255, 255);
+    glBindTexture(GL_TEXTURE_2D, textid);
+
+    glEnable(GL_ALPHA_TEST);
+    glAlphaFunc(GL_GREATER, 0.0f);
+    glColor4ub(255,255,255,255);
+
+    glBegin(GL_QUADS);
+        glTexCoord2f(0.0f, 0.0f); glVertex2f(-w,  w);
+        glTexCoord2f(1.0f, 0.0f); glVertex2f( w,  w);
+        glTexCoord2f(1.0f, 1.0f); glVertex2f( w, -w);
+        glTexCoord2f(0.0f, 1.0f); glVertex2f(-w, -w);
+    glEnd();
+    glBindTexture(GL_TEXTURE_2D, 0);
+    glPopMatrix();
+}
 
 
 
@@ -1009,7 +1050,8 @@ void render()
 			glClear(GL_COLOR_BUFFER_BIT);
 
 			backgroundImageWelcome(gl.xres, gl.yres,gl.textid[3]);
-			jh_Image(gl.xres, gl.yres,gl.textid[0]);
+			// jh_Image(gl.xres, gl.yres,gl.textid[0]);
+			testBackgroundImage(gl.xres, gl.yres, gl.textid[5]);
 			jk_showWelcomePage(jk_welcomeMessage, gl.yres - 380, 0x00CC593F);
 			jh_showWelcomePage(jk_welcomeMessage, gl.yres - 510, 0x00CC593F);
 			jr_showWelcomePage(jk_welcomeMessage, gl.yres - 450, 0x00CC593F);
