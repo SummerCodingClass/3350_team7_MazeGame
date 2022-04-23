@@ -1172,7 +1172,8 @@ void Grid::printGrid(Rect position, int rows, int columns,
             }
             
             if (mazeGrid[i][j].isEnd()) {
-                glColor3ub(128,128,128);
+                // glColor3ub(128,128,128);
+                glColor3ub(20,20,20);
             }
 
             if (mazeGrid[i][j].playerCurrent()) {
@@ -1185,7 +1186,13 @@ void Grid::printGrid(Rect position, int rows, int columns,
                 glColor3ub(0,255,255);
             }
 
+            //printing the exit image seemed to interfere with wall printing
+            // if (mazeGrid[i][j].isWall()) {
+            //     glColor3ub(wallColor[0],wallColor[1], colorChange);
+            // }
+
             float w = 5.0f;
+            glEnable(GL_TEXTURE_2D);
             glPushMatrix();
             glTranslatef(20+j*(w+1)*2, defaultHeight-50-i*(w+1)*2, 0);
             glBegin(GL_QUADS);
@@ -1195,6 +1202,12 @@ void Grid::printGrid(Rect position, int rows, int columns,
             glVertex2f( w, -w);
             glEnd();
             glPopMatrix();
+
+            
+            //doing it after drawing the square places the key above the square.
+            if (mazeGrid[i][j].isEnd()) {
+                exitImage(i, j);
+            }
         }
     }
     // ========================== end of for loops ========================
@@ -1348,7 +1361,7 @@ void playerImage (int yres, unsigned int textid, int player[2])
         glTexCoord2f(1.0f + x, 1.0f + y); glVertex2f( w, -w);
         glTexCoord2f(0.0f + x, 1.0f + y); glVertex2f(-w, -w);
     glEnd();
-    // glBindTexture(GL_TEXTURE_2D, 0);
+    glBindTexture(GL_TEXTURE_2D, 0);
     glPopMatrix();
     glDisable(GL_ALPHA_TEST);
 
@@ -1369,7 +1382,7 @@ void backgroundImageWelcome (int xres, int yres, unsigned int textid)
         glTexCoord2f(xc + 0.0f, 1.0f); glVertex2f(-w, -w);
         
     glEnd();
-    // glBindTexture(GL_TEXTURE_2D, 0);
+    glBindTexture(GL_TEXTURE_2D, 0);
 
     xc += 0.01;
     glPopMatrix();
@@ -1391,8 +1404,45 @@ void backgroundImageMap (int xres, int yres, unsigned int textid)
         glTexCoord2f(xc + 0.0f, 1.0f); glVertex2f(-w, -w);
         
     glEnd();
-    // glBindTexture(GL_TEXTURE_2D, 0);
+    glBindTexture(GL_TEXTURE_2D, 0);
 
     xc += 0.01;
     glPopMatrix();
+}
+
+void Grid::exitImage (int i, int j)
+{
+    unsigned int textid = gl.textid[6];
+    int yres = 600;
+    int defaultHeight = yres - 100;
+    
+
+    glPushMatrix();
+    float w = 5.0f;
+    float wp = 5.0f;
+    // glTranslatef(xres/2, yres -250, 0);
+    // glTranslatef(20+y*(w+1)*2, yres-50-x*(w+1)*2, 0);
+    // glTranslatef(20+y*(wp+1)*2, yres-50-x*(wp+1)*2, 0);
+    glTranslatef(20+j*(wp+1)*2, defaultHeight-50-i*(wp+1)*2, 0);
+
+    // glColor3ub(255, 255, 255);
+    // glColor3ub(20, 20, 20);
+    glBindTexture(GL_TEXTURE_2D, textid);
+
+    glEnable(GL_ALPHA_TEST);
+    glAlphaFunc(GL_GREATER, 0.0f);
+    glColor4ub(255,255,255,255);
+
+    glBegin(GL_QUADS);
+        glTexCoord2f(0.0f, 0.0f); glVertex2f(-w,  w);
+        glTexCoord2f(1.0f, 0.0f); glVertex2f( w,  w);
+        glTexCoord2f(1.0f, 1.0f); glVertex2f( w, -w);
+        glTexCoord2f(0.0f, 1.0f); glVertex2f(-w, -w);
+    glEnd();
+    // glBindTexture(GL_TEXTURE_2D, 0);
+    glPopMatrix();
+    glDisable(GL_ALPHA_TEST);
+    glDisable(GL_TEXTURE_2D);
+    glBindTexture(GL_TEXTURE_2D, 0);
+
 }

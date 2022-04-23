@@ -29,6 +29,8 @@ class Grid {
         int (&player)[2], int defaultHeight, int color, const char* mazeName,
                                                             bool& endReached);
 
+        void exitImage(int i, int j);
+
 };
 
 

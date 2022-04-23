@@ -193,7 +193,7 @@ Image img[8] = {
 				"img_used/cave.png",			//3
 				"img_used/star_black.png", 		//4
 				"img_used/newTitlePage.png",	//5
-				"img_used/exit_key_black.png", 	//6
+				"img_used/exitV2_black.png", 	//6
 				"img_used/mazeWall.png"			//7
 				};
 
@@ -586,7 +586,7 @@ void init_opengl(void)
    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, w, h, 0,
    							GL_RGBA, GL_UNSIGNED_BYTE, silhouetteData);
    free(silhouetteData);	   
-//    glBindTexture(GL_TEXTURE_2D, 0);
+   glBindTexture(GL_TEXTURE_2D, 0);
 
 // #5. newTitlePage.png
    glGenTextures(1, &gl.textid[5]);
@@ -599,7 +599,7 @@ void init_opengl(void)
    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, w, h, 0,
    							GL_RGBA, GL_UNSIGNED_BYTE, silhouetteData);
    free(silhouetteData);	   
-//    glBindTexture(GL_TEXTURE_2D, 0);
+   glBindTexture(GL_TEXTURE_2D, 0);
 
 // #6. exit_key_black.png
    glGenTextures(1, &gl.textid[6]);
@@ -612,7 +612,7 @@ void init_opengl(void)
    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, w, h, 0,
    							GL_RGBA, GL_UNSIGNED_BYTE, silhouetteData);
    free(silhouetteData);	   
-//    glBindTexture(GL_TEXTURE_2D, 0);
+   glBindTexture(GL_TEXTURE_2D, 0);
 
 // #7. mazeWall.png
    glGenTextures(1, &gl.textid[7]);
@@ -621,7 +621,7 @@ void init_opengl(void)
    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
    glTexImage2D(GL_TEXTURE_2D, 0, 3, img[7].width, img[7].height, 0,
        GL_RGB, GL_UNSIGNED_BYTE, img[7].data);
-//    glBindTexture(GL_TEXTURE_2D, 0);
+   glBindTexture(GL_TEXTURE_2D, 0);
 
 
 
@@ -1007,7 +1007,7 @@ void testBackgroundImage (int xres, int yres, unsigned int textid)
         glTexCoord2f(1.0f, 1.0f); glVertex2f( w, -w);
         glTexCoord2f(0.0f, 1.0f); glVertex2f(-w, -w);
     glEnd();
-    // glBindTexture(GL_TEXTURE_2D, 0);
+    glBindTexture(GL_TEXTURE_2D, 0);
     glPopMatrix();
 	glDisable(GL_ALPHA_TEST);
 }
