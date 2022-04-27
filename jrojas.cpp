@@ -1,5 +1,5 @@
-/*Jesus Rojas
-Group Project Source file*/
+// Jesus Rojas
+// Individual Source File for 3350 Group Project
 
 #include <iostream>
 #include "fonts.h"
@@ -35,19 +35,8 @@ void jrojas(int userInput)
     }
 }
 
-/*
-void jrojas_midterm_func(int value) {
-    //Test value if postive, negative or invalid input
-    if (value >= 0)
-        cout << "The value: " << value << " is a postive number";
-    else if (value < 0)
-        cout << "The value: " << value << " is a negative number";
-    else
-        cout << "The value input is INVALID, try again!\n";
-    cout << "\n";
-} */
-
-bool jrojas_midterm_func(int value) {
+bool jrojas_midterm_func(int value) 
+{
     /*Test value if negative return true
     otherwise false */
     if (value < 0)
