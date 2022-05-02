@@ -10,40 +10,48 @@ using namespace std;
 
 extern int getColumns (const char** maze, int rows);
 
-void an_PrintMsg() {
+void an_PrintMsg() 
+{
     cout << "anicholas file worked!" << endl;
 }
 
-void an_showCreditPage(Rect position, int defaultHeight, int color) { 
+void an_showCreditPage(Rect position, int defaultHeight, int color) 
+{ 
     position.bot = defaultHeight;
     ggprint8b(&position, 16, color, "Adam Nicholas: ");
     ggprint8b(&position, 16, color, "Game Designer | Game Programmer");
 }
 
-void an_showRulesPage(Rect position, int defaultHeight, int color) { 
+void an_showRulesPage(Rect position, int defaultHeight, int color) 
+{ 
     position.bot = defaultHeight;
     ggprint8b(&position, 16, color, "Rule 5: ");
     ggprint8b(&position, 16, color, "Use arrow keys to move. Find the exit.");
 }
 
-void an_showWelcomePage(Rect position, int defaultHeight, int color) { 
+void an_showWelcomePage(Rect position, int defaultHeight, int color) 
+{ 
     position.bot = defaultHeight;
     ggprint8b(&position, 16, color, "press 'R' to view rules page");
 }
 
-bool GridCells::isWall() {
+bool GridCells::isWall() 
+{
     return wall;
 }
 
-bool GridCells::isStart() {
+bool GridCells::isStart() 
+{
     return start;
 }
 
-bool GridCells::isEnd() {
+bool GridCells::isEnd() 
+{
     return end;
 }
 
-bool anicholas_Midterm(int value) {
+bool anicholas_Midterm(int value) 
+{
     if (value > 0) {
         return true;
     } else {
@@ -58,24 +66,21 @@ void an_printMaze9(Rect position, int defaultHeight, int color,
     const char* mazeName = "Maze 9";            // 2. replace
     int rows = 15;                              // 3. replace: 
                                                 //          start counting from 1
-    int startingPosition[2] = {1, 1};          // 4. replace: 
+    int startingPosition[2] = {1, 1};           // 4. replace: 
                                                 //          start counting from 0.
                                                 //          1st number: left to right
                                                 //          2nd number: top to bottom
                                                 //  
-    //int endingPosition[2] = {2, 1};           // 5. replace: 
-    int endingPosition[2] = {5, 13};           // 5. replace: 
-                                                //          same as #4.           
+    //int endingPosition[2] = {2, 1};           // Temporary Exit 
+    int endingPosition[2] = {5, 13};            // Actual Exit
+                                                //                     
                                                 //
-    int wallColor[3] = {64, 235, 52};             // 6. replace:
+    int wallColor[3] = {64, 235, 52};           // 6. replace:
                                                 //          this is rgb color for wall. 
                                                 //          don't forget #7
 
     // source: https://www.asciiart.eu/art-and-design/mazes
-    // corridors need to be 1 space wide, or it will mess up the trail
  
-
-    // 7. replace
     const char* maze[rows] = 
     {
 
@@ -132,26 +137,18 @@ void an_printMaze10(Rect position, int defaultHeight, int color,
             int (&player)[2], bool &firstRun, bool& endReached, Grid& mazeGrid, 
                                                                 int& maze_state)
 {
-    const char* mazeName = "Maze 10";            // 2. replace
-    int rows = 11;                              // 3. replace: 
-                                                //          start counting from 1
-    int startingPosition[2] = {1, 1};          // 4. replace: 
-                                                //          start counting from 0.
-                                                //          1st number: left to right
-                                                //          2nd number: top to bottom
-                                                //  
-    //int endingPosition[2] = {2, 1};           // 5. replace: 
-    int endingPosition[2] = {9, 9};           // 5. replace: 
-                                                //          same as #4.           
-                                                //
-    int wallColor[3] = {102, 50, 168};             // 6. replace:
-                                                //          this is rgb color for wall. 
-                                                //          don't forget #7
-
+    const char* mazeName = "Maze 10";           
+    int rows = 11;                              
+                                               
+    int startingPosition[2] = {1, 1};          
+                                                
+    //int endingPosition[2] = {2, 1};           // Temporary Exit 
+    int endingPosition[2] = {9, 9};             // Actual Exit
+                                                
+    int wallColor[3] = {102, 50, 168};          
+                                               
     // source: https://www.dcode.fr/maze-generator
-    // corridors need to be 1 space wide, or it will mess up the trail
 
-    // 7. replace
     const char* maze[rows] = 
     {
 
