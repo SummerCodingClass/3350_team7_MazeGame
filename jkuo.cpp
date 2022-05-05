@@ -1138,7 +1138,6 @@ void Grid::printGrid(Rect position, int rows, int columns,
             // float w = (columns + 3) * u;
             // float h = (rows + 2) * u;
 
-
             float u = 5.0f;
             float w = (columns + 2 + (columns * 0.2)) * u;
             float h = (rows + 2 + (rows * 0.25)) * u;
@@ -1156,7 +1155,6 @@ void Grid::printGrid(Rect position, int rows, int columns,
             glVertex2f( w, -h);
             glEnd();
             glPopMatrix();
-
 
     // ========================== start of for loops ========================
     for (int i = 0; i < rows; i++) {
@@ -1202,8 +1200,6 @@ void Grid::printGrid(Rect position, int rows, int columns,
             glEnd();
             glPopMatrix();
             // glDisable(GL_TEXTURE_2D);
-
-
             
             // doing it after drawing the squares places the image 
             // above the square rather than below.
@@ -1377,7 +1373,6 @@ void highScoreMessages(int& maze_state, int (&timeBeaten)[13], int current_time,
 
 // }
 
-
 void Grid::playerImage (int yres, unsigned int textid, int player[2])
 {
     int x = player[1];
@@ -1528,7 +1523,6 @@ void Grid::wallImage(int i, int j, int r, int g, int b)
     // g++; //remove
     // b++; //remove
 
-
     glPushMatrix();
     float w = 4.0f;
     float wp = 5.0f;
@@ -1582,7 +1576,7 @@ void testBackgroundImage2 (int xres, int yres, unsigned int textid)
     glEnd();
     glBindTexture(GL_TEXTURE_2D, 0);
     glPopMatrix();
-	glDisable(GL_ALPHA_TEST);
+    glDisable(GL_ALPHA_TEST);
 }
 
 void creditsImage (int xres, int yres, unsigned int textid)
@@ -1607,7 +1601,7 @@ void creditsImage (int xres, int yres, unsigned int textid)
     glEnd();
     glBindTexture(GL_TEXTURE_2D, 0);
     glPopMatrix();
-	glDisable(GL_ALPHA_TEST);
+    glDisable(GL_ALPHA_TEST);
 }
 
 void overallVictoryImage (int xres, int yres, unsigned int textid)
@@ -1632,5 +1626,5 @@ void overallVictoryImage (int xres, int yres, unsigned int textid)
     glEnd();
     glBindTexture(GL_TEXTURE_2D, 0);
     glPopMatrix();
-	glDisable(GL_ALPHA_TEST);
+    glDisable(GL_ALPHA_TEST);
 }

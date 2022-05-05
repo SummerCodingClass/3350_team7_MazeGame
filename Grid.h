@@ -1,10 +1,8 @@
 #include <vector>
 using namespace std;
 
-
-class Grid {
-
-    
+class Grid 
+{
     public:
         int rows;
         int columns;
@@ -35,7 +33,6 @@ class Grid {
 
         void playerImage (int yres, unsigned int textid, int player[2]);
 };
-
 
 // ref for 2d vectors:
 // https://www.geeksforgeeks.org/vector-of-vectors-in-c-stl-with-examples/
