@@ -6,8 +6,7 @@
 // once it does recognize the class, then I was able to extern the 
 // gl variable... finally!
 
-class Global 
-{
+class Global {
     public:
         unsigned int textid[10];
         int xres, yres;

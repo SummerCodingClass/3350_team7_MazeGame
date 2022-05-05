@@ -1,8 +1,7 @@
 #include <vector>
 using namespace std;
 
-class Grid 
-{
+class Grid {
     public:
         int rows;
         int columns;

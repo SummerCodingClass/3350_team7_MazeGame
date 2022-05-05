@@ -16,13 +16,11 @@
 #include "GridCells.h"
 #include "Grid.h"
 
-
 #include "Global.h"
 // #ifndef GLOBAL_H_
 // #define GLOBAL_H_
 // #include "Global.h"
 // #endif //GLOBAL_H_
-
 
 Global::Global() {
     xres = 960;
